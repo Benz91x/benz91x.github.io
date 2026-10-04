@@ -1,0 +1,193 @@
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+content-type: text/html; charset=UTF-8
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: "5bea6610a0a1b07e902c318aa51f4ab2-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T966ED0TK12JH4S773A7
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/index.html
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+content-type: text/html; charset=UTF-8
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: "5bea6610a0a1b07e902c318aa51f4ab2-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T99AF92F2XK0WWMQCXV7
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/robots.txt
+HTTP/2 404 
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=404; stored
+content-type: text/html; charset=utf-8
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: 1791053579-ssl
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T9C76ZRV1EA997JHRW48
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/sitemap.xml
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+content-type: application/xml
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: "3392d8e41c0f9229df81de97d2f13c63-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-nf-request-id: 01M432T9E2S1SPVJ16N0JNMJZB
+content-length: 298
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/manifest.webmanifest
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+content-type: application/octet-stream
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: "0696cd29fc934e951046215971fd9b57-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-nf-request-id: 01M432T9G0MGJ7DTV9DDTSBHTN
+content-length: 778
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/sw.js
+HTTP/2 200 
+accept-ranges: bytes
+age: 3
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; hit; ttl=31535997
+content-type: application/javascript; charset=UTF-8
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: "4ded8a3c2e7ffb5f3b0ef6ad5282e57b-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T9J1NKS15X547ERR07N2
+content-length: 2158
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/favicon.ico
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+content-type: image/vnd.microsoft.icon
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: "dcd69f1dfbb02c0f42c1960e5fd872e9-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T9KC8F4G6EJTRXPSHD66
+content-length: 2688
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/assets/logo.png
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+content-type: image/png
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: "a315596b0d7c8523e9084b5a1f417a70-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-nf-request-id: 01M432T9N819C8VABS070YAPHP
+content-length: 21157
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/pagina-inesistente-404
+HTTP/2 404 
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=404; stored
+content-type: text/html; charset=utf-8
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: 1791053579-ssl
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T9QD50W5RJE5B5WH1T06
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/netlify.toml
+HTTP/2 404 
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=404; stored
+content-type: text/html; charset=utf-8
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: 1791053579-ssl
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T9SBHWYT91XZ0H77F6JP
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/_headers
+HTTP/2 404 
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=404; stored
+content-type: text/html; charset=utf-8
+date: Sun, 04 Oct 2026 09:09:44 GMT
+etag: 1791053579-ssl
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T9VD5P0EY9S9E3VAR8XV
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/_redirects
+HTTP/2 404 
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=404; stored
+content-type: text/html; charset=utf-8
+date: Sun, 04 Oct 2026 09:09:45 GMT
+etag: 1791053579-ssl
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding
+x-nf-request-id: 01M432T9XE0W1202BD2B3XCP25
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/icons/icon-192.png
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+content-type: image/png
+date: Sun, 04 Oct 2026 09:09:45 GMT
+etag: "ae39b569b23a4b83ded49e7ceef07433-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-nf-request-id: 01M432T9ZDFDZ20A4RF6J0ZD22
+content-length: 4506
+
+=================== GET https://differenziata-san-vito-dei-normanni.netlify.app/icons/icon-512.png
+HTTP/2 200 
+accept-ranges: bytes
+age: 0
+cache-control: public,max-age=0,must-revalidate
+cache-status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+content-type: image/png
+date: Sun, 04 Oct 2026 09:09:45 GMT
+etag: "205ab2ed948072fe84c9bde5eef0bf02-ssl"
+server: Netlify
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-nf-request-id: 01M432TA19PC2Q8B5H52TAQV34
+content-length: 14969
+

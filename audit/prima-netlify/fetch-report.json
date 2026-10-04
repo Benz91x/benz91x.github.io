@@ -1,0 +1,194 @@
+[
+ {
+  "path": "",
+  "status": 200,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/",
+  "bytes": 136286
+ },
+ {
+  "path": "index.html",
+  "status": 200,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/index.html",
+  "bytes": 136286
+ },
+ {
+  "path": "robots.txt",
+  "status": 404
+ },
+ {
+  "path": "sitemap.xml",
+  "status": 200,
+  "type": "application/xml",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/sitemap.xml",
+  "bytes": 298
+ },
+ {
+  "path": "netlify.toml",
+  "status": 404
+ },
+ {
+  "path": "_headers",
+  "status": 404
+ },
+ {
+  "path": "_redirects",
+  "status": 404
+ },
+ {
+  "path": "manifest.webmanifest",
+  "status": 200,
+  "type": "application/octet-stream",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/manifest.webmanifest",
+  "bytes": 778
+ },
+ {
+  "path": "sw.js",
+  "status": 200,
+  "type": "application/javascript; charset=UTF-8",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/sw.js",
+  "bytes": 2158
+ },
+ {
+  "path": "favicon.ico",
+  "status": 200,
+  "type": "image/vnd.microsoft.icon",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/favicon.ico",
+  "bytes": 2688
+ },
+ {
+  "path": "assets/logo.png",
+  "status": 200,
+  "type": "image/png",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/assets/logo.png",
+  "bytes": 21157
+ },
+ {
+  "path": "width=device-width",
+  "status": 404
+ },
+ {
+  "path": "initial-scale=1",
+  "status": 404
+ },
+ {
+  "path": "viewport-fit=cover",
+  "status": 404
+ },
+ {
+  "path": "Calendario",
+  "status": 404
+ },
+ {
+  "path": "in",
+  "status": 404
+ },
+ {
+  "path": "orari",
+  "status": 404
+ },
+ {
+  "path": "ritiro",
+  "status": 404
+ },
+ {
+  "path": "index",
+  "status": 200,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/",
+  "bytes": 136286
+ },
+ {
+  "path": "follow",
+  "status": 404
+ },
+ {
+  "path": "strict-origin-when-cross-origin",
+  "status": 404
+ },
+ {
+  "path": "light",
+  "status": 404
+ },
+ {
+  "path": "yes",
+  "status": 404
+ },
+ {
+  "path": "black-translucent",
+  "status": 404
+ },
+ {
+  "path": "Differenziata",
+  "status": 404
+ },
+ {
+  "path": "telephone=no",
+  "status": 404
+ },
+ {
+  "path": "website",
+  "status": 404
+ },
+ {
+  "path": "it_IT",
+  "status": 404
+ },
+ {
+  "path": "Raccolta",
+  "status": 404
+ },
+ {
+  "path": "Il",
+  "status": 404
+ },
+ {
+  "path": "sempre",
+  "status": 404
+ },
+ {
+  "path": "ingombranti",
+  "status": 404
+ },
+ {
+  "path": "icons/og-image.png",
+  "status": 200,
+  "type": "image/png",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/icons/og-image.png",
+  "bytes": 39062
+ },
+ {
+  "path": "1200",
+  "status": 404
+ },
+ {
+  "path": "630",
+  "status": 404
+ },
+ {
+  "path": "summary_large_image",
+  "status": 404
+ },
+ {
+  "path": "icons/icon-192.png",
+  "status": 200,
+  "type": "image/png",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/icons/icon-192.png",
+  "bytes": 4506
+ },
+ {
+  "path": "icons/apple-touch-icon.png",
+  "status": 200,
+  "type": "image/png",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/icons/apple-touch-icon.png",
+  "bytes": 1921
+ },
+ {
+  "path": "icons/icon-512.png",
+  "status": 200,
+  "type": "image/png",
+  "final": "https://differenziata-san-vito-dei-normanni.netlify.app/icons/icon-512.png",
+  "bytes": 14969
+ }
+]

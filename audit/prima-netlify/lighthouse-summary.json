@@ -1,0 +1,70 @@
+{
+ "runs": [
+  {
+   "performance": 91,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "first-contentful-paint": 2644.3910000000005,
+   "largest-contentful-paint": 2644.3910000000005,
+   "total-blocking-time": 0,
+   "cumulative-layout-shift": 0.08521302485921266,
+   "speed-index": 2644.3910000000005
+  },
+  {
+   "performance": 93,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "first-contentful-paint": 2633.5510000000004,
+   "largest-contentful-paint": 2633.5510000000004,
+   "total-blocking-time": 0,
+   "cumulative-layout-shift": 0.002813049066232439,
+   "speed-index": 2633.5510000000004
+  },
+  {
+   "performance": 91,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "first-contentful-paint": 2633.3109999999997,
+   "largest-contentful-paint": 2633.3109999999997,
+   "total-blocking-time": 0,
+   "cumulative-layout-shift": 0.08521302485921266,
+   "speed-index": 2633.3109999999997
+  }
+ ],
+ "median": {
+  "performance": 91,
+  "accessibility": 100,
+  "best-practices": 100,
+  "seo": 100,
+  "first-contentful-paint": 2633.5510000000004,
+  "largest-contentful-paint": 2633.5510000000004,
+  "total-blocking-time": 0,
+  "cumulative-layout-shift": 0.08521302485921266,
+  "speed-index": 2633.5510000000004
+ },
+ "failing": {
+  "performance": [
+   "first-contentful-paint: First Contentful Paint (2.6\u00a0s)",
+   "largest-contentful-paint: Largest Contentful Paint (2.6\u00a0s)",
+   "cumulative-layout-shift: Cumulative Layout Shift (0.085)",
+   "speed-index: Speed Index (2.6\u00a0s)",
+   "cache-insight: Use efficient cache lifetimes (Est savings of 10\u00a0KiB)",
+   "image-delivery-insight: Improve image delivery (Est savings of 20\u00a0KiB)",
+   "network-dependency-tree-insight: Network dependency tree ()",
+   "render-blocking-insight: Render blocking requests (Est savings of 1,610\u00a0ms)",
+   "interactive: Time to Interactive (2.6\u00a0s)",
+   "render-blocking-resources: Eliminate render-blocking resources (Est savings of 1,610\u00a0ms)",
+   "uses-responsive-images: Properly size images (Est savings of 7\u00a0KiB)",
+   "modern-image-formats: Serve images in next-gen formats (Est savings of 16\u00a0KiB)",
+   "dom-size: Avoid an excessive DOM size (1,681 elements)",
+   "largest-contentful-paint-element: Largest Contentful Paint element (2,640\u00a0ms)",
+   "unsized-images: Image elements do not have explicit `width` and `height` ()"
+  ],
+  "accessibility": [
+   "label-content-name-mismatch: Elements with visible text labels do not have matching accessible names. ()"
+  ]
+ }
+}
