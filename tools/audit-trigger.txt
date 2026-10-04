@@ -1,0 +1,4 @@
+label=prima-netlify
+url=https://differenziata-san-vito-dei-normanni.netlify.app/
+fetch=yes
+extra=netlify.toml _headers _redirects icons/icon-192.png icons/icon-512.png

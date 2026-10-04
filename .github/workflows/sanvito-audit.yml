@@ -1,0 +1,79 @@
+name: San Vito - scarica e analizza
+on:
+  push:
+    branches: [claude/sanvito-tools]
+    paths: ['.github/workflows/sanvito-audit.yml', 'tools/audit-trigger.txt']
+permissions:
+  contents: write
+concurrency: sanvito-tools
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Leggi destinazione
+        id: cfg
+        run: |
+          cat tools/audit-trigger.txt
+          echo "label=$(sed -n 's/^label=//p' tools/audit-trigger.txt)" >> "$GITHUB_OUTPUT"
+          echo "url=$(sed -n 's/^url=//p' tools/audit-trigger.txt)" >> "$GITHUB_OUTPUT"
+          echo "fetch=$(sed -n 's/^fetch=//p' tools/audit-trigger.txt)" >> "$GITHUB_OUTPUT"
+          echo "extra=$(sed -n 's/^extra=//p' tools/audit-trigger.txt)" >> "$GITHUB_OUTPUT"
+      - name: Scarica i file e le intestazioni
+        env:
+          URL: ${{ steps.cfg.outputs.url }}
+          LABEL: ${{ steps.cfg.outputs.label }}
+          FETCH: ${{ steps.cfg.outputs.fetch }}
+          EXTRA: ${{ steps.cfg.outputs.extra }}
+        run: |
+          D="audit/$LABEL"; mkdir -p "$D"
+          if [ "$FETCH" = "yes" ]; then python3 tools/fetch_site.py "$URL" "$D/files" > /dev/null; fi
+          for p in "" index.html robots.txt sitemap.xml manifest.webmanifest sw.js favicon.ico assets/logo.png pagina-inesistente-404 $EXTRA; do
+            echo "=================== GET ${URL%/}/$p"
+            curl -sS -D - -o /dev/null --max-redirs 0 -A "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "${URL%/}/$p" || true
+          done > "$D/headers.txt" 2>&1
+          curl -sS -o "$D/raw.html" "$URL"
+          google-chrome --headless=new --no-sandbox --disable-gpu --virtual-time-budget=8000 --window-size=412,915 \
+            --user-agent="Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36" \
+            --dump-dom "$URL" > "$D/rendered.html" 2>/dev/null || true
+          google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=412,915 --screenshot="$D/screenshot.png" "$URL" 2>/dev/null || true
+          curl -sS "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=$(python3 -c 'import urllib.parse,sys;print(urllib.parse.quote(sys.argv[1],safe=""))' "$URL")&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo" -o "$D/psi.json" || true
+      - name: Lighthouse mobile (3 esecuzioni)
+        env:
+          URL: ${{ steps.cfg.outputs.url }}
+          LABEL: ${{ steps.cfg.outputs.label }}
+        run: |
+          D="audit/$LABEL"
+          npm i -g lighthouse@12 >/dev/null 2>&1
+          lighthouse --version > "$D/lighthouse-version.txt"
+          for i in 1 2 3; do
+            lighthouse "$URL" --quiet --form-factor=mobile --chrome-flags="--headless=new --no-sandbox" \
+              --output=json --output-path="$D/lh-$i.json" || true
+          done
+          python3 - "$D" <<'PY'
+          import json, sys, statistics, glob
+          d = sys.argv[1]; rows = []
+          for f in sorted(glob.glob(f"{d}/lh-*.json")):
+              j = json.load(open(f)); c = j['categories']; a = j['audits']
+              rows.append({k: round(c[k]['score'] * 100) for k in ('performance', 'accessibility', 'best-practices', 'seo')} |
+                          {m: a[m]['numericValue'] for m in ('first-contentful-paint', 'largest-contentful-paint', 'total-blocking-time', 'cumulative-layout-shift', 'speed-index')})
+          med = {k: statistics.median(r[k] for r in rows) for k in rows[0]}
+          fails = {}
+          j = json.load(open(sorted(glob.glob(f"{d}/lh-*.json"))[0]))
+          for cat, c in j['categories'].items():
+              for ref in c['auditRefs']:
+                  au = j['audits'][ref['id']]
+                  if au.get('score') is not None and au['score'] < 1 and au.get('scoreDisplayMode') not in ('notApplicable', 'manual', 'informative'):
+                      fails.setdefault(cat, []).append(f"{ref['id']}: {au['title']} ({au.get('displayValue', '')})")
+          json.dump({'runs': rows, 'median': med, 'failing': fails}, open(f"{d}/lighthouse-summary.json", 'w'), indent=1)
+          print(json.dumps(med, indent=1))
+          PY
+          rm -f "$D"/lh-2.json "$D"/lh-3.json
+      - name: Salva i risultati sul ramo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add audit
+          git commit -m "audit: risultati ${{ steps.cfg.outputs.label }}" || exit 0
+          git pull --rebase origin claude/sanvito-tools && git push origin HEAD:claude/sanvito-tools
