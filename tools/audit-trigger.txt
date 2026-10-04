@@ -1,4 +1,4 @@
-label=prima-netlify
-url=https://differenziata-san-vito-dei-normanni.netlify.app/
-fetch=yes
-extra=netlify.toml _headers _redirects icons/icon-192.png icons/icon-512.png
+label=dopo-github
+url=https://benz91x.github.io/differenziata-san-vito-dei-normanni/
+fetch=no
+extra=../robots.txt icons/icon-maskable-512.png icons/og-image.png fonts/atkinson-hyperlegible-next-latin.woff2 ../
