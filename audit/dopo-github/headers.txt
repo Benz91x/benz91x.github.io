@@ -1,0 +1,350 @@
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/
+HTTP/2 200 
+server: GitHub.com
+content-type: text/html; charset=utf-8
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-21500"
+expires: Sun, 04 Oct 2026 09:47:06 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: 3404:9EC2B:9B7096:AD5D57:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000165-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106626.360453,VS0,VE28
+vary: Accept-Encoding
+x-fastly-request-id: 8cd7d51e5c471147cb85a688e595ea175567cfff
+content-length: 136448
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/index.html
+HTTP/2 200 
+server: GitHub.com
+content-type: text/html; charset=utf-8
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-21500"
+expires: Sun, 04 Oct 2026 09:47:06 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: 30DA:275C0B:98A0C9:AA8960:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000100-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106626.436313,VS0,VE30
+vary: Accept-Encoding
+x-fastly-request-id: 5f1aa9d3615440bcfd942a384aa9edbb96635504
+content-length: 136448
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/robots.txt
+HTTP/2 404 
+server: GitHub.com
+content-type: text/html; charset=utf-8
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6abcf5c5-24a3"
+content-security-policy: default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'
+x-proxy-cache: MISS
+x-github-request-id: 2922:291651:9615C9:A80506:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kcgs7200163-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.523850,VS0,VE28
+vary: Accept-Encoding
+x-fastly-request-id: d2290b6b0f6816b8608b843d7ed40aec280809ef
+content-length: 9379
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/sitemap.xml
+HTTP/2 200 
+server: GitHub.com
+content-type: application/xml
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-130"
+expires: Sun, 04 Oct 2026 09:47:06 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: 4D2E:2105D1:C1DD5A:D0DDD8:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000060-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.590409,VS0,VE19
+vary: Accept-Encoding
+x-fastly-request-id: 9c4b7b0ffdcc06c27ab8e677a283b21fd2a2666e
+content-length: 304
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/manifest.webmanifest
+HTTP/2 200 
+server: GitHub.com
+content-type: application/manifest+json; charset=utf-8
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-30a"
+expires: Sun, 04 Oct 2026 09:47:06 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: 12B2:5E59B:B14A61:C04D3D:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000209-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.646500,VS0,VE36
+vary: Accept-Encoding
+x-fastly-request-id: 2e46f19f0d7ac815c4b7a8f66ecfbbbf7012103a
+content-length: 778
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/sw.js
+HTTP/2 200 
+server: GitHub.com
+content-type: application/javascript; charset=utf-8
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-8ad"
+expires: Sun, 04 Oct 2026 09:47:06 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: E7D8:A51E7:545643:6E7861:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kcgs7200173-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.720647,VS0,VE22
+vary: Accept-Encoding
+x-fastly-request-id: 1dd7d949e330102a4dcfd40e68fc582ac4a3eae7
+content-length: 2221
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/favicon.ico
+HTTP/2 200 
+server: GitHub.com
+content-type: image/vnd.microsoft.icon
+x-origin-cache: HIT
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-a80"
+expires: Sun, 04 Oct 2026 09:47:06 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: 8F64:19462B:9E4B09:B0353F:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000089-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.780190,VS0,VE8
+vary: Accept-Encoding
+x-fastly-request-id: f5c6e3b6ef6116bdea331fe2890438eb4bc78bab
+content-length: 2688
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/assets/logo.png
+HTTP/2 200 
+server: GitHub.com
+content-type: image/png
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-19ac"
+expires: Sun, 04 Oct 2026 09:47:06 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: B302:36B854:4B82EF:65AA09:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kcgs7200057-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.826962,VS0,VE17
+vary: Accept-Encoding
+x-fastly-request-id: f636a089d8d19f94009ff46810017d9c1b9a4943
+content-length: 6572
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/pagina-inesistente-404
+HTTP/2 404 
+server: GitHub.com
+content-type: text/html; charset=utf-8
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6abcf5c5-24a3"
+content-security-policy: default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'
+x-proxy-cache: MISS
+x-github-request-id: D514:1CC7:384631:4160B8:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000073-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.882645,VS0,VE27
+vary: Accept-Encoding
+x-fastly-request-id: 2006c3575720489b8cc6d103765e1ea30effe73a
+content-length: 9379
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/../robots.txt
+HTTP/2 200 
+server: GitHub.com
+content-type: text/plain; charset=utf-8
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-df"
+expires: Sun, 04 Oct 2026 09:47:06 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: B324:37CC2B:5C7B64:769F05:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:06 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000095-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.948683,VS0,VE22
+vary: Accept-Encoding
+x-fastly-request-id: 5cf2ea966baf64940db494735b9819e3315a86c2
+content-length: 223
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/icons/icon-maskable-512.png
+HTTP/2 200 
+server: GitHub.com
+content-type: image/png
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-4c34"
+expires: Sun, 04 Oct 2026 09:47:07 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: 526E:337C8E:533D6B:6D5DD5:6AC21E43
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:07 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kcgs7200047-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.010245,VS0,VE30
+vary: Accept-Encoding
+x-fastly-request-id: 4a413884df538baffca67c1f05809d9f6d58b365
+content-length: 19508
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/icons/og-image.png
+HTTP/2 200 
+server: GitHub.com
+content-type: image/png
+x-origin-cache: HIT
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-9ad6"
+expires: Sun, 04 Oct 2026 09:47:07 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: BDE8:22446D:92CEFF:A4BBA3:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:07 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kcgs7200130-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.079963,VS0,VE11
+vary: Accept-Encoding
+x-fastly-request-id: 91d50bd812201e731266368b74e506aeb4d8963e
+content-length: 39638
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/fonts/atkinson-hyperlegible-next-latin.woff2
+HTTP/2 200 
+server: GitHub.com
+content-type: font/woff2
+x-origin-cache: HIT
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-84cc"
+expires: Sun, 04 Oct 2026 09:47:07 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: A2B2:1C5DE:9D6BB1:AF56A0:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:07 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000195-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.131670,VS0,VE12
+vary: Accept-Encoding
+x-fastly-request-id: 8db4720e43f3ca2f2252bdfe7af1e9af31f7181a
+content-length: 33996
+
+=================== GET https://benz91x.github.io/differenziata-san-vito-dei-normanni/../
+HTTP/2 200 
+server: GitHub.com
+content-type: text/html; charset=utf-8
+x-origin-cache: HIT
+last-modified: Sun, 04 Oct 2026 09:34:57 GMT
+access-control-allow-origin: *
+strict-transport-security: max-age=31556952
+etag: "6ac21dc1-a83d"
+expires: Sun, 04 Oct 2026 09:47:07 GMT
+cache-control: max-age=600
+x-proxy-cache: MISS
+x-github-request-id: BE66:1C6C:4CB6E:60EB8:6AC21E42
+x-github-edge-region: iad
+accept-ranges: bytes
+age: 0
+date: Sun, 04 Oct 2026 09:37:07 GMT
+via: 1.1 varnish
+x-served-by: cache-iad-kiad7000130-IAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1791106627.183439,VS0,VE25
+vary: Accept-Encoding
+x-fastly-request-id: 565dccc7c0c863dc9b2e8d8e223aa8aa54c43db0
+content-length: 43069
+

@@ -1,0 +1,58 @@
+{
+ "runs": [
+  {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "first-contentful-paint": 1052.4279999999999,
+   "largest-contentful-paint": 1202.4279999999999,
+   "total-blocking-time": 30,
+   "cumulative-layout-shift": 0,
+   "speed-index": 1052.4279999999999
+  },
+  {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "first-contentful-paint": 1064.0555,
+   "largest-contentful-paint": 1223.0555,
+   "total-blocking-time": 0,
+   "cumulative-layout-shift": 0,
+   "speed-index": 1064.0555
+  },
+  {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "first-contentful-paint": 1039.569,
+   "largest-contentful-paint": 1202.569,
+   "total-blocking-time": 0,
+   "cumulative-layout-shift": 0,
+   "speed-index": 1039.569
+  }
+ ],
+ "median": {
+  "performance": 100,
+  "accessibility": 100,
+  "best-practices": 100,
+  "seo": 100,
+  "first-contentful-paint": 1052.4279999999999,
+  "largest-contentful-paint": 1202.569,
+  "total-blocking-time": 0,
+  "cumulative-layout-shift": 0,
+  "speed-index": 1052.4279999999999
+ },
+ "failing": {
+  "performance": [
+   "cache-insight: Use efficient cache lifetimes (Est savings of 37\u00a0KiB)",
+   "image-delivery-insight: Improve image delivery (Est savings of 6\u00a0KiB)",
+   "network-dependency-tree-insight: Network dependency tree ()",
+   "max-potential-fid: Max Potential First Input Delay (70\u00a0ms)",
+   "uses-long-cache-ttl: Serve static assets with an efficient cache policy (2 resources found)",
+   "dom-size: Avoid an excessive DOM size (1,680 elements)"
+  ]
+ }
+}
