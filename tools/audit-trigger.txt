@@ -1,4 +1,4 @@
-label=dopo-github
-url=https://benz91x.github.io/differenziata-san-vito-dei-normanni/
+label=home-side-project
+url=https://benz91x.github.io/
 fetch=no
-extra=../robots.txt icons/icon-maskable-512.png icons/og-image.png fonts/atkinson-hyperlegible-next-latin.woff2 ../
+extra=assets/img/side/sanvito-light-500.avif assets/img/side/mesagne-light-500.avif assets/img/side/icon-sanvito-168.png differenziata-san-vito-dei-normanni/icons/apple-touch-icon.png differenziata-san-vito-dei-normanni/favicon.ico differenziata-mesagne/favicon.ico
