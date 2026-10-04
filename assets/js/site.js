@@ -37,7 +37,7 @@
     "a11y.langs": "Languages",
     "a11y.areas": "Areas",
     "nav.profile": "Profile", "nav.journey": "Experience", "nav.projects": "Projects",
-    "nav.where": "Cities", "nav.pubs": "Publications", "nav.skills": "Skills", "nav.contact": "Contact",
+    "nav.where": "Cities", "nav.side": "Side projects", "nav.pubs": "Publications", "nav.skills": "Skills", "nav.contact": "Contact",
     "nav.cta": "Get in touch", "nav.lang": "IT",
     "menu.lang": "Italiano", "menu.theme": "Light / dark theme",
     "hero.badge": "Open to new opportunities",
@@ -108,6 +108,37 @@
     "g.n2": "Research · Technology transfer",
     "g.cl": "Organizations",
     "g.hint": "Scroll to explore",
+    "sp.label": "Side projects",
+    "sp.title": "Two apps for local residents.",
+    "sp.intro": "In my spare time I designed and built two free web apps that tell residents of San Vito dei Normanni and Mesagne what to put out for collection each day. They are made for everyone, including people who are less comfortable with smartphones.",
+    "sp.type": "Free web app in&nbsp;Italian&nbsp;· Apulia, Italy",
+    "sp.k1": "Sources", "sp.k2": "Live since",
+    "sp.open": "Open the app",
+    "sp.code": "Source code",
+    "sp.sv.alt": "The Differenziata San Vito dei Normanni app on a smartphone: the choice between town and countryside and, front and centre, the waste to put out tonight.",
+    "sp.sv.lede": "In the countryside, Friday’s collection depends on the week of the month. The app starts from the question that matters most: what to put out tonight, in town or in the countryside.",
+    "sp.sv.f1t": "“Where does it go?”", "sp.sv.f1": "More than 400 items: search for one and the app tells you which collection it goes in.",
+    "sp.sv.f2t": "Collection centre.", "sp.sv.f2": "Opening hours, and whether it is open right now.",
+    "sp.sv.f3t": "Monthly calendar.", "sp.sv.f3": "Every collection, with public holidays flagged.",
+    "sp.sv.f4t": "Larger text.", "sp.sv.f4": "One button enlarges the text, set in a highly legible typeface.",
+    "sp.sv.v1": "Teknoservice and the municipality", "sp.sv.v2": "4 October 2026",
+    "sp.me.alt": "The Differenziata Mesagne app on a smartphone: today’s collection front and centre, yesterday’s and tomorrow’s, and this week’s calendar.",
+    "sp.me.lede": "On Thursdays, glass and metals alternate with paper and cardboard depending on the week of the month. The app shows today’s, yesterday’s and tomorrow’s collections at a glance.",
+    "sp.me.f1t": "This week.", "sp.me.f1": "Every collection, day by day.",
+    "sp.me.f2t": "What goes where.", "sp.me.f2": "A list for each collection, from organic to residual waste.",
+    "sp.me.f3t": "Collection centre.", "sp.me.f3": "Address on Via Marangio and opening hours for every day.",
+    "sp.me.f4t": "Bulky waste.", "sp.me.f4": "The numbers to book a pickup, one of them also on WhatsApp.",
+    "sp.me.v1": "Gial&nbsp;Ambiente and the municipality", "sp.me.v2": "2 October 2026",
+    "sp.c.s": "How they are built",
+    "sp.c.t": "Lean by design.",
+    "sp.c.1t": "Official data sources.", "sp.c.1": "Schedules, opening hours and phone numbers from the waste collection operators and the municipalities.",
+    "sp.c.2t": "Offline and installable.", "sp.c.2": "They work without a connection and can be added to the home screen like an app (PWA).",
+    "sp.c.3t": "Free, no account needed.", "sp.c.3": "No ads, no sign-up, no analytics scripts.",
+    "sp.c.4t": "Lightweight.", "sp.c.4": "HTML, CSS and JavaScript in a single file, with no frameworks, hosted on GitHub Pages.",
+    "sp.lh.1": "Performance", "sp.lh.2": "Accessibility", "sp.lh.3": "Best Practices",
+    "sp.lh.cap": "Measured on the live site on 4 October 2026, median of three runs.",
+    "sp.lh.vit": "LCP 1.2&nbsp;s · CLS&nbsp;0",
+    "sp.note": "Unofficial information services, built in a personal capacity: for any schedule changes, each municipality’s announcements take precedence.",
     "u.label": "Publications",
     "u.title": "Research and writing.",
     "u.intro": "A scientific article on the platform I work on, and a book written out of passion.",
@@ -160,9 +191,13 @@
     "c.a.2v": "Energy &amp; utilities · Industry · Public sector · Technology",
     "c.a.3v": "Italy (Bari or Milan) · hybrid or remote work, including across the EU",
     "f.crumb": "Professional profile",
-    "f.h1": "Sections", "f.h2": "Contact", "f.h3": "Profile",
+    "f.h1": "Sections", "f.h2": "Contact", "f.h3": "Profile", "f.h4": "Apps for residents",
+    "f.app1": "San Vito dei Normanni waste collection calendar",
+    "f.app1t": "Free app with the waste collection calendar for San Vito dei Normanni (in Italian)",
+    "f.app2": "Mesagne waste collection calendar",
+    "f.app2t": "Free app with the waste collection calendar for Mesagne (in Italian)",
     "f.cv": "CV (PDF)", "f.where": "Italy · hybrid or remote work",
-    "f.ver": "Last updated: September 2026.",
+    "f.ver": "Last updated: October 2026.",
     "f.top": "Back to top"
   };
   /* testi generati da JS, in entrambe le lingue */
@@ -358,7 +393,7 @@
 
     if (!("IntersectionObserver" in window)) return;
     var map = { top: null, profilo: "profilo", perche: "profilo", percorso: "percorso", progetti: "progetti",
-                dove: "dove", pubblicazioni: "pubblicazioni", competenze: "competenze", formazione: "competenze", contatti: "contatti" };
+                dove: "dove", "side-project": "side-project", pubblicazioni: "pubblicazioni", competenze: "competenze", formazione: "competenze", contatti: "contatti" };
     var links = $$(".nav__links a");
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -399,7 +434,7 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { setOpen(false); btn.focus(); }
     });
-    matchMedia("(min-width: 834px)").addEventListener("change", function (m) { if (m.matches) setOpen(false); });
+    matchMedia("(min-width: 64em)").addEventListener("change", function (m) { if (m.matches) setOpen(false); });
   }
 
   /* ---------- Comparse allo scroll ---------- */
@@ -505,6 +540,8 @@
       if (h.indexOf(".pdf") > -1) ev("download-cv", "Download CV PDF");
       else if (h.indexOf("mailto:") === 0) ev("click-email", "Click Email");
       else if (h.indexOf("linkedin.") > -1) ev("click-linkedin", "Click LinkedIn");
+      /* prima di "github.": le app stanno su benz91x.github.io */
+      else if (h.indexOf("github.io/differenziata-") > -1) ev("click-app-" + (h.indexOf("mesagne") > -1 ? "mesagne" : "sanvito"), "Click app Differenziata");
       else if (h.indexOf("github.") > -1) ev("click-github", "Click GitHub");
       else if (h.indexOf("amazon.") > -1) ev("click-libro", "Click libro su Amazon");
       else if (h.indexOf("mdpi.com") > -1 || h.indexOf("doi.org") > -1) ev("click-articolo", "Click articolo MDPI");

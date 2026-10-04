@@ -1,6 +1,6 @@
 /* Differenziata San Vito dei Normanni: copia dell'app per l'uso senza internet.
    Cambia CACHE a ogni pubblicazione: così i telefoni scaricano davvero la versione nuova. */
-var CACHE = "sanvito-differenziata-20261004";
+var CACHE = "sanvito-differenziata-20261004-icone";
 var SHELL = ["./", "./index.html", "./manifest.webmanifest", "./assets/logo.png",
              "./fonts/atkinson-hyperlegible-next-latin.woff2",
              "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
