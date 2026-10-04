@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://benz91x.github.io/sitemap.xml
 Sitemap: https://benz91x.github.io/differenziata-mesagne/sitemap.xml
+Sitemap: https://benz91x.github.io/differenziata-san-vito-dei-normanni/sitemap.xml
