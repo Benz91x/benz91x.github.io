@@ -13,7 +13,7 @@
    La chiave privata sta in ~/.scadenze-mesagne/chiave-privata.jwk (o nel percorso
    indicato da SM_CHIAVE). Non metterla mai nel repository. */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, chmodSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, chmodSync, renameSync, rmSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -34,7 +34,7 @@ function arg(nome) {
   const i = process.argv.indexOf("--" + nome);
   if (i < 0) return undefined;
   const v = process.argv[i + 1];
-  if (v === undefined || v.startsWith("--")) throw new Error("Manca il valore di --" + nome);
+  if (v === undefined || v.trim() === "" || v.startsWith("--")) throw new Error("Manca il valore di --" + nome);
   return v;
 }
 
@@ -60,15 +60,22 @@ async function chiavi() {
   const nuovo = html.replace(/\/\*CHIAVE\*\/.*?\/\*FINE-CHIAVE\*\//s, "/*CHIAVE*/" + pubblica + "/*FINE-CHIAVE*/");
   if (!/\/\*CHIAVE\*\/.*?\/\*FINE-CHIAVE\*\//s.test(html)) throw new Error("Segnaposto della chiave non trovato in " + APP);
 
+  /* la nuova chiave privata prende il posto della vecchia solo dopo che l'HTML è stato scritto */
+  const tmp = PRIVATA + ".nuova";
   mkdirSync(dirname(PRIVATA), { recursive: true, mode: 0o700 });
-  writeFileSync(PRIVATA, JSON.stringify(priv), { mode: 0o600 });
-  chmodSync(PRIVATA, 0o600);
-  writeFileSync(APP, nuovo);
+  writeFileSync(tmp, JSON.stringify(priv), { mode: 0o600 });
+  chmodSync(tmp, 0o600);
+  try { writeFileSync(APP, nuovo); } catch (e) { rmSync(tmp, { force: true }); throw e; }
+  renameSync(tmp, PRIVATA);
   console.log("Chiave privata salvata in " + PRIVATA + " (tienila al sicuro, fuori dal repository).");
   console.log("Chiave pubblica scritta in " + APP + ". Pubblica l'app per renderla attiva.");
 }
 
 async function codice() {
+  process.argv.slice(3).forEach((x) => {
+    if (x.startsWith("--") && !["--nome", "--mesi", "--fino"].includes(x))
+      throw new Error("Opzione sconosciuta: " + x + " (scrivi per esempio --fino 2027-10-05, con lo spazio)");
+  });
   const nome = (arg("nome") || "").trim();
   if (!nome) throw new Error('Manca --nome, ad esempio --nome "Maria R."');
   let fino = arg("fino");

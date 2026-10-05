@@ -81,7 +81,7 @@ main{padding-block:16px 8px}
 .big-n b.parola{font-size:1.3rem}
 .big-t{display:block;min-width:0}
 .big-d{display:block;font-weight:700;color:#fff}
-.big-tt{display:block;font-size:1.35rem;font-weight:800;line-height:1.2;margin-top:2px}
+.big-tt{display:block;font-size:1.35rem;font-weight:800;line-height:1.2;margin-top:2px;overflow-wrap:anywhere;-webkit-hyphens:auto;hyphens:auto}
 .big-s{display:block;margin-top:6px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
 .conto{margin-top:12px;color:var(--ink-2)}
 
@@ -99,11 +99,12 @@ main{padding-block:16px 8px}
 
 /* elenco */
 .lista{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.av{width:100%;display:grid;grid-template-columns:minmax(68px,auto) 1fr 14px;gap:14px;align-items:center;padding:12px 14px;min-height:92px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);color:var(--ink)}
+.av{width:100%;display:grid;grid-template-columns:68px 1fr 14px;gap:14px;align-items:center;padding:12px 14px;min-height:92px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);color:var(--ink)}
 .av-n{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:68px;padding:4px;border-radius:14px;background:var(--sunk);line-height:1;text-align:center}
 .av-n small{display:block;font-size:.74rem;font-weight:700;color:var(--ink-2)}
 .av-n b{display:block;font-size:1.6rem;font-weight:800;margin:2px 0}
 .av-n b.parola{font-size:1.1rem}
+html[data-testo="grande"] .av{grid-template-columns:76px 1fr 14px}
 .av-n.urg{background:var(--urg-bg);color:var(--urg)}
 .av-n.pre{background:var(--pre-bg);color:var(--pre)}
 .av-n.arr{background:var(--arr-bg);color:var(--arr)}
@@ -167,7 +168,7 @@ main{padding-block:16px 8px}
 .stato{font-size:1.15rem;font-weight:800;line-height:1.3}
 .stato small{display:block;font-size:1rem;font-weight:700;color:var(--ink-2)}
 .dett h4{font-size:1.02rem;font-weight:800;margin:16px 0 4px}
-.dett p{color:var(--ink-2)}
+.dett p{color:var(--ink-2);overflow-wrap:anywhere}
 .nota{margin-top:12px;padding:12px 14px;border-radius:var(--r-md);background:var(--pre-bg);color:var(--ink);border:1.5px solid var(--plus-line)}
 .isee{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--brand-soft);font-weight:700}
 .isee.no{background:var(--urg-bg);color:var(--urg)}
@@ -197,8 +198,9 @@ main{padding-block:16px 8px}
 .mie-t{flex:1;min-width:0}
 .mie-t b{display:block;font-weight:800;line-height:1.25}
 .mie-t small{display:block;color:var(--ink-2)}
-.mie-t b,.mie-t small{overflow-wrap:anywhere}
-.mie li.passata{opacity:.65}
+.mie-t b,.mie-t small{overflow-wrap:anywhere;-webkit-hyphens:auto;hyphens:auto}
+.mie li.passata .mie-d{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line)}
+.mie li.passata .mie-t b{color:var(--ink-2)}
 .mie .x{width:44px;height:44px}
 .form label{display:block;font-weight:800;margin:12px 0 6px}
 
@@ -235,7 +237,8 @@ main{padding-block:16px 8px}
 }
 @media (max-width:350px){
   .wrap{padding-inline:12px}
-  .av{grid-template-columns:minmax(58px,auto) 1fr 12px;gap:10px;padding-inline:10px}
+  .av{grid-template-columns:66px 1fr 12px;gap:10px;padding-inline:10px}
+  html[data-testo="grande"] .av{grid-template-columns:76px 1fr 12px}
   .big-n{width:70px;height:70px}
 }
 </style>
@@ -297,7 +300,7 @@ main{padding-block:16px 8px}
 
   <section class="hero" aria-labelledby="heroQ">
     <p class="hero-oggi" id="oggi">Bandi, contributi e tributi per chi vive a Mesagne.</p>
-    <h2 class="hero-q" id="heroQ">La prossima scadenza</h2>
+    <h2 class="hero-q" id="heroQ" tabindex="-1">La prossima scadenza</h2>
     <div id="prossima"><p class="conto">Caricamento…</p></div>
     <p class="conto" id="conto"></p>
   </section>
@@ -339,7 +342,7 @@ main{padding-block:16px 8px}
           <thead><tr><th scope="col"><span class="sr-only">Funzione</span></th><th scope="col">Gratis</th><th scope="col">Plus</th></tr></thead>
           <tbody>
             <tr><th scope="row">Bandi e scadenze aperti, con i giorni che mancano</th><td class="si">✓</td><td class="si">✓</td></tr>
-            <tr><th scope="row">Chi può chiederli, cosa serve, link alla fonte ufficiale</th><td class="si">✓</td><td class="si">✓</td></tr>
+            <tr><th scope="row">Chi può chiederli, cosa serve e il link alla fonte</th><td class="si">✓</td><td class="si">✓</td></tr>
             <tr><th scope="row">I bandi giusti per la tua famiglia, con il controllo dell'ISEE</th><td class="no">–</td><td class="si">✓</td></tr>
             <tr><th scope="row">Promemoria nel calendario del telefono, 7 giorni e 1 giorno prima</th><td class="no">–</td><td class="si">✓</td></tr>
             <tr><th scope="row">Le tue scadenze personali (rate, bollo, rinnovi) insieme alle altre</th><td class="no">–</td><td class="si">✓</td></tr>
@@ -485,7 +488,11 @@ main{padding-block:16px 8px}
   function badge(a){
     var st = stato(a);
     if (st.k === "sempre") return '<span class="av-n sem">' + ICO.sempre + '</span>';
-    if (st.k === "chiuso") { var c = data(a.scade); return '<span class="av-n"><small>chiuso il</small><b>' + c.getDate() + '</b><small>' + esc(MESI[c.getMonth()].slice(0, 3)) + '</small></span>'; }
+    if (st.k === "chiuso") {
+      var c = data(a.scade);
+      return '<span class="av-n"><small>chiuso il</small><b>' + c.getDate() + '</b><small>' + esc(MESI[c.getMonth()].slice(0, 3)) + '</small>' +
+        (c.getFullYear() !== OGGI.getFullYear() ? '<small>' + c.getFullYear() + '</small>' : "") + '</span>';
+    }
     if (st.k === "arriva") return '<span class="av-n arr"><small>apre tra</small><b>' + st.g + '</b><small>' + giorniTesto(st.g) + '</small></span>';
     if (st.g === 0) return '<span class="av-n urg"><small>scade</small><b class="parola">oggi</b></span>';
     var cls = st.g <= 7 ? "urg" : st.g <= 30 ? "pre" : "";
@@ -513,7 +520,11 @@ main{padding-block:16px 8px}
     if (controlloIsee(a) === "no") return false;
     var specifico = a.per.some(function(p){ return profilo.per.indexOf(p) >= 0; });
     var st = stato(a).k;
-    if (st === "sempre") return specifico || controlloIsee(a) === "ok";
+    if (st === "sempre") {
+      var ci = controlloIsee(a);
+      var conFigli = profilo.per.some(function(p){ return /^figli/.test(p); });
+      return specifico || ci === "ok" || (ci === "forse" && !!a.isee_max_alt && !!profilo.isee && conFigli);
+    }
     if (st === "chiuso") return false;
     return specifico || a.per.indexOf("tutti") >= 0;
   }
@@ -554,6 +565,7 @@ main{padding-block:16px 8px}
   function disegnaFiltri(){
     var usate = {};
     aperti().forEach(function(a){ usate[a.categoria] = 1; });
+    if (filtro && !usate[filtro]) filtro = "";
     var h = '<button type="button" data-f="" aria-pressed="' + (filtro === "") + '">Tutti</button>';
     Object.keys(CAT).forEach(function(k){
       if (usate[k]) h += '<button type="button" data-f="' + k + '" aria-pressed="' + (filtro === k) + '">' + esc(CAT[k]) + '</button>';
@@ -614,13 +626,14 @@ main{padding-block:16px 8px}
     /* prima le prossime, in ordine di data; in fondo quelle passate */
     righe.sort(function(x, y){ return (x.passata - y.passata) || (x.passata ? (y.d || 0) - (x.d || 0) : (x.d || 0) - (y.d || 0)); });
     var h = righe.length ? '<ul class="mie">' + righe.map(function(r){
-      var dd = r.d ? '<b>' + r.d.getDate() + '</b><small>' + esc(MESI[r.d.getMonth()].slice(0, 3)) + (r.d.getFullYear() !== OGGI.getFullYear() ? " " + r.d.getFullYear() : "") + '</small>' : '<b>–</b>';
+      var dd = r.d ? '<b>' + r.d.getDate() + '</b><small>' + esc(MESI[r.d.getMonth()].slice(0, 3)) + '</small>' +
+        (r.d.getFullYear() !== OGGI.getFullYear() ? '<small>' + r.d.getFullYear() + '</small>' : "") : '<b>–</b>';
       var tolgo = r.pid ? '<button type="button" class="x" data-togli="' + esc(r.pid) + '" aria-label="Elimina ' + esc(r.t) + '">' + ICO.x + '</button>' :
         '<button type="button" class="x" data-smetti="' + esc(r.id) + '" aria-label="Non seguire più ' + esc(r.t) + '">' + ICO.x + '</button>';
       return '<li' + (r.passata ? ' class="passata"' : "") + '><span class="mie-d">' + dd + '</span><span class="mie-t"><b>' + esc(r.t) + '</b><small>' + esc(r.s) + '</small></span>' + tolgo + '</li>';
     }).join("") + '</ul>' : '<p class="vuoto">Non segui ancora niente. Apri un bando e tocca «Segui», oppure aggiungi una tua scadenza.</p>';
     h += '<div class="riga"><button type="button" class="btn sec" data-nuova="1">' + ICO.piu + 'Aggiungi una scadenza</button>' +
-      (righe.length ? '<button type="button" class="btn" data-ics-mie="1">' + ICO.cal + 'Tutte nel calendario</button>' : "") + '</div>';
+      (eventiMie().length ? '<button type="button" class="btn" data-ics-mie="1">' + ICO.cal + 'Tutte nel calendario</button>' : "") + '</div>';
     b.innerHTML = h;
   }
 
@@ -670,7 +683,7 @@ main{padding-block:16px 8px}
   function trova(id){ return AVVISI.filter(function(a){ return a.id === id; })[0]; }
 
   /* ======== scheda in basso ======== */
-  var ultimoFocus = null;
+  var ultimoFocus = null, rinviato = false;
   function apri(titolo, html){
     /* se una scheda ne apre un'altra, alla chiusura il focus torna a chi ha aperto la prima */
     if (!$("sheet").classList.contains("open")) ultimoFocus = document.activeElement;
@@ -681,7 +694,7 @@ main{padding-block:16px 8px}
     $("sheet").classList.add("open");
     $("backdrop").classList.add("open");
     document.body.style.overflow = "hidden";
-    setTimeout(function(){ $("shX").focus(); }, 50);
+    setTimeout(function(){ if ($("sheet").classList.contains("open")) $("shX").focus(); }, 50);
   }
   function chiudi(){
     if (!$("sheet").classList.contains("open")) return;
@@ -690,7 +703,8 @@ main{padding-block:16px 8px}
     $("backdrop").classList.remove("open");
     document.body.style.overflow = "";
     if (/^#a=/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
-    if (ultimoFocus && document.body.contains(ultimoFocus)) ultimoFocus.focus();
+    if (ultimoFocus && document.body.contains(ultimoFocus)) ultimoFocus.focus(); else $("heroQ").focus();
+    if (rinviato) { rinviato = false; aggiornaOggi(); }
   }
   /* dopo un'azione che ridisegna una sezione: annuncia l'esito e porta il focus sul titolo della sezione */
   function fatto(testo, idTitolo){
@@ -746,15 +760,15 @@ main{padding-block:16px 8px}
     h += '</div>';
 
     h += '<div class="fonti"><b>Fonti</b>' + (a.fonti || []).map(function(f){ return '<a href="' + esc(sicuro(f.url)) + '" target="_blank" rel="noopener">' + esc(f.nome) + '</a>'; }).join("") +
-      '<p>Ente: ' + esc(a.ente) + (AGGIORNATO ? '. Controllato il ' + esc(fData.format(data(AGGIORNATO))) : "") + '. Prima di fare domanda verifica sempre il bando ufficiale.</p></div></div>';
+      '<p>Ente: ' + esc(a.ente) + (AGGIORNATO ? '. Controllato il ' + esc(fData.format(data(AGGIORNATO))) : "") + '. ' + tit[3] + '</p></div></div>';
     apri(a.titolo, h);
     history.replaceState(null, "", "#a=" + a.id);
   }
 
   var TITOLI = {
-    domanda: ["Cosa si ottiene", "Chi può chiederlo", "Come si fa"],
-    pagamento: ["Di cosa si tratta", "Chi deve pagare", "Come si paga"],
-    info: ["Di cosa si tratta", "A chi riguarda", "Come funziona"]
+    domanda: ["Cosa si ottiene", "Chi può chiederlo", "Come si fa", "Prima di fare domanda verifica sempre il bando ufficiale."],
+    pagamento: ["Di cosa si tratta", "Chi deve pagare", "Come si paga", "Prima di pagare controlla importi e date sull'avviso che hai ricevuto."],
+    info: ["Di cosa si tratta", "A chi riguarda", "Come funziona", "Controlla sempre le informazioni sul sito dell'ente."]
   };
   function euro(n){ return n.toLocaleString("it-IT") + " €"; }
 
@@ -826,6 +840,15 @@ main{padding-block:16px 8px}
     if (st.k === "arriva") ev = ev.concat(evento(a.id + "-apre", data(a.apre), "Apre oggi: " + a.titolo, descr, link, GIORNO));
     if (a.scade) ev = ev.concat(evento(a.id + "-scade", data(a.scade), "Scadenza: " + a.titolo, descr, link, PRIMA));
     return ev;
+  }
+  /* eventi di «Le mie scadenze»: bandi seguiti e scadenze personali non ancora passate */
+  function eventiMie(){
+    var r = [].concat.apply([], mie.seguiti.map(trova).filter(Boolean).map(eventiAvviso));
+    mie.personali.forEach(function(p){
+      if (data(p.data) < OGGI) return;
+      r = r.concat(evento("mia-" + p.id, data(p.data), "Scadenza: " + p.titolo, p.importo ? "Importo: " + p.importo : "Scadenza personale", "", PRIMA));
+    });
+    return r;
   }
   function scaricaIcs(righe, nome){
     if (!righe.length) return;
@@ -918,12 +941,7 @@ main{padding-block:16px 8px}
       scaricaIcs([].concat.apply([], AVVISI.filter(function(a){ return faPerTe(a) && stato(a).k !== "sempre"; }).map(eventiAvviso)), "scadenze-per-te");
       return;
     }
-    if (d.icsMie) {
-      var r = [].concat.apply([], mie.seguiti.map(trova).filter(Boolean).map(eventiAvviso));
-      mie.personali.forEach(function(p){ if (data(p.data) < OGGI) return; r = r.concat(evento("mia-" + p.id, data(p.data), "Scadenza: " + p.titolo, p.importo ? "Importo: " + p.importo : "Scadenza personale", "", PRIMA)); });
-      scaricaIcs(r, "le-mie-scadenze");
-      return;
-    }
+    if (d.icsMie) { scaricaIcs(eventiMie(), "le-mie-scadenze"); return; }
     if (d.segui) {
       var i = mie.seguiti.indexOf(d.segui);
       if (i >= 0) mie.seguiti.splice(i, 1); else mie.seguiti.push(d.segui);
@@ -1026,17 +1044,32 @@ main{padding-block:16px 8px}
   ]).then(function(res){
     AVVISI = res[0].avvisi || [];
     AGGIORNATO = res[0].aggiornato || null;
-    disegnaTutto();
+    try { disegnaTutto(); }
+    catch (err) {
+      if (window.console) console.error(err);
+      $("prossima").innerHTML = '<p class="vuoto">C\'è un errore nell\'elenco dei bandi. Riprova più tardi.</p>';
+      return;
+    }
     leggiHash();
   }, function(){
     $("prossima").innerHTML = '<p class="vuoto">Non riesco a caricare l\'elenco. Controlla la connessione e riprova.</p>';
   });
 
-  /* se l'app resta aperta oltre la mezzanotte, al ritorno sullo schermo si aggiorna il giorno */
+  /* se l'app resta aperta oltre la mezzanotte, al ritorno sullo schermo si aggiorna il giorno;
+     con una scheda aperta si aspetta che venga chiusa */
   function aggiornaOggi(){
     if (SIMULATA || !AVVISI.length) return;
     var n = oggiVero();
-    if (n - OGGI !== 0) { OGGI = n; caricaPlus().then(disegnaTutto); }
+    if (n - OGGI === 0) return;
+    if ($("sheet").classList.contains("open")) { rinviato = true; return; }
+    OGGI = n;
+    var prima = document.activeElement, id = prima && prima.dataset && prima.dataset.id;
+    caricaPlus().then(function(){
+      disegnaTutto();
+      /* il bando che aveva il focus può essere sparito dall'elenco (es. scaduto ieri) */
+      var dopo = id && document.querySelector('[data-id="' + id + '"]');
+      if (dopo) dopo.focus(); else if (id) $("heroQ").focus();
+    });
   }
   document.addEventListener("visibilitychange", function(){ if (!document.hidden) aggiornaOggi(); });
   window.addEventListener("pageshow", aggiornaOggi);

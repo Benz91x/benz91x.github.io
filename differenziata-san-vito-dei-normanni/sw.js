@@ -1,6 +1,6 @@
 /* Differenziata San Vito dei Normanni: copia dell'app per l'uso senza internet.
    Cambia CACHE a ogni pubblicazione: così i telefoni scaricano davvero la versione nuova. */
-var CACHE = "sanvito-differenziata-20261004-icone";
+var CACHE = "sanvito-differenziata-20261005";
 var SHELL = ["./", "./index.html", "./manifest.webmanifest", "./assets/logo.png",
              "./fonts/atkinson-hyperlegible-next-latin.woff2",
              "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
@@ -26,8 +26,12 @@ self.addEventListener("fetch", function (e) {
      subito; la copia salvata serve solo quando manca la connessione. */
   if (e.request.mode === "navigate") {
     e.respondWith(fetch(e.request).then(function (res) {
-      var copia = res.clone();
-      caches.open(CACHE).then(function (c) { c.put("./index.html", copia); });
+      /* come copia offline si salva solo la pagina dell'app, non altri file aperti nella cartella */
+      var scope = new URL(self.registration.scope).pathname, p = new URL(url).pathname;
+      if (res.ok && (res.headers.get("content-type") || "").indexOf("text/html") === 0 && (p === scope || p === scope + "index.html")) {
+        var copia = res.clone();
+        caches.open(CACHE).then(function (c) { c.put("./index.html", copia); });
+      }
       return res;
     }).catch(function () {
       return caches.match("./index.html").then(function (hit) { return hit || caches.match("./"); });

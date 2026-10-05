@@ -23,13 +23,21 @@ Apri `avvisi.json`, copia una voce esistente e cambia i campi:
 
 - `id`: breve, unico, senza spazi (finisce nei link `#a=id`).
 - `categoria`: `tributi`, `famiglia`, `sociale`, `lavoro`, `imprese`, `citta`.
+- `tipo`: `domanda` (bandi e contributi da chiedere), `pagamento` (TARI, IMU…) o `info`
+  (cose che arrivano da sole, come il bonus TARI). Cambia i titoli della scheda e il
+  messaggio di WhatsApp.
 - `apre` / `scade`: date `AAAA-MM-GG`. `scade: null` = sempre disponibile.
 - `breve`, `cosa`, `chi`, `come`, `documenti`, `nota`: testi semplici, frasi corte.
 - `per`: a chi interessa (`tutti`, `figli-0-3`, `figli-scuola`, `figli-superiori`, `anziani`,
   `disabilita`, `affitto`, `proprietario`, `cartelle`, `lavoro`, `impresa`, `animali`).
 - `isee_max`: soglia ISEE in euro, se c'è (serve al controllo di Plus).
+- `isee_max_alt` e `isee_alt_per`: soglia più alta per alcune famiglie, per esempio
+  `20000` e `"con almeno quattro figli a carico"`. Il profilo non sa quanti figli ci sono,
+  quindi per quelle fasce l'app dice «controlla il tuo» invece di «sei sopra la soglia».
 - `riapre_mese`: mese (1-12) in cui il bando torna di solito, per «Avvisami quando riapre».
-- `fonti`: almeno un link alla fonte ufficiale (solo `https://`).
+- `fonti`: almeno un link (solo `https://`). Metti per prima la fonte ufficiale (Comune,
+  Regione, INPS…) e segnala `"ufficiale": true`: il pulsante diventa «Leggi l'avviso
+  ufficiale». Senza, il pulsante dice «Leggi la fonte».
 
 Poi aggiorna `aggiornato` in cima al file. I bandi scaduti restano nel file: finiscono
 da soli nell'archivio di Plus.
@@ -78,6 +86,8 @@ a `CONFIG.email` con la richiesta.
   sarà completo.
 - I promemoria passano dal calendario del telefono (file `.ics` o Google Calendar),
   quindi arrivano anche senza aprire l'app.
+- `?data=AAAA-MM-GG` nell'indirizzo simula un altro giorno per l'elenco (utile per le prove).
+  La validità di Plus usa sempre la data vera.
 - Profilo, scadenze personali e spunte restano nel browser del telefono: se si
   cancellano i dati del sito, vanno reinseriti (il codice Plus si riattiva con lo
   stesso link).

@@ -60,8 +60,8 @@
       "riapre_mese": null,
       "fonti": [
         {
-          "nome": "Agenzia delle Entrate-Riscossione: in arrivo la rottamazione degli enti territoriali",
-          "url": "https://www.agenziaentrateriscossione.gov.it/it/il-gruppo/lagenzia-comunica/novita/Legge-n.-88-2026-in-arrivo-la-Rottamazione-degli-enti-territoriali/",
+          "nome": "Agenzia delle Entrate-Riscossione: Legge n. 113/2026, più tempo per la rottamazione degli enti territoriali",
+          "url": "https://www.agenziaentrateriscossione.gov.it/it/il-gruppo/lagenzia-comunica/novita/Legge-n.-113-2026-piu-tempo-per-la-Rottamazione-degli-enti-territoriali/",
           "ufficiale": true
         },
         {
@@ -113,10 +113,10 @@
       "ente": "INPS / Comune di Mesagne",
       "apre": "2026-11-04",
       "scade": "2026-12-16",
-      "breve": "500 € per la spesa alle famiglie con ISEE fino a 15.000 €. Il primo acquisto va fatto entro il 16 dicembre, altrimenti il contributo si perde.",
+      "breve": "500 € per la spesa a una parte delle famiglie con ISEE fino a 15.000 € (precedenza ai nuclei di almeno 3 persone). Il primo acquisto va fatto entro il 16 dicembre, altrimenti il contributo si perde.",
       "cosa": "Carta prepagata di Poste Italiane con 500 € per beni alimentari di prima necessità, caricata dal 4 novembre 2026. Una seconda ricarica da 500 € è prevista ad aprile 2027.",
-      "chi": "Famiglie con ISEE ordinario fino a 15.000 €, con tutti i componenti iscritti all'anagrafe, individuate dall'INPS e dal Comune.",
-      "come": "Non si fa domanda: l'elenco dei beneficiari lo prepara l'INPS con il Comune. Se sei nell'elenco, ritiri la carta all'ufficio postale e fai almeno un acquisto entro il 16 dicembre.",
+      "chi": "Famiglie con ISEE ordinario fino a 15.000 € e tutti i componenti iscritti all'anagrafe al 3 agosto 2026. Le carte sono limitate: hanno la precedenza i nuclei di almeno 3 persone, prima quelli con figli più piccoli; le persone sole e le coppie la ricevono solo se ne avanzano. Esclusi i nuclei che prendono l'Assegno di inclusione o la Carta acquisti, o in cui qualcuno prende NASpI, DIS-COLL o cassa integrazione.",
+      "come": "Non si fa domanda: l'elenco dei beneficiari lo prepara l'INPS con il Comune. Se sei nell'elenco, ritiri la carta all'ufficio postale (chi ha già la carta degli anni scorsi la ritrova ricaricata) e fai almeno un acquisto entro il 16 dicembre.",
       "documenti": [
         "Documento d'identità",
         "Comunicazione del Comune, se ricevuta"
@@ -129,6 +129,11 @@
       "ricorrente": null,
       "riapre_mese": null,
       "fonti": [
+        {
+          "nome": "INPS: Carta «Dedicata a te», modalità operative per il 2026-2027",
+          "url": "https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2026.09.carta-dedicata-a-te-modalit-operative-per-il-2026-2027.html",
+          "ufficiale": true
+        },
         {
           "nome": "Ipsoa: Carta «Dedicata a te», istruzioni INPS per il 2026-2027",
           "url": "https://www.ipsoa.it/documents/quotidiano/2026/09/23/carta-dedicata-te-istruzioni-inps-biennio-2026-2027"
@@ -148,13 +153,13 @@
       "scade": "2026-10-31",
       "breve": "Per fare il presidente di seggio alle prossime elezioni (incarico pagato) bisogna essere iscritti all'albo: la domanda si fa entro il 31 ottobre.",
       "cosa": "Iscrizione all'albo da cui vengono scelti i presidenti dei seggi elettorali.",
-      "chi": "Elettori iscritti nelle liste elettorali di Mesagne con il diploma di scuola superiore.",
+      "chi": "Elettori iscritti nelle liste elettorali di Mesagne, con il diploma di scuola superiore, che alle elezioni non avranno superato i 70 anni.",
       "come": "Domanda all'Ufficio Elettorale: a mano all'Ufficio Protocollo o via PEC a info@pec.comune.mesagne.br.it.",
       "documenti": [
         "Modulo di domanda",
         "Documento d'identità"
       ],
-      "nota": null,
+      "nota": "Sono esclusi anche alcuni dipendenti pubblici (Interno, Poste, Trasporti, uffici elettorali comunali), i militari in servizio e i candidati.",
       "per": [
         "lavoro"
       ],
@@ -188,7 +193,7 @@
         "Modulo di domanda",
         "Documento d'identità"
       ],
-      "nota": "A Mesagne, nelle ultime elezioni, il Comune ha scelto gli scrutatori tra gli iscritti all'albo che erano studenti senza reddito o disoccupati.",
+      "nota": "Oltre all'iscrizione all'albo, per ogni elezione il Comune pubblica un avviso a cui rispondere per essere sorteggiati. Nelle ultime elezioni ha scelto gli scrutatori tra gli iscritti che erano studenti senza reddito o disoccupati.",
       "per": [
         "lavoro"
       ],
@@ -198,8 +203,7 @@
       "fonti": [
         {
           "nome": "Comune di Mesagne: disponibilità per l'incarico di scrutatore (2025)",
-          "url": "https://www.comune.mesagne.br.it/novita/elezioni-regionali-2025-disponibilita-per-incarico-di-scrutatore/",
-          "ufficiale": true
+          "url": "https://www.comune.mesagne.br.it/novita/elezioni-regionali-2025-disponibilita-per-incarico-di-scrutatore/"
         }
       ],
       "tipo": "domanda"
@@ -386,7 +390,7 @@
         "ISEE",
         "Dati della scuola e della classe"
       ],
-      "nota": "È diverso dalla borsa di studio: se hai i requisiti puoi chiedere entrambi.",
+      "nota": "È diverso dalla borsa di studio: se hai i requisiti puoi chiedere entrambi. Nel 2026 la Regione ha riaperto le domande dall'8 al 22 settembre.",
       "per": [
         "figli-scuola",
         "figli-superiori"
@@ -394,7 +398,7 @@
       "isee_max": 13000,
       "isee_max_alt": 15748.78,
       "isee_alt_per": "con 3 o più figli",
-      "ricorrente": "Ogni anno, di solito da metà giugno a metà luglio.",
+      "ricorrente": "Ogni anno, di solito da metà giugno a metà luglio, a volte con una seconda finestra a settembre.",
       "riapre_mese": 6,
       "fonti": [
         {
