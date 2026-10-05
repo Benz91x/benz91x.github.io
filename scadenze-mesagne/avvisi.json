@@ -1,27 +1,39 @@
 {
   "aggiornato": "2026-10-05",
-  "nota": "Date in formato AAAA-MM-GG. 'apre' e 'scade' vuoti (null) = sempre disponibile. 'per' indica a chi interessa: tutti, figli-0-3, figli-scuola, figli-superiori, anziani, disabilita, affitto, proprietario, cartelle, lavoro, impresa, animali. 'riapre_mese' (1-12) = mese in cui di solito riapre, per i bandi che tornano ogni anno.",
+  "nota": "Date in formato AAAA-MM-GG. 'apre' e 'scade' vuoti (null) = sempre disponibile. 'tipo': domanda (predefinito), pagamento o info. 'per' indica a chi interessa: tutti, figli-0-3, figli-scuola, figli-superiori, anziani, disabilita, affitto, proprietario, cartelle, lavoro, impresa, animali. 'isee_max' = soglia ISEE; 'isee_max_alt' = soglia più alta per alcune famiglie, descritte in 'isee_alt_per'. 'riapre_mese' (1-12) = mese in cui di solito riapre. Nelle 'fonti' metti per prima quella ufficiale e segnala 'ufficiale': true.",
   "avvisi": [
     {
       "id": "tari-2026-acconto",
       "titolo": "TARI 2026: terza rata dell'acconto",
       "categoria": "tributi",
+      "tipo": "pagamento",
       "ente": "Comune di Mesagne",
       "apre": null,
       "scade": "2026-10-30",
-      "breve": "Ultima rata dell'acconto sulla tassa dei rifiuti. Si paga con l'avviso pagoPA arrivato a casa.",
+      "breve": "Ultima rata dell'acconto sulla tassa dei rifiuti. Si paga con l'avviso arrivato a casa.",
       "cosa": "L'acconto TARI 2026 è diviso in tre rate: 30 giugno, 30 agosto e 30 ottobre. Chi voleva poteva pagare tutto in un'unica soluzione entro il 30 giugno.",
       "chi": "Chi ha l'utenza TARI di una casa o di un locale a Mesagne.",
-      "come": "Paga l'avviso pagoPA in banca, alla posta, in tabaccheria, online o con l'app IO. La riscossione è affidata a Soris.",
-      "documenti": ["Avviso di pagamento TARI 2026 (con il codice pagoPA)"],
+      "come": "Paga con il modello allegato all'avviso arrivato a casa (negli anni scorsi era un F24), in banca, alla posta o con l'home banking.",
+      "documenti": [
+        "Avviso di pagamento TARI 2026 con il modello allegato"
+      ],
       "nota": "Avviso arrivato in ritardo? Il Comune ha comunicato che, se l'avviso è arrivato dopo il 30 giugno, la prima rata si paga entro 20 giorni dal ricevimento, senza sanzioni.",
-      "per": ["tutti"],
+      "per": [
+        "tutti"
+      ],
       "isee_max": null,
-      "ricorrente": "Ogni anno, di solito in tre rate tra giugno e ottobre.",
-      "riapre_mese": 6,
+      "ricorrente": "Ogni anno, in 3 o 4 rate: la prima è scaduta a fine maggio nel 2024 e nel 2025, a fine giugno nel 2026.",
+      "riapre_mese": 5,
       "fonti": [
-        { "nome": "Comune di Mesagne: avviso ai contribuenti", "url": "https://www.comune.mesagne.br.it/novita/avviso-ai-contribuenti/" },
-        { "nome": "MesagneSera: sanzioni annullate per avvisi in ritardo", "url": "https://www.mesagnesera.it/tari-2026-sanzioni-annullate-per-avvisi-arrivati-in-ritardo/" }
+        {
+          "nome": "Comune di Mesagne: avviso ai contribuenti",
+          "url": "https://www.comune.mesagne.br.it/novita/avviso-ai-contribuenti/",
+          "ufficiale": true
+        },
+        {
+          "nome": "MesagneSera: sanzioni annullate per avvisi in ritardo",
+          "url": "https://www.mesagnesera.it/tari-2026-sanzioni-annullate-per-avvisi-arrivati-in-ritardo/"
+        }
       ]
     },
     {
@@ -31,25 +43,43 @@
       "ente": "Agenzia delle Entrate-Riscossione",
       "apre": "2026-10-16",
       "scade": "2026-12-15",
-      "breve": "Le cartelle per IMU, TARI e multe affidate all'Agenzia delle Entrate-Riscossione si possono pagare senza sanzioni e interessi.",
-      "cosa": "Definizione agevolata (rottamazione-quinquies) dei debiti verso Comuni e Regioni affidati all'Agenzia delle Entrate-Riscossione dal 2000 al 2023: paghi il dovuto e le spese, senza sanzioni e interessi.",
+      "breve": "Le cartelle per IMU e TARI affidate all'Agenzia delle Entrate-Riscossione si possono pagare senza sanzioni e interessi. Per le multe stradali si paga la multa, ma senza interessi e maggiorazioni.",
+      "cosa": "Definizione agevolata (rottamazione-quinquies) dei debiti verso Comuni e Regioni affidati all'Agenzia delle Entrate-Riscossione dal 2000 al 2023: per i tributi paghi il dovuto e le spese, senza sanzioni e interessi; per le multe stradali paghi la multa e le spese, senza interessi e maggiorazioni.",
       "chi": "Chi ha cartelle dell'Agenzia delle Entrate-Riscossione per tributi del Comune di Mesagne (IMU, TARI, multe e altre entrate), se il Comune ha aderito.",
       "come": "Dal 15 ottobre controlli i debiti che rientrano nell'area riservata del sito dell'Agenzia delle Entrate-Riscossione. La domanda si presenta online dal 16 ottobre al 15 dicembre 2026.",
-      "documenti": ["SPID, CIE o CNS per entrare nell'area riservata", "Numeri delle cartelle che vuoi rottamare"],
+      "documenti": [
+        "SPID, CIE o CNS per entrare nell'area riservata",
+        "Numeri delle cartelle che vuoi rottamare"
+      ],
       "nota": "A luglio il Comune aveva annunciato l'adesione: prima di fare domanda, controlla che Mesagne sia nell'elenco degli enti aderenti pubblicato dall'Agenzia delle Entrate-Riscossione.",
-      "per": ["cartelle"],
+      "per": [
+        "cartelle"
+      ],
       "isee_max": null,
       "ricorrente": null,
       "riapre_mese": null,
       "fonti": [
-        { "nome": "Ipsoa: domande dei contribuenti dal 16 ottobre 2026", "url": "https://www.ipsoa.it/documents/quotidiano/2026/09/29/rottamazione-quinquies-entrate-locali-domande-contribuenti-16-ottobre-2026" },
-        { "nome": "MesagneSera: il Comune aderirà alla rottamazione", "url": "https://www.mesagnesera.it/entro-la-fine-del-mese-il-comune-di-mesagne-aderira-alla-rottamazione-quinques/" }
-      ]
+        {
+          "nome": "Agenzia delle Entrate-Riscossione: in arrivo la rottamazione degli enti territoriali",
+          "url": "https://www.agenziaentrateriscossione.gov.it/it/il-gruppo/lagenzia-comunica/novita/Legge-n.-88-2026-in-arrivo-la-Rottamazione-degli-enti-territoriali/",
+          "ufficiale": true
+        },
+        {
+          "nome": "Ipsoa: domande dei contribuenti dal 16 ottobre 2026",
+          "url": "https://www.ipsoa.it/documents/quotidiano/2026/09/29/rottamazione-quinquies-entrate-locali-domande-contribuenti-16-ottobre-2026"
+        },
+        {
+          "nome": "MesagneSera: il Comune aderirà alla rottamazione",
+          "url": "https://www.mesagnesera.it/entro-la-fine-del-mese-il-comune-di-mesagne-aderira-alla-rottamazione-quinques/"
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "imu-2026-saldo",
       "titolo": "IMU 2026: saldo",
       "categoria": "tributi",
+      "tipo": "pagamento",
       "ente": "Comune di Mesagne",
       "apre": null,
       "scade": "2026-12-16",
@@ -57,35 +87,157 @@
       "cosa": "Il saldo si calcola con le aliquote 2026 del Comune pubblicate sul sito del Dipartimento delle Finanze, togliendo l'acconto pagato a giugno.",
       "chi": "Chi possiede immobili diversi dall'abitazione principale. La prima casa non di lusso non paga l'IMU.",
       "come": "Con il modello F24 in banca, alla posta o con l'home banking. Codice del Comune di Mesagne: F152.",
-      "documenti": ["Visura o dati catastali degli immobili", "Ricevuta dell'acconto di giugno"],
+      "documenti": [
+        "Visura o dati catastali degli immobili",
+        "Ricevuta dell'acconto di giugno"
+      ],
       "nota": null,
-      "per": ["proprietario"],
+      "per": [
+        "proprietario"
+      ],
       "isee_max": null,
       "ricorrente": "Ogni anno: acconto il 16 giugno, saldo il 16 dicembre.",
       "riapre_mese": 6,
       "fonti": [
-        { "nome": "Edotto: IMU 2026, acconto e saldo", "url": "https://www.edotto.com/articolo/imu-2026-acconto-entro-il-16-giugno-calcolo-esenzioni-e-ravvedimento" }
+        {
+          "nome": "Edotto: IMU 2026, acconto e saldo",
+          "url": "https://www.edotto.com/articolo/imu-2026-acconto-entro-il-16-giugno-calcolo-esenzioni-e-ravvedimento"
+        }
       ]
+    },
+    {
+      "id": "carta-dedicata-a-te-2026",
+      "titolo": "Carta «Dedicata a te»: primo acquisto entro il 16 dicembre",
+      "categoria": "sociale",
+      "tipo": "info",
+      "ente": "INPS / Comune di Mesagne",
+      "apre": "2026-11-04",
+      "scade": "2026-12-16",
+      "breve": "500 € per la spesa alle famiglie con ISEE fino a 15.000 €. Il primo acquisto va fatto entro il 16 dicembre, altrimenti il contributo si perde.",
+      "cosa": "Carta prepagata di Poste Italiane con 500 € per beni alimentari di prima necessità, caricata dal 4 novembre 2026. Una seconda ricarica da 500 € è prevista ad aprile 2027.",
+      "chi": "Famiglie con ISEE ordinario fino a 15.000 €, con tutti i componenti iscritti all'anagrafe, individuate dall'INPS e dal Comune.",
+      "come": "Non si fa domanda: l'elenco dei beneficiari lo prepara l'INPS con il Comune. Se sei nell'elenco, ritiri la carta all'ufficio postale e fai almeno un acquisto entro il 16 dicembre.",
+      "documenti": [
+        "Documento d'identità",
+        "Comunicazione del Comune, se ricevuta"
+      ],
+      "nota": "I requisiti completi e le priorità sono nelle istruzioni INPS: se pensi di averne diritto, chiedi ai Servizi sociali del Comune.",
+      "per": [
+        "tutti"
+      ],
+      "isee_max": 15000,
+      "ricorrente": null,
+      "riapre_mese": null,
+      "fonti": [
+        {
+          "nome": "Ipsoa: Carta «Dedicata a te», istruzioni INPS per il 2026-2027",
+          "url": "https://www.ipsoa.it/documents/quotidiano/2026/09/23/carta-dedicata-te-istruzioni-inps-biennio-2026-2027"
+        },
+        {
+          "nome": "AteneoWeb: dal 4 novembre la prima ricarica da 500 €",
+          "url": "https://www.ateneoweb.com/news/carta-dedicata-a-te-2026-2027-dal-4-novembre-la-prima-ricarica-da-500-euro/"
+        }
+      ]
+    },
+    {
+      "id": "albo-presidenti-seggio-2026",
+      "titolo": "Iscrizione all'albo dei presidenti di seggio",
+      "categoria": "citta",
+      "ente": "Comune di Mesagne (Ufficio Elettorale)",
+      "apre": null,
+      "scade": "2026-10-31",
+      "breve": "Per fare il presidente di seggio alle prossime elezioni (incarico pagato) bisogna essere iscritti all'albo: la domanda si fa entro il 31 ottobre.",
+      "cosa": "Iscrizione all'albo da cui vengono scelti i presidenti dei seggi elettorali.",
+      "chi": "Elettori iscritti nelle liste elettorali di Mesagne con il diploma di scuola superiore.",
+      "come": "Domanda all'Ufficio Elettorale: a mano all'Ufficio Protocollo o via PEC a info@pec.comune.mesagne.br.it.",
+      "documenti": [
+        "Modulo di domanda",
+        "Documento d'identità"
+      ],
+      "nota": null,
+      "per": [
+        "lavoro"
+      ],
+      "isee_max": null,
+      "ricorrente": "Ogni anno, entro il 31 ottobre.",
+      "riapre_mese": 10,
+      "fonti": [
+        {
+          "nome": "Qui Mesagne: avviso del Comune sui presidenti di seggio (2025)",
+          "url": "https://quimesagne.it/wp-content/uploads/2025/10/Avviso-Pubblico-Presidenti-di-Seggio-2025.pdf"
+        },
+        {
+          "nome": "MesagneSera: elenco aggiuntivo dei presidenti di seggio",
+          "url": "https://www.mesagnesera.it/elezioni-regionali-elenco-aggiuntivo-dei-presidenti-di-seggio/"
+        }
+      ],
+      "tipo": "domanda"
+    },
+    {
+      "id": "albo-scrutatori-2026",
+      "titolo": "Iscrizione all'albo degli scrutatori",
+      "categoria": "citta",
+      "ente": "Comune di Mesagne (Ufficio Elettorale)",
+      "apre": "2026-10-01",
+      "scade": "2026-11-30",
+      "breve": "Per essere sorteggiati come scrutatori alle elezioni (incarico pagato) bisogna essere iscritti all'albo: la domanda si fa entro il 30 novembre.",
+      "cosa": "Iscrizione all'albo unico da cui vengono sorteggiati gli scrutatori dei seggi elettorali.",
+      "chi": "Elettori iscritti nelle liste elettorali di Mesagne che hanno assolto l'obbligo scolastico.",
+      "come": "Domanda all'Ufficio Elettorale: a mano all'Ufficio Protocollo o via PEC a info@pec.comune.mesagne.br.it.",
+      "documenti": [
+        "Modulo di domanda",
+        "Documento d'identità"
+      ],
+      "nota": "A Mesagne, nelle ultime elezioni, il Comune ha scelto gli scrutatori tra gli iscritti all'albo che erano studenti senza reddito o disoccupati.",
+      "per": [
+        "lavoro"
+      ],
+      "isee_max": null,
+      "ricorrente": "Ogni anno, dal 1° ottobre al 30 novembre.",
+      "riapre_mese": 10,
+      "fonti": [
+        {
+          "nome": "Comune di Mesagne: disponibilità per l'incarico di scrutatore (2025)",
+          "url": "https://www.comune.mesagne.br.it/novita/elezioni-regionali-2025-disponibilita-per-incarico-di-scrutatore/",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "bonus-sociale-tari",
       "titolo": "Bonus sociale TARI: sconto del 25%",
       "categoria": "tributi",
+      "tipo": "info",
       "ente": "ARERA / Comune di Mesagne",
       "apre": null,
       "scade": null,
       "breve": "Sconto del 25% sulla TARI per le famiglie con ISEE basso. Non serve fare domanda.",
       "cosa": "Riduzione del 25% della TARI dell'abitazione di residenza, applicata in automatico.",
       "chi": "Famiglie con ISEE fino a 9.796 €, o fino a 20.000 € con almeno quattro figli a carico.",
-      "come": "Basta presentare la DSU per l'ISEE (anche gratis al CAF): lo sconto arriva da solo sulla TARI.",
-      "documenti": ["ISEE valido (DSU presentata all'INPS)"],
+      "come": "Basta presentare la DSU per l'ISEE (anche gratis al CAF): lo sconto arriva da solo sulla TARI dell'anno dopo. Con l'ISEE 2026 lo avrai sulla TARI 2027; per la TARI 2026 conta l'ISEE 2025 (soglia 9.530 €).",
+      "documenti": [
+        "ISEE valido (DSU presentata all'INPS)"
+      ],
       "nota": null,
-      "per": ["tutti"],
+      "per": [
+        "tutti"
+      ],
       "isee_max": 9796,
+      "isee_max_alt": 20000,
+      "isee_alt_per": "con almeno quattro figli a carico",
       "ricorrente": null,
       "riapre_mese": null,
       "fonti": [
-        { "nome": "CGIL: bonus TARI, requisiti e importi", "url": "https://www.cgil.it/servizi/bonus-tari-tassa-sui-rifiuti-requisiti-importi-modalita-di-richiesta-e-durata-w5cg9351" }
+        {
+          "nome": "ARERA: bonus sociale rifiuti per le famiglie in difficoltà economica",
+          "url": "https://www.arera.it/comunicati-stampa/dettaglio/rifiuti-bonus-sociale-famiglie-difficolta-economica-25",
+          "ufficiale": true
+        },
+        {
+          "nome": "CGIL: bonus TARI, requisiti e importi",
+          "url": "https://www.cgil.it/servizi/bonus-tari-tassa-sui-rifiuti-requisiti-importi-modalita-di-richiesta-e-durata-w5cg9351"
+        }
       ]
     },
     {
@@ -99,16 +251,29 @@
       "cosa": "Certificati anagrafici in PDF con valore legale, senza andare allo sportello e senza pagare il bollo.",
       "chi": "Tutti i residenti, per sé e per i componenti della propria famiglia.",
       "come": "Entra nel portale dell'Anagrafe nazionale (ANPR) con SPID, CIE o CNS e scarica il certificato.",
-      "documenti": ["SPID, CIE o CNS"],
+      "documenti": [
+        "SPID, CIE o CNS"
+      ],
       "nota": "Non pagare siti che vendono certificati: dal portale ANPR sono gratuiti.",
-      "per": ["tutti"],
+      "per": [
+        "tutti"
+      ],
       "isee_max": null,
       "ricorrente": null,
       "riapre_mese": null,
       "fonti": [
-        { "nome": "Comune di Mesagne: certificati anagrafici online", "url": "https://www.comune.mesagne.br.it/novita/dal-15-novembre-certificati-anagrafici-online/" },
-        { "nome": "Portale ANPR", "url": "https://www.anagrafenazionale.interno.gov.it/" }
-      ]
+        {
+          "nome": "Comune di Mesagne: certificati anagrafici online",
+          "url": "https://www.comune.mesagne.br.it/novita/dal-15-novembre-certificati-anagrafici-online/",
+          "ufficiale": true
+        },
+        {
+          "nome": "Portale ANPR",
+          "url": "https://www.anagrafenazionale.interno.gov.it/",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "buoni-educativi-0-3-2026",
@@ -119,17 +284,28 @@
       "scade": "2026-08-28",
       "breve": "Contributo regionale per pagare l'asilo nido e i servizi per la prima infanzia.",
       "cosa": "Buono che copre la retta dei servizi educativi per bambini da 0 a 3 anni, per l'anno educativo 2026/2027.",
-      "chi": "Famiglie con bambini da 0 a 3 anni iscritti a un servizio per l'infanzia.",
+      "chi": "Famiglie con bambini da 0 a 3 anni iscritti a un servizio per l'infanzia, con ISEE fino a 75.000 €.",
       "come": "Domanda online sulla piattaforma della Regione Puglia.",
-      "documenti": ["SPID o CIE", "ISEE minorenni", "Dati del servizio educativo scelto"],
+      "documenti": [
+        "SPID o CIE",
+        "ISEE minorenni",
+        "Dati del servizio educativo scelto"
+      ],
       "nota": null,
-      "per": ["figli-0-3"],
-      "isee_max": null,
+      "per": [
+        "figli-0-3"
+      ],
+      "isee_max": 75000,
       "ricorrente": "Ogni anno, di solito tra fine luglio e agosto.",
       "riapre_mese": 7,
       "fonti": [
-        { "nome": "Regione Puglia: avviso buoni educativi 0-3 anni 2026/2027", "url": "https://press.regione.puglia.it/-/buoni-educativi-0-3-anni-pubblicato-l-avviso-rivolto-alle-famiglie-per-l-anno-educativo-2026-2027.-da-oggi-il-via-alla-presentazione-delle-istanze" }
-      ]
+        {
+          "nome": "Regione Puglia: avviso buoni educativi 0-3 anni 2026/2027",
+          "url": "https://press.regione.puglia.it/-/buoni-educativi-0-3-anni-pubblicato-l-avviso-rivolto-alle-famiglie-per-l-anno-educativo-2026-2027.-da-oggi-il-via-alla-presentazione-delle-istanze",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "buoni-servizio-minori-2026",
@@ -138,19 +314,31 @@
       "ente": "Regione Puglia",
       "apre": "2026-06-29",
       "scade": "2026-07-17",
-      "breve": "Contributo per pagare centri diurni, ludoteche e altri servizi socio-educativi per bambini e ragazzi.",
+      "breve": "Contributo per pagare centri diurni, ludoteche e altri servizi socio-educativi per bambini e ragazzi dai 3 ai 17 anni.",
       "cosa": "Buono che copre parte della retta dei servizi socio-educativi per minori, dal 1° settembre 2026 al 31 luglio 2027.",
-      "chi": "Famiglie con minori residenti o domiciliati in Puglia, con ISEE minorenni fino a 20.000 €.",
+      "chi": "Famiglie con minori dai 3 ai 17 anni (secondo il servizio), residenti o domiciliati in Puglia, con ISEE minorenni fino a 20.000 €.",
       "come": "Domanda online sulla piattaforma della Regione, poi abbinamento con la struttura scelta.",
-      "documenti": ["SPID o CIE", "ISEE minorenni 2026", "Struttura scelta"],
+      "documenti": [
+        "SPID o CIE",
+        "ISEE minorenni 2026",
+        "Struttura scelta"
+      ],
       "nota": null,
-      "per": ["figli-scuola", "figli-0-3"],
+      "per": [
+        "figli-scuola",
+        "figli-superiori"
+      ],
       "isee_max": 20000,
       "ricorrente": "Ogni anno, di solito tra fine giugno e luglio.",
       "riapre_mese": 6,
       "fonti": [
-        { "nome": "Regione Puglia: Buoni Servizio Minori, domande dal 29 giugno al 17 luglio 2026", "url": "https://www.regione.puglia.it/web/welfare-diritti-e-cittadinanza/-/nuovo-avviso-buoni-servizio-minori.-domande-dal-29-giugno-2026-al-17-luglio-2026" }
-      ]
+        {
+          "nome": "Regione Puglia: Buoni Servizio Minori, domande dal 29 giugno al 17 luglio 2026",
+          "url": "https://www.regione.puglia.it/web/welfare-diritti-e-cittadinanza/-/nuovo-avviso-buoni-servizio-minori.-domande-dal-29-giugno-2026-al-17-luglio-2026",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "mensa-trasporto-2026",
@@ -163,15 +351,24 @@
       "cosa": "Iscrizione alla mensa scolastica e al trasporto (per gli alunni delle zone rurali ed extraurbane), con tariffe ridotte in base all'ISEE.",
       "chi": "Genitori o tutori degli alunni delle scuole di Mesagne.",
       "come": "Solo online, dal portale delle iscrizioni del Comune. Per avere la tariffa ridotta autorizzi il Comune a prendere l'ISEE dall'INPS.",
-      "documenti": ["Dati dell'alunno e della scuola", "ISEE (per le riduzioni)"],
+      "documenti": [
+        "Dati dell'alunno e della scuola",
+        "ISEE (per le riduzioni)"
+      ],
       "nota": null,
-      "per": ["figli-scuola"],
+      "per": [
+        "figli-scuola"
+      ],
       "isee_max": null,
       "ricorrente": "Ogni anno, di solito da metà giugno a fine agosto.",
       "riapre_mese": 6,
       "fonti": [
-        { "nome": "Qui Mesagne: al via le iscrizioni per mensa e trasporti", "url": "https://quimesagne.it/servizi-scolastici-e-contributi-al-via-le-iscrizioni-per-mensa-e-trasporti-e-i-bandi-per-il-diritto-allo-studio/" }
-      ]
+        {
+          "nome": "Qui Mesagne: al via le iscrizioni per mensa e trasporti",
+          "url": "https://quimesagne.it/servizi-scolastici-e-contributi-al-via-le-iscrizioni-per-mensa-e-trasporti-e-i-bandi-per-il-diritto-allo-studio/"
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "libri-testo-2026",
@@ -182,38 +379,64 @@
       "scade": "2026-07-15",
       "breve": "Rimborso totale o parziale dei libri di scuola per medie e superiori.",
       "cosa": "Contributo per la fornitura gratuita o semigratuita dei libri di testo.",
-      "chi": "Studenti delle scuole secondarie di primo e secondo grado, con ISEE entro la soglia del bando.",
+      "chi": "Studenti delle medie e delle superiori residenti in Puglia, con ISEE fino a 13.000 € (15.748,78 € con 3 o più figli).",
       "come": "Domanda online nei termini del bando regionale e comunale.",
-      "documenti": ["SPID o CIE", "ISEE", "Dati della scuola e della classe"],
+      "documenti": [
+        "SPID o CIE",
+        "ISEE",
+        "Dati della scuola e della classe"
+      ],
       "nota": "È diverso dalla borsa di studio: se hai i requisiti puoi chiedere entrambi.",
-      "per": ["figli-scuola", "figli-superiori"],
-      "isee_max": null,
+      "per": [
+        "figli-scuola",
+        "figli-superiori"
+      ],
+      "isee_max": 13000,
+      "isee_max_alt": 15748.78,
+      "isee_alt_per": "con 3 o più figli",
       "ricorrente": "Ogni anno, di solito da metà giugno a metà luglio.",
       "riapre_mese": 6,
       "fonti": [
-        { "nome": "Comune di Mesagne: borse di studio e libri di testo", "url": "https://www.comune.mesagne.br.it/novita/avviso-libri-di-testo-a-s-2026-2027/" }
-      ]
+        {
+          "nome": "Comune di Mesagne: borse di studio e libri di testo",
+          "url": "https://www.comune.mesagne.br.it/novita/avviso-libri-di-testo-a-s-2026-2027/",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "borse-studio-2026",
       "titolo": "Borse di studio regionali 2025/2026",
       "categoria": "famiglia",
       "ente": "Regione Puglia",
-      "apre": null,
+      "apre": "2026-05-27",
       "scade": "2026-06-29",
-      "breve": "Borsa di studio per gli studenti delle scuole superiori con ISEE basso.",
+      "breve": "Borsa di studio per gli studenti di prima e seconda superiore con ISEE basso.",
       "cosa": "Contributo in denaro per le spese di studio dell'anno scolastico 2025/2026.",
-      "chi": "Studenti con ISEE entro la soglia del bando regionale.",
+      "chi": "Studenti delle classi prima e seconda delle superiori, residenti in Puglia, con ISEE fino a 13.000 € (15.748,78 € con 3 o più figli).",
       "come": "Domanda online sul portale Studio in Puglia della Regione.",
-      "documenti": ["SPID o CIE", "ISEE"],
+      "documenti": [
+        "SPID o CIE",
+        "ISEE"
+      ],
       "nota": null,
-      "per": ["figli-superiori"],
-      "isee_max": null,
+      "per": [
+        "figli-superiori"
+      ],
+      "isee_max": 13000,
+      "isee_max_alt": 15748.78,
+      "isee_alt_per": "con 3 o più figli",
       "ricorrente": "Ogni anno, di solito con scadenza a fine giugno.",
       "riapre_mese": 5,
       "fonti": [
-        { "nome": "Comune di Mesagne: borse di studio e libri di testo", "url": "https://www.comune.mesagne.br.it/novita/avviso-libri-di-testo-a-s-2026-2027/" }
-      ]
+        {
+          "nome": "Comune di Mesagne: borse di studio e libri di testo",
+          "url": "https://www.comune.mesagne.br.it/novita/avviso-libri-di-testo-a-s-2026-2027/",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "laboratori-estivi-2026",
@@ -222,19 +445,29 @@
       "ente": "Consorzio ATS BR4",
       "apre": null,
       "scade": "2026-06-29",
-      "breve": "Laboratori estivi gratuiti per bambini e ragazzi con disabilità, fragilità educativa o bisogni educativi speciali.",
+      "breve": "Laboratori estivi, con trasporto gratuito, per bambini e ragazzi con disabilità, fragilità educativa o bisogni educativi speciali.",
       "cosa": "Attività estive di inclusione e supporto educativo organizzate dal Consorzio dei Comuni dell'Ambito di Mesagne.",
-      "chi": "Famiglie con minori con disabilità, fragilità educativa o BES, residenti nei Comuni dell'Ambito BR4.",
+      "chi": "Minori con disabilità già seguiti dal Servizio di integrazione scolastica specialistica, minori seguiti dall'Assistenza educativa domiciliare (ADE) e alunni con BES, residenti nei Comuni dell'Ambito BR4.",
       "come": "Domanda solo online, nei termini dell'avviso.",
-      "documenti": ["Documento del genitore", "Certificazione di disabilità o BES, se presente"],
+      "documenti": [
+        "Documento del genitore",
+        "Certificazione di disabilità o BES, se presente"
+      ],
       "nota": null,
-      "per": ["disabilita"],
+      "per": [
+        "disabilita"
+      ],
       "isee_max": null,
       "ricorrente": "Ogni anno, di solito a giugno.",
       "riapre_mese": 6,
       "fonti": [
-        { "nome": "Comune di Mesagne: avviso laboratori estivi 2026", "url": "https://www.comune.mesagne.br.it/novita/avviso-pubblico-per-lindividuazione-dei-minori-interessati-alla-partecipazione-ai-laboratori-estivi-2026/" }
-      ]
+        {
+          "nome": "Comune di Mesagne: avviso laboratori estivi 2026",
+          "url": "https://www.comune.mesagne.br.it/novita/avviso-pubblico-per-lindividuazione-dei-minori-interessati-alla-partecipazione-ai-laboratori-estivi-2026/",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "posteggi-festa-patronale-2026",
@@ -247,15 +480,26 @@
       "cosa": "Posteggi per prodotti non alimentari, artigianato, alimentari (torrone), street food e esposizioni senza vendita.",
       "chi": "Commercianti e operatori ambulanti.",
       "come": "Domanda solo via PEC a suap@pec.comune.mesagne.br.it, con marca da bollo da 16 €.",
-      "documenti": ["PEC", "Marca da bollo da 16 €", "Autorizzazione al commercio su aree pubbliche"],
+      "documenti": [
+        "PEC",
+        "Marca da bollo da 16 €",
+        "Autorizzazione al commercio su aree pubbliche"
+      ],
       "nota": null,
-      "per": ["impresa"],
+      "per": [
+        "impresa"
+      ],
       "isee_max": null,
       "ricorrente": "Ogni anno, di solito a giugno.",
       "riapre_mese": 6,
       "fonti": [
-        { "nome": "Comune di Mesagne: avviso posteggi Festa Patronale 2026", "url": "https://www.comune.mesagne.br.it/novita/avviso-pubblico-per-la-concessione-temporanea-dei-posteggi-nellambito-della-festa-patronale-15-16-e-17-luglio-2026/" }
-      ]
+        {
+          "nome": "Comune di Mesagne: avviso posteggi Festa Patronale 2026",
+          "url": "https://www.comune.mesagne.br.it/novita/avviso-pubblico-per-la-concessione-temporanea-dei-posteggi-nellambito-della-festa-patronale-15-16-e-17-luglio-2026/",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "estate-mesagnese-2026",
@@ -268,15 +512,25 @@
       "cosa": "Raccolta di proposte da inserire nel calendario degli eventi estivi.",
       "chi": "Associazioni, artisti, imprese dello spettacolo.",
       "come": "Consegna all'Ufficio Protocollo o via PEC a suap@pec.comune.mesagne.br.it, entro le 12.",
-      "documenti": ["Proposta dell'evento", "PEC o consegna a mano"],
+      "documenti": [
+        "Proposta dell'evento",
+        "PEC o consegna a mano"
+      ],
       "nota": null,
-      "per": ["impresa"],
+      "per": [
+        "impresa"
+      ],
       "isee_max": null,
       "ricorrente": "Ogni anno, di solito in primavera.",
       "riapre_mese": 4,
       "fonti": [
-        { "nome": "Comune di Mesagne: Estate Mesagnese 2026", "url": "https://www.comune.mesagne.br.it/novita/estate-mesagnese-2026/" }
-      ]
+        {
+          "nome": "Comune di Mesagne: Estate Mesagnese 2026",
+          "url": "https://www.comune.mesagne.br.it/novita/estate-mesagnese-2026/",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "servizio-civile-2026",
@@ -289,15 +543,25 @@
       "cosa": "Progetti di servizio civile con un assegno mensile, anche presso enti del territorio.",
       "chi": "Ragazze e ragazzi tra 18 e 28 anni.",
       "come": "Domanda online sulla piattaforma DOL (domandaonline.serviziocivile.it), entro le 14.",
-      "documenti": ["SPID", "Curriculum"],
+      "documenti": [
+        "SPID",
+        "Curriculum"
+      ],
       "nota": null,
-      "per": ["lavoro"],
+      "per": [
+        "lavoro"
+      ],
       "isee_max": null,
       "ricorrente": "Ogni anno, di solito il bando esce in inverno.",
       "riapre_mese": 1,
       "fonti": [
-        { "nome": "Comune di Mesagne: proroga bando Servizio Civile 2026", "url": "https://www.comune.mesagne.br.it/novita/proroga-bando-servizio-civile-universale-2026/" }
-      ]
+        {
+          "nome": "Comune di Mesagne: proroga bando Servizio Civile 2026",
+          "url": "https://www.comune.mesagne.br.it/novita/proroga-bando-servizio-civile-universale-2026/",
+          "ufficiale": true
+        }
+      ],
+      "tipo": "domanda"
     },
     {
       "id": "sterilizzazione-2026",
@@ -310,15 +574,24 @@
       "cosa": "Intervento di sterilizzazione gratuito presso le cliniche veterinarie individuate dal Comune.",
       "chi": "Residenti a Mesagne proprietari di cani o gatti.",
       "come": "Domanda al Comune entro le 12 del giorno di scadenza.",
-      "documenti": ["Documento del proprietario", "Dati dell'animale (microchip)"],
+      "documenti": [
+        "Documento del proprietario",
+        "Dati dell'animale (microchip)"
+      ],
       "nota": null,
-      "per": ["animali"],
+      "per": [
+        "animali"
+      ],
       "isee_max": null,
       "ricorrente": "Di solito in primavera.",
       "riapre_mese": 3,
       "fonti": [
-        { "nome": "MesagneSera: sterilizzazione gratuita di cani e gatti", "url": "https://www.mesagnesera.it/sterilizzazione-gratuita-di-cani-e-gatti-di-proprieta-di-cittadini-residenti-a-mesagne/" }
-      ]
+        {
+          "nome": "MesagneSera: sterilizzazione gratuita di cani e gatti",
+          "url": "https://www.mesagnesera.it/sterilizzazione-gratuita-di-cani-e-gatti-di-proprieta-di-cittadini-residenti-a-mesagne/"
+        }
+      ],
+      "tipo": "domanda"
     }
   ]
 }

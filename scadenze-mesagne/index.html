@@ -44,6 +44,8 @@ button{font:inherit;color:inherit;background:none;border:0;margin:0;padding:0;cu
 input,select{font:inherit;color:inherit}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--ring);outline-offset:3px;border-radius:8px}
+.top :focus-visible,.piede :focus-visible{outline-color:#F2C14E}
+[tabindex="-1"]:focus{outline:none}
 .wrap{width:100%;max-width:560px;margin-inline:auto;padding-inline:16px}
 .ui{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -76,8 +78,9 @@ main{padding-block:16px 8px}
 .big-n{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;width:84px;height:84px;border-radius:18px;background:rgba(255,255,255,.16);line-height:1}
 .big-n b{font-size:2.3rem;font-weight:800}
 .big-n small{font-size:.85rem;font-weight:700;margin-top:4px}
+.big-n b.parola{font-size:1.3rem}
 .big-t{display:block;min-width:0}
-.big-d{display:block;font-weight:700;color:rgba(255,255,255,.88)}
+.big-d{display:block;font-weight:700;color:#fff}
 .big-tt{display:block;font-size:1.35rem;font-weight:800;line-height:1.2;margin-top:2px}
 .big-s{display:block;margin-top:6px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
 .conto{margin-top:12px;color:var(--ink-2)}
@@ -96,10 +99,11 @@ main{padding-block:16px 8px}
 
 /* elenco */
 .lista{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.av{width:100%;display:grid;grid-template-columns:68px 1fr 14px;gap:14px;align-items:center;padding:12px 14px;min-height:92px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);color:var(--ink)}
-.av-n{display:flex;flex-direction:column;align-items:center;justify-content:center;height:68px;border-radius:14px;background:var(--sunk);line-height:1;text-align:center}
+.av{width:100%;display:grid;grid-template-columns:minmax(68px,auto) 1fr 14px;gap:14px;align-items:center;padding:12px 14px;min-height:92px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);color:var(--ink)}
+.av-n{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:68px;padding:4px;border-radius:14px;background:var(--sunk);line-height:1;text-align:center}
 .av-n small{display:block;font-size:.74rem;font-weight:700;color:var(--ink-2)}
 .av-n b{display:block;font-size:1.6rem;font-weight:800;margin:2px 0}
+.av-n b.parola{font-size:1.1rem}
 .av-n.urg{background:var(--urg-bg);color:var(--urg)}
 .av-n.pre{background:var(--pre-bg);color:var(--pre)}
 .av-n.arr{background:var(--arr-bg);color:var(--arr)}
@@ -193,6 +197,8 @@ main{padding-block:16px 8px}
 .mie-t{flex:1;min-width:0}
 .mie-t b{display:block;font-weight:800;line-height:1.25}
 .mie-t small{display:block;color:var(--ink-2)}
+.mie-t b,.mie-t small{overflow-wrap:anywhere}
+.mie li.passata{opacity:.65}
 .mie .x{width:44px;height:44px}
 .form label{display:block;font-weight:800;margin:12px 0 6px}
 
@@ -229,7 +235,7 @@ main{padding-block:16px 8px}
 }
 @media (max-width:350px){
   .wrap{padding-inline:12px}
-  .av{grid-template-columns:58px 1fr 12px;gap:10px;padding-inline:10px}
+  .av{grid-template-columns:minmax(58px,auto) 1fr 12px;gap:10px;padding-inline:10px}
   .big-n{width:70px;height:70px}
 }
 </style>
@@ -297,13 +303,13 @@ main{padding-block:16px 8px}
   </section>
 
   <section class="sez" id="perte" aria-labelledby="perteT">
-    <h2 id="perteT">Fa per te</h2>
+    <h2 id="perteT" tabindex="-1">Fa per te</h2>
     <div id="perteBody"></div>
   </section>
 
   <section class="sez" id="tutti" aria-labelledby="tuttiT">
     <h2 id="tuttiT">Aperti ora e in arrivo</h2>
-    <p class="lead">Tocca un bando per vedere chi può chiederlo, cosa serve e il link alla fonte ufficiale.</p>
+    <p class="lead">Tocca un bando per vedere chi può chiederlo, cosa serve e il link alla fonte.</p>
     <div class="filtri" id="filtri" role="group" aria-label="Filtra per argomento"></div>
     <ul class="lista" id="lista"></ul>
     <div id="sempre"></div>
@@ -311,7 +317,7 @@ main{padding-block:16px 8px}
   </section>
 
   <section class="sez" id="mie-sez" aria-labelledby="mieT">
-    <h2 id="mieT">Le mie scadenze</h2>
+    <h2 id="mieT" tabindex="-1">Le mie scadenze</h2>
     <div id="mieBody"></div>
   </section>
 
@@ -321,7 +327,7 @@ main{padding-block:16px 8px}
   </section>
 
   <section class="sez" id="plus" aria-labelledby="plusT">
-    <h2 id="plusT">Plus: non perdere più una scadenza</h2>
+    <h2 id="plusT" tabindex="-1">Plus: non perdere più una scadenza</h2>
     <p class="lead">L'elenco dei bandi resta gratis per tutti. Plus serve a chi vuole che sia l'app a ricordarsi le scadenze.</p>
     <div class="plus">
       <div class="plus-h">
@@ -348,7 +354,7 @@ main{padding-block:16px 8px}
 
   <section class="sez" aria-labelledby="faqT">
     <h2 id="faqT">Domande frequenti</h2>
-    <details class="faq"><summary><span class="faq-q">È il sito del Comune di Mesagne?</span></summary><div class="faq-a"><p>No. È un servizio indipendente che raccoglie in un posto solo gli avvisi del Comune, della Regione Puglia, del Consorzio dei servizi sociali BR4 e di altri enti. Ogni scheda ha il link alla fonte ufficiale: prima di fare domanda controlla sempre il bando.</p></div></details>
+    <details class="faq"><summary><span class="faq-q">È il sito del Comune di Mesagne?</span></summary><div class="faq-a"><p>No. È un servizio indipendente che raccoglie in un posto solo gli avvisi del Comune, della Regione Puglia, del Consorzio dei servizi sociali BR4 e di altri enti. Ogni scheda ha il link alla fonte (l'avviso ufficiale, quando è online): prima di fare domanda controlla sempre il bando.</p></div></details>
     <details class="faq"><summary><span class="faq-q">Perché una parte è a pagamento?</span></summary><div class="faq-a"><p>Le informazioni pubbliche restano gratis per tutti. Si paga solo la comodità: promemoria, bandi filtrati per la tua famiglia, scadenze personali e archivio. Con quei soldi si paga il lavoro di controllo e aggiornamento dell'elenco.</p></div></details>
     <details class="faq"><summary><span class="faq-q">Come ricevo i promemoria?</span></summary><div class="faq-a"><p>Con Plus aggiungi le scadenze al calendario del telefono (Google, Apple o Outlook) con un tocco. Il calendario ti avvisa 7 giorni prima e il giorno prima, anche se non apri l'app.</p></div></details>
     <details class="faq"><summary><span class="faq-q">I miei dati dove finiscono?</span></summary><div class="faq-a"><p>Da nessuna parte. Il profilo della famiglia, le tue scadenze e le spunte restano solo su questo telefono. Non serve un account e non usiamo cookie.</p></div></details>
@@ -365,6 +371,7 @@ main{padding-block:16px 8px}
 </footer>
 
 <div class="backdrop" id="backdrop"></div>
+<div class="sr-only" id="annuncio" role="status" aria-live="polite"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTit" aria-hidden="true">
   <div class="sheet-head">
     <div class="sheet-ht"><h3 id="shTit">Dettagli</h3></div>
@@ -439,21 +446,23 @@ main{padding-block:16px 8px}
   function data(s){ var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
   function iso(d){ return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
   function giorni(a, b){ return Math.round((b - a) / 86400000); }
-  var OGGI = (function(){
-    var q = /[?&]data=(\d{4}-\d{2}-\d{2})/.exec(location.search);
-    if (q) return data(q[1]);
-    var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  })();
+  function oggiVero(){ var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  /* ?data=AAAA-MM-GG simula un altro giorno per l'elenco (prove e anteprime); la validità di Plus usa sempre la data vera */
+  var SIMULATA = /[?&]data=(\d{4}-\d{2}-\d{2})/.exec(location.search);
+  var OGGI = SIMULATA ? data(SIMULATA[1]) : oggiVero();
   var fGiorno = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "long" });
   var fData = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", year: "numeric" });
   var fBreve = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "short" });
   var MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+  function aMese(m){ var n = MESI[m - 1]; return (n.charAt(0) === "a" ? "ad " : "a ") + n; }
+  function giorniTesto(g){ return g === 1 ? "giorno" : "giorni"; }
 
   /* ======== stato ======== */
   var AVVISI = [];
   var AGGIORNATO = null;
   var filtro = "";
   var plus = null;                        /* { n: nome, x: scadenza } se Plus è attivo */
+  var scadutoIl = null;                   /* data di scadenza di un codice salvato ma non più valido */
   var profilo = leggi("sm-profilo", null); /* { per: [...], isee: "" } */
   var mie = leggi("sm-mie", { seguiti: [], personali: [] });
   var spunte = leggi("sm-spunte", {});
@@ -476,10 +485,11 @@ main{padding-block:16px 8px}
   function badge(a){
     var st = stato(a);
     if (st.k === "sempre") return '<span class="av-n sem">' + ICO.sempre + '</span>';
-    if (st.k === "arriva") return '<span class="av-n arr"><small>apre tra</small><b>' + st.g + '</b><small>' + (st.g === 1 ? "giorno" : "giorni") + '</small></span>';
-    if (st.g === 0) return '<span class="av-n urg"><small>scade</small><b>oggi</b><small>&nbsp;</small></span>';
+    if (st.k === "chiuso") { var c = data(a.scade); return '<span class="av-n"><small>chiuso il</small><b>' + c.getDate() + '</b><small>' + esc(MESI[c.getMonth()].slice(0, 3)) + '</small></span>'; }
+    if (st.k === "arriva") return '<span class="av-n arr"><small>apre tra</small><b>' + st.g + '</b><small>' + giorniTesto(st.g) + '</small></span>';
+    if (st.g === 0) return '<span class="av-n urg"><small>scade</small><b class="parola">oggi</b></span>';
     var cls = st.g <= 7 ? "urg" : st.g <= 30 ? "pre" : "";
-    return '<span class="av-n ' + cls + '"><small>mancano</small><b>' + st.g + '</b><small>' + (st.g === 1 ? "giorno" : "giorni") + '</small></span>';
+    return '<span class="av-n ' + cls + '"><small>' + (st.g === 1 ? "manca" : "mancano") + '</small><b>' + st.g + '</b><small>' + giorniTesto(st.g) + '</small></span>';
   }
   function prossimaRiapertura(a){
     if (!a.riapre_mese) return null;
@@ -493,7 +503,8 @@ main{padding-block:16px 8px}
     if (!a.isee_max || !profilo) return null;
     var f = ISEE.filter(function(r){ return r[0] === (profilo.isee || ""); })[0];
     if (!f || f[2] === null) return "forse";
-    if (f[2] >= a.isee_max) return "no";
+    /* isee_max_alt: soglia più alta per alcune famiglie (es. con più figli), che il profilo non conosce */
+    if (f[2] >= a.isee_max) return a.isee_max_alt && f[2] < a.isee_max_alt ? "forse" : "no";
     if (f[3] <= a.isee_max) return "ok";
     return "forse";
   }
@@ -528,14 +539,15 @@ main{padding-block:16px 8px}
     $("oggi").textContent = "Oggi è " + fGiorno.format(OGGI) + ".";
     var lista = ordina(AVVISI.filter(function(a){ return stato(a).k === "aperto"; }));
     var a = lista[0];
-    if (!a) { $("prossima").innerHTML = '<p class="vuoto">In questo momento non ci sono scadenze aperte. Guarda quelli in arrivo qui sotto.</p>'; }
-    else {
+    if (!a) {
+      $("prossima").innerHTML = '<p class="vuoto">' + (aperti().length ? "In questo momento non ci sono scadenze aperte. Guarda quelle in arrivo qui sotto." : "In questo momento non ci sono scadenze aperte né in arrivo.") + '</p>';
+    } else {
       var g = stato(a).g;
-      $("prossima").innerHTML = '<button type="button" class="big" data-id="' + esc(a.id) + '"><span class="big-n"><b>' + (g === 0 ? "oggi" : g) + '</b><small>' + (g === 0 ? "" : g === 1 ? "giorno" : "giorni") + '</small></span>' +
+      $("prossima").innerHTML = '<button type="button" class="big" data-id="' + esc(a.id) + '"><span class="big-n">' + (g === 0 ? '<b class="parola">oggi</b>' : '<b>' + g + '</b><small>' + giorniTesto(g) + '</small>') + '</span>' +
         '<span class="big-t"><span class="big-d">' + esc(fGiorno.format(data(a.scade))) + '</span><span class="big-tt">' + esc(a.titolo) + '</span><span class="big-s">Cosa fare</span></span></button>';
     }
     var n = aperti().length;
-    $("conto").textContent = n === 1 ? "C'è 1 scadenza aperta o in arrivo." : "Ci sono " + n + " scadenze aperte o in arrivo.";
+    $("conto").textContent = n === 0 ? "Non ci sono scadenze aperte o in arrivo." : n === 1 ? "C'è 1 scadenza aperta o in arrivo." : "Ci sono " + n + " scadenze aperte o in arrivo.";
     if (AGGIORNATO) $("agg").textContent = "Elenco aggiornato il " + fData.format(data(AGGIORNATO)) + ".";
   }
 
@@ -551,7 +563,7 @@ main{padding-block:16px 8px}
 
   function disegnaLista(){
     var lista = ordina(aperti().filter(function(a){ return !filtro || a.categoria === filtro; }));
-    $("lista").innerHTML = lista.length ? lista.map(voce).join("") : '<li class="vuoto">Nessun bando aperto per questo argomento.</li>';
+    $("lista").innerHTML = lista.length ? lista.map(voce).join("") : '<li class="vuoto">' + (filtro ? "Nessun bando aperto per questo argomento." : "Nessun bando aperto o in arrivo in questo momento.") + '</li>';
     var sempre = AVVISI.filter(function(a){ return stato(a).k === "sempre" && (!filtro || a.categoria === filtro); });
     $("sempre").innerHTML = sempre.length ? '<h3 class="gruppo">Sempre disponibili</h3><ul class="lista">' + sempre.map(voce).join("") + '</ul>' : "";
   }
@@ -577,7 +589,8 @@ main{padding-block:16px 8px}
     var sempre = AVVISI.filter(function(a){ return faPerTe(a) && stato(a).k === "sempre"; });
     var h = lista.length || sempre.length ? '<ul class="lista">' + lista.concat(sempre).map(voce).join("") + '</ul>' :
       '<p class="vuoto">Per il tuo profilo non ci sono bandi aperti adesso. Guarda nell\'archivio quando riaprono quelli che ti interessano.</p>';
-    h += '<div class="riga"><button type="button" class="btn sec" data-profilo="1">Modifica il profilo</button><button type="button" class="btn" data-ics-perte="1">' + ICO.cal + 'Tutto nel calendario</button></div>';
+    h += '<div class="riga"><button type="button" class="btn sec" data-profilo="1">Modifica il profilo</button>' +
+      (lista.length ? '<button type="button" class="btn" data-ics-perte="1">' + ICO.cal + 'Tutto nel calendario</button>' : "") + '</div>';
     b.innerHTML = h;
   }
 
@@ -590,16 +603,21 @@ main{padding-block:16px 8px}
     var righe = [];
     mie.seguiti.forEach(function(id){
       var a = trova(id); if (!a) return;
-      var st = stato(a), d = st.k === "chiuso" ? prossimaRiapertura(a) : st.k === "arriva" ? data(a.apre) : a.scade ? data(a.scade) : null;
-      righe.push({ d: d, t: a.titolo, s: st.k === "chiuso" ? "Di solito riapre a " + MESI[a.riapre_mese - 1] : quando(a), id: a.id });
+      var st = stato(a), rp = st.k === "chiuso" ? prossimaRiapertura(a) : null;
+      var d = rp || (st.k === "arriva" ? data(a.apre) : a.scade ? data(a.scade) : null);
+      righe.push({ d: d, t: a.titolo, s: rp ? "Di solito riapre " + aMese(a.riapre_mese) : quando(a), id: a.id, passata: st.k === "chiuso" && !rp });
     });
-    mie.personali.forEach(function(p){ righe.push({ d: data(p.data), t: p.titolo, s: p.importo ? "Importo: " + p.importo : "Scadenza personale", pid: p.id }); });
-    righe.sort(function(x, y){ return (x.d || 0) - (y.d || 0); });
+    mie.personali.forEach(function(p){
+      var d = data(p.data), passata = d < OGGI;
+      righe.push({ d: d, t: p.titolo, s: (passata ? "Scaduta il " + fData.format(d) : "Scadenza personale") + (p.importo ? " · " + p.importo : ""), pid: p.id, passata: passata });
+    });
+    /* prima le prossime, in ordine di data; in fondo quelle passate */
+    righe.sort(function(x, y){ return (x.passata - y.passata) || (x.passata ? (y.d || 0) - (x.d || 0) : (x.d || 0) - (y.d || 0)); });
     var h = righe.length ? '<ul class="mie">' + righe.map(function(r){
-      var dd = r.d ? '<b>' + r.d.getDate() + '</b><small>' + esc(fBreve.format(r.d).replace(/^\d+\s*/, "")) + '</small>' : '<b>–</b>';
+      var dd = r.d ? '<b>' + r.d.getDate() + '</b><small>' + esc(MESI[r.d.getMonth()].slice(0, 3)) + (r.d.getFullYear() !== OGGI.getFullYear() ? " " + r.d.getFullYear() : "") + '</small>' : '<b>–</b>';
       var tolgo = r.pid ? '<button type="button" class="x" data-togli="' + esc(r.pid) + '" aria-label="Elimina ' + esc(r.t) + '">' + ICO.x + '</button>' :
         '<button type="button" class="x" data-smetti="' + esc(r.id) + '" aria-label="Non seguire più ' + esc(r.t) + '">' + ICO.x + '</button>';
-      return '<li><span class="mie-d">' + dd + '</span><span class="mie-t"><b>' + esc(r.t) + '</b><small>' + esc(r.s) + '</small></span>' + tolgo + '</li>';
+      return '<li' + (r.passata ? ' class="passata"' : "") + '><span class="mie-d">' + dd + '</span><span class="mie-t"><b>' + esc(r.t) + '</b><small>' + esc(r.s) + '</small></span>' + tolgo + '</li>';
     }).join("") + '</ul>' : '<p class="vuoto">Non segui ancora niente. Apri un bando e tocca «Segui», oppure aggiungi una tua scadenza.</p>';
     h += '<div class="riga"><button type="button" class="btn sec" data-nuova="1">' + ICO.piu + 'Aggiungi una scadenza</button>' +
       (righe.length ? '<button type="button" class="btn" data-ics-mie="1">' + ICO.cal + 'Tutte nel calendario</button>' : "") + '</div>';
@@ -613,15 +631,15 @@ main{padding-block:16px 8px}
     if (!chiusi.length) { b.innerHTML = '<p class="vuoto">Nessun bando chiuso di recente.</p>'; return; }
     if (!plus) {
       var anteprima = chiusi.slice(0, 3).map(function(a){ return '<li>' + esc(a.titolo) + '</li>'; }).join("");
-      b.innerHTML = '<div class="lock"><p class="lock-h">' + ICO.lucchetto + '<span>' + chiusi.length + ' bandi chiusi di recente</span></p>' +
+      b.innerHTML = '<div class="lock"><p class="lock-h">' + ICO.lucchetto + '<span>' + (chiusi.length === 1 ? "1 bando chiuso di recente" : chiusi.length + " bandi chiusi di recente") + '</span></p>' +
         '<p>Molti tornano ogni anno, più o meno nello stesso mese. Con Plus vedi quando riaprono di solito e ricevi un promemoria per non perderli.</p>' +
-        '<ul class="anteprima">' + anteprima + (chiusi.length > 3 ? '<li>e altri ' + (chiusi.length - 3) + '…</li>' : "") + '</ul>' +
+        '<ul class="anteprima">' + anteprima + (chiusi.length === 4 ? '<li>e un altro…</li>' : chiusi.length > 4 ? '<li>e altri ' + (chiusi.length - 3) + '…</li>' : "") + '</ul>' +
         '<button type="button" class="btn oro" data-plus="1">' + ICO.stella + 'Scopri Plus</button></div>';
       return;
     }
     b.innerHTML = '<p class="lead">Le date di riapertura sono stimate in base agli anni scorsi.</p><ul class="lista">' + chiusi.map(function(a){
       var h = voce(a);
-      return a.riapre_mese ? h.replace('<span class="av-s">', '<span class="av-s">Di solito riapre a ' + MESI[a.riapre_mese - 1] + ' · ') : h;
+      return a.riapre_mese ? h.replace('<span class="av-s">', '<span class="av-s">Di solito riapre ' + aMese(a.riapre_mese) + ' · ') : h;
     }).join("") + '</ul>';
   }
 
@@ -636,10 +654,9 @@ main{padding-block:16px 8px}
         '<div class="btns"><button type="button" class="btn sec" data-esci="1">Disattiva Plus su questo telefono</button></div>';
       return;
     }
-    var scaduto = leggi("sm-plus-scaduto", null);
-    if (scaduto) {
+    if (scadutoIl) {
       pb.hidden = false;
-      pb.innerHTML = ICO.stella + '<p><b>Plus è scaduto</b> il ' + esc(fData.format(data(scaduto))) + '.</p><a class="lnk" href="#plus">Rinnova</a>';
+      pb.innerHTML = ICO.stella + '<p><b>Plus è scaduto</b> il ' + esc(fData.format(data(scadutoIl))) + '.</p><a class="lnk" href="#plus">Rinnova</a>';
     } else pb.hidden = true;
     az.innerHTML = '<div class="btns"><button type="button" class="btn" data-compra="1">' + ICO.stella + 'Attiva Plus a ' + esc(CONFIG.prezzo) + '</button></div>' +
       '<form class="codice" id="codForm"><label for="codIn">Hai già il codice?</label><input class="campo" id="codIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Incolla qui il codice">' +
@@ -655,7 +672,8 @@ main{padding-block:16px 8px}
   /* ======== scheda in basso ======== */
   var ultimoFocus = null;
   function apri(titolo, html){
-    ultimoFocus = document.activeElement;
+    /* se una scheda ne apre un'altra, alla chiusura il focus torna a chi ha aperto la prima */
+    if (!$("sheet").classList.contains("open")) ultimoFocus = document.activeElement;
     $("shTit").textContent = titolo;
     $("shBody").innerHTML = html;
     $("shBody").scrollTop = 0;
@@ -672,7 +690,13 @@ main{padding-block:16px 8px}
     $("backdrop").classList.remove("open");
     document.body.style.overflow = "";
     if (/^#a=/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
-    if (ultimoFocus && ultimoFocus.focus) ultimoFocus.focus();
+    if (ultimoFocus && document.body.contains(ultimoFocus)) ultimoFocus.focus();
+  }
+  /* dopo un'azione che ridisegna una sezione: annuncia l'esito e porta il focus sul titolo della sezione */
+  function fatto(testo, idTitolo){
+    $("annuncio").textContent = "";
+    setTimeout(function(){ $("annuncio").textContent = testo; }, 50);
+    if (idTitolo) $(idTitolo).focus();
   }
 
   function schedaAvviso(id){
@@ -686,21 +710,22 @@ main{padding-block:16px 8px}
     if (a.nota) h += '<p class="nota">' + esc(a.nota) + '</p>';
     var ci = controlloIsee(a);
     if (a.isee_max && plus && profilo) {
-      var soglia = a.isee_max.toLocaleString("it-IT") + " €";
+      var soglia = euro(a.isee_max), alt = a.isee_max_alt ? " (fino a " + euro(a.isee_max_alt) + " " + (a.isee_alt_per || "per alcune famiglie") + ")" : "";
       h += ci === "ok" ? '<p class="isee">Con il tuo ISEE rientri nella soglia (fino a ' + soglia + ').</p>' :
-        ci === "no" ? '<p class="isee no">Con il tuo ISEE sei sopra la soglia di ' + soglia + '.</p>' :
-        '<p class="isee">Serve un ISEE fino a ' + soglia + ': controlla il tuo.</p>';
+        ci === "no" ? '<p class="isee no">Con il tuo ISEE sei sopra la soglia di ' + soglia + esc(alt) + '.</p>' :
+        '<p class="isee">Serve un ISEE fino a ' + soglia + esc(alt) + ': controlla il tuo.</p>';
     }
-    h += '<h4>Cosa si ottiene</h4><p>' + esc(a.cosa) + '</p>';
-    h += '<h4>Chi può chiederlo</h4><p>' + esc(a.chi) + '</p>';
-    h += '<h4>Come si fa</h4><p>' + esc(a.come) + '</p>';
+    var tit = TITOLI[a.tipo] || TITOLI.domanda;
+    h += '<h4>' + tit[0] + '</h4><p>' + esc(a.cosa) + '</p>';
+    h += '<h4>' + tit[1] + '</h4><p>' + esc(a.chi) + '</p>';
+    h += '<h4>' + tit[2] + '</h4><p>' + esc(a.come) + '</p>';
     if (a.documenti && a.documenti.length) {
       h += '<h4>Cosa serve</h4><ul class="docs">' + a.documenti.map(function(d, i){
         var k = a.id + ":" + i;
         return plus ? '<li><label><input type="checkbox" data-spunta="' + esc(k) + '"' + (spunte[k] ? " checked" : "") + '>' + esc(d) + '</label></li>' : '<li><span>' + esc(d) + '</span></li>';
       }).join("") + '</ul>';
     }
-    if (st.k === "chiuso" && plus && a.riapre_mese) h += '<p class="isee">Di solito riapre a ' + MESI[a.riapre_mese - 1] + '. La data è stimata in base agli anni scorsi.</p>';
+    if (st.k === "chiuso" && plus && a.riapre_mese) h += '<p class="isee">Di solito riapre ' + aMese(a.riapre_mese) + '. La data è stimata in base agli anni scorsi.</p>';
 
     h += '<div class="btns">';
     if (plus) {
@@ -712,11 +737,11 @@ main{padding-block:16px 8px}
         h += '<a class="btn sec" href="' + esc(linkGoogle(a)) + '" target="_blank" rel="noopener">' + ICO.cal + 'Aggiungi a Google Calendar</a>';
       }
       if (st.k !== "sempre") h += '<button type="button" class="btn sec" data-segui="' + esc(a.id) + '" aria-pressed="' + segui + '">' + (segui ? "Segui già: togli dalle mie scadenze" : "Segui: mettila nelle mie scadenze") + '</button>';
-    } else if (st.k !== "sempre") {
-      h += '<button type="button" class="btn oro" data-plus="1">' + ICO.lucchetto + 'Promemoria nel calendario · Plus</button>';
+    } else if (st.k === "chiuso" ? a.riapre_mese : st.k !== "sempre") {
+      h += '<button type="button" class="btn oro" data-plus="1">' + ICO.lucchetto + (st.k === "chiuso" ? "Avvisami quando riapre · Plus" : "Promemoria nel calendario · Plus") + '</button>';
     }
     var f = a.fonti && a.fonti[0];
-    if (f) h += '<a class="btn sec" href="' + esc(sicuro(f.url)) + '" target="_blank" rel="noopener">' + ICO.link + 'Leggi l\'avviso ufficiale</a>';
+    if (f) h += '<a class="btn sec" href="' + esc(sicuro(f.url)) + '" target="_blank" rel="noopener">' + ICO.link + (f.ufficiale ? "Leggi l'avviso ufficiale" : "Leggi la fonte") + '</a>';
     h += '<a class="btn wa" href="' + esc(linkWhatsApp(a)) + '" target="_blank" rel="noopener">' + ICO.wa + 'Manda a chi può servire</a>';
     h += '</div>';
 
@@ -726,6 +751,13 @@ main{padding-block:16px 8px}
     history.replaceState(null, "", "#a=" + a.id);
   }
 
+  var TITOLI = {
+    domanda: ["Cosa si ottiene", "Chi può chiederlo", "Come si fa"],
+    pagamento: ["Di cosa si tratta", "Chi deve pagare", "Come si paga"],
+    info: ["Di cosa si tratta", "A chi riguarda", "Come funziona"]
+  };
+  function euro(n){ return n.toLocaleString("it-IT") + " €"; }
+
   function schedaPlus(){
     var h = '<p>L\'elenco dei bandi resta gratis. Con Plus, per <b>' + esc(CONFIG.prezzo) + ' ' + esc(CONFIG.periodo) + '</b>:</p>' +
       '<ul class="docs"><li><span>Vedi i bandi giusti per la tua famiglia, con il controllo dell\'ISEE</span></li>' +
@@ -734,7 +766,7 @@ main{padding-block:16px 8px}
       '<li><span>Sai quando riaprono i bandi che tornano ogni anno</span></li>' +
       '<li><span>Spunti i documenti man mano che li prepari</span></li></ul>' +
       '<div class="btns"><button type="button" class="btn" data-compra="1">' + ICO.stella + 'Attiva Plus a ' + esc(CONFIG.prezzo) + '</button>' +
-      '<a class="btn sec" href="#plus" data-chiudi="1">Ho già un codice</a></div>';
+      '<a class="btn sec" href="#codIn" data-codice="1">Ho già un codice</a></div>';
     apri("Scadenze Mesagne Plus", h);
   }
 
@@ -759,9 +791,10 @@ main{padding-block:16px 8px}
   /* ======== promemoria: file .ics e Google Calendar ======== */
   function icsTesto(s){ return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n"); }
   function piega(riga){
-    var out = [], cur = "", n = 0, enc = new TextEncoder();
-    for (var i = 0; i < riga.length; i++) {
-      var ch = riga[i], b = enc.encode(ch).length;
+    /* si piega per caratteri interi (Array.from non spezza le emoji), al massimo 75 byte per riga */
+    var out = [], cur = "", n = 0, enc = new TextEncoder(), car = Array.from(riga);
+    for (var i = 0; i < car.length; i++) {
+      var ch = car[i], b = enc.encode(ch).length;
       if (n + b > 74) { out.push(cur); cur = " "; n = 1; }
       cur += ch; n += b;
     }
@@ -804,13 +837,16 @@ main{padding-block:16px 8px}
     document.body.appendChild(l); l.click(); l.remove();
     setTimeout(function(){ URL.revokeObjectURL(url); }, 10000);
   }
+  /* Google Calendar accetta un solo evento: si salva la scadenza, e per i bandi in arrivo la data di apertura va nella descrizione */
   function linkGoogle(a){
-    var st = stato(a), d = st.k === "arriva" ? data(a.apre) : data(a.scade), dopo = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
-    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent((st.k === "arriva" ? "Apre: " : "Scadenza: ") + a.titolo) +
-      "&dates=" + compatta(d) + "/" + compatta(dopo) + "&details=" + encodeURIComponent(a.breve + "\n\n" + URL_APP + "#a=" + a.id);
+    var d = data(a.scade), dopo = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+    var apre = stato(a).k === "arriva" ? "Apre " + fGiorno.format(data(a.apre)) + ".\n\n" : "";
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("Scadenza: " + a.titolo) +
+      "&dates=" + compatta(d) + "/" + compatta(dopo) + "&details=" + encodeURIComponent(apre + a.breve + "\n\n" + URL_APP + "#a=" + a.id);
   }
   function linkWhatsApp(a){
-    var t = a.titolo + (a.scade ? " (" + quando(a).toLowerCase() + ")" : "") + ". Chi può chiederlo e cosa serve: " + URL_APP + "#a=" + a.id;
+    var cosa = a.tipo === "pagamento" ? "Cosa fare e come pagare: " : a.tipo === "info" ? "Di cosa si tratta: " : "Chi può chiederlo e cosa serve: ";
+    var t = a.titolo + (a.scade ? " (" + quando(a).toLowerCase() + ")" : "") + ". " + cosa + URL_APP + "#a=" + a.id;
     return "https://wa.me/?text=" + encodeURIComponent(t);
   }
 
@@ -834,10 +870,9 @@ main{padding-block:16px 8px}
   function attiva(codice){
     return verifica(codice).then(function(info){
       if (!info) return "non valido";
-      if (data(info.x) < OGGI) return "scaduto";
+      if (data(info.x) < oggiVero()) return "scaduto";
       scrivi("sm-plus", codice.trim());
-      try { localStorage.removeItem("sm-plus-scaduto"); } catch(e) {}
-      plus = info;
+      plus = info; scadutoIl = null;
       disegnaTutto();
       return "ok";
     });
@@ -845,10 +880,11 @@ main{padding-block:16px 8px}
   function caricaPlus(){
     var cod = leggi("sm-plus", null);
     if (!cod) return Promise.resolve();
+    /* il codice resta salvato anche se risulta scaduto (es. orologio del telefono sbagliato): si ricontrolla a ogni avvio */
     return verifica(cod).then(function(info){
-      if (info && data(info.x) >= OGGI) { plus = info; return; }
-      if (info) scrivi("sm-plus-scaduto", info.x);
-      try { localStorage.removeItem("sm-plus"); } catch(e) {}
+      plus = null; scadutoIl = null;
+      if (info && data(info.x) >= oggiVero()) plus = info;
+      else if (info) scadutoIl = info.x;
     });
   }
   function compra(){
@@ -862,10 +898,19 @@ main{padding-block:16px 8px}
     var t = e.target.closest("button, a"); if (!t) return;
     var d = t.dataset;
     if (d.id) { schedaAvviso(d.id); return; }
-    if (d.f !== undefined) { filtro = d.f; disegnaFiltri(); disegnaLista(); return; }
+    if (d.f !== undefined) {
+      filtro = d.f; disegnaFiltri(); disegnaLista();
+      var fb = $("filtri").querySelector('[data-f="' + filtro + '"]'); if (fb) fb.focus();
+      return;
+    }
     if (d.plus) { schedaPlus(); return; }
     if (d.compra) { compra(); return; }
-    if (d.chiudi) { chiudi(); return; }
+    if (d.codice) {
+      e.preventDefault(); chiudi();
+      var ci = $("codIn");
+      if (ci) { ci.scrollIntoView({ block: "center" }); ci.focus({ preventScroll: true }); }
+      return;
+    }
     if (d.profilo) { schedaProfilo(); return; }
     if (d.nuova) { schedaNuova(); return; }
     if (d.ics) { var a = trova(d.ics); scaricaIcs(eventiAvviso(a), "scadenza-" + a.id); return; }
@@ -875,7 +920,7 @@ main{padding-block:16px 8px}
     }
     if (d.icsMie) {
       var r = [].concat.apply([], mie.seguiti.map(trova).filter(Boolean).map(eventiAvviso));
-      mie.personali.forEach(function(p){ r = r.concat(evento("mia-" + p.id, data(p.data), "Scadenza: " + p.titolo, p.importo ? "Importo: " + p.importo : "Scadenza personale", "", PRIMA)); });
+      mie.personali.forEach(function(p){ if (data(p.data) < OGGI) return; r = r.concat(evento("mia-" + p.id, data(p.data), "Scadenza: " + p.titolo, p.importo ? "Importo: " + p.importo : "Scadenza personale", "", PRIMA)); });
       scaricaIcs(r, "le-mie-scadenze");
       return;
     }
@@ -888,11 +933,11 @@ main{padding-block:16px 8px}
       t.textContent = seg ? "Segui già: togli dalle mie scadenze" : "Segui: mettila nelle mie scadenze";
       return;
     }
-    if (d.smetti) { mie.seguiti = mie.seguiti.filter(function(x){ return x !== d.smetti; }); scrivi("sm-mie", mie); disegnaMie(); return; }
-    if (d.togli) { mie.personali = mie.personali.filter(function(p){ return p.id !== d.togli; }); scrivi("sm-mie", mie); disegnaMie(); return; }
+    if (d.smetti) { mie.seguiti = mie.seguiti.filter(function(x){ return x !== d.smetti; }); scrivi("sm-mie", mie); disegnaMie(); fatto("Non segui più questa scadenza.", "mieT"); return; }
+    if (d.togli) { mie.personali = mie.personali.filter(function(p){ return p.id !== d.togli; }); scrivi("sm-mie", mie); disegnaMie(); fatto("Scadenza eliminata.", "mieT"); return; }
     if (d.esci) {
       try { localStorage.removeItem("sm-plus"); } catch(e) {}
-      plus = null; disegnaTutto(); return;
+      plus = null; scadutoIl = null; disegnaTutto(); fatto("Plus disattivato su questo telefono.", "plusT"); return;
     }
   });
 
@@ -907,7 +952,7 @@ main{padding-block:16px 8px}
       e.preventDefault();
       var msg = $("codMsg");
       attiva($("codIn").value).then(function(r){
-        if (r === "ok") return;
+        if (r === "ok") { fatto("Plus attivato.", "plusT"); return; }
         msg.className = "msg ko";
         msg.textContent = r === "scaduto" ? "Questo codice è scaduto. Rinnova Plus per continuare." : "Codice non valido: controlla di averlo copiato tutto, senza spazi.";
       });
@@ -920,12 +965,16 @@ main{padding-block:16px 8px}
       scrivi("sm-profilo", profilo);
       chiudi(); disegnaTutto();
       $("perte").scrollIntoView();
+      fatto("Profilo salvato.", "perteT");
     }
     if (f.id === "nuovaForm") {
       e.preventDefault();
-      mie.personali.push({ id: Date.now().toString(36), titolo: $("nT").value.trim(), data: $("nD").value, importo: $("nI").value.trim() });
+      var titolo = $("nT").value.trim();
+      if (!titolo) { $("nT").value = ""; $("nT").reportValidity(); return; }
+      mie.personali.push({ id: Date.now().toString(36), titolo: titolo, data: $("nD").value, importo: $("nI").value.trim() });
       scrivi("sm-mie", mie);
       chiudi(); disegnaMie();
+      fatto("Scadenza aggiunta.", "mieT");
     }
   });
 
@@ -948,10 +997,9 @@ main{padding-block:16px 8px}
     if (g) document.documentElement.setAttribute("data-testo", "grande"); else document.documentElement.removeAttribute("data-testo");
     this.setAttribute("aria-pressed", g);
     $("szA").textContent = g ? "A−" : "A+";
-    this.setAttribute("aria-label", g ? "Testo normale" : "Testo più grande");
     try { localStorage.setItem("sm-testo", g ? "grande" : ""); } catch(e) {}
   });
-  if (document.documentElement.getAttribute("data-testo") === "grande") { $("testoBtn").setAttribute("aria-pressed", "true"); $("szA").textContent = "A−"; $("testoBtn").setAttribute("aria-label", "Testo normale"); }
+  if (document.documentElement.getAttribute("data-testo") === "grande") { $("testoBtn").setAttribute("aria-pressed", "true"); $("szA").textContent = "A−"; }
 
   /* link con #plus=CODICE (attivazione) o #a=ID (apre un bando) */
   function leggiHash(){
@@ -959,7 +1007,8 @@ main{padding-block:16px 8px}
     var m = /^#plus=(.+)$/.exec(h);
     if (m) {
       history.replaceState(null, "", location.pathname + location.search);
-      attiva(decodeURIComponent(m[1])).then(function(r){
+      var cod; try { cod = decodeURIComponent(m[1]); } catch(e) { cod = ""; }
+      attiva(cod).then(function(r){
         if (r === "ok") apri("Plus è attivo", '<p>Fatto: Plus è attivo su questo telefono. Ora puoi vedere i bandi giusti per la tua famiglia e mettere le scadenze nel calendario.</p><div class="btns"><button type="button" class="btn" data-profilo="1">Compila il profilo della famiglia</button></div>');
         else apri("Codice non valido", '<p>' + (r === "scaduto" ? "Questo codice è scaduto." : "Il link di attivazione non è valido o è incompleto.") + ' Scrivi a <a href="mailto:' + esc(CONFIG.email) + '">' + esc(CONFIG.email) + '</a>.</p>');
       });
@@ -979,9 +1028,19 @@ main{padding-block:16px 8px}
     AGGIORNATO = res[0].aggiornato || null;
     disegnaTutto();
     leggiHash();
-  }).catch(function(){
+  }, function(){
     $("prossima").innerHTML = '<p class="vuoto">Non riesco a caricare l\'elenco. Controlla la connessione e riprova.</p>';
   });
+
+  /* se l'app resta aperta oltre la mezzanotte, al ritorno sullo schermo si aggiorna il giorno */
+  function aggiornaOggi(){
+    if (SIMULATA || !AVVISI.length) return;
+    var n = oggiVero();
+    if (n - OGGI !== 0) { OGGI = n; caricaPlus().then(disegnaTutto); }
+  }
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden) aggiornaOggi(); });
+  window.addEventListener("pageshow", aggiornaOggi);
+  window.addEventListener("focus", aggiornaOggi);
 
   if ("serviceWorker" in navigator && location.protocol === "https:") {
     window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });

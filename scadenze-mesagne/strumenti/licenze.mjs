@@ -13,7 +13,7 @@
    La chiave privata sta in ~/.scadenze-mesagne/chiave-privata.jwk (o nel percorso
    indicato da SM_CHIAVE). Non metterla mai nel repository. */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, chmodSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -26,11 +26,16 @@ const PRIVATA = process.env.SM_CHIAVE || join(homedir(), ".scadenze-mesagne", "c
 const URL_APP = "https://benz91x.github.io/scadenze-mesagne/";
 
 const b64url = (buf) => Buffer.from(buf).toString("base64url");
-const isoOggi = () => new Date().toISOString().slice(0, 10);
+/* date nel fuso del computer (in Italia: ora italiana), non in UTC */
+const isoLocale = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+const isoOggi = () => isoLocale(new Date());
 
 function arg(nome) {
   const i = process.argv.indexOf("--" + nome);
-  return i > 0 ? process.argv[i + 1] : undefined;
+  if (i < 0) return undefined;
+  const v = process.argv[i + 1];
+  if (v === undefined || v.startsWith("--")) throw new Error("Manca il valore di --" + nome);
+  return v;
 }
 
 function chiavePubblicaDellApp() {
@@ -48,13 +53,16 @@ async function chiavi() {
   const coppia = await subtle.generateKey(ALG, true, ["sign", "verify"]);
   const priv = await subtle.exportKey("jwk", coppia.privateKey);
   const pub = await subtle.exportKey("jwk", coppia.publicKey);
-  mkdirSync(dirname(PRIVATA), { recursive: true, mode: 0o700 });
-  writeFileSync(PRIVATA, JSON.stringify(priv), { mode: 0o600 });
 
+  /* prima si prepara l'HTML: se qualcosa non va, non si tocca nessun file */
   const pubblica = JSON.stringify({ kty: pub.kty, crv: pub.crv, x: pub.x, y: pub.y });
   const html = readFileSync(APP, "utf8");
   const nuovo = html.replace(/\/\*CHIAVE\*\/.*?\/\*FINE-CHIAVE\*\//s, "/*CHIAVE*/" + pubblica + "/*FINE-CHIAVE*/");
-  if (nuovo === html) throw new Error("Segnaposto della chiave non trovato in " + APP);
+  if (!/\/\*CHIAVE\*\/.*?\/\*FINE-CHIAVE\*\//s.test(html)) throw new Error("Segnaposto della chiave non trovato in " + APP);
+
+  mkdirSync(dirname(PRIVATA), { recursive: true, mode: 0o700 });
+  writeFileSync(PRIVATA, JSON.stringify(priv), { mode: 0o600 });
+  chmodSync(PRIVATA, 0o600);
   writeFileSync(APP, nuovo);
   console.log("Chiave privata salvata in " + PRIVATA + " (tienila al sicuro, fuori dal repository).");
   console.log("Chiave pubblica scritta in " + APP + ". Pubblica l'app per renderla attiva.");
@@ -65,11 +73,15 @@ async function codice() {
   if (!nome) throw new Error('Manca --nome, ad esempio --nome "Maria R."');
   let fino = arg("fino");
   if (!fino) {
+    const mesi = Number(arg("mesi") || 12);
+    if (!Number.isInteger(mesi) || mesi < 1) throw new Error("--mesi deve essere un numero intero positivo");
     const d = new Date();
-    d.setMonth(d.getMonth() + Number(arg("mesi") || 12));
-    fino = d.toISOString().slice(0, 10);
+    d.setMonth(d.getMonth() + mesi);
+    fino = isoLocale(d);
   }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(fino)) throw new Error("--fino deve essere nel formato AAAA-MM-GG");
+  const [a, m, g] = fino.split("-").map(Number), t = new Date(Date.UTC(a, m - 1, g));
+  if (t.getUTCFullYear() !== a || t.getUTCMonth() !== m - 1 || t.getUTCDate() !== g) throw new Error("Data inesistente: " + fino);
 
   const priv = JSON.parse(readFileSync(PRIVATA, "utf8"));
   const chiave = await subtle.importKey("jwk", priv, ALG, false, ["sign"]);
