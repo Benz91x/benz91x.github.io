@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="it-IT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bonus, contributi e scadenze a Mesagne: cosa chiedere ed entro quando</title>
+<script>try{if(localStorage.getItem("sm-testo")==="grande")document.documentElement.setAttribute("data-testo","grande")}catch(e){}</script>
+<link rel="preload" href="fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Atkinson Hyperlegible Next (SIL Open Font License), ospitato con l'app */
+@font-face{font-family:"Atkinson Hyperlegible Next";font-style:normal;font-weight:400 800;font-display:swap;src:url(fonts/atkinson-hyperlegible-next-latin.woff2) format("woff2")}
+:root{
+  --bg:#F3F1EC; --surface:#FFFFFF; --surface-2:#F8F6F2; --sunk:#E8E4DB;
+  --ink:#1A1F24; --ink-2:#39424B; --muted:#56606A; --line:#D6D0C4;
+  --brand:#123C3A; --brand-2:#1D5550; --brand-soft:#DDEBE8; --on-brand:#FFFFFF;
+  --btn:#145C55; --ring:#1F7A70; --ok:#1B7F45;
+  --urg:#A4231B; --urg-bg:#FBE6E3;
+  --pre:#7A4F00; --pre-bg:#FFEFCC;
+  --arr:#1F4E8A; --arr-bg:#E2ECF8;
+  --plus:#8A5A00; --plus-bg:#FFF3D6; --plus-line:#E3BE6A;
+  --r-xl:24px; --r-lg:18px; --r-md:14px;
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0D1413; --surface:#16201F; --surface-2:#1A2524; --sunk:#22302E;
+    --ink:#EEF2F1; --ink-2:#C9D3D1; --muted:#A3B1AF; --line:#2F3E3C;
+    --brand:#0A2725; --brand-2:#164440; --brand-soft:#1B3633;
+    --btn:#23786F; --ring:#6FD3C6; --ok:#4CC27E;
+    --urg:#FF9A90; --urg-bg:#3B1D1A;
+    --pre:#F5C46B; --pre-bg:#3A2C10;
+    --arr:#9CC3F5; --arr-bg:#1A2B42;
+    --plus:#F2C14E; --plus-bg:#33290F; --plus-line:#7A6224;
+  }
+}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+html{font-size:112.5%;background:var(--brand);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html[data-testo="grande"]{font-size:131.25%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:1rem;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3,h4,p{margin:0}
+button{font:inherit;color:inherit;background:none;border:0;margin:0;padding:0;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
+input,select{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ring);outline-offset:3px;border-radius:8px}
+.wrap{width:100%;max-width:560px;margin-inline:auto;padding-inline:16px}
+.ui{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* barra in alto */
+.top{background:var(--brand);color:var(--on-brand);padding-top:env(safe-area-inset-top,0px)}
+.top-in{display:flex;align-items:center;gap:12px;min-height:78px;padding-block:10px}
+.logo{width:48px;height:48px;flex:none}
+.title{display:flex;flex-direction:column;min-width:0;line-height:1.15}
+.t1{font-weight:800;font-size:1.15rem}
+.t2{font-weight:500;font-size:.95rem;color:rgba(255,255,255,.86);margin-top:2px}
+.sz{margin-left:auto;flex:none;width:64px;height:58px;border-radius:14px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.45);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1}
+.sz-a{font-size:1.3rem;font-weight:800}
+.sz-l{font-size:.78rem;font-weight:600;margin-top:4px}
+
+main{padding-block:16px 8px}
+
+/* stato di Plus */
+.pbar{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-lg);background:var(--plus-bg);border:1.5px solid var(--plus-line);color:var(--ink)}
+.pbar svg{width:28px;height:28px;flex:none;color:var(--plus)}
+.pbar p{flex:1;min-width:0;font-size:.98rem;line-height:1.35}
+.pbar b{font-weight:800}
+.pbar .lnk{flex:none;font-weight:800;text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center}
+
+/* prossima scadenza */
+.hero{margin-top:18px}
+.hero-oggi{font-weight:700;color:var(--ink-2)}
+.hero-q{font-size:1.6rem;font-weight:800;line-height:1.15;letter-spacing:-.01em;margin-top:2px}
+.big{display:flex;align-items:center;gap:16px;width:100%;margin-top:12px;padding:18px;border-radius:var(--r-xl);background:var(--btn);color:#fff;box-shadow:0 14px 28px -18px rgba(18,60,58,.7)}
+.big-n{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;width:84px;height:84px;border-radius:18px;background:rgba(255,255,255,.16);line-height:1}
+.big-n b{font-size:2.3rem;font-weight:800}
+.big-n small{font-size:.85rem;font-weight:700;margin-top:4px}
+.big-t{display:block;min-width:0}
+.big-d{display:block;font-weight:700;color:rgba(255,255,255,.88)}
+.big-tt{display:block;font-size:1.35rem;font-weight:800;line-height:1.2;margin-top:2px}
+.big-s{display:block;margin-top:6px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.conto{margin-top:12px;color:var(--ink-2)}
+
+/* sezioni */
+.sez{margin-top:32px}
+.sez > h2{font-size:1.5rem;font-weight:800;line-height:1.2;letter-spacing:-.01em;margin-bottom:6px}
+.lead{margin-bottom:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px}
+
+/* filtri */
+.filtri{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;margin:0 -2px 6px;scrollbar-width:none}
+.filtri::-webkit-scrollbar{display:none}
+.filtri button{flex:none;min-height:46px;padding:8px 14px;border-radius:999px;background:var(--surface);border:1.5px solid var(--line);font-weight:700;font-size:.98rem;white-space:nowrap}
+.filtri button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+/* elenco */
+.lista{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.av{width:100%;display:grid;grid-template-columns:68px 1fr 14px;gap:14px;align-items:center;padding:12px 14px;min-height:92px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);color:var(--ink)}
+.av-n{display:flex;flex-direction:column;align-items:center;justify-content:center;height:68px;border-radius:14px;background:var(--sunk);line-height:1;text-align:center}
+.av-n small{display:block;font-size:.74rem;font-weight:700;color:var(--ink-2)}
+.av-n b{display:block;font-size:1.6rem;font-weight:800;margin:2px 0}
+.av-n.urg{background:var(--urg-bg);color:var(--urg)}
+.av-n.pre{background:var(--pre-bg);color:var(--pre)}
+.av-n.arr{background:var(--arr-bg);color:var(--arr)}
+.av-n.urg small,.av-n.pre small,.av-n.arr small{color:inherit}
+.av-n.sem{background:var(--brand-soft)}
+.av-n.sem svg{width:30px;height:30px}
+.av-main{display:block;min-width:0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:5px}
+.tag{display:inline-block;font-size:.8rem;font-weight:800;line-height:1.3;padding:2px 8px;border-radius:7px;background:var(--brand-soft);color:var(--ink)}
+.tag.per{background:var(--plus-bg);color:var(--plus);box-shadow:inset 0 0 0 1px var(--plus-line)}
+.tag.chiuso{background:var(--sunk);color:var(--ink-2)}
+.av-t{display:block;font-weight:800;font-size:1.1rem;line-height:1.25}
+.av-s{display:block;margin-top:4px;color:var(--ink-2);font-size:.95rem}
+.chev{width:11px;height:11px;border-right:3px solid var(--muted);border-bottom:3px solid var(--muted);transform:rotate(-45deg)}
+.gruppo{margin:22px 0 10px;font-size:1.1rem;font-weight:800;color:var(--ink-2)}
+.vuoto{background:var(--surface-2);border:1.5px dashed var(--line);border-radius:var(--r-md);padding:14px;color:var(--ink-2)}
+
+/* funzioni di Plus bloccate */
+.lock{position:relative;padding:18px 16px;border-radius:var(--r-lg);background:var(--surface);border:1.5px dashed var(--plus-line)}
+.lock-h{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.12rem;line-height:1.25}
+.lock-h svg{width:26px;height:26px;flex:none;color:var(--plus)}
+.lock p{margin-top:8px;color:var(--ink-2)}
+.lock .btn{margin-top:14px;width:100%}
+.anteprima{list-style:none;margin:12px 0 0;padding:0}
+.anteprima li{padding:8px 0;border-top:1px solid var(--line);font-weight:700}
+
+/* pulsanti */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:10px 18px;border-radius:14px;background:var(--btn);color:#fff;font-weight:800;font-size:1.05rem;line-height:1.2;text-decoration:none;text-align:center}
+.btn svg{width:22px;height:22px;flex:none}
+.btn.sec{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink-2)}
+.btn.oro{background:var(--plus-bg);color:var(--ink);box-shadow:inset 0 0 0 2px var(--plus-line)}
+.btn.oro svg{color:var(--plus)}
+.btn.wa{background:#128C3E}
+.btns{display:grid;gap:8px;margin-top:14px}
+.riga{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.riga .btn{flex:1 1 200px}
+
+/* Plus */
+.plus{border-radius:var(--r-xl);background:var(--surface);border:2px solid var(--plus-line);overflow:hidden}
+.plus-h{padding:18px 16px;background:var(--plus-bg)}
+.plus-h h3{font-size:1.4rem;font-weight:800;line-height:1.2}
+.prezzo{margin-top:6px;font-size:1.05rem}
+.prezzo b{font-size:1.8rem;font-weight:800}
+.plus-b{padding:4px 16px 18px}
+.cfr{width:100%;border-collapse:collapse;margin-top:8px;font-size:.98rem}
+.cfr th,.cfr td{padding:10px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.cfr thead th{font-size:.9rem;color:var(--ink-2);text-align:center}
+.cfr thead th:first-child{text-align:left}
+.cfr tbody th{text-align:left;font-weight:600}
+.cfr td{text-align:center;width:58px;font-weight:800}
+.si{color:var(--ok)}
+.no{color:var(--muted)}
+.codice{margin-top:18px}
+.codice label{display:block;font-weight:800;margin-bottom:6px}
+.campo{width:100%;min-height:56px;padding:10px 14px;border-radius:14px;border:2px solid var(--ink-2);background:var(--surface);color:var(--ink);font-size:1rem}
+.msg{margin-top:10px;padding:10px 12px;border-radius:12px;font-weight:700}
+.msg.ok{background:var(--brand-soft)}
+.msg.ko{background:var(--urg-bg);color:var(--urg)}
+
+/* scheda di dettaglio */
+.stato{font-size:1.15rem;font-weight:800;line-height:1.3}
+.stato small{display:block;font-size:1rem;font-weight:700;color:var(--ink-2)}
+.dett h4{font-size:1.02rem;font-weight:800;margin:16px 0 4px}
+.dett p{color:var(--ink-2)}
+.nota{margin-top:12px;padding:12px 14px;border-radius:var(--r-md);background:var(--pre-bg);color:var(--ink);border:1.5px solid var(--plus-line)}
+.isee{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--brand-soft);font-weight:700}
+.isee.no{background:var(--urg-bg);color:var(--urg)}
+.docs{list-style:none;margin:0;padding:0}
+.docs li{border-top:1px solid var(--line)}
+.docs li:first-child{border-top:0}
+.docs label,.docs span{display:flex;align-items:center;gap:12px;min-height:48px;padding:6px 0}
+.docs input{width:24px;height:24px;flex:none;accent-color:var(--btn)}
+.docs span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none;margin:0 8px}
+.fonti{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:.95rem;color:var(--ink-2)}
+.fonti a{display:block;padding:6px 0;font-weight:700;color:var(--ink);text-underline-offset:3px}
+
+/* profilo */
+.prof fieldset{border:0;margin:0 0 16px;padding:0}
+.prof legend{font-weight:800;font-size:1.05rem;margin-bottom:6px;padding:0}
+.opz{display:flex;align-items:center;gap:12px;min-height:54px;padding:8px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+.opz + .opz{margin-top:6px}
+.opz input{width:24px;height:24px;flex:none;accent-color:var(--btn)}
+
+/* le mie scadenze */
+.mie{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.mie li{display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:64px}
+.mie li + li{border-top:1px solid var(--line)}
+.mie-d{flex:none;width:58px;text-align:center;line-height:1.05;border-radius:12px;background:var(--sunk);padding:6px 0}
+.mie-d b{display:block;font-size:1.35rem;font-weight:800}
+.mie-d small{display:block;font-size:.78rem;color:var(--ink-2);font-weight:700}
+.mie-t{flex:1;min-width:0}
+.mie-t b{display:block;font-weight:800;line-height:1.25}
+.mie-t small{display:block;color:var(--ink-2)}
+.mie .x{width:44px;height:44px}
+.form label{display:block;font-weight:800;margin:12px 0 6px}
+
+/* domande frequenti */
+.faq{border-top:1px solid var(--line)}
+.faq:last-child{border-bottom:1px solid var(--line)}
+.faq summary{display:flex;align-items:center;gap:12px;padding:14px 0;min-height:60px;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq-q{flex:1;font-size:1.08rem;font-weight:800;line-height:1.3}
+.faq summary::after{content:"";flex:none;width:10px;height:10px;margin:0 6px 4px 0;border-right:3px solid var(--ink-2);border-bottom:3px solid var(--ink-2);transform:rotate(45deg);transition:transform .2s}
+.faq[open] summary::after{transform:rotate(-135deg);margin-bottom:-4px}
+.faq-a{padding:0 0 16px;color:var(--ink-2)}
+.faq-a p + p{margin-top:8px}
+
+/* piede */
+.piede{margin-top:36px;background:var(--brand);color:rgba(255,255,255,.9);padding:24px 0 30px;font-size:.95rem;line-height:1.6}
+.piede p + p{margin-top:10px}
+.piede a{color:#fff;text-underline-offset:3px}
+
+/* scheda che sale dal basso */
+.backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:40;background:rgba(8,16,16,.55);opacity:0;pointer-events:none;transition:opacity .2s}
+.backdrop.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;margin-inline:auto;max-width:560px;max-height:90vh;max-height:90dvh;display:flex;flex-direction:column;background:var(--surface);color:var(--ink);border-radius:24px 24px 0 0;box-shadow:0 -12px 40px rgba(0,0,0,.3);padding-bottom:env(safe-area-inset-bottom,0px);transform:translateY(102%);visibility:hidden;transition:transform .28s cubic-bezier(.2,.75,.3,1),visibility 0s linear .28s}
+.sheet.open{transform:none;visibility:visible;transition:transform .28s cubic-bezier(.2,.75,.3,1),visibility 0s}
+.sheet-head{display:flex;align-items:center;gap:12px;padding:16px 16px 12px;border-bottom:1px solid var(--line)}
+.sheet-ht{min-width:0;flex:1}
+.sheet-head h3{font-size:1.3rem;font-weight:800;line-height:1.2}
+.x{flex:none;width:52px;height:52px;border-radius:14px;background:var(--sunk);display:flex;align-items:center;justify-content:center}
+.x svg{width:24px;height:24px}
+.sheet-body{overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:14px 16px 18px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
+}
+@media (max-width:350px){
+  .wrap{padding-inline:12px}
+  .av{grid-template-columns:58px 1fr 12px;gap:10px;padding-inline:10px}
+  .big-n{width:70px;height:70px}
+}
+</style>
+<meta name="description" content="Tutti i bonus, i contributi e le scadenze per chi vive a Mesagne in un posto solo: TARI, IMU, buoni scuola, asilo nido, mensa, rottamazione delle cartelle. Chi può chiederli, cosa serve ed entro quando.">
+<link rel="canonical" href="https://benz91x.github.io/scadenze-mesagne/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#123C3A" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A2725" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Scadenze">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Scadenze Mesagne">
+<meta property="og:title" content="Bonus e scadenze a Mesagne: cosa chiedere ed entro quando">
+<meta property="og:description" content="TARI, IMU, buoni scuola, asilo nido, rottamazione: tutte le scadenze per chi vive a Mesagne, spiegate semplici.">
+<meta property="og:url" content="https://benz91x.github.io/scadenze-mesagne/">
+<meta property="og:image" content="https://benz91x.github.io/scadenze-mesagne/icons/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://benz91x.github.io/scadenze-mesagne/#app",
+  "name": "Scadenze Mesagne",
+  "url": "https://benz91x.github.io/scadenze-mesagne/",
+  "description": "Bonus, contributi e scadenze per chi vive a Mesagne: chi può chiederli, cosa serve ed entro quando.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "it-IT",
+  "isAccessibleForFree": true,
+  "areaServed": { "@type": "City", "name": "Mesagne" },
+  "offers": [
+    { "@type": "Offer", "name": "Gratis", "price": "0", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Plus", "price": "12", "priceCurrency": "EUR", "description": "Promemoria nel calendario, bandi per la tua famiglia, archivio e riaperture. Un anno." }
+  ],
+  "author": { "@type": "Person", "name": "Alessandro Chiri", "url": "https://benz91x.github.io/" }
+}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="8" width="40" height="36" rx="9" fill="#fff" fill-opacity=".14" stroke="#fff" stroke-width="2.5"/><path d="M4 18h40" stroke="#fff" stroke-width="2.5"/><path d="M15 4v8M33 4v8" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="m16 30 6 6 11-12" fill="none" stroke="#F2C14E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h1 class="title"><span class="t1">Mesagne</span> <span class="t2">Bonus e scadenze</span></h1>
+    <button type="button" class="sz" id="testoBtn" aria-pressed="false" aria-label="Testo più grande"><span class="sz-a" id="szA" aria-hidden="true">A+</span><span class="sz-l">Testo</span></button>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <div class="pbar" id="pbar" hidden></div>
+
+  <section class="hero" aria-labelledby="heroQ">
+    <p class="hero-oggi" id="oggi">Bandi, contributi e tributi per chi vive a Mesagne.</p>
+    <h2 class="hero-q" id="heroQ">La prossima scadenza</h2>
+    <div id="prossima"><p class="conto">Caricamento…</p></div>
+    <p class="conto" id="conto"></p>
+  </section>
+
+  <section class="sez" id="perte" aria-labelledby="perteT">
+    <h2 id="perteT">Fa per te</h2>
+    <div id="perteBody"></div>
+  </section>
+
+  <section class="sez" id="tutti" aria-labelledby="tuttiT">
+    <h2 id="tuttiT">Aperti ora e in arrivo</h2>
+    <p class="lead">Tocca un bando per vedere chi può chiederlo, cosa serve e il link alla fonte ufficiale.</p>
+    <div class="filtri" id="filtri" role="group" aria-label="Filtra per argomento"></div>
+    <ul class="lista" id="lista"></ul>
+    <div id="sempre"></div>
+    <noscript><p class="vuoto">Per vedere l'elenco dei bandi serve JavaScript attivo nel browser.</p></noscript>
+  </section>
+
+  <section class="sez" id="mie-sez" aria-labelledby="mieT">
+    <h2 id="mieT">Le mie scadenze</h2>
+    <div id="mieBody"></div>
+  </section>
+
+  <section class="sez" id="archivio" aria-labelledby="archT">
+    <h2 id="archT">Chiusi di recente e quando riaprono</h2>
+    <div id="archBody"></div>
+  </section>
+
+  <section class="sez" id="plus" aria-labelledby="plusT">
+    <h2 id="plusT">Plus: non perdere più una scadenza</h2>
+    <p class="lead">L'elenco dei bandi resta gratis per tutti. Plus serve a chi vuole che sia l'app a ricordarsi le scadenze.</p>
+    <div class="plus">
+      <div class="plus-h">
+        <h3>Scadenze Mesagne Plus</h3>
+        <p class="prezzo"><b id="prezzo">12 €</b> <span id="periodo">all'anno</span>, cioè 1 € al mese</p>
+      </div>
+      <div class="plus-b">
+        <table class="cfr">
+          <thead><tr><th scope="col"><span class="sr-only">Funzione</span></th><th scope="col">Gratis</th><th scope="col">Plus</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Bandi e scadenze aperti, con i giorni che mancano</th><td class="si">✓</td><td class="si">✓</td></tr>
+            <tr><th scope="row">Chi può chiederli, cosa serve, link alla fonte ufficiale</th><td class="si">✓</td><td class="si">✓</td></tr>
+            <tr><th scope="row">I bandi giusti per la tua famiglia, con il controllo dell'ISEE</th><td class="no">–</td><td class="si">✓</td></tr>
+            <tr><th scope="row">Promemoria nel calendario del telefono, 7 giorni e 1 giorno prima</th><td class="no">–</td><td class="si">✓</td></tr>
+            <tr><th scope="row">Le tue scadenze personali (rate, bollo, rinnovi) insieme alle altre</th><td class="no">–</td><td class="si">✓</td></tr>
+            <tr><th scope="row">Bandi chiusi e mese in cui di solito riaprono, con promemoria</th><td class="no">–</td><td class="si">✓</td></tr>
+            <tr><th scope="row">Lista dei documenti da spuntare per ogni domanda</th><td class="no">–</td><td class="si">✓</td></tr>
+          </tbody>
+        </table>
+        <div id="plusAzioni"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sez" aria-labelledby="faqT">
+    <h2 id="faqT">Domande frequenti</h2>
+    <details class="faq"><summary><span class="faq-q">È il sito del Comune di Mesagne?</span></summary><div class="faq-a"><p>No. È un servizio indipendente che raccoglie in un posto solo gli avvisi del Comune, della Regione Puglia, del Consorzio dei servizi sociali BR4 e di altri enti. Ogni scheda ha il link alla fonte ufficiale: prima di fare domanda controlla sempre il bando.</p></div></details>
+    <details class="faq"><summary><span class="faq-q">Perché una parte è a pagamento?</span></summary><div class="faq-a"><p>Le informazioni pubbliche restano gratis per tutti. Si paga solo la comodità: promemoria, bandi filtrati per la tua famiglia, scadenze personali e archivio. Con quei soldi si paga il lavoro di controllo e aggiornamento dell'elenco.</p></div></details>
+    <details class="faq"><summary><span class="faq-q">Come ricevo i promemoria?</span></summary><div class="faq-a"><p>Con Plus aggiungi le scadenze al calendario del telefono (Google, Apple o Outlook) con un tocco. Il calendario ti avvisa 7 giorni prima e il giorno prima, anche se non apri l'app.</p></div></details>
+    <details class="faq"><summary><span class="faq-q">I miei dati dove finiscono?</span></summary><div class="faq-a"><p>Da nessuna parte. Il profilo della famiglia, le tue scadenze e le spunte restano solo su questo telefono. Non serve un account e non usiamo cookie.</p></div></details>
+    <details class="faq"><summary><span class="faq-q">Come attivo Plus?</span></summary><div class="faq-a"><p>Dopo il pagamento ricevi un link di attivazione: aprilo dal telefono e Plus si attiva da solo. Puoi anche copiare il codice nel riquadro della sezione Plus.</p></div></details>
+  </section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <p><b>Da dove vengono le informazioni.</b> Avvisi del Comune di Mesagne, della Regione Puglia, del Consorzio ATS BR4, dell'Agenzia delle Entrate-Riscossione e della stampa locale: la fonte è indicata in ogni scheda.</p>
+    <p>Servizio informativo non ufficiale, non collegato al Comune di Mesagne: fa fede il bando pubblicato dall'ente. <span id="agg">Elenco aggiornato il 5 ottobre 2026.</span></p>
+    <p>Realizzata da <a href="https://benz91x.github.io/">Alessandro Chiri</a>. C'è anche <a href="https://benz91x.github.io/differenziata-mesagne/">Differenziata Mesagne</a>, per sapere cosa mettere fuori stasera.</p>
+  </div>
+</footer>
+
+<div class="backdrop" id="backdrop"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTit" aria-hidden="true">
+  <div class="sheet-head">
+    <div class="sheet-ht"><h3 id="shTit">Dettagli</h3></div>
+    <button type="button" class="x" id="shX" aria-label="Chiudi"><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="sheet-body" id="shBody"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ======== impostazioni ======== */
+  var CONFIG = {
+    prezzo: "12 €",
+    periodo: "all'anno",
+    /* Link di pagamento (Stripe Payment Link, PayPal, Satispay…). Vuoto = richiesta via email. */
+    pagaUrl: "",
+    email: "alexch@hotmail.it",
+    /* Chiave pubblica per controllare i codici Plus: la scrive strumenti/licenze.mjs */
+    chiave: /*CHIAVE*/{"kty":"EC","crv":"P-256","x":"u3RKjjwTmzLQn1Eml1xmpkJ_Wzn8exS-iQ_hi6nahVs","y":"HYcFa6Y9IjpEVcVGEE_52TCYryKHaML2Bj10ws2CBkg"}/*FINE-CHIAVE*/
+  };
+  var URL_APP = "https://benz91x.github.io/scadenze-mesagne/";
+
+  var CAT = {
+    tributi: "Tasse e tributi",
+    famiglia: "Famiglia e scuola",
+    sociale: "Sociale e salute",
+    lavoro: "Lavoro e giovani",
+    imprese: "Imprese e associazioni",
+    citta: "Servizi in città"
+  };
+  var PER = [
+    ["figli-0-3", "Bambini da 0 a 3 anni"],
+    ["figli-scuola", "Figli alla scuola dell'infanzia, primaria o media"],
+    ["figli-superiori", "Figli alle superiori"],
+    ["anziani", "Persone con più di 65 anni"],
+    ["disabilita", "Persone con disabilità o non autosufficienti"],
+    ["affitto", "Vivo in affitto"],
+    ["proprietario", "Ho immobili oltre la prima casa (IMU)"],
+    ["cartelle", "Ho cartelle o debiti con il Comune"],
+    ["lavoro", "Cerco lavoro o ho tra 18 e 28 anni"],
+    ["impresa", "Ho un'impresa, un negozio o un'associazione"],
+    ["animali", "Ho cani o gatti"]
+  ];
+  var ISEE = [
+    ["", "Non lo so / non ce l'ho", null, null],
+    ["9796", "Fino a 9.796 €", 0, 9796],
+    ["13000", "Da 9.797 a 13.000 €", 9796, 13000],
+    ["20000", "Da 13.001 a 20.000 €", 13000, 20000],
+    ["oltre", "Più di 20.000 €", 20000, Infinity]
+  ];
+
+  var ICO = {
+    lucchetto: '<svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>',
+    stella: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2.8 2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.6l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/></svg>',
+    cal: '<svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>',
+    link: '<svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></svg>',
+    wa: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>',
+    piu: '<svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+    x: '<svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>',
+    sempre: '<svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5a5 5 0 1 0 0 7c1.8-1.7 3.2-5.3 4.5-7 1.3-1.7 2.7-5.3 4.5-7"/><path d="M16.5 15.5a5 5 0 1 0 0-7"/></svg>'
+  };
+
+  /* ======== utilità ======== */
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+  function sicuro(u){ return /^https:\/\//.test(u || "") ? u : "#"; }
+  function leggi(k, def){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : def; }catch(e){ return def; } }
+  function scrivi(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+
+  function data(s){ var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function iso(d){ return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  function giorni(a, b){ return Math.round((b - a) / 86400000); }
+  var OGGI = (function(){
+    var q = /[?&]data=(\d{4}-\d{2}-\d{2})/.exec(location.search);
+    if (q) return data(q[1]);
+    var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  })();
+  var fGiorno = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "long" });
+  var fData = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", year: "numeric" });
+  var fBreve = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "short" });
+  var MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+
+  /* ======== stato ======== */
+  var AVVISI = [];
+  var AGGIORNATO = null;
+  var filtro = "";
+  var plus = null;                        /* { n: nome, x: scadenza } se Plus è attivo */
+  var profilo = leggi("sm-profilo", null); /* { per: [...], isee: "" } */
+  var mie = leggi("sm-mie", { seguiti: [], personali: [] });
+  var spunte = leggi("sm-spunte", {});
+
+  /* ======== stato di un avviso ======== */
+  function stato(a){
+    if (!a.scade) return { k: "sempre" };
+    var s = data(a.scade), ap = a.apre ? data(a.apre) : null;
+    if (giorni(OGGI, s) < 0) return { k: "chiuso", g: giorni(s, OGGI) };
+    if (ap && giorni(OGGI, ap) > 0) return { k: "arriva", g: giorni(OGGI, ap) };
+    return { k: "aperto", g: giorni(OGGI, s) };
+  }
+  function quando(a){
+    var st = stato(a);
+    if (st.k === "sempre") return "Sempre disponibile";
+    if (st.k === "chiuso") return "Chiuso il " + fData.format(data(a.scade));
+    if (st.k === "arriva") return "Apre " + fGiorno.format(data(a.apre)) + ", scade il " + fData.format(data(a.scade));
+    return "Scade " + fGiorno.format(data(a.scade));
+  }
+  function badge(a){
+    var st = stato(a);
+    if (st.k === "sempre") return '<span class="av-n sem">' + ICO.sempre + '</span>';
+    if (st.k === "arriva") return '<span class="av-n arr"><small>apre tra</small><b>' + st.g + '</b><small>' + (st.g === 1 ? "giorno" : "giorni") + '</small></span>';
+    if (st.g === 0) return '<span class="av-n urg"><small>scade</small><b>oggi</b><small>&nbsp;</small></span>';
+    var cls = st.g <= 7 ? "urg" : st.g <= 30 ? "pre" : "";
+    return '<span class="av-n ' + cls + '"><small>mancano</small><b>' + st.g + '</b><small>' + (st.g === 1 ? "giorno" : "giorni") + '</small></span>';
+  }
+  function prossimaRiapertura(a){
+    if (!a.riapre_mese) return null;
+    var d = new Date(OGGI.getFullYear(), a.riapre_mese - 1, 1);
+    if (giorni(OGGI, d) <= 0) d = new Date(OGGI.getFullYear() + 1, a.riapre_mese - 1, 1);
+    return d;
+  }
+
+  /* ======== profilo: cosa fa per te ======== */
+  function controlloIsee(a){
+    if (!a.isee_max || !profilo) return null;
+    var f = ISEE.filter(function(r){ return r[0] === (profilo.isee || ""); })[0];
+    if (!f || f[2] === null) return "forse";
+    if (f[2] >= a.isee_max) return "no";
+    if (f[3] <= a.isee_max) return "ok";
+    return "forse";
+  }
+  function faPerTe(a){
+    if (!plus || !profilo) return false;
+    if (controlloIsee(a) === "no") return false;
+    var specifico = a.per.some(function(p){ return profilo.per.indexOf(p) >= 0; });
+    var st = stato(a).k;
+    if (st === "sempre") return specifico || controlloIsee(a) === "ok";
+    if (st === "chiuso") return false;
+    return specifico || a.per.indexOf("tutti") >= 0;
+  }
+
+  /* ======== disegno ======== */
+  function voce(a){
+    var tags = '<span class="tag">' + esc(CAT[a.categoria] || a.categoria) + '</span>';
+    if (faPerTe(a)) tags += '<span class="tag per">Fa per te</span>';
+    if (stato(a).k === "chiuso") tags += '<span class="tag chiuso">Chiuso</span>';
+    return '<li><button type="button" class="av" data-id="' + esc(a.id) + '">' + badge(a) +
+      '<span class="av-main"><span class="tags">' + tags + '</span><span class="av-t">' + esc(a.titolo) + '</span>' +
+      '<span class="av-s">' + esc(quando(a)) + ' · ' + esc(a.ente) + '</span></span><span class="chev" aria-hidden="true"></span></button></li>';
+  }
+  function ordina(lista){
+    return lista.slice().sort(function(a, b){
+      var da = stato(a).k === "arriva" ? a.apre : a.scade, db = stato(b).k === "arriva" ? b.apre : b.scade;
+      return da < db ? -1 : da > db ? 1 : 0;
+    });
+  }
+  function aperti(){ return AVVISI.filter(function(a){ var k = stato(a).k; return k === "aperto" || k === "arriva"; }); }
+
+  function disegnaTesta(){
+    $("oggi").textContent = "Oggi è " + fGiorno.format(OGGI) + ".";
+    var lista = ordina(AVVISI.filter(function(a){ return stato(a).k === "aperto"; }));
+    var a = lista[0];
+    if (!a) { $("prossima").innerHTML = '<p class="vuoto">In questo momento non ci sono scadenze aperte. Guarda quelli in arrivo qui sotto.</p>'; }
+    else {
+      var g = stato(a).g;
+      $("prossima").innerHTML = '<button type="button" class="big" data-id="' + esc(a.id) + '"><span class="big-n"><b>' + (g === 0 ? "oggi" : g) + '</b><small>' + (g === 0 ? "" : g === 1 ? "giorno" : "giorni") + '</small></span>' +
+        '<span class="big-t"><span class="big-d">' + esc(fGiorno.format(data(a.scade))) + '</span><span class="big-tt">' + esc(a.titolo) + '</span><span class="big-s">Cosa fare</span></span></button>';
+    }
+    var n = aperti().length;
+    $("conto").textContent = n === 1 ? "C'è 1 scadenza aperta o in arrivo." : "Ci sono " + n + " scadenze aperte o in arrivo.";
+    if (AGGIORNATO) $("agg").textContent = "Elenco aggiornato il " + fData.format(data(AGGIORNATO)) + ".";
+  }
+
+  function disegnaFiltri(){
+    var usate = {};
+    aperti().forEach(function(a){ usate[a.categoria] = 1; });
+    var h = '<button type="button" data-f="" aria-pressed="' + (filtro === "") + '">Tutti</button>';
+    Object.keys(CAT).forEach(function(k){
+      if (usate[k]) h += '<button type="button" data-f="' + k + '" aria-pressed="' + (filtro === k) + '">' + esc(CAT[k]) + '</button>';
+    });
+    $("filtri").innerHTML = h;
+  }
+
+  function disegnaLista(){
+    var lista = ordina(aperti().filter(function(a){ return !filtro || a.categoria === filtro; }));
+    $("lista").innerHTML = lista.length ? lista.map(voce).join("") : '<li class="vuoto">Nessun bando aperto per questo argomento.</li>';
+    var sempre = AVVISI.filter(function(a){ return stato(a).k === "sempre" && (!filtro || a.categoria === filtro); });
+    $("sempre").innerHTML = sempre.length ? '<h3 class="gruppo">Sempre disponibili</h3><ul class="lista">' + sempre.map(voce).join("") + '</ul>' : "";
+  }
+
+  function boxPlus(titolo, testo, etichetta){
+    return '<div class="lock"><p class="lock-h">' + ICO.lucchetto + '<span>' + titolo + '</span></p><p>' + testo + '</p>' +
+      '<button type="button" class="btn oro" data-plus="1">' + ICO.stella + (etichetta || "Scopri Plus") + '</button></div>';
+  }
+
+  function disegnaPerTe(){
+    var b = $("perteBody"), sez = $("perte"), tutti = $("tutti");
+    /* chi ha Plus vede prima i suoi bandi; gli altri prima l'elenco completo */
+    if (plus) tutti.parentNode.insertBefore(sez, tutti); else tutti.parentNode.insertBefore(sez, tutti.nextSibling);
+    if (!plus) {
+      b.innerHTML = boxPlus("I bandi giusti per la tua famiglia", "Dicci chi c'è in casa (figli, anziani, affitto, ISEE…) e ti mostriamo solo quello che puoi chiedere, con il controllo dei requisiti.");
+      return;
+    }
+    if (!profilo) {
+      b.innerHTML = '<div class="card"><p>Dicci chi c\'è in famiglia: ti mostriamo i bandi che fanno per te e controlliamo l\'ISEE richiesto.</p><div class="btns"><button type="button" class="btn" data-profilo="1">Compila il profilo</button></div></div>';
+      return;
+    }
+    var lista = ordina(AVVISI.filter(function(a){ return faPerTe(a) && stato(a).k !== "sempre"; }));
+    var sempre = AVVISI.filter(function(a){ return faPerTe(a) && stato(a).k === "sempre"; });
+    var h = lista.length || sempre.length ? '<ul class="lista">' + lista.concat(sempre).map(voce).join("") + '</ul>' :
+      '<p class="vuoto">Per il tuo profilo non ci sono bandi aperti adesso. Guarda nell\'archivio quando riaprono quelli che ti interessano.</p>';
+    h += '<div class="riga"><button type="button" class="btn sec" data-profilo="1">Modifica il profilo</button><button type="button" class="btn" data-ics-perte="1">' + ICO.cal + 'Tutto nel calendario</button></div>';
+    b.innerHTML = h;
+  }
+
+  function disegnaMie(){
+    var b = $("mieBody");
+    if (!plus) {
+      b.innerHTML = boxPlus("Le tue scadenze in un posto solo", "Segui i bandi che ti interessano e aggiungi le tue scadenze personali, come le rate della TARI o il bollo dell'auto. Poi le metti tutte nel calendario con un tocco.");
+      return;
+    }
+    var righe = [];
+    mie.seguiti.forEach(function(id){
+      var a = trova(id); if (!a) return;
+      var st = stato(a), d = st.k === "chiuso" ? prossimaRiapertura(a) : st.k === "arriva" ? data(a.apre) : a.scade ? data(a.scade) : null;
+      righe.push({ d: d, t: a.titolo, s: st.k === "chiuso" ? "Di solito riapre a " + MESI[a.riapre_mese - 1] : quando(a), id: a.id });
+    });
+    mie.personali.forEach(function(p){ righe.push({ d: data(p.data), t: p.titolo, s: p.importo ? "Importo: " + p.importo : "Scadenza personale", pid: p.id }); });
+    righe.sort(function(x, y){ return (x.d || 0) - (y.d || 0); });
+    var h = righe.length ? '<ul class="mie">' + righe.map(function(r){
+      var dd = r.d ? '<b>' + r.d.getDate() + '</b><small>' + esc(fBreve.format(r.d).replace(/^\d+\s*/, "")) + '</small>' : '<b>–</b>';
+      var tolgo = r.pid ? '<button type="button" class="x" data-togli="' + esc(r.pid) + '" aria-label="Elimina ' + esc(r.t) + '">' + ICO.x + '</button>' :
+        '<button type="button" class="x" data-smetti="' + esc(r.id) + '" aria-label="Non seguire più ' + esc(r.t) + '">' + ICO.x + '</button>';
+      return '<li><span class="mie-d">' + dd + '</span><span class="mie-t"><b>' + esc(r.t) + '</b><small>' + esc(r.s) + '</small></span>' + tolgo + '</li>';
+    }).join("") + '</ul>' : '<p class="vuoto">Non segui ancora niente. Apri un bando e tocca «Segui», oppure aggiungi una tua scadenza.</p>';
+    h += '<div class="riga"><button type="button" class="btn sec" data-nuova="1">' + ICO.piu + 'Aggiungi una scadenza</button>' +
+      (righe.length ? '<button type="button" class="btn" data-ics-mie="1">' + ICO.cal + 'Tutte nel calendario</button>' : "") + '</div>';
+    b.innerHTML = h;
+  }
+
+  function disegnaArchivio(){
+    var chiusi = AVVISI.filter(function(a){ return stato(a).k === "chiuso"; })
+      .sort(function(a, b){ return a.scade < b.scade ? 1 : -1; });
+    var b = $("archBody");
+    if (!chiusi.length) { b.innerHTML = '<p class="vuoto">Nessun bando chiuso di recente.</p>'; return; }
+    if (!plus) {
+      var anteprima = chiusi.slice(0, 3).map(function(a){ return '<li>' + esc(a.titolo) + '</li>'; }).join("");
+      b.innerHTML = '<div class="lock"><p class="lock-h">' + ICO.lucchetto + '<span>' + chiusi.length + ' bandi chiusi di recente</span></p>' +
+        '<p>Molti tornano ogni anno, più o meno nello stesso mese. Con Plus vedi quando riaprono di solito e ricevi un promemoria per non perderli.</p>' +
+        '<ul class="anteprima">' + anteprima + (chiusi.length > 3 ? '<li>e altri ' + (chiusi.length - 3) + '…</li>' : "") + '</ul>' +
+        '<button type="button" class="btn oro" data-plus="1">' + ICO.stella + 'Scopri Plus</button></div>';
+      return;
+    }
+    b.innerHTML = '<p class="lead">Le date di riapertura sono stimate in base agli anni scorsi.</p><ul class="lista">' + chiusi.map(function(a){
+      var h = voce(a);
+      return a.riapre_mese ? h.replace('<span class="av-s">', '<span class="av-s">Di solito riapre a ' + MESI[a.riapre_mese - 1] + ' · ') : h;
+    }).join("") + '</ul>';
+  }
+
+  function disegnaPlus(){
+    $("prezzo").textContent = CONFIG.prezzo;
+    $("periodo").textContent = CONFIG.periodo;
+    var pb = $("pbar"), az = $("plusAzioni");
+    if (plus) {
+      pb.hidden = false;
+      pb.innerHTML = ICO.stella + '<p><b>Plus attivo</b> per ' + esc(plus.n) + ', fino al ' + esc(fData.format(data(plus.x))) + '.</p>';
+      az.innerHTML = '<div class="msg ok">Plus è attivo su questo telefono, intestato a ' + esc(plus.n) + ', fino al ' + esc(fData.format(data(plus.x))) + '.</div>' +
+        '<div class="btns"><button type="button" class="btn sec" data-esci="1">Disattiva Plus su questo telefono</button></div>';
+      return;
+    }
+    var scaduto = leggi("sm-plus-scaduto", null);
+    if (scaduto) {
+      pb.hidden = false;
+      pb.innerHTML = ICO.stella + '<p><b>Plus è scaduto</b> il ' + esc(fData.format(data(scaduto))) + '.</p><a class="lnk" href="#plus">Rinnova</a>';
+    } else pb.hidden = true;
+    az.innerHTML = '<div class="btns"><button type="button" class="btn" data-compra="1">' + ICO.stella + 'Attiva Plus a ' + esc(CONFIG.prezzo) + '</button></div>' +
+      '<form class="codice" id="codForm"><label for="codIn">Hai già il codice?</label><input class="campo" id="codIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Incolla qui il codice">' +
+      '<div class="btns"><button type="submit" class="btn sec">Attiva il codice</button></div><div id="codMsg" role="status"></div></form>';
+  }
+
+  function disegnaTutto(){
+    disegnaPlus(); disegnaTesta(); disegnaPerTe(); disegnaFiltri(); disegnaLista(); disegnaMie(); disegnaArchivio();
+  }
+
+  function trova(id){ return AVVISI.filter(function(a){ return a.id === id; })[0]; }
+
+  /* ======== scheda in basso ======== */
+  var ultimoFocus = null;
+  function apri(titolo, html){
+    ultimoFocus = document.activeElement;
+    $("shTit").textContent = titolo;
+    $("shBody").innerHTML = html;
+    $("shBody").scrollTop = 0;
+    $("sheet").setAttribute("aria-hidden", "false");
+    $("sheet").classList.add("open");
+    $("backdrop").classList.add("open");
+    document.body.style.overflow = "hidden";
+    setTimeout(function(){ $("shX").focus(); }, 50);
+  }
+  function chiudi(){
+    if (!$("sheet").classList.contains("open")) return;
+    $("sheet").classList.remove("open");
+    $("sheet").setAttribute("aria-hidden", "true");
+    $("backdrop").classList.remove("open");
+    document.body.style.overflow = "";
+    if (/^#a=/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
+    if (ultimoFocus && ultimoFocus.focus) ultimoFocus.focus();
+  }
+
+  function schedaAvviso(id){
+    var a = trova(id); if (!a) return;
+    var st = stato(a);
+    var h = '<div class="dett"><div class="tags"><span class="tag">' + esc(CAT[a.categoria]) + '</span>' + (faPerTe(a) ? '<span class="tag per">Fa per te</span>' : "") + '</div>';
+    var sotto = st.k === "aperto" ? (st.g === 0 ? "Scade oggi" : st.g === 1 ? "Manca 1 giorno" : "Mancano " + st.g + " giorni") :
+      st.k === "arriva" ? "Apre tra " + st.g + (st.g === 1 ? " giorno" : " giorni") : st.k === "chiuso" ? (a.ricorrente || "") : "";
+    h += '<p class="stato">' + esc(quando(a)) + (sotto ? '<small>' + esc(sotto) + '</small>' : "") + '</p>';
+    h += '<p style="margin-top:10px">' + esc(a.breve) + '</p>';
+    if (a.nota) h += '<p class="nota">' + esc(a.nota) + '</p>';
+    var ci = controlloIsee(a);
+    if (a.isee_max && plus && profilo) {
+      var soglia = a.isee_max.toLocaleString("it-IT") + " €";
+      h += ci === "ok" ? '<p class="isee">Con il tuo ISEE rientri nella soglia (fino a ' + soglia + ').</p>' :
+        ci === "no" ? '<p class="isee no">Con il tuo ISEE sei sopra la soglia di ' + soglia + '.</p>' :
+        '<p class="isee">Serve un ISEE fino a ' + soglia + ': controlla il tuo.</p>';
+    }
+    h += '<h4>Cosa si ottiene</h4><p>' + esc(a.cosa) + '</p>';
+    h += '<h4>Chi può chiederlo</h4><p>' + esc(a.chi) + '</p>';
+    h += '<h4>Come si fa</h4><p>' + esc(a.come) + '</p>';
+    if (a.documenti && a.documenti.length) {
+      h += '<h4>Cosa serve</h4><ul class="docs">' + a.documenti.map(function(d, i){
+        var k = a.id + ":" + i;
+        return plus ? '<li><label><input type="checkbox" data-spunta="' + esc(k) + '"' + (spunte[k] ? " checked" : "") + '>' + esc(d) + '</label></li>' : '<li><span>' + esc(d) + '</span></li>';
+      }).join("") + '</ul>';
+    }
+    if (st.k === "chiuso" && plus && a.riapre_mese) h += '<p class="isee">Di solito riapre a ' + MESI[a.riapre_mese - 1] + '. La data è stimata in base agli anni scorsi.</p>';
+
+    h += '<div class="btns">';
+    if (plus) {
+      var segui = mie.seguiti.indexOf(a.id) >= 0;
+      if (st.k === "chiuso") {
+        if (a.riapre_mese) h += '<button type="button" class="btn" data-ics="' + esc(a.id) + '">' + ICO.cal + 'Avvisami quando riapre</button>';
+      } else if (st.k !== "sempre") {
+        h += '<button type="button" class="btn" data-ics="' + esc(a.id) + '">' + ICO.cal + 'Promemoria nel calendario</button>';
+        h += '<a class="btn sec" href="' + esc(linkGoogle(a)) + '" target="_blank" rel="noopener">' + ICO.cal + 'Aggiungi a Google Calendar</a>';
+      }
+      if (st.k !== "sempre") h += '<button type="button" class="btn sec" data-segui="' + esc(a.id) + '" aria-pressed="' + segui + '">' + (segui ? "Segui già: togli dalle mie scadenze" : "Segui: mettila nelle mie scadenze") + '</button>';
+    } else if (st.k !== "sempre") {
+      h += '<button type="button" class="btn oro" data-plus="1">' + ICO.lucchetto + 'Promemoria nel calendario · Plus</button>';
+    }
+    var f = a.fonti && a.fonti[0];
+    if (f) h += '<a class="btn sec" href="' + esc(sicuro(f.url)) + '" target="_blank" rel="noopener">' + ICO.link + 'Leggi l\'avviso ufficiale</a>';
+    h += '<a class="btn wa" href="' + esc(linkWhatsApp(a)) + '" target="_blank" rel="noopener">' + ICO.wa + 'Manda a chi può servire</a>';
+    h += '</div>';
+
+    h += '<div class="fonti"><b>Fonti</b>' + (a.fonti || []).map(function(f){ return '<a href="' + esc(sicuro(f.url)) + '" target="_blank" rel="noopener">' + esc(f.nome) + '</a>'; }).join("") +
+      '<p>Ente: ' + esc(a.ente) + (AGGIORNATO ? '. Controllato il ' + esc(fData.format(data(AGGIORNATO))) : "") + '. Prima di fare domanda verifica sempre il bando ufficiale.</p></div></div>';
+    apri(a.titolo, h);
+    history.replaceState(null, "", "#a=" + a.id);
+  }
+
+  function schedaPlus(){
+    var h = '<p>L\'elenco dei bandi resta gratis. Con Plus, per <b>' + esc(CONFIG.prezzo) + ' ' + esc(CONFIG.periodo) + '</b>:</p>' +
+      '<ul class="docs"><li><span>Vedi i bandi giusti per la tua famiglia, con il controllo dell\'ISEE</span></li>' +
+      '<li><span>Metti le scadenze nel calendario del telefono: ti avvisa 7 giorni e 1 giorno prima</span></li>' +
+      '<li><span>Aggiungi le tue scadenze personali</span></li>' +
+      '<li><span>Sai quando riaprono i bandi che tornano ogni anno</span></li>' +
+      '<li><span>Spunti i documenti man mano che li prepari</span></li></ul>' +
+      '<div class="btns"><button type="button" class="btn" data-compra="1">' + ICO.stella + 'Attiva Plus a ' + esc(CONFIG.prezzo) + '</button>' +
+      '<a class="btn sec" href="#plus" data-chiudi="1">Ho già un codice</a></div>';
+    apri("Scadenze Mesagne Plus", h);
+  }
+
+  function schedaProfilo(){
+    var p = profilo || { per: [], isee: "" };
+    var h = '<form class="prof" id="profForm"><fieldset><legend>In famiglia o nella tua vita c\'è…</legend>' + PER.map(function(r){
+      return '<label class="opz"><input type="checkbox" name="per" value="' + r[0] + '"' + (p.per.indexOf(r[0]) >= 0 ? " checked" : "") + '>' + esc(r[1]) + '</label>';
+    }).join("") + '</fieldset><fieldset><legend>ISEE della famiglia</legend>' + ISEE.map(function(r){
+      return '<label class="opz"><input type="radio" name="isee" value="' + r[0] + '"' + ((p.isee || "") === r[0] ? " checked" : "") + '>' + esc(r[1]) + '</label>';
+    }).join("") + '</fieldset><p class="lead">Queste informazioni restano solo su questo telefono.</p><div class="btns"><button type="submit" class="btn">Salva</button></div></form>';
+    apri("Il tuo profilo", h);
+  }
+
+  function schedaNuova(){
+    var h = '<form class="form" id="nuovaForm"><label for="nT">Cosa scade</label><input class="campo" id="nT" required maxlength="80" placeholder="Es. Bollo auto, rata TARI">' +
+      '<label for="nD">Quando</label><input class="campo" id="nD" type="date" required min="' + iso(OGGI) + '">' +
+      '<label for="nI">Importo (facoltativo)</label><input class="campo" id="nI" maxlength="20" inputmode="decimal" placeholder="Es. 87 €">' +
+      '<div class="btns"><button type="submit" class="btn">Aggiungi</button></div></form>';
+    apri("Nuova scadenza", h);
+  }
+
+  /* ======== promemoria: file .ics e Google Calendar ======== */
+  function icsTesto(s){ return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n"); }
+  function piega(riga){
+    var out = [], cur = "", n = 0, enc = new TextEncoder();
+    for (var i = 0; i < riga.length; i++) {
+      var ch = riga[i], b = enc.encode(ch).length;
+      if (n + b > 74) { out.push(cur); cur = " "; n = 1; }
+      cur += ch; n += b;
+    }
+    out.push(cur);
+    return out.join("\r\n");
+  }
+  function compatta(d){ return iso(d).replace(/-/g, ""); }
+  function evento(uid, giorno, titolo, descr, url, allarmi){
+    var dopo = new Date(giorno.getFullYear(), giorno.getMonth(), giorno.getDate() + 1);
+    var r = ["BEGIN:VEVENT", "UID:" + uid + "@scadenze-mesagne", "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, ""),
+      "DTSTART;VALUE=DATE:" + compatta(giorno), "DTEND;VALUE=DATE:" + compatta(dopo), "SUMMARY:" + icsTesto(titolo),
+      "DESCRIPTION:" + icsTesto(descr), "TRANSP:TRANSPARENT"];
+    if (url) r.push("URL:" + url);
+    allarmi.forEach(function(t){ r.push("BEGIN:VALARM", "ACTION:DISPLAY", "TRIGGER:" + t, "DESCRIPTION:" + icsTesto(titolo), "END:VALARM"); });
+    r.push("END:VEVENT");
+    return r;
+  }
+  /* ore 9 di 7 giorni prima, ore 9 del giorno prima, ore 9 del giorno stesso */
+  var PRIMA = ["-P6DT15H", "-PT15H"], GIORNO = ["PT9H"];
+  function eventiAvviso(a){
+    var st = stato(a), link = URL_APP + "#a=" + a.id, ev = [];
+    var descr = a.breve + "\n\nCome si fa: " + a.come + "\n\nDettagli: " + link;
+    if (st.k === "chiuso") {
+      var d = prossimaRiapertura(a);
+      if (d) ev = ev.concat(evento(a.id + "-riapre-" + d.getFullYear(), d, "Di solito riapre ora: " + a.titolo,
+        "Controlla se è uscito il nuovo bando. Data stimata in base agli anni scorsi.\n\n" + link, link, GIORNO));
+      return ev;
+    }
+    if (st.k === "arriva") ev = ev.concat(evento(a.id + "-apre", data(a.apre), "Apre oggi: " + a.titolo, descr, link, GIORNO));
+    if (a.scade) ev = ev.concat(evento(a.id + "-scade", data(a.scade), "Scadenza: " + a.titolo, descr, link, PRIMA));
+    return ev;
+  }
+  function scaricaIcs(righe, nome){
+    if (!righe.length) return;
+    var testo = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Scadenze Mesagne//IT", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"]
+      .concat(righe, ["END:VCALENDAR"]).map(piega).join("\r\n") + "\r\n";
+    var url = URL.createObjectURL(new Blob([testo], { type: "text/calendar;charset=utf-8" }));
+    var l = document.createElement("a");
+    l.href = url; l.download = nome + ".ics";
+    document.body.appendChild(l); l.click(); l.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 10000);
+  }
+  function linkGoogle(a){
+    var st = stato(a), d = st.k === "arriva" ? data(a.apre) : data(a.scade), dopo = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent((st.k === "arriva" ? "Apre: " : "Scadenza: ") + a.titolo) +
+      "&dates=" + compatta(d) + "/" + compatta(dopo) + "&details=" + encodeURIComponent(a.breve + "\n\n" + URL_APP + "#a=" + a.id);
+  }
+  function linkWhatsApp(a){
+    var t = a.titolo + (a.scade ? " (" + quando(a).toLowerCase() + ")" : "") + ". Chi può chiederlo e cosa serve: " + URL_APP + "#a=" + a.id;
+    return "https://wa.me/?text=" + encodeURIComponent(t);
+  }
+
+  /* ======== Plus: codici firmati ======== */
+  function daB64(s){
+    s = s.replace(/-/g, "+").replace(/_/g, "/"); while (s.length % 4) s += "=";
+    var bin = atob(s), out = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+  function verifica(codice){
+    var parti = String(codice || "").trim().split(".");
+    if (parti.length !== 2 || !window.crypto || !crypto.subtle || !CONFIG.chiave.x) return Promise.resolve(null);
+    var info;
+    try { info = JSON.parse(new TextDecoder().decode(daB64(parti[0]))); } catch(e) { return Promise.resolve(null); }
+    return crypto.subtle.importKey("jwk", CONFIG.chiave, { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"])
+      .then(function(k){ return crypto.subtle.verify({ name: "ECDSA", hash: "SHA-256" }, k, daB64(parti[1]), new TextEncoder().encode(parti[0])); })
+      .then(function(ok){ return ok && info && info.n && /^\d{4}-\d{2}-\d{2}$/.test(info.x) ? info : null; })
+      .catch(function(){ return null; });
+  }
+  function attiva(codice){
+    return verifica(codice).then(function(info){
+      if (!info) return "non valido";
+      if (data(info.x) < OGGI) return "scaduto";
+      scrivi("sm-plus", codice.trim());
+      try { localStorage.removeItem("sm-plus-scaduto"); } catch(e) {}
+      plus = info;
+      disegnaTutto();
+      return "ok";
+    });
+  }
+  function caricaPlus(){
+    var cod = leggi("sm-plus", null);
+    if (!cod) return Promise.resolve();
+    return verifica(cod).then(function(info){
+      if (info && data(info.x) >= OGGI) { plus = info; return; }
+      if (info) scrivi("sm-plus-scaduto", info.x);
+      try { localStorage.removeItem("sm-plus"); } catch(e) {}
+    });
+  }
+  function compra(){
+    if (CONFIG.pagaUrl) { window.open(CONFIG.pagaUrl, "_blank", "noopener"); return; }
+    var corpo = "Ciao, vorrei attivare Scadenze Mesagne Plus (" + CONFIG.prezzo + " " + CONFIG.periodo + ").\n\nNome da mostrare sul codice (es. Maria R.): \n\nMandami le istruzioni per il pagamento e il link di attivazione. Grazie!";
+    location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Scadenze Mesagne Plus") + "&body=" + encodeURIComponent(corpo);
+  }
+
+  /* ======== eventi ======== */
+  document.addEventListener("click", function(e){
+    var t = e.target.closest("button, a"); if (!t) return;
+    var d = t.dataset;
+    if (d.id) { schedaAvviso(d.id); return; }
+    if (d.f !== undefined) { filtro = d.f; disegnaFiltri(); disegnaLista(); return; }
+    if (d.plus) { schedaPlus(); return; }
+    if (d.compra) { compra(); return; }
+    if (d.chiudi) { chiudi(); return; }
+    if (d.profilo) { schedaProfilo(); return; }
+    if (d.nuova) { schedaNuova(); return; }
+    if (d.ics) { var a = trova(d.ics); scaricaIcs(eventiAvviso(a), "scadenza-" + a.id); return; }
+    if (d.icsPerte) {
+      scaricaIcs([].concat.apply([], AVVISI.filter(function(a){ return faPerTe(a) && stato(a).k !== "sempre"; }).map(eventiAvviso)), "scadenze-per-te");
+      return;
+    }
+    if (d.icsMie) {
+      var r = [].concat.apply([], mie.seguiti.map(trova).filter(Boolean).map(eventiAvviso));
+      mie.personali.forEach(function(p){ r = r.concat(evento("mia-" + p.id, data(p.data), "Scadenza: " + p.titolo, p.importo ? "Importo: " + p.importo : "Scadenza personale", "", PRIMA)); });
+      scaricaIcs(r, "le-mie-scadenze");
+      return;
+    }
+    if (d.segui) {
+      var i = mie.seguiti.indexOf(d.segui);
+      if (i >= 0) mie.seguiti.splice(i, 1); else mie.seguiti.push(d.segui);
+      scrivi("sm-mie", mie); disegnaMie();
+      var seg = i < 0;
+      t.setAttribute("aria-pressed", seg);
+      t.textContent = seg ? "Segui già: togli dalle mie scadenze" : "Segui: mettila nelle mie scadenze";
+      return;
+    }
+    if (d.smetti) { mie.seguiti = mie.seguiti.filter(function(x){ return x !== d.smetti; }); scrivi("sm-mie", mie); disegnaMie(); return; }
+    if (d.togli) { mie.personali = mie.personali.filter(function(p){ return p.id !== d.togli; }); scrivi("sm-mie", mie); disegnaMie(); return; }
+    if (d.esci) {
+      try { localStorage.removeItem("sm-plus"); } catch(e) {}
+      plus = null; disegnaTutto(); return;
+    }
+  });
+
+  document.addEventListener("change", function(e){
+    var k = e.target.dataset && e.target.dataset.spunta;
+    if (k) { if (e.target.checked) spunte[k] = 1; else delete spunte[k]; scrivi("sm-spunte", spunte); }
+  });
+
+  document.addEventListener("submit", function(e){
+    var f = e.target;
+    if (f.id === "codForm") {
+      e.preventDefault();
+      var msg = $("codMsg");
+      attiva($("codIn").value).then(function(r){
+        if (r === "ok") return;
+        msg.className = "msg ko";
+        msg.textContent = r === "scaduto" ? "Questo codice è scaduto. Rinnova Plus per continuare." : "Codice non valido: controlla di averlo copiato tutto, senza spazi.";
+      });
+    }
+    if (f.id === "profForm") {
+      e.preventDefault();
+      var per = [].slice.call(f.querySelectorAll('input[name="per"]:checked')).map(function(i){ return i.value; });
+      var is = f.querySelector('input[name="isee"]:checked');
+      profilo = { per: per, isee: is ? is.value : "" };
+      scrivi("sm-profilo", profilo);
+      chiudi(); disegnaTutto();
+      $("perte").scrollIntoView();
+    }
+    if (f.id === "nuovaForm") {
+      e.preventDefault();
+      mie.personali.push({ id: Date.now().toString(36), titolo: $("nT").value.trim(), data: $("nD").value, importo: $("nI").value.trim() });
+      scrivi("sm-mie", mie);
+      chiudi(); disegnaMie();
+    }
+  });
+
+  $("shX").addEventListener("click", chiudi);
+  $("backdrop").addEventListener("click", chiudi);
+  document.addEventListener("keydown", function(e){
+    if (!$("sheet").classList.contains("open")) return;
+    if (e.key === "Escape") { chiudi(); return; }
+    if (e.key === "Tab") {
+      var f = $("sheet").querySelectorAll("button, a[href], input, select");
+      if (!f.length) return;
+      var primo = f[0], ultimo = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === primo) { e.preventDefault(); ultimo.focus(); }
+      else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primo.focus(); }
+    }
+  });
+
+  $("testoBtn").addEventListener("click", function(){
+    var g = document.documentElement.getAttribute("data-testo") !== "grande";
+    if (g) document.documentElement.setAttribute("data-testo", "grande"); else document.documentElement.removeAttribute("data-testo");
+    this.setAttribute("aria-pressed", g);
+    $("szA").textContent = g ? "A−" : "A+";
+    this.setAttribute("aria-label", g ? "Testo normale" : "Testo più grande");
+    try { localStorage.setItem("sm-testo", g ? "grande" : ""); } catch(e) {}
+  });
+  if (document.documentElement.getAttribute("data-testo") === "grande") { $("testoBtn").setAttribute("aria-pressed", "true"); $("szA").textContent = "A−"; $("testoBtn").setAttribute("aria-label", "Testo normale"); }
+
+  /* link con #plus=CODICE (attivazione) o #a=ID (apre un bando) */
+  function leggiHash(){
+    var h = location.hash;
+    var m = /^#plus=(.+)$/.exec(h);
+    if (m) {
+      history.replaceState(null, "", location.pathname + location.search);
+      attiva(decodeURIComponent(m[1])).then(function(r){
+        if (r === "ok") apri("Plus è attivo", '<p>Fatto: Plus è attivo su questo telefono. Ora puoi vedere i bandi giusti per la tua famiglia e mettere le scadenze nel calendario.</p><div class="btns"><button type="button" class="btn" data-profilo="1">Compila il profilo della famiglia</button></div>');
+        else apri("Codice non valido", '<p>' + (r === "scaduto" ? "Questo codice è scaduto." : "Il link di attivazione non è valido o è incompleto.") + ' Scrivi a <a href="mailto:' + esc(CONFIG.email) + '">' + esc(CONFIG.email) + '</a>.</p>');
+      });
+      return;
+    }
+    m = /^#a=([\w-]+)$/.exec(h);
+    if (m && trova(m[1])) schedaAvviso(m[1]);
+  }
+  window.addEventListener("hashchange", leggiHash);
+
+  /* ======== avvio ======== */
+  Promise.all([
+    fetch("avvisi.json", { cache: "no-cache" }).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }),
+    caricaPlus()
+  ]).then(function(res){
+    AVVISI = res[0].avvisi || [];
+    AGGIORNATO = res[0].aggiornato || null;
+    disegnaTutto();
+    leggiHash();
+  }).catch(function(){
+    $("prossima").innerHTML = '<p class="vuoto">Non riesco a caricare l\'elenco. Controlla la connessione e riprova.</p>';
+  });
+
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+  }
+})();
+</script>
+</body>
+</html>
