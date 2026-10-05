@@ -1,0 +1,19 @@
+{
+  "name": "Scadenze Mesagne: bonus e scadenze",
+  "short_name": "Scadenze",
+  "description": "Bonus, contributi e scadenze per chi vive a Mesagne: chi può chiederli, cosa serve ed entro quando.",
+  "lang": "it",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F1EC",
+  "theme_color": "#123C3A",
+  "categories": ["utilities", "government"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
