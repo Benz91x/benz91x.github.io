@@ -23,6 +23,7 @@ conforme GDPR senza banner). Traccia già questi eventi:
 | `download-cv` | chi scarica il CV in PDF |
 | `click-email` / `click-linkedin` / `click-github` | quali contatti usano |
 | `click-articolo` / `click-libro` | chi apre l'articolo su MDPI o il libro su Amazon |
+| `click-stampa` | chi apre l'articolo di Qui Mesagne su Differenziata Mesagne |
 | `fonte-<nome>` | provenienza campagne: aggiungi `?ref=linkedin` (o `?ref=cv`, `?ref=email`…) al link che condividi, es. `https://benz91x.github.io/?ref=linkedin` |
 | `/bot-nojs` | crawler e bot di anteprima (LinkedIn, WhatsApp…) |
 
@@ -59,7 +60,7 @@ conforme GDPR senza banner). Traccia già questi eventi:
   disegnato dalla GPU con WebGL; senza WebGL usa il canvas 2D.
   Città e clienti visibili sono nelle schede in `index.html`, sezione `#dove`.
 - Dopo una modifica a CSS o JS, aggiorna il parametro `?v=` nei link di `index.html`
-  (es. `site.css?v=20260926`), così i browser scaricano subito la versione nuova.
+  (es. `site.css?v=20261006`), così i browser scaricano subito la versione nuova.
 - `assets/img/` ritratti e immagine per le anteprime social · `assets/icons/` icone ·
   `assets/fonts/` Inter (licenza OFL), usato solo dove il font di sistema Apple non c'è.
 - **Per cambiare un testo**: modifica l'italiano in `index.html` e, se serve, la

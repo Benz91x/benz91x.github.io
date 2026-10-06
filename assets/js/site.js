@@ -112,7 +112,7 @@
     "sp.title": "Two apps for local residents.",
     "sp.intro": "In my spare time I designed and built two free web apps that tell residents of San Vito dei Normanni and Mesagne what to put out for collection each day. They are made for everyone, including people who are less comfortable with smartphones.",
     "sp.type": "Free web app in&nbsp;Italian&nbsp;· Apulia, Italy",
-    "sp.k1": "Sources", "sp.k2": "Live since",
+    "sp.k1": "Sources", "sp.k2": "Live since", "sp.k3": "In the press",
     "sp.open": "Open the app",
     "sp.code": "Source code",
     "sp.sv.alt": "The Differenziata San Vito dei Normanni app on a smartphone: the choice between town and countryside and, front and centre, the waste to put out tonight.",
@@ -138,6 +138,12 @@
     "sp.lh.1": "Performance", "sp.lh.2": "Accessibility", "sp.lh.3": "Best Practices",
     "sp.lh.cap": "Measured on the live site on 4 October 2026, median of three runs.",
     "sp.lh.vit": "LCP 1.2&nbsp;s · CLS&nbsp;0",
+    "pr.kicker": "In the press",
+    "pr.desc": "Online daily newspaper of the City of Mesagne",
+    "pr.meta": "Article · October 2026",
+    "pr.gloss": "“What goes out today?”: Mesagne native Alessandro Chiri builds a web app for separate waste collection",
+    "pr.text": "Mesagne’s online daily covers the app: open it on a smartphone to see which collection is due today, yesterday and tomorrow, including the Thursday alternation between glass and metals and paper and cardboard. Free, with no ads and no sign-up, it also works offline.",
+    "pr.link": "Read the article (in Italian)",
     "sp.note": "Unofficial information services, built in a personal capacity: for any schedule changes, each municipality’s announcements take precedence.",
     "u.label": "Publications",
     "u.title": "Research and writing.",
@@ -545,6 +551,7 @@
       else if (h.indexOf("github.") > -1) ev("click-github", "Click GitHub");
       else if (h.indexOf("amazon.") > -1) ev("click-libro", "Click libro su Amazon");
       else if (h.indexOf("mdpi.com") > -1 || h.indexOf("doi.org") > -1) ev("click-articolo", "Click articolo MDPI");
+      else if (h.indexOf("quimesagne.it") > -1) ev("click-stampa", "Click articolo Qui Mesagne");
     }, true);
     try {
       var sp = new URLSearchParams(location.search), src = sp.get("ref") || sp.get("utm_source");
