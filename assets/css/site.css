@@ -957,7 +957,7 @@ p, dd, li { text-wrap: pretty; }
 .press__outlet {
   margin-top: 0.9rem; width: fit-content; max-width: 100%;
   padding: 0.85rem 1.1rem; border-radius: 14px;
-  background: #fff;
+  background: #fff; color: #14523f; font-weight: 600;   /* testo alternativo leggibile se l'immagine manca */
   box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.45);
 }
 .press__outlet img { width: 15rem; max-width: 100%; height: auto; }
@@ -1182,6 +1182,7 @@ p, dd, li { text-wrap: pretty; }
 @media (forced-colors: active) {
   .stat__value, .journey__year { background: none; -webkit-text-fill-color: CanvasText; color: CanvasText; }
   .btn, .paddle, .segmented button { border: 1px solid ButtonText; }
+  .press__outlet { forced-color-adjust: none; }   /* il logo trasparente ha bisogno della targa bianca */
 }
 
 /* ---------- Stampa ---------- */
