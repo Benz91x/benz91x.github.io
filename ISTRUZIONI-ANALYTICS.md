@@ -8,7 +8,14 @@ La pagina ha **due livelli di analytics**, già integrati nel codice:
 
 In fondo alla pagina (footer) compare **Visite: N**, aggiornato a ogni apertura.
 Il numero appare solo quando supera le 1.000 visite. Non richiede account né
-configurazione (servizio: counterapi.dev, codice in `assets/js/site.js`).
+configurazione (servizio: [Abacus](https://jasoncameron.dev/abacus/), codice in
+`assets/js/site.js`).
+
+- Valore attuale, senza contare una visita:
+  https://abacus.jasoncameron.dev/get/benz91x.github.io/visite
+- Il contatore è ripartito da zero il 6 ottobre 2026: il servizio precedente
+  (counterapi.dev v1) è stato spento il 7 agosto 2026 senza migrare i conteggi.
+- Il contatore resta attivo finché viene usato: scade solo dopo 6 mesi senza visite.
 
 ## 2) GoatCounter — dashboard completa (visite, lettura, click, provenienza)
 
