@@ -9,7 +9,10 @@
 
   /* ---------- Configurazione ---------- */
   var GC_CODE = "TUOCODICE"; // <-- codice GoatCounter (vedi ISTRUZIONI-ANALYTICS.md)
-  var COUNTER = "https://api.counterapi.dev/v1/benz91x-alessandro-chiri/visite";
+  /* contatore visite: Abacus, gratuito e senza account (counterapi.dev v1 è stato
+     spento il 7 agosto 2026); /hit conta la visita, /get legge senza contare */
+  var COUNTER = "https://abacus.jasoncameron.dev";
+  var COUNTER_KEY = "benz91x.github.io/visite";
   var PREVIEW = /\/anteprima\//.test(location.pathname);
 
   var root = document.documentElement;
@@ -148,6 +151,7 @@
     "u.label": "Publications",
     "u.title": "Research and writing.",
     "u.intro": "A scientific article on the platform I work on, and a book written out of passion.",
+    "u.p.in": "Published in",
     "u.p.type": "Scientific article · Open access",
     "u.p.meta": "<cite>Information</cite> (MDPI), vol. 17, issue 10, art. 950 · published on 25 September 2026",
     "u.p.body": "The article presents NextHub, the open innovation platform that uses artificial intelligence to match corporate initiatives with the most relevant innovative solutions, through a semantic, multilingual recommendation engine.",
@@ -158,6 +162,7 @@
     "u.p.s3": "Checking that recommendations stay consistent when descriptions are written in different languages: the analysis confirms high semantic consistency across multilingual datasets.",
     "u.p.link": "Read the article",
     "u.b.type": "Book · Ebook",
+    "u.b.cover": "Cover of Storia dei Videogiochi",
     "u.b.body": "My first book, written out of passion: seventy years of video game history, from the beginnings to today.",
     "u.b.k1": "Format", "u.b.v1": "Kindle ebook",
     "u.b.k2": "Language", "u.b.v2": "Italian",
@@ -570,9 +575,9 @@
       el.textContent = t("visits") + ": " + count.toLocaleString(lang === "en" ? "en-US" : "it-IT");
       el.hidden = false;
     }
-    fetch(COUNTER + (PREVIEW ? "" : "/up"), ctrl ? { signal: ctrl.signal } : {})
-      .then(function (r) { return r.json(); })
-      .then(function (j) { clearTimeout(to); if (typeof j.count === "number" && j.count >= 1000) { count = j.count; paint(); } })
+    fetch(COUNTER + (PREVIEW ? "/get/" : "/hit/") + COUNTER_KEY, ctrl ? { signal: ctrl.signal } : {})
+      .then(function (r) { clearTimeout(to); return r.ok ? r.json() : null; })
+      .then(function (j) { if (j && typeof j.value === "number" && j.value >= 1000) { count = j.value; paint(); } })
       .catch(function () {});
     listeners.lang.push(paint);
   }

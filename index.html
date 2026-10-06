@@ -64,8 +64,8 @@
       } catch (e) {}
     })(document);
   </script>
-  <link rel="stylesheet" href="assets/css/site.css?v=20261006b">
-  <script src="assets/js/site.js?v=20261006b" defer></script>
+  <link rel="stylesheet" href="assets/css/site.css?v=20261006c">
+  <script src="assets/js/site.js?v=20261006c" defer></script>
   <script src="assets/js/globe.js?v=20260926" defer></script>
 
   <script type="application/ld+json">
@@ -166,6 +166,7 @@
         "author": { "@id": "https://benz91x.github.io/#person" },
         "inLanguage": "it",
         "bookFormat": "https://schema.org/EBook",
+        "image": "https://benz91x.github.io/assets/img/pubs/storia-dei-videogiochi-480.jpg",
         "url": "https://www.amazon.it/dp/B0H8J8MDZJ"
       }
     ]
@@ -646,6 +647,15 @@
       </header>
       <div class="pubs">
         <article class="tile pub reveal">
+          <div class="pub__stage pub__stage--journal">
+            <p class="pub__kicker" data-i18n="u.p.in">Pubblicato su</p>
+            <p class="pub__journal">
+              <picture>
+                <source type="image/webp" srcset="assets/img/pubs/information-logo.webp">
+                <img src="assets/img/pubs/information-logo.png" width="524" height="140" loading="lazy" decoding="async" alt="Information" lang="en">
+              </picture>
+            </p>
+          </div>
           <div class="pub__head">
             <span class="pub__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.75h7.25L18.25 7.75v12.5H7z"/><path d="M14 3.75v4.25h4.25M9.75 12h5.5M9.75 15.25h5.5"/></svg></span>
             <p class="pub__type" data-i18n="u.p.type">Articolo scientifico · Open access</p>
@@ -665,6 +675,13 @@
           </div>
         </article>
         <article class="tile pub pub--book reveal" style="--d:1">
+          <div class="pub__stage pub__stage--book">
+            <picture class="pub__cover">
+              <source type="image/avif" srcset="assets/img/pubs/storia-dei-videogiochi-240.avif 240w, assets/img/pubs/storia-dei-videogiochi-480.avif 480w" sizes="11rem">
+              <source type="image/webp" srcset="assets/img/pubs/storia-dei-videogiochi-240.webp 240w, assets/img/pubs/storia-dei-videogiochi-480.webp 480w" sizes="11rem">
+              <img src="assets/img/pubs/storia-dei-videogiochi-240.jpg" srcset="assets/img/pubs/storia-dei-videogiochi-240.jpg 240w, assets/img/pubs/storia-dei-videogiochi-480.jpg 480w" sizes="11rem" width="240" height="384" loading="lazy" decoding="async" alt="Copertina di Storia dei Videogiochi" data-i18n-attr="alt:u.b.cover">
+            </picture>
+          </div>
           <div class="pub__head">
             <span class="pub__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6.5c-1.9-1.5-4.6-2.25-8.25-2.25v13.5c3.65 0 6.35.75 8.25 2.25 1.9-1.5 4.6-2.25 8.25-2.25V4.25C16.6 4.25 13.9 5 12 6.5z"/><path d="M12 6.5v13.5"/></svg></span>
             <p class="pub__type" data-i18n="u.b.type">Libro · Ebook</p>
