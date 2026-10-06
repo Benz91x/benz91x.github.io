@@ -140,7 +140,7 @@
     "sp.lh.vit": "LCP 1.2&nbsp;s · CLS&nbsp;0",
     "pr.kicker": "In the press",
     "pr.desc": "Online daily newspaper of the City of Mesagne",
-    "pr.meta": "Article · October 2026",
+    "pr.meta": "Article · <time datetime=\"2026-10-06\">6 October 2026</time>",
     "pr.gloss": "“What goes out today?”: Mesagne native Alessandro Chiri builds a web app for separate waste collection",
     "pr.text": "Mesagne’s online daily covers the app: open it on a smartphone to see which collection is due today, yesterday and tomorrow, including the Thursday alternation between glass and metals and paper and cardboard. Free, with no ads and no sign-up, it also works offline.",
     "pr.link": "Read the article (in Italian)",
