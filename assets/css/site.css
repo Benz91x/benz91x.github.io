@@ -952,8 +952,16 @@ p, dd, li { text-wrap: pretty; }
     #14523f;
 }
 .press__kicker { font-size: 0.875rem; line-height: 1.3; font-weight: 600; letter-spacing: var(--ls-small); color: rgba(255, 255, 255, 0.8); }
-.press__outlet { margin-top: 0.4rem; font-size: var(--t-h3); line-height: 1.125; font-weight: 600; letter-spacing: var(--ls-h3); }
-.press__desc { margin-top: 0.35rem; font-size: 0.875rem; line-height: 1.43; letter-spacing: var(--ls-small); color: rgba(255, 255, 255, 0.8); }
+/* il logo della testata (PNG trasparente, giallo e blu) su una targa bianca,
+   come nell'intestazione del loro sito: leggibile con entrambi i temi */
+.press__outlet {
+  margin-top: 0.9rem; width: fit-content; max-width: 100%;
+  padding: 0.85rem 1.1rem; border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.45);
+}
+.press__outlet img { width: 15rem; max-width: 100%; height: auto; }
+.press__desc { margin-top: 0.8rem; font-size: 0.875rem; line-height: 1.43; letter-spacing: var(--ls-small); color: rgba(255, 255, 255, 0.8); }
 .press__mark { align-self: flex-end; width: clamp(2.75rem, 2.25rem + 1.5vw, 3.5rem); height: auto; fill: rgba(255, 255, 255, 0.9); }
 .press__body { padding: var(--pad); display: flex; flex-direction: column; }
 .press__meta { font-size: 0.875rem; line-height: 1.3; font-weight: 600; letter-spacing: var(--ls-small); color: var(--label-2); }
@@ -1192,6 +1200,7 @@ p, dd, li { text-wrap: pretty; }
   .press__source { background: none !important; color: #000 !important; padding-bottom: 0; }
   .press__kicker, .press__desc { color: #555 !important; }
   .press__mark { display: none; }
+  .press__outlet { padding: 0; box-shadow: none; }
 }
 
 /* ---------- Senza JavaScript: niente controlli inerti ---------- */
