@@ -31,6 +31,7 @@ conforme GDPR senza banner). Traccia già questi eventi:
 | `click-email` / `click-linkedin` / `click-github` | quali contatti usano |
 | `click-articolo` / `click-libro` | chi apre l'articolo su MDPI o il libro su Amazon |
 | `click-stampa` | chi apre l'articolo di Qui Mesagne su Differenziata Mesagne |
+| `click-stampa-brindisireport` | chi apre l'articolo di BrindisiReport su Differenziata San Vito dei Normanni |
 | `fonte-<nome>` | provenienza campagne: aggiungi `?ref=linkedin` (o `?ref=cv`, `?ref=email`…) al link che condividi, es. `https://benz91x.github.io/?ref=linkedin` |
 | `/bot-nojs` | crawler e bot di anteprima (LinkedIn, WhatsApp…) |
 

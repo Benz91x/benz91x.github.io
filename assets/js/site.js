@@ -147,6 +147,10 @@
     "pr.gloss": "“What goes out today?”: Mesagne native Alessandro Chiri builds a web app for separate waste collection",
     "pr.text": "Mesagne’s online daily covers the app: open it on a smartphone to see which collection is due today, yesterday and tomorrow, including the Thursday alternation between glass and metals and paper and cardboard. Free, with no ads and no sign-up, it also works offline.",
     "pr.link": "Read the article (in Italian)",
+    "pr.br.desc": "Online newspaper for Brindisi and its province",
+    "pr.br.meta": "Article · <time datetime=\"2026-10-07\">7 October 2026</time>",
+    "pr.br.gloss": "“Differenziata San Vito dei Normanni”: here comes the app that helps you sort your waste correctly",
+    "pr.br.text": "The province’s online newspaper presents the app: choose town or countryside and see straight away what to put out tonight, including countryside Fridays, which alternate paper and cardboard with glass. It also covers the search across more than 400 items and the collection centre’s opening hours, showing whether it is open right now.",
     "sp.note": "Unofficial information services, built in a personal capacity: for any schedule changes, each municipality’s announcements take precedence.",
     "u.label": "Publications",
     "u.title": "Research and writing.",
@@ -557,6 +561,7 @@
       else if (h.indexOf("amazon.") > -1) ev("click-libro", "Click libro su Amazon");
       else if (h.indexOf("mdpi.com") > -1 || h.indexOf("doi.org") > -1) ev("click-articolo", "Click articolo MDPI");
       else if (h.indexOf("quimesagne.it") > -1) ev("click-stampa", "Click articolo Qui Mesagne");
+      else if (h.indexOf("brindisireport.it") > -1) ev("click-stampa-brindisireport", "Click articolo BrindisiReport");
     }, true);
     try {
       var sp = new URLSearchParams(location.search), src = sp.get("ref") || sp.get("utm_source");
