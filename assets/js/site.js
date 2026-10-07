@@ -149,7 +149,7 @@
     "pr.link": "Read the article (in Italian)",
     "pr.br.desc": "Online newspaper for Brindisi and its province",
     "pr.br.meta": "Article · <time datetime=\"2026-10-07\">7 October 2026</time>",
-    "pr.br.gloss": "“Differenziata San Vito dei Normanni”: here comes the app that helps you sort your waste correctly",
+    "pr.br.gloss": "“Differenziata San Vito dei Normanni”: here comes the app that helps you dispose of your waste properly",
     "pr.br.text": "The province’s online newspaper presents the app: choose town or countryside and see straight away what to put out tonight, including countryside Fridays, which alternate paper and cardboard with glass. It also covers the search across more than 400 items and the collection centre’s opening hours, showing whether it is open right now.",
     "sp.note": "Unofficial information services, built in a personal capacity: for any schedule changes, each municipality’s announcements take precedence.",
     "u.label": "Publications",

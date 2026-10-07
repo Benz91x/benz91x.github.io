@@ -1011,7 +1011,18 @@ p, dd, li { text-wrap: pretty; }
 .press__outlet img { width: 15rem; max-width: 100%; height: auto; }
 .press__desc { margin-top: 0.8rem; font-size: 0.875rem; line-height: 1.43; letter-spacing: var(--ls-small); color: rgba(255, 255, 255, 0.8); }
 .press__mark { flex: none; width: clamp(2.75rem, 2.25rem + 1.5vw, 3.5rem); height: auto; fill: rgba(255, 255, 255, 0.9); }
+@media (max-width: 559px) {   /* sul telefono la virgoletta torna sotto: il logo resta largo come prima */
+  .press__source { flex-direction: column; align-items: stretch; }
+  .press__mark { align-self: flex-end; }
+}
 .press__body { flex: 1; padding: var(--pad); display: flex; flex-direction: column; }
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 834px) {   /* fasce colorate allineate: testata e corpo su righe comuni alle due schede */
+    .press { display: grid; grid-row-end: span 2; grid-template-rows: subgrid; row-gap: 0; }
+    .press__source { align-items: stretch; }
+    .press__mark { align-self: flex-end; }
+  }
+}
 .press__meta { font-size: 0.875rem; line-height: 1.3; font-weight: 600; letter-spacing: var(--ls-small); color: var(--label-2); }
 .press__title {
   margin-top: 0.75rem; max-width: 34ch;
