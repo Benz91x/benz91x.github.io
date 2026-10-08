@@ -867,6 +867,60 @@ p, dd, li { text-wrap: pretty; }
 }
 .pub__doi { font-size: 0.875rem; color: var(--label-2); letter-spacing: var(--ls-small); }
 .pub__doi:hover { color: var(--label); text-decoration: underline; text-underline-offset: 0.18em; }
+
+/* intervento da relatore: a tutta larghezza sotto articolo e libro, in un
+   contenitore suo (la scheda del libro, incollata durante lo scroll, non ci
+   passa sopra). In testa la fascia nel blu Confapi, come le altre schede:
+   l'organizzatore con il logo su una targa bianca e, a destra, la data grande
+   come sulla locandina. Sotto, sul computer, due colonne allineate alla
+   griglia di sopra: a sinistra titolo, cosa ho fatto e la citazione, a
+   destra i dettagli e i link */
+.talks { max-width: var(--maxw); margin: 1.25rem auto 0; }
+.pub--talk { padding: 0; }
+.pub__stage--talk {
+  margin: 0;
+  display: flex; flex-direction: column; gap: 1.75rem;
+  background:
+    radial-gradient(70% 90% at 100% 120%, color-mix(in srgb, #3d8bfd 42%, transparent), transparent 72%),
+    radial-gradient(90% 70% at 30% -10%, rgba(255, 255, 255, 0.10), transparent 70%),
+    #0b3a7e;
+}
+.talk__brand { min-width: 0; }
+.talk__logo { color: #0b3a7e; }
+.talk__logo img { width: 13rem; }
+.talk__org { margin-top: 0.8rem; max-width: 46ch; font-size: 0.875rem; line-height: 1.43; letter-spacing: var(--ls-small); color: rgba(255, 255, 255, 0.8); }
+.talk__when { display: flex; align-items: flex-end; gap: 0.75rem; margin: 0; }
+.talk__day {
+  font-size: clamp(3.5rem, 2.9rem + 2vw, 4.75rem); line-height: 0.8; font-weight: 600;
+  letter-spacing: -0.045em; font-variant-numeric: tabular-nums;
+}
+.talk__month, .talk__city { display: block; font-size: 0.875rem; line-height: 1.3; font-weight: 600; letter-spacing: var(--ls-small); }
+.talk__city { color: rgba(255, 255, 255, 0.8); }
+@media (min-width: 560px) {
+  .pub__stage--talk { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 1.5rem; }
+  .talk__when { flex: none; }
+}
+.talk__body { padding: var(--pad); display: flex; flex-direction: column; }
+.talk__main .pub__title { max-width: 30ch; }
+.talk__gloss { margin-top: 0.4rem; font-size: 0.875rem; line-height: 1.43; letter-spacing: var(--ls-small); color: var(--label-2); }
+.talk__gloss:empty { display: none; }
+.talk__quote { margin: 1.5rem 0 0; }
+.talk__quote blockquote { margin: 0; padding: 0.15rem 0 0.15rem 1.1rem; border-left: 3px solid #3d8bfd; }
+.talk__quote blockquote p { max-width: 62ch; font-size: 1.0625rem; line-height: 1.47; color: var(--label); }
+.talk__quote > .talk__gloss { max-width: 62ch; }
+.talk__source { margin-top: 0.55rem; font-size: 0.875rem; line-height: 1.3; letter-spacing: var(--ls-small); color: var(--label-2); }
+.talk__source cite { font-style: normal; font-weight: 600; color: var(--label); }
+.talk__side { display: flex; flex-direction: column; }
+.talk__side .pub__specs dt { flex: none; }
+@media (min-width: 1068px) {
+  /* colonne come articolo e libro: la sinistra larga quanto il testo
+     dell'articolo, la destra comincia dove comincia il testo del libro */
+  .talk__body {
+    display: grid; column-gap: calc(1.25rem + 2 * var(--pad));
+    grid-template-columns: minmax(0, calc((100% + 2 * var(--pad) - 1.25rem) * 7 / 12 - 2 * var(--pad))) minmax(0, 1fr);
+  }
+  .talk__side .pub__specs { margin-top: 0; }
+}
 @media (max-width: 833px) {
   .pubs { grid-template-columns: minmax(0, 1fr); }
 }
@@ -1262,8 +1316,10 @@ p, dd, li { text-wrap: pretty; }
   .press__mark { display: none; }
   .press__outlet { padding: 0; box-shadow: none; }
   .pub { break-inside: avoid; margin-bottom: 1rem; }
-  .pub__stage { margin: 0 0 1rem; padding: 0; background: none !important; justify-content: flex-start; }
-  .pub__kicker { color: #555 !important; }
+  .pub__stage { margin: 0 0 1rem; padding: 0; background: none !important; color: #000 !important; justify-content: flex-start; }
+  .pub__kicker, .talk__org, .talk__city { color: #555 !important; }
+  .pub--talk { display: block; padding: var(--pad); }
+  .talk__body { padding: 0; }
   .pub__journal { padding: 0; box-shadow: none; }
   .pub__cover { width: 7rem; box-shadow: none; }
   .pub__cover::after { display: none; }

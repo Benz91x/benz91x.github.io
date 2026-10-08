@@ -152,9 +152,9 @@
     "pr.br.gloss": "“Differenziata San Vito dei Normanni”: here comes the app that helps you dispose of your waste properly",
     "pr.br.text": "The province’s online newspaper presents the app: choose town or countryside and see straight away what to put out tonight, including countryside Fridays, which alternate paper and cardboard with glass. It also covers the search across more than 400 items and the collection centre’s opening hours, showing whether it is open right now.",
     "sp.note": "Unofficial information services, built in a personal capacity: for any schedule changes, each municipality’s announcements take precedence.",
-    "u.label": "Publications",
-    "u.title": "Research and writing.",
-    "u.intro": "A scientific article on the platform I work on, and a book written out of passion.",
+    "u.label": "Publications and talks",
+    "u.title": "Research and outreach.",
+    "u.intro": "A scientific article on the platform I work on, a book written out of passion, and a talk on cybersecurity for SMEs.",
     "u.p.in": "Published in",
     "u.p.type": "Scientific article · Open access",
     "u.p.meta": "<cite>Information</cite> (MDPI), vol. 17, issue 10, art. 950 · published on 25 September 2026",
@@ -172,6 +172,19 @@
     "u.b.k2": "Language", "u.b.v2": "Italian",
     "u.b.k3": "Available on",
     "u.b.link": "View on Amazon",
+    "u.t.kicker": "Speaker at an event by",
+    "u.t.org": "“<span lang=\"it\">Cybersecurity per le PMI</span>”, the Bari stop of the European MicroCyber project",
+    "u.t.month": "March 2026",
+    "u.t.type": "Talk · Conference",
+    "u.t.gloss": "Cybersecurity and innovation for SMEs",
+    "u.t.body": "As a consultant at Deloitte, a project partner, I spoke at the MicroCyber conference, the European digital innovation hub for the cybersecurity of micro, small and medium-sized enterprises and public administrations, to business owners, professionals and industry experts.",
+    "u.t.qgloss": "“Also particularly appreciated was the talk by Alessandro Chiri of Deloitte, who outlined scenarios and prospects for digital innovation applied to SMEs.”",
+    "u.t.src": "— <cite>Confapi News</cite>, <time datetime=\"2026-03\">March 2026</time>",
+    "u.t.k1": "Role", "u.t.v1": "Deloitte consultant",
+    "u.t.k2": "Venue",
+    "u.t.k3": "Project", "u.t.v3": "MicroCyber · EU",
+    "u.t.link": "Read the article (in Italian)",
+    "u.t.prog": "Announcement and programme · Confapi\u00a0Bari\u2011Bat",
     "s.label": "Skills",
     "s.title": "Technical and consulting skills.",
     "s.h": "Technology",
@@ -562,6 +575,7 @@
       else if (h.indexOf("mdpi.com") > -1 || h.indexOf("doi.org") > -1) ev("click-articolo", "Click articolo MDPI");
       else if (h.indexOf("quimesagne.it") > -1) ev("click-stampa", "Click articolo Qui Mesagne");
       else if (h.indexOf("brindisireport.it") > -1) ev("click-stampa-brindisireport", "Click articolo BrindisiReport");
+      else if (h.indexOf("confapi") > -1) ev("click-confapi", "Click intervento Confapi");
     }, true);
     try {
       var sp = new URLSearchParams(location.search), src = sp.get("ref") || sp.get("utm_source");
