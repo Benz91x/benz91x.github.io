@@ -867,6 +867,49 @@ p, dd, li { text-wrap: pretty; }
 }
 .pub__doi { font-size: 0.875rem; color: var(--label-2); letter-spacing: var(--ls-small); }
 .pub__doi:hover { color: var(--label); text-decoration: underline; text-underline-offset: 0.18em; }
+
+/* intervento da relatore: a tutta larghezza sotto articolo e libro, in un
+   contenitore suo (la scheda del libro, incollata durante lo scroll, non ci
+   passa sopra). A sinistra l'organizzatore sul blu Confapi, con il logo su una
+   targa bianca e la data grande come sulla locandina; a destra titolo
+   dell'intervento, cosa ho fatto e la notizia che ne parla */
+.talks { max-width: var(--maxw); margin: 1.25rem auto 0; }
+.pub--talk { padding: 0; }
+.pub__stage--talk {
+  margin: 0;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 2.25rem;
+  background:
+    radial-gradient(70% 80% at 100% 115%, color-mix(in srgb, #3d8bfd 42%, transparent), transparent 72%),
+    radial-gradient(90% 70% at 30% -10%, rgba(255, 255, 255, 0.10), transparent 70%),
+    #0b3a7e;
+}
+.talk__logo { color: #0b3a7e; }
+.talk__logo img { width: 13rem; }
+.talk__org { margin-top: 0.8rem; max-width: 30ch; font-size: 0.875rem; line-height: 1.43; letter-spacing: var(--ls-small); color: rgba(255, 255, 255, 0.8); }
+.talk__when { display: flex; align-items: flex-end; gap: 0.85rem; margin: 0; }
+.talk__day {
+  font-size: clamp(3.75rem, 3rem + 2.5vw, 5.25rem); line-height: 0.8; font-weight: 600;
+  letter-spacing: -0.045em; font-variant-numeric: tabular-nums;
+}
+.talk__month, .talk__city { display: block; font-size: 0.875rem; line-height: 1.3; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.talk__city { color: rgba(255, 255, 255, 0.8); }
+.talk__body { flex: 1; padding: var(--pad); display: flex; flex-direction: column; }
+.talk__body .pub__title { max-width: 30ch; }
+.talk__gloss { margin-top: 0.4rem; font-size: 0.875rem; line-height: 1.43; letter-spacing: var(--ls-small); color: var(--label-2); }
+.talk__gloss:empty { display: none; }
+.talk__quote {
+  margin: 1.5rem 0 0; padding: 0.15rem 0 0.15rem 1.1rem;
+  border-left: 3px solid #3d8bfd;
+}
+.talk__quote p { max-width: 62ch; font-size: 1.0625rem; line-height: 1.47; color: var(--label); }
+.talk__quote .talk__gloss { font-size: 0.875rem; }
+.talk__source { margin-top: 0.55rem; font-size: 0.875rem; line-height: 1.3; letter-spacing: var(--ls-small); color: var(--label-2); }
+.talk__source cite { font-style: normal; font-weight: 600; color: var(--label); }
+.talk__body .pub__specs dt { flex: none; }
+.talk__body .pub__specs dd { max-width: 34ch; }
+@media (min-width: 834px) {
+  .pub--talk { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+}
 @media (max-width: 833px) {
   .pubs { grid-template-columns: minmax(0, 1fr); }
 }
@@ -1262,8 +1305,10 @@ p, dd, li { text-wrap: pretty; }
   .press__mark { display: none; }
   .press__outlet { padding: 0; box-shadow: none; }
   .pub { break-inside: avoid; margin-bottom: 1rem; }
-  .pub__stage { margin: 0 0 1rem; padding: 0; background: none !important; justify-content: flex-start; }
-  .pub__kicker { color: #555 !important; }
+  .pub__stage { margin: 0 0 1rem; padding: 0; background: none !important; color: #000 !important; justify-content: flex-start; }
+  .pub__kicker, .talk__org, .talk__city { color: #555 !important; }
+  .pub--talk { display: block; }
+  .talk__body { padding: 0; }
   .pub__journal { padding: 0; box-shadow: none; }
   .pub__cover { width: 7rem; box-shadow: none; }
   .pub__cover::after { display: none; }
