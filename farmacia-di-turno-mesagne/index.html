@@ -207,6 +207,7 @@ main{padding-block:18px 8px}
 .cartello h2{font-size:20pt;font-weight:800;margin-top:6mm}
 .cartello .tab{font-size:20pt}
 .cartello .tab td{padding:1.2mm 2mm;line-height:1.2}
+.cartello .tab td.n{padding-right:4mm;white-space:normal}
 .c-di{margin-top:4mm;display:flex;align-items:center;gap:4mm;font-size:16pt;font-weight:800}
 .c-di img{height:16mm;width:auto;max-width:50mm;object-fit:contain}
 
@@ -944,7 +945,8 @@ main{padding-block:18px 8px}
     var oggi = ADESSO.data;
     var x = f(turnoDel(oggi));
     var giorni = []; for (var i = 1; i <= 6; i++) giorni.push(piu(oggi, i));
-    var righe = giorni.map(function(g){ var y = f(turnoDel(g)); return '<tr' + (festivo(g) ? ' class="fest"' : '') + '><td><span class="n">' + esc(maiusc(inParole(g))) + '</span></td>' + (y ? '<td class="n">' + esc(nomeFoglio(y)) + '</td><td class="tel">' + esc(y.telefono) + '</td>' : '<td colspan="2">Non ancora nel calendario</td>') + '</tr>'; });
+    /* il mese si scrive solo quando cambia rispetto a oggi: le righe restano corte e si leggono da lontano */
+    var righe = giorni.map(function(g){ var y = f(turnoDel(g)); var gg = g.slice(0, 7) === oggi.slice(0, 7) ? maiusc(GIORNI[sett(g)]) + " " + (+g.slice(8)) : maiusc(inParole(g)); return '<tr' + (festivo(g) ? ' class="fest"' : '') + '><td><span class="n">' + esc(gg) + '</span></td>' + (y ? '<td class="n">' + nomeFoglioHtml(y) + '</td><td class="tel">' + esc(y.telefono) + '</td>' : '<td colspan="2">Non ancora nel calendario</td>') + '</tr>'; });
     var h = barra((da && da.attivo ? '' : 'Il cartello per la vetrina fa parte del pacchetto per le farmacie. ') + 'Cartello di ' + esc(inParole(oggi)) + '. Stampalo ogni giorno, o una volta alla settimana per i giorni successivi.');
     if (!da || !da.attivo) { mostraStampa(h.replace('<button type="button" class="btn" id="stampaOra">' + ICO.stampa + 'Stampa</button>', '') + '<div class="wrap" style="padding:20px 16px"><p class="vuoto">Pacchetto non attivo per questa farmacia. <a href="./#servizi">Scopri il pacchetto per le farmacie</a>.</p></div>', "Cartello"); return; }
     h += '<div class="anteprima"><div class="wrap"><div class="scala" id="scala"><article class="foglio cartello" id="foglio" aria-label="Cartello per la vetrina">' +
