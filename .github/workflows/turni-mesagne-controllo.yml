@@ -1,0 +1,52 @@
+# Farmacia di turno Mesagne: controllo settimanale del sito dell'Ordine dei Farmacisti.
+# Se cambia il PDF dei turni di Mesagne (la data dopo "agg_"), se cambia l'albo delle farmacie
+# o se ci sono ferie, apre una segnalazione (issue) con l'etichetta "turni-mesagne".
+# Si può anche lanciare a mano: Actions → "Controllo turni Mesagne" → Run workflow.
+name: Controllo turni Mesagne
+
+on:
+  schedule:
+    - cron: "13 7 * * 1"   # ogni lunedì alle 7:13 UTC (le 9:13 d'estate, le 8:13 d'inverno)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: turni-mesagne
+  cancel-in-progress: false
+
+jobs:
+  controlla:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Installa pdftotext
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
+      # Se il sito dell'Ordine non risponde, questo passo fallisce e GitHub ti manda un'email.
+      - name: Controlla il sito dell'Ordine dei Farmacisti
+        id: controllo
+        run: node farmacia-di-turno-mesagne/strumenti/turni.mjs controlla --report report.md
+
+      - name: Apri una segnalazione (se non ce n'è già una uguale aperta)
+        if: steps.controllo.outputs.cambiato == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITOLO: ${{ steps.controllo.outputs.titolo }}
+        run: |
+          gh label create turni-mesagne --color 123A5E --description "Turni delle farmacie di Mesagne" --force
+          gia=$(gh issue list --state open --label turni-mesagne --limit 50 --json number,title \
+                --jq '[.[] | select(.title == env.TITOLO)][0].number // empty')
+          if [ -n "$gia" ]; then
+            echo "C'è già la segnalazione aperta #$gia con lo stesso titolo: non ne apro un'altra."
+          else
+            gh issue create --title "$TITOLO" --body-file report.md --label turni-mesagne
+          fi

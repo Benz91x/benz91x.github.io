@@ -1,0 +1,214 @@
+{
+  "aggiornato": "2026-10-10",
+  "fonte": {
+    "nome": "Elenco delle farmacie dell'Ordine dei Farmacisti della Provincia di Brindisi (comune: Mesagne)",
+    "url": "https://www.ordinefarmacistibrindisi.it/farmacie/elenco-delle-farmacie.html",
+    "controllato": "2026-10-10"
+  },
+  "fonteFerie": {
+    "nome": "Ferie delle farmacie, Ordine dei Farmacisti della Provincia di Brindisi",
+    "url": "https://www.ordinefarmacistibrindisi.it/farmacie/ferie-farmacie.html",
+    "controllato": "2026-10-10",
+    "nota": "Ottobre, novembre e dicembre 2026: nessuna farmacia di Mesagne in ferie."
+  },
+  "nota": "Indirizzi, telefoni e orari sono copiati dall'albo dell'Ordine. In 'testoAlbo' c'è il testo originale, per il controllo. 'calendario' sono i nomi usati nel PDF dei turni.",
+  "farmacie": [
+    {
+      "id": "alioth",
+      "calendario": [
+        "ALIOTH"
+      ],
+      "insegna": "Farmacia Alioth",
+      "nomeBreve": "Alioth",
+      "titolare": null,
+      "albo": "FARMACIA ALIOTH S.R.L.",
+      "alboLeggibile": "Farmacia Alioth S.r.l.",
+      "indirizzo": "via Brindisi 106, angolo vicolo San Lorenzo 4/6",
+      "indirizzoBreve": "via Brindisi 106",
+      "mappa": "Via Brindisi 106 ang. Vicolo San Lorenzo 4/6, 72023 MESAGNE (BR)",
+      "telefono": "0831 771118",
+      "orari": {
+        "estate": "Dal lunedì al sabato: dalle 8 alle 13 e dalle 16 alle 20:30.",
+        "inverno": "Dal lunedì al sabato: dalle 8 alle 13 e dalle 16 alle 20.",
+        "invernoDaVerificare": true,
+        "chiusura": "Nessuna chiusura settimanale.",
+        "ferie": "Non chiude per ferie."
+      },
+      "testoAlbo": "Orario estivo: Lun-Sab: 8:00-13:00 / 16:00-20:30 · Orario invernale: Dal 27/10/2025 al 28/03/2026 Lun-Sab: 8:00-13:00 / 16:00-20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
+      "dubbi": [
+        "Nell'albo l'orario invernale ha le date dell'inverno scorso (27/10/2025 - 28/03/2026)."
+      ]
+    },
+    {
+      "id": "antonucci",
+      "calendario": [
+        "ANTONUCCI"
+      ],
+      "insegna": "Farmacia Antonucci",
+      "nomeBreve": "Antonucci",
+      "titolare": "dr.ssa Rita Antonucci",
+      "albo": "FARMACIA ANTONUCCI Dr. RITA",
+      "alboLeggibile": "Farmacia Antonucci dr. Rita",
+      "indirizzo": "piazza Vittorio Emanuele 69",
+      "indirizzoBreve": "piazza Vittorio Emanuele 69",
+      "mappa": "P.zza V. Emanuele, 69, 72023 MESAGNE (BR)",
+      "telefono": "0831 771137",
+      "orari": {
+        "estate": "Dal lunedì al sabato: dalle 8:30 alle 13 e dalle 16 alle 20:30.",
+        "inverno": "Dal lunedì al sabato: dalle 8:30 alle 13 e dalle 16 alle 20.",
+        "chiusura": "Nessuna chiusura settimanale.",
+        "ferie": "Non chiude per ferie."
+      },
+      "testoAlbo": "Orario estivo: Lun-Sab: 8:30-13:00 / 16:00-20:30 · Orario invernale: Lun-Sab: 8:30-13:00 / 16:00-20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
+      "dubbi": [
+        "Numero civico: l'albo e la Carta dei Servizi ASL 2024 dicono 69; altre fonti non ufficiali dicono 68."
+      ]
+    },
+    {
+      "id": "cavaliere",
+      "calendario": [
+        "CAVALIERE"
+      ],
+      "insegna": "Farmacia Cavaliere",
+      "nomeBreve": "Cavaliere",
+      "titolare": "dott.ssa Francesca Cutrì",
+      "albo": "FARMACIA CAVALIERE S.A.S. della Dott.ssa Francesca Cutrì",
+      "alboLeggibile": "Farmacia Cavaliere S.a.s. della dott.ssa Francesca Cutrì",
+      "indirizzo": "piazza Garibaldi 16",
+      "indirizzoBreve": "piazza Garibaldi 16",
+      "mappa": "P.zza Garibaldi, 16, 72023 MESAGNE (BR)",
+      "telefono": "0831 771127",
+      "orari": {
+        "estate": "Dal lunedì al venerdì: dalle 8 alle 20:30, senza pausa. Sabato: dalle 8:30 alle 20:30.",
+        "inverno": "Dal lunedì al venerdì: dalle 8 alle 20:30, senza pausa. Sabato: dalle 8:30 alle 20:30.",
+        "chiusura": "Nessuna chiusura settimanale.",
+        "ferie": "Non chiude per ferie."
+      },
+      "testoAlbo": "Orario estivo: Lun-Ven: 8:00-20:30 Sab: 8:30-20:30 · Orario invernale: Lun-Ven: 8:00-20:30 Sab: 8:30-20:30 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
+      "dubbi": []
+    },
+    {
+      "id": "ricupero",
+      "calendario": [
+        "RICUPERO"
+      ],
+      "insegna": "Farmacia Ricupero",
+      "nomeBreve": "Ricupero",
+      "titolare": null,
+      "albo": "FARMACIA Dr. RICUPERO Sas",
+      "alboLeggibile": "Farmacia dr. Ricupero S.a.s.",
+      "indirizzo": "via G. Marconi 75",
+      "indirizzoBreve": "via Marconi 75",
+      "mappa": "Via G. Marconi, 75, 72023 MESAGNE (BR)",
+      "telefono": "0831 734724",
+      "orari": {
+        "estate": "Dal lunedì al sabato: dalle 8 alle 13 e dalle 16 alle 20:30.",
+        "inverno": "Dal lunedì al sabato: dalle 8 alle 13 e dalle 16 alle 20.",
+        "chiusura": "Nessuna chiusura settimanale.",
+        "ferie": "Non chiude per ferie."
+      },
+      "testoAlbo": "Orario estivo: Lun-Sab: 8:00-13:00 / 16:00-20:30 · Orario invernale: Lun-Sab: 8:00-13:00 / 16:00-20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
+      "dubbi": [
+        "Numero civico: l'albo e la Carta dei Servizi ASL 2024 dicono 75; l'elenco vaccinazioni 2025-2026 dell'Ordine e farmaciediturno.org dicono 73."
+      ]
+    },
+    {
+      "id": "rutigliano",
+      "calendario": [
+        "RUTIGLIANO",
+        "MATERDOMINI"
+      ],
+      "insegna": "Farmacia Materdomini",
+      "nomeBreve": "Materdomini",
+      "titolare": "dr. Giuseppe Rutigliano",
+      "albo": "FARMACIA MATERDOMINI Dr. GIUSEPPE RUTIGLIANO",
+      "alboLeggibile": "Farmacia Materdomini dr. Giuseppe Rutigliano",
+      "indirizzo": "viale Indipendenza 154",
+      "indirizzoBreve": "viale Indipendenza 154",
+      "mappa": "Viale Indipendenza, 154, 72023 MESAGNE (BR)",
+      "telefono": "0831 776342",
+      "orari": {
+        "estate": "Dal lunedì al sabato: dalle 8:30 alle 13 e dalle 17 alle 20:30.",
+        "inverno": "Dal lunedì al venerdì: dalle 8:30 alle 13 e dalle 16:30 alle 20. Sabato: dalle 8:30 alle 13 e dalle 17 alle 20.",
+        "chiusura": "Nessuna chiusura settimanale.",
+        "ferie": "Non chiude per ferie."
+      },
+      "testoAlbo": "Orario estivo: Lun-Ven: 8:30-13:00 / 17:00-20:30 Sab: 8:30-13:00 / 17:00-20:30 · Orario invernale: Lun-Ven: 8:30-13:00 / 16:30-20:00 Sab: 8:30-13:00 / 17:00-20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
+      "dubbi": []
+    },
+    {
+      "id": "nocera",
+      "calendario": [
+        "NOCERA"
+      ],
+      "insegna": "Farmacia Nocera",
+      "nomeBreve": "Nocera",
+      "titolare": null,
+      "albo": "FARMACIA NOCERA Sas",
+      "alboLeggibile": "Farmacia Nocera S.a.s.",
+      "indirizzo": "via Basilicata 20/22/24",
+      "indirizzoBreve": "via Basilicata 20",
+      "mappa": "Via Basilicata, 20/22/24, 72023 MESAGNE (BR)",
+      "telefono": "0831 737021",
+      "orari": {
+        "estate": "Dal lunedì al sabato: dalle 8 alle 20:30, senza pausa.",
+        "inverno": "Dal lunedì al sabato: dalle 8 alle 20, senza pausa. Nei giorni festivi di turno: dalle 8 alle 13 e dalle 16 alle 20.",
+        "chiusura": "Nessuna chiusura settimanale.",
+        "ferie": "Non chiude per ferie."
+      },
+      "testoAlbo": "Orario estivo: Lun-Sab: 8:00-20:30 · Orario invernale: Dal 25/10/2026 al 27/03/2026: Lun-Sab: 8:00-20:00-I giorni festivi di turno 8:00-13:00 /16:00-20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
+      "dubbi": [
+        "Nell'albo l'orario invernale vale «dal 25/10/2026 al 27/03/2026»: la seconda data ha l'anno sbagliato (probabilmente 2027)."
+      ]
+    },
+    {
+      "id": "santandrea",
+      "calendario": [
+        "SANTANDREA"
+      ],
+      "insegna": "Farmacia Sant'Andrea",
+      "nomeBreve": "Sant'Andrea",
+      "titolare": null,
+      "albo": "FARMACIA SANT'ANDREA SRL",
+      "alboLeggibile": "Farmacia Sant'Andrea S.r.l.",
+      "indirizzo": "via Mannarino 13",
+      "indirizzoBreve": "via Mannarino 13",
+      "mappa": "Via Mannarino, 13, 72023 MESAGNE (BR)",
+      "telefono": "0831 773032",
+      "orari": {
+        "estate": "Dal lunedì al sabato: dalle 8 alle 13 e dalle 17 alle 20:30.",
+        "inverno": "Dal lunedì al sabato: dalle 8 alle 13 e dalle 16:30 alle 20.",
+        "chiusura": "Nessuna chiusura settimanale.",
+        "ferie": "Non chiude per ferie."
+      },
+      "testoAlbo": "Orario estivo: Lun-Sab: 8:00 – 13:00 / 17:00 – 20:30 · Orario invernale: Lun-Sab: 8:00 – 13:00 / 16:30 – 20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
+      "dubbi": []
+    },
+    {
+      "id": "spalletta",
+      "calendario": [
+        "SPALLETTA"
+      ],
+      "insegna": "Farmacia Spalletta",
+      "nomeBreve": "Spalletta",
+      "titolare": null,
+      "albo": "FARMACIA SPALLETTA SNC",
+      "alboLeggibile": "Farmacia Spalletta S.n.c.",
+      "indirizzo": "via Udine 2 e via Tenente R. Antonucci 134",
+      "indirizzoBreve": "via Udine 2",
+      "mappa": "Via Udine, 2 e Via Ten. R. Antonucci, 134, 72023 MESAGNE (BR)",
+      "telefono": "0831 368631",
+      "orari": {
+        "estate": "Dal lunedì al sabato: dalle 7:30 alle 13:30 e dalle 15:30 alle 21:15.",
+        "inverno": "Dal lunedì al venerdì: dalle 7:30 alle 13:30 e dalle 15 alle 21. Sabato: dalle 8 alle 13 e dalle 16 alle 20:30.",
+        "invernoDaVerificare": true,
+        "chiusura": "Nessuna chiusura settimanale.",
+        "ferie": "Non chiude per ferie."
+      },
+      "testoAlbo": "Orario estivo: Lun-Sab: 7:30 – 13:30 / 15:30 – 21:15 · Orario invernale: Fino al 31/12/2025: Lun.-Ven. 7:30-13:30/15:00-21:00; Sab. 8:00-13:00/16:00-20:30 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
+      "dubbi": [
+        "Nell'albo l'orario invernale vale «fino al 31/12/2025»: è scaduto."
+      ]
+    }
+  ]
+}
