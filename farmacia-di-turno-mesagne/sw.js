@@ -2,7 +2,7 @@
    Cambia CACHE a ogni pubblicazione di index.html: così i telefoni scaricano davvero la versione nuova.
    I file dei turni (turni-AAAA.json) si scaricano sempre dalla rete quando c'è: non serve cambiare CACHE. */
 var PREFISSO = "farmacia-di-turno-mesagne-";
-var CACHE = PREFISSO + "20261010a";
+var CACHE = PREFISSO + "20261010b";
 var PAGINA = "./";
 var FILE = ["./calendari.json", "./farmacie.json", "./numeri.json", "./abbonamenti.json", "./turni-2026.json", "./manifest.webmanifest",
             "./fonts/atkinson-hyperlegible-next-latin.woff2",

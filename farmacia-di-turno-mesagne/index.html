@@ -50,13 +50,15 @@ a{color:inherit}
 
 /* barra in alto */
 .top{background:var(--brand);color:var(--brand-ink);padding-top:env(safe-area-inset-top,0px)}
-.top-in{display:flex;align-items:center;gap:12px;min-height:84px;padding-block:10px}
+.top-in{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;min-height:84px;padding-block:10px}
 .logo{width:44px;height:44px;flex:none}
-.titolo{display:flex;flex-direction:column;min-width:0;line-height:1.15;font-size:1rem}
+.titolo{display:flex;flex-direction:column;flex:1 1 7em;min-width:0;line-height:1.15;font-size:1rem}
+.titolo,.t1,.t2{overflow-wrap:normal}
 .t1{font-weight:800;font-size:1.1rem}
 .t2{font-weight:600;font-size:.95rem;color:var(--brand-ink-2)}
-.sz{margin-left:auto;flex:none;min-width:84px;min-height:64px;padding:6px 10px;border-radius:14px;border:2px solid var(--brand-ink-2);color:var(--brand-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.1;font-weight:800;font-size:.8rem}
-.sz b{font-size:1.25rem}
+.sz{margin-left:auto;flex:none;min-width:84px;min-height:64px;padding:6px 10px;border-radius:14px;border:2px solid var(--brand-ink-2);color:var(--brand-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.1;font-weight:800;font-size:.9rem}
+.sz b{font-size:1.1rem}
+.sz span{display:block}
 .sz[aria-pressed="true"]{background:var(--brand-ink);color:var(--brand)}
 
 .prova{background:var(--avviso-bg);border-bottom:3px solid var(--avviso-line);padding:10px 0;font-weight:700;font-size:.95rem}
@@ -67,9 +69,12 @@ main{padding-block:18px 8px}
 /* riquadro del turno */
 .turno{margin-top:12px;background:var(--surface);border:3px solid var(--box);border-radius:var(--r-xl);padding:18px 16px}
 .turno + .turno{margin-top:16px}
-.tag{display:inline-block;background:var(--tag);color:#fff;font-weight:800;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase;padding:4px 12px;border-radius:8px}
+.turno.poi{border-width:2px;border-color:var(--line-2);padding-block:14px}
+.turno.poi .tag{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink-2)}
+.turno.poi .nome{font-size:1.5rem;font-size:min(1.5rem,11.5cqi)}
+.tag{display:inline-block;background:var(--tag);color:#fff;font-weight:800;font-size:1rem;line-height:1.3;letter-spacing:.05em;text-transform:uppercase;padding:4px 12px;border-radius:8px}
 .frase{font-size:1.1rem;margin-top:12px;color:var(--ink)}
-.nome{font-size:2rem;font-weight:800;line-height:1.1;letter-spacing:-.01em;margin-top:2px;-webkit-hyphens:auto;hyphens:auto}
+.nome{font-size:2rem;font-size:min(2rem,15.5cqi);font-weight:800;line-height:1.1;letter-spacing:-.01em;margin-top:2px}
 .tit{font-size:1.1rem;font-weight:700;margin-top:4px}
 .ind{font-size:1.2rem;margin-top:10px}
 .telefono{font-size:1.2rem;font-weight:700}
@@ -77,20 +82,26 @@ main{padding-block:18px 8px}
 .avviso{margin-top:16px;background:var(--avviso-bg);border-left:6px solid var(--avviso-line);border-radius:10px;padding:12px 14px}
 .avviso b{display:block;font-size:1.1rem}
 .avviso p + p{margin-top:6px}
-.fonte{margin-top:12px;font-size:.9rem;color:var(--muted)}
+.fonte{margin-top:12px;font-size:1rem;color:var(--muted)}
 .fonte a{color:var(--ink-2);text-underline-offset:3px}
 
 /* pulsanti */
-.btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-width:0;min-height:64px;-webkit-hyphens:auto;hyphens:auto;padding:12px 16px;border-radius:14px;background:var(--btn);color:var(--btn-ink);border:2px solid var(--btn);font-weight:800;font-size:1.05rem;line-height:1.2;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;text-align:center}
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-width:0;min-height:64px;padding:12px 16px;border-radius:14px;background:var(--btn);color:var(--btn-ink);border:2px solid var(--btn);font-weight:800;font-size:1.1rem;font-size:min(1.1rem,8.6cqi);line-height:1.2;text-decoration:none;text-align:center}
 .btn > span{display:flex;flex-direction:column;align-items:center;min-width:0}
-.btn,.nome,.nome2,h2,h3{overflow-wrap:anywhere}
+.btn,.nome,.nome2,h2,h3{overflow-wrap:break-word}
 .azioni > *,.coppia > *{min-width:0}
-.btn small{font-size:.95rem;font-weight:700;text-transform:none;letter-spacing:0;margin-top:2px}
+.turno,.scheda,.emergenza,.azioni,.coppia{container-type:inline-size}
+.btn small{font-size:1rem;font-size:min(1rem,8cqi);font-weight:700;margin-top:2px;white-space:nowrap}
+@container (max-width:300px){.btn{flex-direction:column;gap:2px}}
+.num{white-space:nowrap}
 .btn.sec{background:var(--surface);color:var(--ink);border-color:var(--ink-2)}
 .btn.emerg{background:var(--emerg-btn);border-color:var(--emerg-btn);color:#fff}
 .btn[aria-pressed="true"]{box-shadow:inset 0 0 0 4px var(--ring)}
 .coppia{display:grid;gap:12px;margin-top:14px}
 .link-medico{margin-top:16px}
+#servizi{display:none}
+.vista-servizi #servizi{display:block;margin-top:0}
+.vista-servizi main > :not(#servizi){display:none}
 
 /* sezioni */
 .sez{margin-top:40px;scroll-margin-top:12px}
@@ -98,15 +109,16 @@ main{padding-block:18px 8px}
 .lead{color:var(--ink-2);margin-bottom:12px}
 .scheda{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px}
 .scheda + .scheda{margin-top:14px}
-.scheda h3{font-size:1.3rem;font-weight:800;line-height:1.2}
-.scheda .nome2{font-size:1.5rem;font-weight:800;line-height:1.15;margin-top:4px;-webkit-hyphens:auto;hyphens:auto}
+.scheda h3{font-size:1.3rem;font-size:min(1.3rem,10cqi);font-weight:800;line-height:1.2}
+.scheda .nome2{font-size:1.5rem;font-size:min(1.5rem,11.5cqi);font-weight:800;line-height:1.15;margin-top:4px}
 .giorno-t{font-weight:700;margin-top:8px;font-size:1.1rem}
 .riga{margin-top:6px}
 .vuoto{background:var(--surface-2);border:2px dashed var(--line-2);border-radius:var(--r-md);padding:14px;color:var(--ink)}
 
 /* emergenza */
 .emergenza{border:3px solid var(--emerg);background:var(--emerg-bg);border-radius:var(--r-xl);padding:18px 16px}
-.emergenza h3{color:var(--emerg);font-size:1.4rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+.emergenza h3{color:var(--emerg);font-size:1.4rem;font-size:min(1.4rem,10cqi);font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+.emergenza .non{font-size:1.15rem}
 .emergenza p{margin-top:8px;font-size:1.1rem}
 .emergenza .non{font-weight:800}
 
@@ -114,8 +126,8 @@ main{padding-block:18px 8px}
 .sette li{display:block;padding:12px 0;border-top:1px solid var(--line)}
 .sette li:first-child{border-top:0}
 .sette .g{font-weight:800}
-.sette .f{font-size:1.2rem;font-weight:800}
-.sette a{display:inline-flex;align-items:center;min-height:48px;font-weight:700;text-underline-offset:4px}
+.sette .f{font-size:1.2rem;font-size:min(1.2rem,10cqi);font-weight:800}
+.sette a{display:inline-flex;flex-wrap:wrap;align-items:center;column-gap:.3em;min-height:64px;font-weight:700;text-underline-offset:4px}
 .parola{display:inline-block;font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border:2px solid currentColor;border-radius:6px;padding:0 6px;margin-left:6px;vertical-align:2px}
 
 /* elenco farmacie */
@@ -139,8 +151,8 @@ main{padding-block:18px 8px}
 .punti li::before{content:"";position:absolute;left:0;top:.62em;width:.45em;height:.45em;border-radius:50%;background:currentColor}
 
 /* chiedi di toccare per ascoltare (?leggi=1) */
-.tocca{position:fixed;inset:auto 0 0 0;z-index:20;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:3px solid var(--box)}
-.tocca .btn{min-height:84px;font-size:1.2rem}
+.tocca{margin-top:12px}
+.tocca .btn{min-height:84px}
 
 /* piede */
 .piede{margin-top:44px;background:var(--brand);color:var(--brand-ink);padding:24px 0 34px;font-size:.95rem;line-height:1.6}
@@ -155,10 +167,11 @@ main{padding-block:18px 8px}
 .barra-stampa{position:sticky;top:0;z-index:5;background:var(--brand);color:#fff;padding:10px 0}
 .barra-stampa .wrap{display:grid;gap:10px}
 .barra-stampa .btn.sec{background:transparent;color:#fff;border-color:#fff}
+.barra-stampa .btn:not(.sec){background:#fff;color:#123A5E;border-color:#fff}
 .barra-stampa p{font-size:.95rem}
 .anteprima{padding:16px 0 40px;overflow:hidden}
 .scala{transform-origin:top left}
-.foglio{width:210mm;height:297mm;padding:8mm 11mm 7mm;background:#fff;color:#000;font-family:"Atkinson Hyperlegible Next",Arial,sans-serif;font-size:16pt;line-height:1.2;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.35);position:relative}
+.foglio{isolation:isolate;width:210mm;height:297mm;padding:8mm 11mm 7mm;background:#fff;color:#000;font-family:"Atkinson Hyperlegible Next",Arial,sans-serif;font-size:16pt;line-height:1.2;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.35);position:relative}
 .foglio *{color:#000}
 .f-testa{display:flex;justify-content:space-between;align-items:baseline;gap:6mm;border-bottom:.9mm solid #000;padding-bottom:1.5mm}
 .f-testa h1{font-size:19pt;line-height:1.1;font-weight:800}
@@ -175,27 +188,33 @@ main{padding-block:18px 8px}
 .tab td.n{padding-right:7mm}
 .tab td.tel{white-space:nowrap}
 .tab .n{font-weight:800}
-.tab .ti{font-size:.8em;font-weight:700;white-space:nowrap}
+.tab .ti{font-size:.85em;font-weight:700;white-space:nowrap}
 .tab tr.fest td{background:#E2E2E2;border-top:.45mm solid #000;border-bottom:.45mm solid #000}
 .tab tr.fest td.tel{font-weight:800}
-.tab .fe{font-size:.68em;font-weight:800;text-transform:uppercase;letter-spacing:.02em;margin-left:2mm;white-space:nowrap}
-.f-nota{margin-top:2mm;margin-bottom:2mm;font-size:13pt;line-height:1.25;border:.45mm solid #000;border-radius:2mm;padding:1.3mm 3mm}
+.tab .fe{font-size:.75em;font-weight:800;text-transform:uppercase;letter-spacing:.02em;margin-left:2mm;white-space:nowrap}
+.f-nota{margin-top:2mm;margin-bottom:2mm;font-size:14pt;line-height:1.25;border:.45mm solid #000;border-radius:2mm;padding:1.3mm 3mm}
 .f-nota b{font-weight:800}
 .f-basso{margin-top:auto;padding-top:1.8mm;border-top:.45mm solid #000;display:flex;gap:4mm;align-items:center;justify-content:space-between}
-.f-numeri{display:grid;grid-template-columns:auto auto;gap:1mm 8mm;font-size:11.5pt;line-height:1.15}
-.f-numeri b{display:block;font-size:15pt;font-weight:800;white-space:nowrap}
-.f-qr{display:flex;gap:3mm;align-items:center;max-width:72mm;font-size:11pt;line-height:1.25;font-weight:800}
+.f-numeri{display:grid;grid-template-columns:auto auto;gap:1mm 7mm;font-size:13pt;line-height:1.12}
+.f-numeri b{display:block;font-size:17pt;font-weight:800;white-space:nowrap}
+.f-qr{display:flex;gap:3mm;align-items:center;max-width:66mm;font-size:12pt;line-height:1.25;font-weight:800}
 .f-qr svg{width:21mm;height:21mm;flex:none}
-.f-fonte{margin-top:1.5mm;font-size:9pt;line-height:1.3}
+.f-fonte{margin-top:1.5mm;font-size:10.5pt;line-height:1.28}
+.f-compatto .f-nota{font-size:13pt;padding-block:1mm}
+.f-compatto .f-numeri{font-size:12pt}
+.f-compatto .f-numeri b{font-size:15pt}
+.f-compatto .f-qr{font-size:11pt}
+.f-compatto .f-qr svg{width:19mm;height:19mm}
+.f-compatto .f-fonte{font-size:9.5pt}
 .f-da{margin-top:2mm;display:flex;align-items:center;gap:4mm;font-size:13pt;border:.45mm solid #000;border-radius:2mm;padding:1.5mm 3mm}
 .f-da img{height:11mm;width:auto;max-width:38mm;flex:none;object-fit:contain}
-.f-spazi{margin-top:1.5mm;font-size:10pt}
-.f-spazi > p{font-weight:800;font-size:9.5pt;text-transform:uppercase;letter-spacing:.05em}
+.f-spazi{margin-top:1.5mm;font-size:10.5pt}
+.f-spazi > p{font-weight:800;font-size:10pt;text-transform:uppercase;letter-spacing:.05em}
 .f-spazi ul{display:grid;grid-template-columns:repeat(3,1fr);gap:2mm;margin-top:.8mm}
 .f-spazi li{border:.3mm solid #000;border-radius:1.5mm;padding:.8mm 2mm;line-height:1.2}
-.f-spazi b{font-size:11pt}
-.f-esempio{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.f-esempio span{font-size:90pt;font-weight:800;color:#000;opacity:.08;transform:rotate(-30deg)}
+.f-spazi b{font-size:12pt}
+.f-esempio{position:absolute;inset:0;z-index:-1;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.foglio .f-esempio span{font-size:90pt;font-weight:800;color:#DCDCDC;transform:rotate(-30deg)}
 /* cartello per la vetrina */
 .cartello h1{font-size:30pt;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
 .c-oggi{margin-top:6mm;border:1.5mm solid #000;border-radius:4mm;padding:5mm 6mm}
@@ -208,10 +227,14 @@ main{padding-block:18px 8px}
 .cartello .tab{font-size:20pt}
 .cartello .tab td{padding:1.2mm 2mm;line-height:1.2}
 .cartello .tab td.n{padding-right:4mm;white-space:normal}
+.cartello .tab .ind2{display:block;font-size:.75em;font-weight:400}
 .c-di{margin-top:4mm;display:flex;align-items:center;gap:4mm;font-size:16pt;font-weight:800}
 .c-di img{height:16mm;width:auto;max-width:50mm;object-fit:contain}
 
 @media (max-width:360px){
+  .logo{display:none}
+  .t1{font-size:min(1.1rem,6.6vw)}
+  .sz{min-width:72px}
   .wrap{padding-inline:12px}
   .turno{padding:16px 12px}
   .scheda{padding:14px 12px}
@@ -221,8 +244,11 @@ main{padding-block:18px 8px}
 @media print{
   @page{size:A4 portrait;margin:0}
   html,body{background:#fff!important;font-size:12pt}
-  body > :not(.solo-stampa){display:none!important}
-  .solo-stampa{display:block!important}
+  body.in-stampa > :not(.solo-stampa){display:none!important}
+  body.in-stampa .solo-stampa{display:block!important}
+  .sz,.tocca,#ascoltaBox,.link-medico,#servizi,.coppia .btn.sec{display:none!important}
+  .top,.piede{background:#fff!important;color:#000!important}
+  .top *,.piede *{color:#000!important}
   .foglio{box-shadow:none;margin:0;page-break-after:avoid;break-after:avoid}
   .scala{transform:none!important;width:auto!important;height:auto!important}
   .anteprima{padding:0!important;overflow:visible}
@@ -277,17 +303,18 @@ main{padding-block:18px 8px}
   <div class="wrap top-in">
     <svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect x="2" y="2" width="44" height="44" rx="12" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M30.5 9.5a9 9 0 1 0 8 13 7.2 7.2 0 1 1-8-13Z" fill="#FFD166"/><path d="M9 39V25l9-6 9 6v14" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/><path d="M15 39v-8h6v8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg>
     <h1 class="titolo"><span class="t1">Farmacia di turno</span> <span class="t2">Mesagne</span></h1>
-    <button type="button" class="sz" id="testoBtn" aria-pressed="false"><b aria-hidden="true">A+</b>Testo grande</button>
+    <button type="button" class="sz" id="testoBtn" aria-pressed="false"><b aria-hidden="true">A+</b><span>Testo</span> <span>grande</span></button>
   </div>
 </header>
 <div class="prova" id="prova" hidden><div class="wrap" id="provaT"></div></div>
 
 <main class="wrap" id="main">
   <p class="quando" id="quando"></p>
+  <div class="tocca" id="tocca" hidden><button type="button" class="btn" id="toccaBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>Tocca qui per ascoltare il turno</button></div>
   <div id="adesso"><p class="vuoto">Sto caricando i turni…</p></div>
   <div class="coppia" id="ascoltaBox" hidden>
     <button type="button" class="btn sec" id="ascolta" aria-pressed="false" aria-describedby="ascoltaStato"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>Ascolta</button>
-    <p class="sr-only" id="ascoltaStato" aria-live="polite"></p>
+    <p class="msg" id="ascoltaStato" role="status" aria-live="polite" hidden></p>
     <a class="btn sec" id="whatsapp" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5 5.3 15A8 8 0 1 1 9 18.7Z"/></svg>Manda su WhatsApp</a>
   </div>
   <a class="btn sec link-medico" href="#medico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Serve un medico? Numeri utili</a>
@@ -336,15 +363,23 @@ main{padding-block:18px 8px}
       <h3>Lettura ad alta voce</h3>
       <p class="riga">Con questo interruttore, ogni volta che si apre l'app il telefono legge il turno a voce alta. Puoi anche mandare il collegamento che fa la stessa cosa.</p>
       <div class="coppia">
-        <button type="button" class="btn sec" id="leggiSempre" aria-pressed="false">Leggi il turno all'apertura</button>
+        <button type="button" class="btn sec" id="leggiSempre" aria-pressed="false" aria-describedby="leggiStato">Leggi il turno all'apertura</button>
+        <p class="msg" id="leggiStato"></p>
         <button type="button" class="btn sec" id="copiaLeggi">Copia il collegamento che legge da solo</button>
       </div>
       <p class="msg" id="copiaMsg" role="status" aria-live="polite"></p>
     </div>
   </section>
 
-  <section class="sez" id="servizi" aria-labelledby="servT">
-    <h2 id="servT">Servizi a pagamento</h2>
+  <section class="sez" id="altri" aria-labelledby="altriT">
+    <h2 id="altriT">Servizi a pagamento</h2>
+    <p class="lead">Per le farmacie di Mesagne e per chi vuole un foglio personale per un genitore. Il turno resta gratis e uguale per tutte le farmacie.</p>
+    <a class="btn sec" href="?servizi=1">Scopri i servizi a pagamento</a>
+  </section>
+
+  <section class="sez" id="servizi" aria-labelledby="servT" tabindex="-1">
+    <a class="btn sec" href="./"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Torna al turno di oggi</a>
+    <h2 id="servT" style="margin-top:20px">Servizi a pagamento</h2>
     <p class="lead">Il turno è uguale per tutte le farmacie e resta sempre gratis. Questi servizi aiutano a coprire i costi e riguardano solo il foglio stampato.</p>
     <div id="famiglia"></div>
     <div id="perFarmacie"></div>
@@ -354,14 +389,14 @@ main{padding-block:18px 8px}
 <footer class="piede">
   <div class="wrap">
     <p class="dich">Servizio informativo non ufficiale. Fanno fede i turni pubblicati dall'Ordine dei Farmacisti di Brindisi.</p>
-    <p>Questo non è un servizio di emergenza: se una persona sta male in modo grave chiama il 112 o il 118.</p>
+    <p>Questa app non è un servizio di emergenza: se una persona sta male in modo grave chiama il 112 o il 118.</p>
     <p><b>Da dove vengono i dati.</b></p>
     <ul id="fonti"></ul>
     <p>Nessun account, nessun cookie, nessun tracciamento. Le tue scelte (testo grande, lettura a voce, foglio della famiglia) restano solo su questo telefono.</p>
+    <p>Per le farmacie e per le famiglie: <a href="?servizi=1">servizi a pagamento</a>.</p>
     <p>Hai trovato un errore? <a id="segnala" href="#">Scrivi ad Alessandro</a>. Realizzata da <a href="https://benz91x.github.io/">Alessandro Chiri</a>. Dello stesso autore: <a href="https://benz91x.github.io/scadenze-mesagne/">Scadenze Mesagne</a> e <a href="https://benz91x.github.io/differenziata-mesagne/">Differenziata Mesagne</a>.</p>
   </div>
 </footer>
-<div class="tocca" id="tocca" hidden><button type="button" class="btn" id="toccaBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>Tocca qui per ascoltare il turno</button></div>
 </div>
 
 <div class="solo-stampa" id="stampaVista" hidden></div>
@@ -467,10 +502,12 @@ main{padding-block:18px 8px}
   /* il titolare tra parentesi serve quando il calendario usa un nome diverso dall'insegna (es. RUTIGLIANO = Materdomini) */
   function nomeDiversoNelCalendario(x){ return norm(x.insegna).indexOf(norm(x.calendario[0])) < 0; }
   function mostraTitolare(x){ return !!x.titolare && nomeDiversoNelCalendario(x); }
-  function nomeConTitolare(x){ return x.nomeBreve + (mostraTitolare(x) ? " (" + x.titolare + ")" : ""); }
+  function nomeConTitolare(x){ return x.nomeBreve + (mostraTitolare(x) ? " (" + perEsteso(x.titolare) + ")" : ""); }
   function nomeFoglio(x){ return x.nomeBreve + (mostraTitolare(x) ? " (" + maiusc(x.calendario[0].toLowerCase()) + ")" : ""); }
   function nomeFoglioHtml(x){ return esc(x.nomeBreve) + (mostraTitolare(x) ? ' <span class="ti">(' + esc(maiusc(x.calendario[0].toLowerCase())) + ')</span>' : ""); }
-  function parlato(s){ return String(s).replace(/\bdr\.ssa\b/gi, "dottoressa").replace(/\bdott\.ssa\b/gi, "dottoressa").replace(/\bdr\./gi, "dottor").replace(/\bTenente R\./, "Tenente R"); }
+  /* titoli scritti per esteso: niente sigle per chi legge, né per la voce */
+  function perEsteso(s){ return String(s || "").replace(/\bdr\.ssa\s*/gi, "dottoressa ").replace(/\bdott\.ssa\s*/gi, "dottoressa ").replace(/\bdott\.\s*/gi, "dottor ").replace(/\bdr\.\s*/gi, "dottor "); }
+  function parlato(s){ return perEsteso(s).replace(/\bTenente R\./, "Tenente R"); }
   function cifre(tel){ return tel.split(" ").map(function(g){ return g.length > 4 ? g.slice(0, 3).split("").join(" ") + ", " + g.slice(3).split("").join(" ") : g.split("").join(" "); }).join(", "); }
   function telHref(t){ var n = String(t).replace(/\D/g, ""); return "tel:" + (/^0|^3/.test(n) ? "+39" + n : n); }
   function mappaHref(q){ return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q); }
@@ -479,120 +516,126 @@ main{padding-block:18px 8px}
   function inizioNotte(s){ var md = s.slice(5); return minuti(md >= ORARIO.estate[0] && md <= ORARIO.estate[1] ? ORARIO.inizioNotteEstate : ORARIO.inizioNotte); }
   function stato(n){
     var c = minuti(ORARIO.cambio);
-    if (n.min < c) return { fase: "dopo", turno: piu(n.data, -1), poi: n.data };
+    if (n.min < c) return { fase: "dopo", turno: piu(n.data, -1), poi: n.data, presto: n.min < 360 };
     if (n.min >= inizioNotte(n.data)) return { fase: "sera", turno: n.data };
     var p = ORARIO.pausaPranzo, inPausa = !festivo(n.data) && n.min >= minuti(p[0]) && n.min < minuti(p[1]);
     return { fase: "giorno", turno: n.data, pausa: inPausa };
   }
-  function chiave(n){ var s = stato(n); return n.data + "|" + s.fase + "|" + (s.pausa ? 1 : 0); }
+  function chiave(n){ var s = stato(n); return n.data + "|" + s.fase + "|" + (s.pausa ? 1 : 0) + (s.presto ? 1 : 0); }
 
   /* ======== pezzi di pagina ======== */
-  function bottoneChiama(x, testo){
-    return '<a class="btn" href="' + telHref(x.telefono) + '">' + ICO.tel + '<span>' + esc(testo || "Chiama la farmacia") + '<small>' + esc(x.telefono) + '</small></span></a>';
+  var NUOVA = '<span class="sr-only"> (si apre in un\'altra finestra)</span>';
+  function sr(t){ return '<span class="sr-only">' + esc(t) + '</span>'; }
+  function bottoneChiama(x, testo, sec){
+    return '<a class="btn' + (sec ? ' sec' : '') + '" href="' + telHref(x.telefono) + '">' + ICO.tel + '<span>' + esc(testo || "Chiama la farmacia") + sr(" " + x.nomeBreve) + '<small class="num">' + esc(x.telefono) + '</small></span></a>';
   }
-  function bottoneMappa(q){
-    return '<a class="btn sec" href="' + esc(mappaHref(q)) + '" target="_blank" rel="noopener">' + ICO.mappa + 'Come arrivarci</a>';
+  function bottoneMappa(q, chi){
+    return '<a class="btn sec" href="' + esc(mappaHref(q)) + '" target="_blank" rel="noopener">' + ICO.mappa + '<span>Come arrivarci' + (chi ? sr(": " + chi) : "") + NUOVA + '</span></a>';
   }
   function fonteTurni(s){
     var m = annoNelCalendario(s);
     if (!m) return "";
-    return '<p class="fonte">Calendario ufficiale dell\'<a href="' + PAGINA_ORDINE + '" target="_blank" rel="noopener">Ordine dei Farmacisti di Brindisi</a>' +
-      (m.aggiornato ? ', aggiornato il ' + dataLunga(m.aggiornato) : '') + '. Dati controllati il ' + dataLunga(m.controllato) + '.</p>';
+    return '<p class="fonte">Turni dal calendario ufficiale dell\'<a href="' + PAGINA_ORDINE + '" target="_blank" rel="noopener">Ordine dei Farmacisti di Brindisi' + NUOVA + '</a>. Ultimo controllo dei dati: ' + dataLunga(m.controllato) + '.</p>';
   }
+  /* quando un turno manca: la prima volta la spiegazione intera con cosa fare, poi una riga sola */
+  var MANCA_DETTO = false;
   function mancaTurno(s){
-    var anno = s.slice(0, 4);
-    var perche = FONTE_DI[s] ? "Nel calendario ufficiale questo giorno non si legge con sicurezza." : "L'Ordine dei Farmacisti non ha ancora pubblicato il calendario dei turni del " + anno + ", oppure l'app non è ancora stata aggiornata.";
-    return '<p class="vuoto"><b>Non abbiamo il turno di ' + esc(inParole(s)) + '.</b> ' + perche + ' Il cartello dei turni è esposto fuori da ogni farmacia. Puoi anche guardare sul <a href="' + PAGINA_ORDINE + '" target="_blank" rel="noopener">sito dell\'Ordine dei Farmacisti</a>.</p>';
+    if (MANCA_DETTO) return '<p class="vuoto">Il turno di ' + esc(inParole(s)) + ' non è ancora disponibile.</p>';
+    MANCA_DETTO = true;
+    var perche = FONTE_DI[s] ? "nel calendario ufficiale questo giorno non si legge con sicurezza."
+      : "l'Ordine dei Farmacisti non ha ancora pubblicato i turni del " + s.slice(0, 4) + ".";
+    return '<div class="vuoto"><p><b>Il turno di ' + esc(inParole(s)) + ' non è ancora disponibile:</b> ' + perche + '</p>' +
+      '<p class="riga">Il cartello con i turni è appeso fuori da ogni farmacia. Si può anche telefonare a una farmacia e chiedere.</p>' +
+      '<div class="azioni"><a class="btn sec" href="#farmacie">Telefoni delle farmacie</a><a class="btn sec" href="#medico">Serve un medico?</a></div></div>';
   }
 
-  function riquadro(tag, frase, s, x, extra){
-    return '<section class="turno" aria-label="' + esc(tag) + '"><p class="tag">' + esc(tag) + '</p>' +
-      '<p class="frase">' + esc(frase) + '</p>' +
+  function riquadro(o){
+    var x = o.x;
+    return '<section class="turno' + (o.poi ? ' poi' : '') + '" aria-labelledby="' + o.id + '"><h2 class="tag" id="' + o.id + '">' + esc(o.tag) + '</h2>' +
+      '<p class="frase">' + esc(o.frase) + '</p>' +
       '<p class="nome">' + esc(x.nomeBreve) + '</p>' +
-      (mostraTitolare(x) ? '<p class="tit">(' + esc(x.titolare) + ')</p>' : '') +
-      '<p class="ind">' + esc(maiusc(x.indirizzo)) + '</p>' +
-      '<p class="telefono">Telefono ' + esc(x.telefono) + '</p>' +
-      '<div class="azioni">' + bottoneChiama(x) + bottoneMappa(x.mappa) + '</div>' +
-      (extra || '') + fonteTurni(s) + '</section>';
+      (mostraTitolare(x) ? '<p class="tit">(' + esc(perEsteso(x.titolare)) + ')</p>' : '') +
+      '<p class="ind">' + esc(maiusc(o.poi ? x.indirizzoBreve : x.indirizzo)) + '</p>' +
+      '<p class="telefono">Telefono <span class="num">' + esc(x.telefono) + '</span></p>' +
+      '<div class="azioni">' + bottoneChiama(x, null, o.poi) + (o.poi ? '' : bottoneMappa(x.mappa, x.nomeBreve)) + '</div>' +
+      (o.extra || '') + (o.poi ? '' : fonteTurni(o.s)) + '</section>';
   }
-
   function avvisoNotte(){
-    return '<p>Di notte la farmacia di turno può essere chiusa, con il farmacista che arriva dopo la tua telefonata. Il numero da chiamare è scritto anche sul cartello fuori dalla farmacia.</p>';
+    return '<p>Di notte la farmacia può essere chiusa: il farmacista viene ad aprire dopo la tua telefonata. Il numero da chiamare è scritto anche sul cartello fuori dalla farmacia.</p>';
   }
+  function telVoce(x){ return "Il telefono è: " + cifre(x.telefono) + ". Ripeto: " + cifre(x.telefono) + "."; }
+  function nottePerWa(d){ return "Notte tra " + GIORNI[sett(d)] + " " + (+d.slice(8)) + (d.slice(5, 7) === piu(d, 1).slice(5, 7) ? "" : " " + MESI[+d.slice(5, 7) - 1]) + " e " + inParole(piu(d, 1)); }
+  function perWa(x){ return "la farmacia " + nomeConTitolare(x) + ", " + x.indirizzoBreve + ", telefono " + x.telefono + "."; }
 
-  var TESTO_VOCE = "", TESTO_WA = "";
+  var TESTO_VOCE = [], TESTO_WA = "";
   function disegnaAdesso(){
     var n = ADESSO, s = stato(n), h = "";
-    var giorno = maiusc(inParole(n.data));
-    $("quando").textContent = giorno + ", ore " + Math.floor(n.min / 60) + ":" + pad(n.min % 60);
+    $("quando").textContent = maiusc(inParole(n.data)) + ", ore " + Math.floor(n.min / 60) + ":" + pad(n.min % 60);
     var x = f(turnoDel(s.turno));
     var voce = [], wa = [];
+    var cambio = oraTesto(minuti(ORARIO.cambio));
 
     if (s.fase === "dopo") {
       var y = f(turnoDel(s.poi));
-      var ieri = inParole(s.turno), oggi = inParole(s.poi);
-      var cambio = minuti(ORARIO.cambio);
+      var gIeri = GIORNI[sett(s.turno)], gOggi = GIORNI[sett(s.poi)];
       if (x && y && x.id === y.id) {
-        h += riquadro("Di turno adesso", "Stanotte e per tutta la giornata di oggi, " + oggi + ", è di turno la farmacia", s.poi, x,
-          '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte() + '</div>');
-        voce.push("Stanotte e per tutta la giornata di oggi è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".");
-        wa.push("Stanotte e oggi a Mesagne è di turno la farmacia " + nomeConTitolare(x) + ", " + x.indirizzoBreve + ", tel. " + x.telefono + ".");
+        h += riquadro({ id: "tA", tag: "Di turno adesso", frase: "Stanotte e per tutta la giornata di oggi è di turno la farmacia", s: s.poi, x: x,
+          extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte() + '</div>' });
+        voce.push("Stanotte e per tutta la giornata di oggi è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
+        wa.push(nottePerWa(s.turno) + " e giornata di " + inParole(s.poi) + ": a Mesagne è di turno " + perWa(x));
       } else {
-        var incerto = !ORARIO.confermato
-          ? '<p>Il turno di notte di solito finisce alle ' + oraTesto(cambio) + ' del mattino: a quell\'ora comincia il turno di oggi. Non è ancora confermato per Mesagne: se una farmacia non risponde, chiama l\'altra.</p>'
-          : '';
         if (x) {
-          h += riquadro("Di turno adesso", "Stanotte, tra " + ieri + " e " + oggi + ", è di turno la farmacia", s.turno, x,
-            '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte() + incerto + '</div>');
-          voce.push("Stanotte è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ". Il telefono è: " + cifre(x.telefono) + ".");
-          wa.push("Stanotte a Mesagne è di turno la farmacia " + nomeConTitolare(x) + ", " + x.indirizzoBreve + ", tel. " + x.telefono + ".");
+          var frase = s.presto ? "Questa notte, da " + gIeri + " sera a " + gOggi + " mattina, è di turno la farmacia" : "Fino alle " + cambio + " di stamattina è di turno la farmacia";
+          var piuSotto = y ? '<p><b>Se non risponde, chiama la farmacia ' + esc(y.nomeBreve) + '</b>, qui sotto: il turno di notte di solito finisce alle ' + cambio + ' del mattino.</p>' : '';
+          h += riquadro({ id: "tA", tag: "Di turno adesso", frase: frase, s: s.turno, x: x,
+            extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte() + piuSotto + '</div>' });
+          voce.push((s.presto ? "Questa notte" : "Fino alle " + cambio + " di stamattina") + " è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
+          wa.push(nottePerWa(s.turno) + ": a Mesagne è di turno " + perWa(x));
         } else h += mancaTurno(s.turno);
         if (y) {
-          h += riquadro("Da stamattina alle " + oraTesto(cambio), "Il turno di oggi, " + oggi + ", è della farmacia", s.poi, y,
-            '<div class="avviso"><b>Chiama prima di andare.</b></div>');
-          voce.push("Da stamattina alle " + oraTesto(cambio) + " è di turno la farmacia " + nomeConTitolare(y) + ", in " + y.indirizzoBreve + ". Il telefono è: " + cifre(y.telefono) + ".");
-          wa.push("Da stamattina alle " + oraTesto(cambio) + ": farmacia " + nomeConTitolare(y) + ", " + y.indirizzoBreve + ", tel. " + y.telefono + ".");
+          h += riquadro({ id: "tB", poi: true, tag: "Dalle " + cambio + " di stamattina", frase: "Da " + gOggi + " mattina alle " + cambio + " è di turno la farmacia", s: s.poi, x: y });
+          voce.push((x ? "Se non risponde, chiama la farmacia " : "Da stamattina alle " + cambio + " è di turno la farmacia ") + nomeConTitolare(y) + ", in " + y.indirizzoBreve + ".", telVoce(y));
+          wa.push("Da " + gOggi + " mattina alle " + cambio + ": " + perWa(y));
         } else h += mancaTurno(s.poi);
       }
     } else if (x) {
-      var sera = s.fase === "sera";
-      var frase = sera ? "Stanotte, tra " + inParole(n.data) + " e " + inParole(piu(n.data, 1)) + ", è di turno la farmacia"
-        : "Oggi, " + inParole(n.data) + ", è di turno la farmacia";
-      var extra = '<div class="avviso"><b>Chiama prima di andare.</b>' + (sera ? avvisoNotte() :
-        (!festivo(n.data) && !s.pausa ? '<p>Di giorno, negli orari normali, sono aperte anche le altre farmacie: gli orari sono nell\'elenco più sotto.</p>' : '')) + '</div>';
-      h += riquadro("Di turno adesso", frase, s.turno, x, extra);
-      voce.push((sera ? "Stanotte" : "Oggi, " + inParole(n.data) + ",") + " è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ". Il telefono è: " + cifre(x.telefono) + ".");
-      wa.push((sera ? "Stanotte" : "Oggi, " + inParole(n.data) + ",") + " a Mesagne è di turno la farmacia " + nomeConTitolare(x) + ", " + x.indirizzoBreve + ", tel. " + x.telefono + ".");
+      var sera = s.fase === "sera", fest = festivo(n.data);
+      var frase2 = sera ? "Stanotte, da " + GIORNI[sett(n.data)] + " sera a " + GIORNI[sett(piu(n.data, 1))] + " mattina, è di turno la farmacia" : "Oggi è di turno la farmacia";
+      var nota = sera ? avvisoNotte()
+        : fest ? '<p>Oggi è festa: di regola è aperta solo la farmacia di turno.</p>'
+        : !s.pausa ? '<p>Di giorno, negli orari normali, sono aperte anche le altre farmacie: gli orari sono nell\'elenco più sotto.</p>' : '';
+      h += riquadro({ id: "tA", tag: "Di turno adesso", frase: frase2, s: s.turno, x: x, extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + nota + '</div>' });
+      voce.push((sera ? "Stanotte" : "Oggi, " + inParole(n.data) + ",") + " è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
+      wa.push(sera ? nottePerWa(n.data) + ": a Mesagne è di turno " + perWa(x) : "Oggi, " + inParole(n.data) + ", a Mesagne è di turno " + perWa(x));
     } else {
       h += mancaTurno(s.turno);
     }
     $("adesso").innerHTML = h;
-    TESTO_VOCE = voce.length ? parlato(voce.join(" ") + " Chiama prima di andare.") : "";
-    TESTO_WA = wa.length ? wa.join(" ") + " Chiama prima di andare. Fonte: calendario dell'Ordine dei Farmacisti. Tutti i turni: " + URL_APP : "";
-    $("ascoltaBox").hidden = !TESTO_VOCE && !TESTO_WA;
-    $("ascolta").hidden = !TESTO_VOCE || !("speechSynthesis" in window);
+    TESTO_VOCE = voce.length ? voce.concat(["Chiama prima di andare."]).map(parlato) : [];
+    TESTO_WA = wa.length ? wa.join(" ").replace(/\bdr\.ssa\s*/gi, "dottoressa ").replace(/\bdr\.\s*/gi, "dottor ") + " Chiama prima di andare. Fonte: calendario dell'Ordine dei Farmacisti. Tutti i turni: " + URL_APP : "";
+    $("ascoltaBox").hidden = !TESTO_VOCE.length && !TESTO_WA;
+    $("ascolta").hidden = !TESTO_VOCE.length || !("speechSynthesis" in window);
     $("whatsapp").hidden = !TESTO_WA;
     $("whatsapp").href = "https://wa.me/?text=" + encodeURIComponent(TESTO_WA);
   }
 
-  function schedaGiorno(tag, s){
+  function schedaGiorno(s){
     var x = f(turnoDel(s));
     if (!x) return mancaTurno(s);
-    var fe = nomeFesta(s);
+    var fe = nomeFesta(s) || (festivo(s) && sett(s) !== 0 ? "festivo" : "");
     return '<div class="scheda">' +
       '<p class="giorno-t" style="margin-top:0">' + esc(maiusc(inParole(s))) + (fe ? ' · ' + esc(fe) : '') + '</p>' +
       '<p class="nome2">Farmacia ' + esc(nomeConTitolare(x)) + '</p>' +
-      '<p class="riga">' + esc(maiusc(x.indirizzo)) + '</p>' +
+      '<p class="riga">' + esc(maiusc(x.indirizzoBreve)) + '</p>' +
       '<div class="azioni">' + bottoneChiama(x) + '</div></div>';
   }
   function disegnaDomani(){
     var base = ADESSO.data;
-    var domani = piu(base, 1);
-    $("domani").innerHTML = schedaGiorno("Domani", domani);
+    $("domani").innerHTML = schedaGiorno(piu(base, 1));
     var d = piu(base, 2), limite = piu(base, 400);
     while (!festivo(d) && d < limite) d = piu(d, 1);
     $("festT").textContent = sett(d) === 0 ? "Prossima domenica" : "Prossimo giorno festivo";
-    $("festivo").innerHTML = schedaGiorno(sett(d) === 0 ? "Domenica" : "Festivo", d);
+    $("festivo").innerHTML = schedaGiorno(d);
   }
 
   function disegnaSette(){
@@ -602,8 +645,8 @@ main{padding-block:18px 8px}
       var quale = i === 0 ? "Oggi, " + inParole(d) : i === 1 ? "Domani, " + inParole(d) : maiusc(inParole(d));
       var fe = nomeFesta(d) ? ' · ' + esc(nomeFesta(d)) : (festivo(d) && sett(d) !== 0 ? ' · festivo' : '');
       h += '<li><p class="g">' + esc(quale) + fe + '</p>' +
-        (x ? '<p class="f">' + esc(nomeConTitolare(x)) + '</p><p>' + esc(maiusc(x.indirizzoBreve)) + '</p><p><a href="' + telHref(x.telefono) + '">Telefono ' + esc(x.telefono) + '</a></p>'
-           : '<p>Turno non ancora nel calendario.</p>') + '</li>';
+        (x ? '<p class="f">' + esc(nomeConTitolare(x)) + '</p><p>' + esc(maiusc(x.indirizzoBreve)) + '</p><p><a href="' + telHref(x.telefono) + '">Telefono <span class="num">' + esc(x.telefono) + '</span>' + sr(", chiama la farmacia " + x.nomeBreve) + '</a></p>'
+           : '<p>Turno non ancora disponibile.</p>') + '</li>';
     }
     $("sette").innerHTML = h;
   }
@@ -626,54 +669,54 @@ main{padding-block:18px 8px}
     var src = ALBO || {};
     $("farmT").textContent = "Le " + ELENCO.length + " farmacie di Mesagne";
     $("farmLead").innerHTML = "Indirizzi, telefoni e orari dall'albo dell'Ordine dei Farmacisti, controllato il " + esc(dataLunga(src.controllato || "2026-10-10")) + ". Gli orari possono cambiare: chiama prima di andare.";
+    var mese = +ADESSO.data.slice(5, 7), inverno = mese >= 10 || mese <= 3;
     var lista = ELENCO.slice().sort(function(a, b){ return a.nomeBreve.localeCompare(b.nomeBreve, "it"); });
     $("elenco").innerHTML = lista.map(function(x){
       var p = prossimoTurno(x.id), o = x.orari || {};
-      var cal = nomeDiversoNelCalendario(x) ? '<p class="riga">Nel calendario dei turni: <b>' + esc(x.calendario[0]) + '</b></p>' : '';
+      var cal = nomeDiversoNelCalendario(x) ? '<p class="riga">Nel calendario dei turni si chiama <b>' + esc(maiusc(x.calendario[0].toLowerCase())) + '</b>.</p>' : '';
+      var inv = o.inverno ? '<p><b>Orario d\'inverno.</b> ' + esc(o.inverno) + (o.invernoDaVerificare ? ' <b>Orario non confermato: chiama prima di andare.</b>' : '') + '</p>' : '';
+      var est = o.estate ? '<p><b>Orario d\'estate.</b> ' + esc(o.estate) + '</p>' : '';
       return '<article class="scheda" aria-labelledby="f-' + x.id + '"><h3 id="f-' + x.id + '">' + esc(x.insegna) + '</h3>' +
-        (x.titolare ? '<p class="riga">Titolare: ' + esc(x.titolare) + '</p>' : '') + cal +
+        (x.titolare ? '<p class="riga">Titolare: ' + esc(perEsteso(x.titolare)) + '</p>' : '') + cal +
         serviziDi(x.id) +
         '<p class="riga">' + esc(maiusc(x.indirizzo)) + '</p>' +
         '<p class="prossimo">' + (p ? (p === "oggi" ? "È di turno oggi." : "Prossimo turno: " + esc(p) + ".") : "Prossimo turno: non ancora nel calendario.") + '</p>' +
-        '<div class="azioni">' + bottoneChiama(x) + bottoneMappa(x.mappa) + '</div>' +
-        '<div class="orari">' +
-          (o.inverno ? '<p><b>Orario d\'inverno.</b> ' + esc(o.inverno) + (o.invernoDaVerificare ? ' <i>(da verificare)</i>' : '') + '</p>' : '') +
-          (o.estate ? '<p><b>Orario d\'estate.</b> ' + esc(o.estate) + '</p>' : '') +
+        '<div class="azioni">' + bottoneChiama(x) + bottoneMappa(x.mappa, x.insegna) + '</div>' +
+        '<div class="orari">' + (inverno ? inv + est : est + inv) +
           (o.chiusura ? '<p>' + esc(o.chiusura) + ' ' + esc(o.ferie || "") + '</p>' : '') +
           (!o.inverno && !o.estate ? '<p>Orari non indicati nell\'albo.</p>' : '') +
         '</div></article>';
     }).join("");
   }
 
-  function riga(titolo, corpo){ return '<div class="scheda"><h3>' + esc(titolo) + '</h3>' + corpo + '</div>'; }
   function fonteNum(x){
     if (!x || !NUMERI) return "";
     var s = NUMERI.fonti[x.fonte] || {};
-    return '<p class="fonte">Fonte: ' + (s.url ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.nome) + '</a>' : esc(s.nome || "")) + '. Controllato il ' + esc(dataLunga(x.controllato)) + '.</p>';
+    return '<p class="fonte">Fonte: ' + (s.url ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.nome) + NUOVA + '</a>' : esc(s.nome || "")) + '. Controllato il ' + esc(dataLunga(x.controllato)) + '.</p>';
   }
-  function bottoneNumero(n, testo){ return '<a class="btn" href="' + telHref(n) + '">' + ICO.tel + '<span>' + esc(testo) + '<small>' + esc(n) + '</small></span></a>'; }
+  function bottoneNumero(n, testo){ return '<a class="btn" href="' + telHref(n) + '">' + ICO.tel + '<span>' + esc(testo) + '<small class="num">' + esc(n) + '</small></span></a>'; }
   function disegnaMedico(){
     if (!NUMERI) { $("medicoBox").innerHTML = '<p class="vuoto">Non riesco a caricare i numeri utili. Per un\'emergenza chiama il 112 o il 118.</p>'; return; }
     var N = NUMERI, h = "";
-    h += '<div class="emergenza"><h3>Emergenza</h3><p>Se una persona sta male in modo grave, chiama subito:</p><div class="azioni">' +
+    h += '<div class="emergenza"><h3>Emergenza</h3><p class="non">Questa app non è un servizio di emergenza.</p><p>Se una persona sta male in modo grave, chiama subito:</p><div class="azioni">' +
       N.emergenza.numeri.map(function(e){ return '<a class="btn emerg" href="tel:' + e.numero + '">' + ICO.tel + '<span>Chiama il ' + e.numero + '<small>' + esc(e.nome) + '</small></span></a>'; }).join("") +
-      '</div><p class="non">Questo non è un servizio di emergenza.</p></div>';
+      '</div></div>';
 
     var g = N.guardiaMedica, gm = g.usa116117 ? g.nuovo : g.mesagne;
     h += '<div class="scheda" style="margin-top:16px"><h3>' + esc(gm.nome) + '</h3>' +
       '<p class="riga">Quando il medico di famiglia non c\'è: di notte, nei fine settimana e nei giorni festivi.</p>' +
       (g.usa116117 ? '<p class="riga">' + esc(gm.descrizione) + '</p>'
-        : '<p class="riga">' + esc(maiusc(gm.indirizzo)) + '</p><p class="riga">' + (gm.orari ? esc(gm.orari) : 'Orari: l\'ASL non li pubblica (da verificare). Chiama prima di andare.') + '</p>') +
-      '<div class="azioni">' + bottoneNumero(gm.telefono, "Chiama la guardia medica") + (g.usa116117 ? '' : bottoneMappa(gm.mappa)) + '</div>' + fonteNum(gm) + '</div>';
+        : '<p class="riga">' + esc(maiusc(gm.indirizzo)) + '</p><p class="riga">' + (gm.orari ? esc(gm.orari) : 'Gli orari esatti non sono pubblicati: chiama prima di andare.') + '</p>') +
+      '<div class="azioni">' + bottoneNumero(gm.telefono, "Chiama la guardia medica") + (g.usa116117 ? '' : bottoneMappa(gm.mappa, "guardia medica")) + '</div>' + fonteNum(gm) + '</div>';
 
     var ps = N.prontoSoccorso;
     h += '<div class="scheda"><h3>' + esc(ps.nome) + '</h3><p class="riga">' + esc(ps.nota) + '</p><p class="riga">' + esc(ps.dove) + '.</p>' +
       '<p class="riga"><b>Per un\'emergenza non metterti in viaggio da solo: chiama il 118.</b></p>' +
-      '<div class="azioni">' + bottoneNumero(ps.telefono, "Chiama il pronto soccorso") + bottoneMappa(ps.mappa) + '</div>' + fonteNum(ps) + '</div>';
+      '<div class="azioni">' + bottoneNumero(ps.telefono, "Chiama il pronto soccorso") + bottoneMappa(ps.mappa, "pronto soccorso") + '</div>' + fonteNum(ps) + '</div>';
 
     var c = N.cup;
-    h += '<div class="scheda"><h3>' + esc(c.nome) + '</h3><p class="riga">Il numero cambia se chiami dal telefono di casa o dal cellulare.</p><p class="riga">' + esc(c.orari) + '</p>' +
-      '<div class="azioni">' + bottoneNumero(c.fisso, "Dal telefono di casa") + bottoneNumero(c.cellulare, "Dal cellulare") + '</div>' +
+    h += '<div class="scheda"><h3>' + esc(c.nome) + '</h3><p class="riga">Il numero cambia se chiami dal cellulare o dal telefono fisso di casa.</p><p class="riga">' + esc(c.orari) + '</p>' +
+      '<div class="azioni">' + bottoneNumero(c.cellulare, "Chiama il CUP dal cellulare") + bottoneNumero(c.fisso, "Dal telefono fisso di casa (numero verde)") + '</div>' +
       '<p class="riga">' + esc(c.sportello) + '</p>' + fonteNum(c) + '</div>';
 
     var p = N.prelievi;
@@ -682,24 +725,25 @@ main{padding-block:18px 8px}
     $("medicoBox").innerHTML = h;
   }
 
+  /* il foglio di un mese si offre solo se il calendario ha tutti i giorni di quel mese */
+  function meseCompleto(m){ var d = m + "-01"; while (d.slice(0, 7) === m) { if (!turnoDel(d)) return false; d = piu(d, 1); } return true; }
   function disegnaStampa(){
     var m0 = ADESSO.data.slice(0, 7), m1 = piu(m0 + "-28", 7).slice(0, 7);
     $("stampaBtn").innerHTML = [m0, m1].map(function(m){
-      var ok = Object.keys(TURNI).some(function(d){ return d.slice(0, 7) === m; });
       var nome = MESI[+m.slice(5) - 1] + " " + m.slice(0, 4);
-      return ok ? '<a class="btn" href="?foglio=' + m + '">' + ICO.stampa + 'Foglio di ' + esc(nome) + '</a>'
-        : '<p class="vuoto">Il foglio di ' + esc(nome) + ' sarà pronto quando l\'Ordine pubblicherà il calendario.</p>';
+      return meseCompleto(m) ? '<a class="btn" href="?foglio=' + m + '">' + ICO.stampa + 'Foglio di ' + esc(nome) + '</a>'
+        : '<p class="vuoto">Il foglio di ' + esc(nome) + ' sarà pronto quando l\'Ordine dei Farmacisti pubblicherà i turni di tutto il mese.</p>';
     }).join("");
   }
 
   function disegnaFonti(){
     var t = annoNelCalendario(ADESSO.data) || META[ADESSO.data.slice(0, 4)] || {};
     var li = [
-      '<li>Turni: <a href="' + PAGINA_ORDINE + '" target="_blank" rel="noopener">calendario dell\'Ordine dei Farmacisti della Provincia di Brindisi</a>' + (t.aggiornato ? ' (aggiornato il ' + dataLunga(t.aggiornato) + ')' : '') + '.</li>',
-      '<li>Farmacie: <a href="https://www.ordinefarmacistibrindisi.it/farmacie/elenco-delle-farmacie.html" target="_blank" rel="noopener">albo delle farmacie dell\'Ordine</a>.</li>'
+      '<li>Turni: <a href="' + PAGINA_ORDINE + '" target="_blank" rel="noopener">calendario dell\'Ordine dei Farmacisti della Provincia di Brindisi' + NUOVA + '</a>' + (t.aggiornato ? ' (aggiornato il ' + dataLunga(t.aggiornato) + ')' : '') + '.</li>',
+      '<li>Farmacie: <a href="https://www.ordinefarmacistibrindisi.it/farmacie/elenco-delle-farmacie.html" target="_blank" rel="noopener">albo delle farmacie dell\'Ordine' + NUOVA + '</a>.</li>'
     ];
-    if (NUMERI) li.push('<li>Numeri della salute: <a href="' + esc(NUMERI.fonti.asl.url) + '" target="_blank" rel="noopener">' + esc(NUMERI.fonti.asl.nome) + '</a>.</li>',
-      '<li>Orari dei turni: <a href="' + esc(NUMERI.fonti.legge.url) + '" target="_blank" rel="noopener">' + esc(NUMERI.fonti.legge.nome) + '</a>.</li>');
+    if (NUMERI) li.push('<li>Numeri della salute: <a href="' + esc(NUMERI.fonti.asl.url) + '" target="_blank" rel="noopener">' + esc(NUMERI.fonti.asl.nome) + NUOVA + '</a>.</li>',
+      '<li>Orari dei turni: <a href="' + esc(NUMERI.fonti.legge.url) + '" target="_blank" rel="noopener">' + esc(NUMERI.fonti.legge.nome) + NUOVA + '</a>.</li>');
     $("fonti").innerHTML = li.join("");
     $("segnala").href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Farmacia di turno Mesagne: errore") + "&body=" + encodeURIComponent("Ciao, ho trovato un errore:\n\n");
   }
@@ -800,33 +844,45 @@ main{padding-block:18px 8px}
   }
 
   /* ======== voce ======== */
-  var parla = null;
+  /* si legge una frase alla volta: alcune voci dei telefoni si interrompono con i testi lunghi */
   function voceItaliana(){
     var v = window.speechSynthesis ? speechSynthesis.getVoices() : [];
     return v.filter(function(x){ return /^it(-|_|$)/i.test(x.lang); }).sort(function(a, b){ return (b.localService ? 1 : 0) - (a.localService ? 1 : 0); })[0] || null;
   }
-  function fermaVoce(){ try { speechSynthesis.cancel(); } catch(e) {} $("ascolta").setAttribute("aria-pressed", "false"); $("ascoltaStato").textContent = ""; }
+  function statoVoce(on){
+    $("ascolta").setAttribute("aria-pressed", on ? "true" : "false");
+    var m = $("ascoltaStato"); m.hidden = !on; m.textContent = on ? "Sto leggendo. Tocca di nuovo «Ascolta» per fermare." : "";
+  }
+  function fermaVoce(){ try { speechSynthesis.cancel(); } catch(e) {} statoVoce(false); }
   function leggiAdAltaVoce(alAvvio){
-    if (!("speechSynthesis" in window) || !TESTO_VOCE) return;
+    if (!("speechSynthesis" in window) || !TESTO_VOCE.length) return;
     try { speechSynthesis.cancel(); } catch(e) {}
-    var u = new SpeechSynthesisUtterance(TESTO_VOCE);
-    u.lang = "it-IT"; u.rate = 0.85; u.pitch = 1;
-    var v = voceItaliana(); if (v) u.voice = v;
-    var partita = false;
-    u.onstart = function(){ partita = true; $("tocca").hidden = true; $("ascolta").setAttribute("aria-pressed", "true"); $("ascoltaStato").textContent = "Sto leggendo il turno. Tocca di nuovo Ascolta per fermare."; };
-    u.onend = u.onerror = function(e){
-      $("ascolta").setAttribute("aria-pressed", "false"); $("ascoltaStato").textContent = "";
-      if (alAvvio && !partita && e && e.error === "not-allowed") $("tocca").hidden = false;
-    };
-    parla = u;
-    speechSynthesis.speak(u);
+    var v = voceItaliana(), partita = false, frasi = TESTO_VOCE.slice();
+    frasi.forEach(function(t, i){
+      var u = new SpeechSynthesisUtterance(t);
+      u.lang = "it-IT"; u.rate = 0.85; u.pitch = 1; if (v) u.voice = v;
+      u.onstart = function(){ if (!partita) { partita = true; $("tocca").hidden = true; statoVoce(true); } };
+      if (i === frasi.length - 1) u.onend = function(){ statoVoce(false); };
+      u.onerror = function(e){
+        if (e && (e.error === "interrupted" || e.error === "canceled")) return;
+        statoVoce(false);
+        if (alAvvio && !partita && e && e.error === "not-allowed") $("tocca").hidden = false;
+      };
+      speechSynthesis.speak(u);
+    });
     if (alAvvio) setTimeout(function(){ if (!partita && !speechSynthesis.speaking) $("tocca").hidden = false; }, 1500);
+  }
+  function statoLeggi(){
+    var on = !!leggi("ftm-leggi", null);
+    $("leggiSempre").setAttribute("aria-pressed", on ? "true" : "false");
+    $("leggiStato").innerHTML = "Adesso la lettura all'apertura è <b>" + (on ? "accesa" : "spenta") + "</b>.";
   }
 
   /* ======== disegno di tutto, con il focus che resta dov'era ======== */
   function disegnaTutto(){
     var a = document.activeElement, idA = a && a.id, href = a && a.getAttribute && a.getAttribute("href"), testo = a && a.textContent;
     var dentro = a && a.closest && a.closest("main");
+    MANCA_DETTO = false;
     disegnaAdesso(); disegnaDomani(); disegnaMedico(); disegnaSette(); disegnaElenco(); disegnaStampa(); disegnaFamiglia(); disegnaPerFarmacie(); disegnaFonti();
     if (dentro && !document.contains(a)) {
       var nuovo = (idA && $(idA)) || [].slice.call(document.querySelectorAll("main a, main button")).filter(function(x){ return x.getAttribute("href") === href && x.textContent === testo; })[0];
@@ -908,6 +964,8 @@ main{padding-block:18px 8px}
     var esempio = (da && da.demo) || spazi.some(function(s){ return s.esempio; });
     var avviso = da && !da.attivo ? 'Il pacchetto di questa farmacia non è attivo: il foglio è quello normale. ' : '';
     if (Q.get("famiglia") === "1" && !FAM) avviso += 'Il foglio per la famiglia non è attivo su questo telefono: il foglio è quello normale. ';
+    var mancano = righeMese(mese, false).filter(function(r){ return r.indexOf("Dato non disponibile") >= 0; }).length;
+    if (mancano) avviso += '<b>Attenzione: ' + (mancano === 1 ? 'manca il turno di 1 giorno' : 'mancano i turni di ' + mancano + ' giorni') + '.</b> ';
     var h = barra(avviso + 'Foglio di ' + esc(nomeMese) + ' pronto. Nella finestra di stampa scegli il formato A4, orientamento verticale, e togli «intestazioni e piè di pagina».');
     h += '<div class="anteprima"><div class="wrap"><div class="scala" id="scala"><article class="foglio' + (fam ? ' con-fam' : '') + '" id="foglio" aria-label="Foglio di ' + esc(nomeMese) + '">' +
       (esempio ? '<div class="f-esempio" aria-hidden="true"><span>ESEMPIO</span></div>' : '') + fam +
@@ -930,12 +988,15 @@ main{padding-block:18px 8px}
     var s = $("scala"), tr = s ? s.style.transform : ""; if (s) s.style.transform = "none";
     var lim = fo.getBoundingClientRect().right - parseFloat(getComputedStyle(fo).paddingRight) + 1;
     function sta(){ var t = fo.querySelector(".tab"); return fo.scrollHeight <= fo.clientHeight + 1 && t.getBoundingClientRect().right <= lim; }
-    var pt = 16;
-    for (; pt >= 14; pt -= 0.5) { fo.querySelector(".tab").style.fontSize = pt + "pt"; if (sta()) break; }
-    if (pt < 14) pt = 14;
-    fo.querySelector(".tab").style.fontSize = pt + "pt";
-    var ok = sta();
-    fo.setAttribute("data-impaginazione", pt + " punti" + (ok ? "" : ", NON CI STA"));
+    /* prima la tabella grande con i testi in fondo grandi; poi i testi in fondo un po' più compatti; mai sotto 14 punti */
+    var prove = [[16, ""], [15.5, ""], [15, ""], [16, "c"], [15.5, "c"], [15, "c"], [14.5, "c"], [14, "c"]], p, ok = false;
+    for (var i = 0; i < prove.length; i++) {
+      p = prove[i];
+      fo.classList.toggle("f-compatto", p[1] === "c");
+      fo.querySelector(".tab").style.fontSize = p[0] + "pt";
+      if ((ok = sta())) break;
+    }
+    fo.setAttribute("data-impaginazione", p[0] + " punti" + (p[1] ? ", fondo compatto" : "") + (ok ? "" : ", NON CI STA"));
     var av = $("avvisoStampa");
     if (av) { av.hidden = ok; av.textContent = ok ? "" : "Attenzione: così il foglio non sta in una pagina. Accorcia i nomi o i numeri della famiglia."; }
     if (s) s.style.transform = tr;
@@ -946,9 +1007,9 @@ main{padding-block:18px 8px}
     var x = f(turnoDel(oggi));
     var giorni = []; for (var i = 1; i <= 6; i++) giorni.push(piu(oggi, i));
     /* il mese si scrive solo quando cambia rispetto a oggi: le righe restano corte e si leggono da lontano */
-    var righe = giorni.map(function(g){ var y = f(turnoDel(g)); var gg = g.slice(0, 7) === oggi.slice(0, 7) ? maiusc(GIORNI[sett(g)]) + " " + (+g.slice(8)) : maiusc(inParole(g)); return '<tr' + (festivo(g) ? ' class="fest"' : '') + '><td><span class="n">' + esc(gg) + '</span></td>' + (y ? '<td class="n">' + nomeFoglioHtml(y) + '</td><td class="tel">' + esc(y.telefono) + '</td>' : '<td colspan="2">Non ancora nel calendario</td>') + '</tr>'; });
+    var righe = giorni.map(function(g){ var y = f(turnoDel(g)); var gg = g.slice(0, 7) === oggi.slice(0, 7) ? maiusc(GIORNI[sett(g)]) + " " + (+g.slice(8)) : maiusc(inParole(g)); return '<tr' + (festivo(g) ? ' class="fest"' : '') + '><td><span class="n">' + esc(gg) + '</span></td>' + (y ? '<td class="n">' + nomeFoglioHtml(y) + '<span class="ind2">' + esc(y.indirizzoBreve) + '</span></td><td class="tel">' + esc(y.telefono) + '</td>' : '<td colspan="2">Non ancora nel calendario</td>') + '</tr>'; });
     var h = barra((da && da.attivo ? '' : 'Il cartello per la vetrina fa parte del pacchetto per le farmacie. ') + 'Cartello di ' + esc(inParole(oggi)) + '. Stampalo ogni giorno, o una volta alla settimana per i giorni successivi.');
-    if (!da || !da.attivo) { mostraStampa(h.replace('<button type="button" class="btn" id="stampaOra">' + ICO.stampa + 'Stampa</button>', '') + '<div class="wrap" style="padding:20px 16px"><p class="vuoto">Pacchetto non attivo per questa farmacia. <a href="./#servizi">Scopri il pacchetto per le farmacie</a>.</p></div>', "Cartello"); return; }
+    if (!da || !da.attivo) { mostraStampa(h.replace('<button type="button" class="btn" id="stampaOra">' + ICO.stampa + 'Stampa</button>', '') + '<div class="wrap" style="padding:20px 16px"><p class="vuoto">Pacchetto non attivo per questa farmacia. <a href="./?servizi=1">Scopri il pacchetto per le farmacie</a>.</p></div>', "Cartello"); return; }
     h += '<div class="anteprima"><div class="wrap"><div class="scala" id="scala"><article class="foglio cartello" id="foglio" aria-label="Cartello per la vetrina">' +
       (da.demo ? '<div class="f-esempio" aria-hidden="true"><span>ESEMPIO</span></div>' : '') +
       '<h1>Farmacia di turno a Mesagne</h1>' +
@@ -964,7 +1025,7 @@ main{padding-block:18px 8px}
     var m0 = ADESSO.data.slice(0, 7), m1 = piu(m0 + "-28", 7).slice(0, 7);
     var h = '<div class="barra-stampa"><div class="wrap"><a class="btn sec" href="./">' + ICO.indietro + 'Torna all\'app</a></div></div><div class="wrap" style="padding-block:20px 40px">';
     if (!da.attivo) {
-      h += '<h1 style="font-size:1.5rem">Materiali per la farmacia</h1><p class="vuoto" style="margin-top:12px">Per questa farmacia il pacchetto non è attivo. <a href="./#servizi">Scopri il pacchetto per le farmacie</a>.</p>';
+      h += '<h1 style="font-size:1.5rem">Materiali per la farmacia</h1><p class="vuoto" style="margin-top:12px">Per questa farmacia il pacchetto non è attivo. <a href="./?servizi=1">Scopri il pacchetto per le farmacie</a>.</p>';
     } else {
       var servizi = (da.servizi || []).filter(function(k){ return SERVIZI[k]; }).map(function(k){ return SERVIZI[k]; });
       h += '<h1 style="font-size:1.5rem">Materiali per la ' + esc(da.insegna) + '</h1>' + (da.demo ? '<p class="vuoto" style="margin-top:12px">Questa è una dimostrazione: i fogli escono con la scritta ESEMPIO.</p>' : '') +
@@ -977,6 +1038,7 @@ main{padding-block:18px 8px}
   }
   function mostraStampa(html, titolo, schermo){
     $("app").hidden = true;
+    if (!schermo) document.body.classList.add("in-stampa");
     var v = $("stampaVista");
     v.hidden = false;
     v.className = schermo ? "" : "solo-stampa";
@@ -999,8 +1061,7 @@ main{padding-block:18px 8px}
     if (t.id === "toccaBtn") { $("tocca").hidden = true; leggiAdAltaVoce(false); $("ascolta").focus({ preventScroll: true }); return; }
     if (t.id === "leggiSempre") {
       var on = t.getAttribute("aria-pressed") !== "true";
-      t.setAttribute("aria-pressed", on); scrivi("ftm-leggi", on ? 1 : null);
-      $("copiaMsg").textContent = on ? "Fatto: il turno verrà letto ogni volta che si apre l'app." : "La lettura all'apertura è spenta.";
+      scrivi("ftm-leggi", on ? 1 : null); statoLeggi();
       return;
     }
     if (t.id === "copiaLeggi") {
@@ -1038,18 +1099,19 @@ main{padding-block:18px 8px}
     try { localStorage.setItem("ftm-testo", g ? "grande" : ""); } catch(e) {}
   });
   if (document.documentElement.getAttribute("data-testo") === "grande") $("testoBtn").setAttribute("aria-pressed", "true");
-  if (leggi("ftm-leggi", null)) $("leggiSempre").setAttribute("aria-pressed", "true");
+  statoLeggi();
 
   function leggiHash(){
     var m = /^#codice=(.+)$/.exec(location.hash);
     if (!m) return;
-    history.replaceState(null, "", location.pathname + location.search + "#servizi");
+    document.body.classList.add("vista-servizi");
+    history.replaceState(null, "", location.pathname + "?servizi=1");
     var c; try { c = decodeURIComponent(m[1]); } catch(e) { c = ""; }
     attivaCodice(c).then(function(r){
       disegnaFamiglia(r === "ok" ? "famChi" : "codIn");
       var box = $(r === "ok" ? "famMsg" : "codMsg");
       if (box) { box.className = r === "ok" ? "msg" : "msg ko"; box.textContent = r === "ok" ? "Codice attivato. Ora scrivi i nomi e i numeri." : r === "scaduto" ? "Questo codice è scaduto." : "Il collegamento di attivazione non è valido o è incompleto."; }
-      $("servizi").scrollIntoView();
+      window.scrollTo(0, 0);
     });
   }
   window.addEventListener("hashchange", leggiHash);
@@ -1059,6 +1121,7 @@ main{padding-block:18px 8px}
   var CARICATI = {}, DISPONIBILI = null;
   function caricaTurniPer(s){
     var anni = {}; [-1, 0, 62].forEach(function(n){ anni[piu(s, n).slice(0, 4)] = 1; });
+    if (s.slice(5, 7) === "01") anni[String(+s.slice(0, 4) - 1)] = 1;
     var m = Q.get("foglio"); if (m && /^\d{4}-\d{2}$/.test(m)) anni[m.slice(0, 4)] = 1;
     /* calendari.json dice quali anni esistono: così non si chiedono file che non ci sono */
     var elenco = DISPONIBILI ? Promise.resolve(DISPONIBILI) : prendi("calendari.json").then(function(c){ DISPONIBILI = (c.anni || []).map(String); return DISPONIBILI; }, function(){ return [String(new Date().getFullYear())]; });
@@ -1095,11 +1158,12 @@ main{padding-block:18px 8px}
       if (Q.get("foglio") !== null) { vistaFoglio(); return; }
       if (Q.get("cartello") !== null) { vistaCartello(); return; }
       if (Q.get("da") !== null) { vistaPannello(); return; }
+      if (Q.get("servizi") === "1" || /^#codice=/.test(location.hash)) document.body.classList.add("vista-servizi");
       try { disegnaTutto(); }
       catch (err) { if (window.console) console.error(err); $("adesso").innerHTML = '<p class="vuoto">C\'è un errore nei dati dei turni. Guarda il cartello fuori da una farmacia o il <a href="' + PAGINA_ORDINE + '">sito dell\'Ordine dei Farmacisti</a>.</p>'; return; }
       leggiHash();
-      if (Q.get("leggi") === "1") scrivi("ftm-leggi", 1), $("leggiSempre").setAttribute("aria-pressed", "true");
-      if (leggi("ftm-leggi", null) && TESTO_VOCE && "speechSynthesis" in window) {
+      if (Q.get("leggi") === "1") { scrivi("ftm-leggi", 1); statoLeggi(); }
+      if (leggi("ftm-leggi", null) && TESTO_VOCE.length && "speechSynthesis" in window && !document.body.classList.contains("vista-servizi")) {
         var via = function(){ leggiAdAltaVoce(true); };
         if (speechSynthesis.getVoices().length) via(); else { var fatto = false; speechSynthesis.onvoiceschanged = function(){ if (!fatto) { fatto = true; via(); } }; setTimeout(function(){ if (!fatto) { fatto = true; via(); } }, 700); }
       }
