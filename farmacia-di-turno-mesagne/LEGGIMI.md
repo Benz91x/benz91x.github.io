@@ -248,7 +248,7 @@ e togli «intestazioni e piè di pagina».
 
 ## Dopo una modifica a `index.html`
 
-Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011d";` (per esempio con la data
+Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011e";` (per esempio con la data
 di oggi): così i telefoni scaricano la versione nuova. Per i file `.json` non serve.
 
 ## Limiti da conoscere
