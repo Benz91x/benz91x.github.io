@@ -20,7 +20,7 @@ Indirizzo: https://benz91x.github.io/farmacia-di-turno-mesagne/
 | `strumenti/turni.mjs` | Legge il PDF dei turni, controlla il sito dell'Ordine, prepara gli aggiornamenti. |
 | `strumenti/licenze.mjs` | Crea le chiavi e i codici del foglio per la famiglia. |
 | `strumenti/pagine.mjs` | Scrive le pagine per Google (`turni/`, `farmacie/`, `sitemap.xml`) e l'elenco statico in `index.html`. Si lancia da solo. |
-| `turni/`, `farmacie/`, `sitemap.xml` | Pagine statiche per i motori di ricerca: il calendario di ogni mese, i festivi, la scheda di ogni farmacia. **Non modificarle a mano**: si rifanno dai file `.json`. |
+| `turni/`, `farmacie/`, `numeri-utili/`, `informazioni/`, `sitemap.xml` | Pagine statiche per i motori di ricerca: il calendario di ogni mese, i festivi, la scheda di ogni farmacia. **Non modificarle a mano**: si rifanno dai file `.json`. |
 | `strumenti/festivi-2026-trascrizione.json` | Il PDF dei festivi ricopiato a mano, per il controllo incrociato. |
 | `CONTROLLO-DATI.md` | La tabella di controllo dei dati fatta il 10 ottobre 2026. |
 | `manifest.webmanifest`, `icons/`, `fonts/`, `loghi/` | Installazione come app, icone, font, loghi delle farmacie. |
@@ -97,12 +97,18 @@ Per farsi trovare su Google l'app ha anche pagine normali, senza JavaScript:
 - `turni/ottobre-2026/` (e gli altri mesi): il calendario del mese, giorno per giorno;
 - `farmacie/`: l'elenco delle 8 farmacie;
 - `farmacie/ricupero/` (e le altre): indirizzo, telefono, orari e giorni di turno di una farmacia;
+- `numeri-utili/`: guardia medica, pronto soccorso, CUP e centro prelievi (da `numeri.json`);
+- `informazioni/`: chi fa il sito, da dove vengono i dati, come si aggiorna, privacy;
 - `sitemap.xml`: l'elenco di tutte le pagine per i motori di ricerca.
 
 Le scrive `strumenti/pagine.mjs` dai file `.json`. **Non devi fare niente**: quando cambi un file
 `.json` su GitHub, l'Action «Pagine Farmacia di turno Mesagne» rifà le pagine e le pubblica in un
 minuto. Anche l'aggiornamento dei turni dal PDF le rifà. Per rifarle a mano dal Mac:
 `node farmacia-di-turno-mesagne/strumenti/pagine.mjs`.
+
+Le viste con parametri dell'app (`?foglio=`, `?cartello=`, `?da=`, `?servizi=1`, `?data=`) ricevono
+`noindex`: nei risultati deve comparire solo la pagina principale. Il file `a8b2e4….txt` è la chiave
+di IndexNow (avvisa Bing quando le pagine cambiano): non cancellarlo.
 
 Nelle pagine ci sono solo date precise («domenica 11 ottobre»), mai «oggi»: così un risultato di
 Google vecchio di qualche giorno resta giusto. Nell'app, i riquadri che cambiano ogni giorno hanno

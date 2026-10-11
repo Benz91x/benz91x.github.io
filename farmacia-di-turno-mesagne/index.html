@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Farmacia di turno Mesagne: aperta adesso, stanotte e festivi</title>
+<title>Farmacia di turno Mesagne oggi, stanotte e nei festivi</title>
 <script>try{if(localStorage.getItem("ftm-testo")==="grande")document.documentElement.setAttribute("data-testo","grande")}catch(e){}
 /* finché i turni non arrivano si mostra solo il riquadro del turno: così la pagina non «salta» sotto il dito */
 document.documentElement.classList.add("carica");setTimeout(function(){document.documentElement.classList.remove("carica")},2500);</script>
@@ -280,7 +280,7 @@ main{padding-block:18px 8px}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Farmacia di turno Mesagne">
-<meta property="og:title" content="Farmacia di turno Mesagne: aperta adesso, stanotte e festivi">
+<meta property="og:title" content="Farmacia di turno Mesagne oggi, stanotte e nei festivi">
 <meta property="og:description" content="Quale farmacia è di turno adesso a Mesagne, con telefono e indirizzo. Calendario dei turni mese per mese. Gratis, senza registrazione.">
 <meta property="og:url" content="https://benz91x.github.io/farmacia-di-turno-mesagne/">
 <meta property="og:image" content="https://benz91x.github.io/farmacia-di-turno-mesagne/icons/og-image.png">
@@ -317,7 +317,7 @@ main{padding-block:18px 8px}
 <div class="prova" id="prova" hidden><div class="wrap" id="provaT"></div></div>
 
 <main class="wrap" id="main">
-  <p class="quando" id="quando" data-nosnippet></p>
+  <div class="quando" id="quando" data-nosnippet></div>
   <div class="tocca" id="tocca" hidden><button type="button" class="btn" id="toccaBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>Tocca qui per ascoltare il turno</button></div>
   <div id="adesso" data-nosnippet><p class="vuoto">Sto caricando i turni…</p><noscript><p class="vuoto">Per vedere il turno di adesso serve JavaScript. Puoi guardare il <a href="turni/">calendario dei turni mese per mese</a>.</p></noscript></div>
   <div class="coppia" id="ascoltaBox" hidden>
@@ -408,7 +408,7 @@ main{padding-block:18px 8px}
     <ul id="fonti"></ul>
     <p>Nessun account, nessun cookie, nessun tracciamento. Le tue scelte (testo grande, lettura a voce, foglio della famiglia) restano solo su questo telefono.</p>
     <p>Per le farmacie e per le famiglie: <a href="?servizi=1">servizi a pagamento</a>.</p>
-    <p>Da consultare anche senza app: <a href="turni/">i turni delle farmacie mese per mese</a> e <a href="farmacie/">le farmacie di Mesagne</a>.</p>
+    <p>Da consultare anche senza app: <a href="turni/">i turni delle farmacie mese per mese</a>, <a href="farmacie/">le farmacie di Mesagne</a>, <a href="numeri-utili/">la guardia medica e i numeri utili</a>. <a href="informazioni/">Chi siamo e da dove vengono i dati</a>.</p>
     <p>Hai trovato un errore? <a id="segnala" href="#">Scrivi ad Alessandro</a>. Realizzata da <a href="https://benz91x.github.io/">Alessandro Chiri</a>. Dello stesso autore: <a href="https://benz91x.github.io/scadenze-mesagne/">Scadenze Mesagne</a> e <a href="https://benz91x.github.io/differenziata-mesagne/">Differenziata Mesagne</a>.</p>
   </div>
 </footer>
@@ -1220,6 +1220,15 @@ main{padding-block:18px 8px}
   }
 
   function pronto(){ document.documentElement.classList.remove("carica"); }
+  /* le viste con parametri (foglio, cartello, pannello, servizi, date di prova) non vanno nei risultati di ricerca:
+     il canonical resta quello dell'HTML, si aggiunge solo noindex */
+  function nonIndicizzare(){
+    var p = ["foglio", "cartello", "da", "servizi", "data", "ora", "leggi", "esempio", "famiglia"];
+    if (!p.some(function(k){ return Q.get(k) !== null; })) return;
+    var m = document.querySelector('meta[name="robots"]');
+    if (m) m.setAttribute("content", "noindex, follow");
+  }
+  nonIndicizzare();
   function avvia(){
     if (SIM_SBAGLIATA) { $("prova").hidden = false; $("provaT").textContent = "Data o ora di prova non valida (scrivi ?data=AAAA-MM-GG&ora=HH:MM): mostro il momento vero."; }
     if (SIM) { $("prova").hidden = false; $("provaT").textContent = "Prova con data simulata: " + inParole(SIM.data, true) + ", ore " + Math.floor(SIM.min / 60) + ":" + pad(SIM.min % 60) + ". Per tornare a oggi togli ?data= dall'indirizzo."; }
