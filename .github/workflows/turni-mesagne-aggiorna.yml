@@ -1,0 +1,54 @@
+# Farmacia di turno Mesagne: aggiornamento dei turni dal PDF dell'Ordine dei Farmacisti.
+# Si lancia a mano quando arriva una segnalazione: Actions → "Aggiorna i turni di Mesagne" → Run workflow.
+# Scarica il PDF dei turni pomeridiani e notturni, riscrive turni-AAAA.json e prepara una pull request
+# da controllare. Non pubblica niente da solo: l'app cambia solo quando fai il merge.
+name: Aggiorna i turni di Mesagne
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: turni-mesagne
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Installa pdftotext
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
+      - name: Scarica il PDF e aggiorna i dati
+        run: node farmacia-di-turno-mesagne/strumenti/turni.mjs scarica --report riepilogo.md
+
+      - name: Prepara la pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- farmacia-di-turno-mesagne && [ -z "$(git ls-files --others --exclude-standard farmacia-di-turno-mesagne)" ]; then
+            echo "Nessun cambiamento nei dati: il file dei turni è già aggiornato." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          ramo="aggiorna-turni-mesagne-$(date -u +%Y%m%d-%H%M)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$ramo"
+          git add farmacia-di-turno-mesagne
+          git commit -m "Turni Mesagne: aggiornati dal PDF dell'Ordine dei Farmacisti"
+          git push -u origin "$ramo"
+          cat riepilogo.md >> "$GITHUB_STEP_SUMMARY"
+          if ! gh pr create --base main --head "$ramo" --title "Turni Mesagne: aggiornamento dal PDF dell'Ordine" --body-file riepilogo.md; then
+            echo "Non ho il permesso di aprire la pull request da solo." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "Aprila tu da qui: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/compare/main...${ramo}" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi

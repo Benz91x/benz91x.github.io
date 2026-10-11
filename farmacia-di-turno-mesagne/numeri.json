@@ -1,0 +1,99 @@
+{
+  "aggiornato": "2026-10-10",
+  "fonti": {
+    "asl": {
+      "nome": "Carta dei Servizi dell'ASL Brindisi (prodotta l'8 gennaio 2024)",
+      "url": "https://aress.sanita.puglia.it/documents/36031/889610/CDS_2024-01-08_0315_ASL+Brindisi.pdf/cd80f5b8-3054-4335-8ff9-daf5737f2117"
+    },
+    "regione116117": {
+      "nome": "Regione Puglia, comunicato sul numero 116117 (agosto 2026)",
+      "url": "https://press.regione.puglia.it/-/in-puglia-sar%C3%A0-attivato-il-116117-il-nuovo-numero-da-chiamare-per-l-assistenza-territoriale.-dal-ministero-%C3%A8-giunta-l-autorizzazione"
+    },
+    "legge": {
+      "nome": "Legge regionale della Puglia 18 febbraio 2014, n. 5 (turni e orari delle farmacie)",
+      "url": "https://www.ordinefarmacistibrindisi.it/farmacie/l-r-18-02-2014-n-5_disciplina-dei-turni-delle-farmacie.html"
+    },
+    "bt": {
+      "nome": "Brindisi Time, 14 luglio 2024, che riporta gli orari indicati dall'ASL Brindisi sul portale PugliaSalute",
+      "url": "https://www.brindisitime.it/cosi-la-guardia-medica-serve-a-ben-poco-e-non-decongestiona-il-pronto-soccorso/"
+    }
+  },
+  "emergenza": {
+    "numeri": [
+      {
+        "numero": "112",
+        "nome": "Numero unico di emergenza"
+      },
+      {
+        "numero": "118",
+        "nome": "Emergenza sanitaria"
+      }
+    ],
+    "controllato": "2026-10-10"
+  },
+  "guardiaMedica": {
+    "usa116117": false,
+    "nota": "Quando il 116117 sarà attivo anche per Brindisi, metti \"usa116117\": true. L'app mostrerà il 116117 al posto del numero di Mesagne, senza cambiare altro.",
+    "mesagne": {
+      "nome": "Guardia medica di Mesagne",
+      "nomeUfficiale": "Continuità assistenziale",
+      "indirizzo": "via Panareo 10 (ex Direzione Sanitaria dell'ospedale)",
+      "mappa": "Via Panareo 10, 72023 Mesagne BR",
+      "telefono": "0831 739312",
+      "orari": "Tutte le notti dalle 20 alle 8: di persona si può andare dalle 20 alle 22:30, dopo solo per telefono. Il sabato e i giorni prima delle feste: dalle 10 alle 13 e dalle 15:30 alle 20. La domenica e i festivi: dalle 8 alle 13 e dalle 15:30 alle 20.",
+      "fonte": "asl",
+      "controllato": "2026-10-10",
+      "quando": "Quando il medico di famiglia non c'è: di notte, il sabato e i giorni prima delle feste, la domenica e i festivi.",
+      "orariFonte": "bt",
+      "orariDaConfermare": true
+    },
+    "nuovo": {
+      "nome": "Guardia medica: numero 116117",
+      "telefono": "116117",
+      "descrizione": "Numero europeo per le cure mediche non urgenti. Risponde 24 ore su 24, tutti i giorni.",
+      "fonte": "regione116117",
+      "controllato": "2026-10-10"
+    }
+  },
+  "prontoSoccorso": {
+    "nome": "Pronto soccorso dell'ospedale Perrino",
+    "dove": "Brindisi, strada statale 7 per Mesagne",
+    "mappa": "Ospedale Antonio Perrino, Strada Statale 7 per Mesagne, Brindisi",
+    "telefono": "0831 537510",
+    "nota": "A Mesagne non c'è un pronto soccorso: quello di riferimento è all'ospedale Perrino di Brindisi.",
+    "fonte": "asl",
+    "controllato": "2026-10-10"
+  },
+  "cup": {
+    "nome": "CUP, prenotazione di visite ed esami",
+    "fisso": "800 888 388",
+    "cellulare": "080 9181603",
+    "orari": "Dal lunedì al venerdì, di solito dalle 8 alle 19 (in alcuni giorni con una pausa verso le 14).",
+    "sportello": "Sportello a Mesagne: via Panareo 12 (poliambulatorio, ex ospedale), dal lunedì al venerdì dalle 7:30 alle 12:30 e dalle 15 alle 17:30. Il sabato è chiuso.",
+    "fonte": "asl",
+    "controllato": "2026-10-10",
+    "notaOrari": "La Carta dei Servizi 2024 non è coerente: in molte schede 8-19, in altre 8-14 e 15-19 o 8-14:30 e 15-19."
+  },
+  "prelievi": {
+    "nome": "Centro prelievi di Mesagne",
+    "dove": "Poliambulatorio di via Panareo 12 (ex ospedale)",
+    "telefono": "0831 739403",
+    "orari": "Prelievi: dal lunedì al venerdì, dalle 7:30 alle 9:45. Ritiro dei risultati: dal lunedì al venerdì dalle 10 alle 12; il lunedì e il giovedì anche dalle 15 alle 18. Il sabato è chiuso.",
+    "fonte": "asl",
+    "controllato": "2026-10-10"
+  },
+  "nonMostrati": {
+    "nota": "Dati trovati ma non mostrati nell'app finché non sono confermati.",
+    "puntoPrimoIntervento": {
+      "nome": "Punto di primo intervento di Mesagne",
+      "indirizzo": "via Panareo 8, presso il PTA",
+      "telefono": "118",
+      "perche": "Compare nella Carta dei Servizi ASL del 2024: non sappiamo se è ancora attivo."
+    },
+    "cartaServizi2025": {
+      "nome": "Carta dei Servizi ASL Brindisi prodotta il 19/05/2025",
+      "url": "https://www.sanita.puglia.it/documents/d/asl-brindisi/cds_2025-05-19_0315_asl-brindisi",
+      "perche": "Il 10/10/2026 il sito non rispondeva: i numeri sono confrontati con l'edizione 2024. Da ricontrollare."
+    }
+  }
+}
