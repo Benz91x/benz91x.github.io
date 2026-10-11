@@ -30,6 +30,9 @@ jobs:
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
 
       - name: Scarica il PDF e aggiorna i dati
+        # le pagine per i motori di ricerca non vanno nella pull request: le rifà l'Action delle pagine dopo il merge
+        env:
+          FTM_SENZA_PAGINE: "1"
         run: node farmacia-di-turno-mesagne/strumenti/turni.mjs scarica --report riepilogo.md
 
       - name: Prepara la pull request

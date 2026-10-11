@@ -11,7 +11,7 @@
     "controllato": "2026-10-10",
     "nota": "Ottobre, novembre e dicembre 2026: nessuna farmacia di Mesagne in ferie."
   },
-  "nota": "Indirizzi, telefoni e orari sono copiati dall'albo dell'Ordine. In 'testoAlbo' c'è il testo dell'albo (trattini e spazi normalizzati), per il controllo. 'calendario' sono i nomi usati nel PDF dei turni. 'invernoDal' è la data di inizio dell'orario invernale quando l'albo la scrive.",
+  "nota": "Indirizzi, telefoni e orari sono copiati dall'albo dell'Ordine. In 'testoAlbo' c'è il testo dell'albo (trattini e spazi normalizzati), per il controllo. 'calendario' sono i nomi usati nel PDF dei turni. 'invernoDal' è la data di inizio dell'orario invernale quando l'albo la scrive. 'slug' è il nome della pagina della farmacia (farmacie/<slug>/) quando l'id dei turni è diverso dall'insegna. 'altriNomi' dice come la farmacia compare in fonti più vecchie (la fonte è in numeri.json, fonti): serve a chi la cerca con il nome vecchio.",
   "farmacie": [
     {
       "id": "alioth",
@@ -38,7 +38,11 @@
       "testoAlbo": "Orario estivo: Lun-Sab: 8:00-13:00 / 16:00-20:30 · Orario invernale: Dal 27/10/2025 al 28/03/2026 Lun-Sab: 8:00-13:00 / 16:00-20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
       "dubbi": [
         "Nell'albo l'orario invernale ha le date dell'inverno scorso (27/10/2025 - 28/03/2026)."
-      ]
+      ],
+      "altriNomi": {
+        "testo": "Nella Carta dei Servizi dell'ASL Brindisi del 2024 lo stesso numero di telefono è indicato in via Francesco Vita 3, con il nome della dottoressa Carla De Luca: probabilmente è il vecchio indirizzo.",
+        "fonte": "asl"
+      }
     },
     {
       "id": "antonucci",
@@ -115,6 +119,7 @@
     },
     {
       "id": "rutigliano",
+      "slug": "materdomini",
       "calendario": [
         "RUTIGLIANO",
         "MATERDOMINI"
@@ -184,7 +189,11 @@
         "ferie": "Non chiude per ferie."
       },
       "testoAlbo": "Orario estivo: Lun-Sab: 8:00 – 13:00 / 17:00 – 20:30 · Orario invernale: Lun-Sab: 8:00 – 13:00 / 16:30 – 20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
-      "dubbi": []
+      "dubbi": [],
+      "altriNomi": {
+        "testo": "Nella Carta dei Servizi dell'ASL Brindisi del 2024 questa farmacia è indicata con il nome del dottor Livino Ramundo.",
+        "fonte": "asl"
+      }
     },
     {
       "id": "spalletta",

@@ -19,6 +19,8 @@ Indirizzo: https://benz91x.github.io/farmacia-di-turno-mesagne/
 | `sw.js` | Copia per l'uso senza internet. Cambia `CACHE` quando modifichi `index.html`. |
 | `strumenti/turni.mjs` | Legge il PDF dei turni, controlla il sito dell'Ordine, prepara gli aggiornamenti. |
 | `strumenti/licenze.mjs` | Crea le chiavi e i codici del foglio per la famiglia. |
+| `strumenti/pagine.mjs` | Scrive le pagine per Google (`turni/`, `farmacie/`, `sitemap.xml`) e l'elenco statico in `index.html`. Si lancia da solo. |
+| `turni/`, `farmacie/`, `numeri-utili/`, `informazioni/`, `sitemap.xml` | Pagine statiche per i motori di ricerca: il calendario di ogni mese, i festivi, la scheda di ogni farmacia. **Non modificarle a mano**: si rifanno dai file `.json`. |
 | `strumenti/festivi-2026-trascrizione.json` | Il PDF dei festivi ricopiato a mano, per il controllo incrociato. |
 | `CONTROLLO-DATI.md` | La tabella di controllo dei dati fatta il 10 ottobre 2026. |
 | `manifest.webmanifest`, `icons/`, `fonts/`, `loghi/` | Installazione come app, icone, font, loghi delle farmacie. |
@@ -86,6 +88,48 @@ lo aggiunge a `calendari.json` e alla copia offline. Fai anche la trascrizione d
 Apri `farmacie.json` su GitHub, premi la matita, cambia il testo, poi «Commit changes».
 Il campo `mappa` deve restare uguale all'indirizzo scritto nell'albo dell'Ordine: il controllo
 del lunedì li confronta. Aggiorna anche `"controllato"` con la data di oggi (AAAA-MM-GG).
+
+## Pagine per Google
+
+Per farsi trovare su Google l'app ha anche pagine normali, senza JavaScript:
+
+- `turni/`: i turni dell'anno, con la farmacia di turno in ogni festa e i collegamenti ai mesi;
+- `turni/ottobre-2026/` (e gli altri mesi): il calendario del mese, giorno per giorno;
+- `farmacie/`: l'elenco delle 8 farmacie;
+- `farmacie/ricupero/` (e le altre): indirizzo, telefono, orari e giorni di turno di una farmacia;
+- `numeri-utili/`: guardia medica, pronto soccorso, CUP e centro prelievi (da `numeri.json`);
+- `informazioni/`: chi fa il sito, da dove vengono i dati, come si aggiorna, privacy;
+- `sitemap.xml`: l'elenco di tutte le pagine per i motori di ricerca.
+
+Le scrive `strumenti/pagine.mjs` dai file `.json`. **Non devi fare niente**: quando cambi un file
+`.json` su GitHub, l'Action «Pagine Farmacia di turno Mesagne» rifà le pagine e le pubblica in un
+minuto. Anche l'aggiornamento dei turni dal PDF le rifà. Per rifarle a mano dal Mac:
+`node farmacia-di-turno-mesagne/strumenti/pagine.mjs`.
+
+Le viste con parametri dell'app (`?foglio=`, `?cartello=`, `?da=`, `?servizi=1`, `?data=`) ricevono
+`noindex`: nei risultati deve comparire solo la pagina principale. Il file `a8b2e4….txt` è la chiave
+di IndexNow (avvisa Bing quando le pagine cambiano): non cancellarlo.
+
+Se l'Action «Pagine Farmacia di turno Mesagne» diventa rossa, non pubblica niente e il sito resta
+com'era: apri l'esecuzione e leggi il messaggio. Di solito nei turni c'è il nome (`id`) di una farmacia
+che non è in `farmacie.json`, oppure dovrebbe togliere molte pagine insieme: correggi il file `.json`
+e l'Action riparte da sola. La Farmacia Materdomini ha la pagina `farmacie/materdomini/` (campo
+`slug` in `farmacie.json`), anche se nei turni si chiama `rutigliano`.
+
+Nelle pagine ci sono solo date precise («domenica 11 ottobre»), mai «oggi»: così un risultato di
+Google vecchio di qualche giorno resta giusto. Nell'app, i riquadri che cambiano ogni giorno hanno
+`data-nosnippet`, perché Google non li copi nella descrizione del risultato.
+
+**Google Search Console** (una volta sola, 2 minuti). Il sito `https://benz91x.github.io/` è già
+verificato (c'è il file `googleacfd90f3befe2e8b.html`). Apri https://search.google.com/search-console,
+scegli la proprietà `https://benz91x.github.io/`, poi:
+
+1. menu **Sitemap** → scrivi `farmacia-di-turno-mesagne/sitemap.xml` → **Invia**;
+2. in alto, nella barra **Controlla qualsiasi URL**, incolla
+   `https://benz91x.github.io/farmacia-di-turno-mesagne/` → **Richiedi indicizzazione**.
+   Fai lo stesso con `.../farmacia-di-turno-mesagne/turni/` e `.../farmacia-di-turno-mesagne/farmacie/`.
+
+Dopo qualche giorno, nel menu **Rendimento** vedi con quali ricerche le persone trovano l'app.
 
 ## Numeri utili
 
@@ -204,7 +248,7 @@ e togli «intestazioni e piè di pagina».
 
 ## Dopo una modifica a `index.html`
 
-Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011b";` (per esempio con la data
+Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011d";` (per esempio con la data
 di oggi): così i telefoni scaricano la versione nuova. Per i file `.json` non serve.
 
 ## Limiti da conoscere

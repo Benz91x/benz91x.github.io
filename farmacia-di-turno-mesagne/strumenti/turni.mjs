@@ -20,6 +20,7 @@ import { execFileSync } from "node:child_process";
 import { dirname, join, resolve, basename } from "node:path";
 import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
+import { generaPagine } from "./pagine.mjs";
 
 const APP = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const FARMACIE = JSON.parse(readFileSync(join(APP, "farmacie.json"), "utf8")).farmacie;
@@ -262,6 +263,12 @@ export function aggiornaDa(file, nomeFile) {
   if (!sw.includes('"./turni-' + anno + '.json"')) {
     writeFileSync(ps, sw.replace('"./turni-', '"./turni-' + anno + '.json", "./turni-').replace(/(PREFISSO \+ ")\d{8}\w?(")/, "$1" + oggiRoma().replace(/-/g, "") + "t$2"));
     out.push("Aggiunto turni-" + anno + ".json alla copia offline (sw.js)");
+  }
+  /* le pagine per i motori di ricerca (mesi, farmacie, sitemap) seguono i dati. Nell'Action che prepara la
+     pull request non si fanno (FTM_SENZA_PAGINE=1): le rifà «Pagine Farmacia di turno Mesagne» dopo il merge */
+  if (!process.env.FTM_SENZA_PAGINE) {
+    const pg = generaPagine();
+    out.push(pg.diverse.length ? "Rifatte " + pg.diverse.length + " pagine per i motori di ricerca (strumenti/pagine.mjs)" : "Pagine per i motori di ricerca già aggiornate");
   }
   out.push(diff.length ? "\nGIORNI CAMBIATI RISPETTO A PRIMA (" + diff.length + "):\n" + diff.map((d) => "  - " + inParole(d.data) + ": " + nomeDi(d.prima) + " → " + nomeDi(d.dopo)).join("\n") : "\nNessun turno cambiato rispetto al file di prima.");
   const pdfFeste = Object.keys(c.festivi).filter((d) => !naz[d] && giornoSett(d) !== 0);

@@ -224,6 +224,8 @@
     "f.app1t": "Free app with the waste collection calendar for San Vito dei Normanni (in Italian)",
     "f.app2": "Mesagne waste collection calendar",
     "f.app2t": "Free app with the waste collection calendar for Mesagne (in Italian)",
+    "f.app3": "Mesagne pharmacies on duty",
+    "f.app3t": "Free app showing the pharmacy on duty in Mesagne, now, at night and on holidays (in Italian)",
     "f.cv": "CV (PDF)", "f.where": "Italy · hybrid or remote work",
     "f.ver": "Last updated: October 2026.",
     "f.top": "Back to top"
