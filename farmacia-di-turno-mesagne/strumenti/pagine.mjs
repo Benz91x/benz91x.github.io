@@ -53,24 +53,27 @@ export function caricaDati() {
   const albo = leggi("farmacie.json");
   const FARM = Object.fromEntries(albo.farmacie.map((x) => [x.id, x]));
   const anni = leggi("calendari.json").anni.map(Number).sort();
-  const TURNI = {}, FESTIVI = {}, META = {}, DI = {};
+  const TURNI = {}, FESTIVI = {}, META = {}, DI = {}, ignote = new Set();
   for (const a of anni) {
     const t = leggi("turni-" + a + ".json");
-    META[a] = { aggiornato: t.fonte?.notturni?.aggiornato || null, festivi: t.fonte?.festivi?.aggiornato || null, controllato: t.controllato || null, pagina: t.fonte?.pagina || "" };
+    META[a] = { aggiornato: t.fonte?.notturni?.aggiornato || null, festivi: t.fonte?.festivi?.aggiornato || null, controllato: t.controllato || null, pagina: t.fonte?.pagina || "", cambio: t.orario?.cambio || "08:30" };
     for (const [d, id] of Object.entries(t.turni || {})) {
       /* un giorno presente in due file (es. il 1° gennaio): vale il file del suo anno, come nell'app */
       if (DI[d] && d.slice(0, 4) !== String(t.anno)) continue;
       DI[d] = t.anno;
+      if (id && !FARM[id]) ignote.add(id);
       if (id && FARM[id]) TURNI[d] = id; else delete TURNI[d];
     }
     Object.assign(FESTIVI, t.festivi || {});
   }
-  /* un mese ha la sua pagina solo se il calendario c'è per tutti i giorni */
+  /* meglio fermarsi che pubblicare pagine senza i turni di una farmacia */
+  if (ignote.size) throw new Error("Nei turni ci sono farmacie che non sono in farmacie.json: " + [...ignote].join(", ") + ". Aggiungile a farmacie.json (una farmacia chiusa può restare nell'elenco).");
+  /* un mese ha la sua pagina se il file dell'anno lo copre tutto (un giorno senza dato diventa «non disponibile») */
   const mesi = [];
   for (const a of anni) for (let m = 1; m <= 12; m++) {
     const am = a + "-" + pad(m), n = giorniNelMese(a, m);
     let tutti = true;
-    for (let g = 1; g <= n; g++) if (!TURNI[am + "-" + pad(g)]) { tutti = false; break; }
+    for (let g = 1; g <= n; g++) if (!DI[am + "-" + pad(g)]) { tutti = false; break; }
     if (tutti) mesi.push(am);
   }
   const controllato = max([...Object.values(META).map((m) => m.controllato), albo.fonte?.controllato]);
@@ -85,14 +88,20 @@ const diverso = (x) => !norm(x.insegna).includes(norm(x.calendario[0]));
 const nomeCal = (x) => maiusc(x.calendario[0].toLowerCase());
 const ordinate = (D) => Object.values(D.FARM).sort((a, b) => a.nomeBreve.localeCompare(b.nomeBreve, "it"));
 const cap = (x) => (/(\d{5})/.exec(x.mappa || "") || [])[1] || "72023";
+/* l'indirizzo della pagina: «slug» se c'è (Materdomini), altrimenti l'id dei turni */
+const slug = (x) => x.slug || x.id;
+const completo = (D, am) => { const a = +am.slice(0, 4), m = +am.slice(5); for (let g = 1; g <= giorniNelMese(a, m); g++) if (!D.TURNI[am + "-" + pad(g)]) return false; return true; };
+/* data del modello delle pagine: cambiala quando cambi l'HTML generato, così la sitemap lo dice ai motori */
+const DATA_MODELLO = "2026-10-11";
 
 /* ======== modello comune ======== */
 const LOGO = '<svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect x="1" y="1" width="46" height="46" rx="11" fill="#fff"/><path d="M19 8h10v10h10v10H29v10H19V28H9V18h10z" fill="#1F9D55"/><path d="M39.6 4.6a5.2 5.2 0 1 0 4.4 7.6 4.2 4.2 0 1 1-4.4-7.6Z" fill="#123A5E"/></svg>';
 const CSS = `@font-face{font-family:"Atkinson Hyperlegible Next";font-style:normal;font-weight:400 800;font-display:swap;src:url(${BASE}fonts/atkinson-hyperlegible-next-latin.woff2) format("woff2")}
-:root{--bg:#F3F5F7;--surface:#fff;--sunk:#E6EAEE;--ink:#10161D;--ink-2:#2F3A46;--line:#C9D1DA;--brand:#123A5E;--brand-2:#D5E2EF;--btn:#123A5E;--btn-ink:#fff;--link:#0B4F8A;--ring:#1F6FB8;--oggi:#FFF4D6;--oggi-line:#8A6100;color-scheme:light dark}
-@media (prefers-color-scheme:dark){:root{--bg:#0C1117;--surface:#141B23;--sunk:#202B37;--ink:#F1F4F7;--ink-2:#CDD6DF;--line:#33414F;--brand:#0C2236;--brand-2:#C9D8E8;--btn:#24527D;--btn-ink:#fff;--link:#9CCBFF;--ring:#8CC4FF;--oggi:#33280C;--oggi-line:#D9A928}}
+:root{--bg:#F3F5F7;--surface:#fff;--sunk:#E6EAEE;--ink:#10161D;--ink-2:#2F3A46;--line:#C9D1DA;--brand:#123A5E;--brand-2:#D5E2EF;--btn:#123A5E;--btn-ink:#fff;--line-2:#7D8996;--link:#09467C;--ring:#1F6FB8;--oggi:#FFF4D6;--oggi-line:#8A6100;--oggi-et:#6B4A00;--oggi-et-ink:#fff;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0C1117;--surface:#141B23;--sunk:#202B37;--ink:#F1F4F7;--ink-2:#CDD6DF;--line:#33414F;--brand:#0C2236;--brand-2:#C9D8E8;--btn:#24527D;--btn-ink:#fff;--line-2:#8996A3;--link:#9CCBFF;--ring:#8CC4FF;--oggi:#33280C;--oggi-line:#D9A928;--oggi-et:#D9A928;--oggi-et-ink:#000}}
 *,*::before,*::after{box-sizing:border-box}
 html{font-size:131.25%;background:var(--brand);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html[data-testo="grande"]{font-size:156.25%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:1rem;line-height:1.5;overflow-wrap:break-word}
 h1,h2,h3,p,ul,ol{margin:0}
 a{color:var(--link);text-underline-offset:.15em}
@@ -103,7 +112,7 @@ a{color:var(--link);text-underline-offset:.15em}
 .top a span{display:block;color:var(--brand-2);font-weight:700}
 .top :focus-visible{outline-color:#FFD166}
 .logo{width:44px;height:44px;flex:none}
-.bric{font-size:.9rem;padding-top:14px;color:var(--ink-2)}
+.bric{padding-top:14px;color:var(--ink-2)}
 .bric ol{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:4px 8px}
 .bric li+li::before{content:"›";margin-right:8px}
 main{padding-block:12px 32px}
@@ -113,8 +122,8 @@ p,ul,ol{margin-top:12px}
 ul.punti{padding-left:1.2em}
 ul.punti li+li{margin-top:6px}
 .lead{font-size:1.05rem;color:var(--ink-2)}
-.agg{font-size:.9rem;color:var(--ink-2);margin-top:6px}
-.fonte{font-size:.9rem;color:var(--ink-2)}
+.agg{color:var(--ink-2);margin-top:6px}
+.fonte{color:var(--ink-2)}
 .btn{display:flex;align-items:center;justify-content:center;min-height:64px;margin-top:16px;padding:10px 18px;border-radius:14px;background:var(--btn);color:var(--btn-ink);font-weight:800;text-decoration:none;text-align:center}
 .btn.sec{background:var(--surface);color:var(--ink);border:2px solid var(--ink-2)}
 .btn.emerg{background:#9B1C1C;color:#fff}
@@ -122,25 +131,37 @@ ul.punti li+li{margin-top:6px}
 .scheda h2,.scheda h3{margin-top:0;font-size:1.15rem}
 .avviso{background:var(--oggi);border-left:6px solid var(--oggi-line);border-radius:12px;padding:12px 16px;margin-top:16px}
 .num{white-space:nowrap;font-weight:800}
-.turni{width:100%;border-collapse:collapse;margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.turni{width:100%;border-collapse:collapse;margin-top:14px;background:var(--surface);border:1px solid var(--line)}
 .turni caption{text-align:left;font-weight:800;padding:12px 12px 8px}
 .turni th,.turni td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
-.turni thead th{background:var(--sunk);font-size:.9rem}
+.turni thead th{background:var(--sunk)}
 .turni td.g{font-weight:800;white-space:nowrap}
-.turni .ind{display:block;font-size:.9rem;color:var(--ink-2)}
+.turni .ind,.cal{display:block;color:var(--ink-2)}
+.cal{font-weight:400}
 .turni tr.fest td{background:var(--sunk)}
-.turni .festa{display:block;font-size:.85rem;font-weight:700}
+.turni tr.fest td:first-child{box-shadow:inset 6px 0 0 var(--line-2)}
+.turni .festa{display:block;font-weight:700}
 .turni tr.oggi td{background:var(--oggi)}
-.oggi-et{display:inline-block;margin-left:8px;padding:0 8px;border-radius:8px;background:var(--oggi-line);color:#fff;font-size:.8rem;font-weight:800}
-@media (prefers-color-scheme:dark){.oggi-et{color:#000}}
-@media (max-width:40rem){.turni thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.turni,.turni caption,.turni tbody,.turni tr,.turni td{display:block;width:100%}.turni tr{border-bottom:1px solid var(--line);padding:10px 12px}.turni td{border:0;padding:2px 0}.turni tr.fest td,.turni tr.oggi td{background:none}.turni tr.fest{background:var(--sunk)}.turni tr.oggi{background:var(--oggi)}}
+.turni a.num{display:inline-flex;align-items:center;min-height:48px}
+.oggi-et{display:block;width:max-content;max-width:100%;white-space:normal;margin-top:4px;padding:2px 10px;border-radius:8px;background:var(--oggi-et);color:var(--oggi-et-ink);font-weight:800}
+@media (max-width:40rem){.turni thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.turni,.turni caption,.turni tbody,.turni tr,.turni td{display:block;width:100%}.turni tr{border-bottom:1px solid var(--line);padding:10px 12px}.turni td{border:0;padding:2px 0}.turni tr.fest td,.turni tr.oggi td{background:none}.turni tr.fest{background:var(--sunk);box-shadow:inset 6px 0 0 var(--line-2)}.turni tr.fest td:first-child{box-shadow:none}.turni tr.oggi{background:var(--oggi)}.turni td.g{white-space:normal}}
 .mesi{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(6.5rem,1fr));gap:10px}
-.mesi a{display:flex;align-items:center;justify-content:center;min-height:56px;border:2px solid var(--line);border-radius:12px;background:var(--surface);font-weight:700;text-decoration:none;color:var(--ink)}
-.vai{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;margin-top:20px}
-.vai a{font-weight:700}
-.piede{background:var(--surface);border-top:1px solid var(--line);padding-block:20px 32px;font-size:.9rem;color:var(--ink-2)}
+.mesi a{display:flex;align-items:center;justify-content:center;min-height:64px;border:2px solid var(--line);border-radius:12px;background:var(--surface);font-weight:700;text-decoration:none;color:var(--ink)}
+.vai{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.vai a{flex:1 1 9rem;display:flex;align-items:center;justify-content:center;min-height:64px;padding:8px 14px;border:2px solid var(--ink-2);border-radius:14px;background:var(--surface);color:var(--ink);font-weight:700;text-decoration:none;text-align:center}
+.piede{background:var(--surface);border-top:1px solid var(--line);padding-block:20px 32px;color:var(--ink-2)}
 .piede p{margin-top:10px}
+.piede ul{list-style:none;padding:0;margin-top:10px}
+.piede li a{display:inline-flex;align-items:center;min-height:48px}
 @media print{.top,.btn,.vai,.bric{display:none}html,body{background:#fff;color:#000}}`;
+
+function scriptOggi(D) {
+  const c = D.META[D.anni[D.anni.length - 1]]?.cambio || "08:30", ct = (+c.slice(0, 2)) + ":" + c.slice(3);
+  return '<script>(function(){try{var p={};new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Rome",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});' +
+    'var oggi=p.year+"-"+p.month+"-"+p.day,ieri=new Date(Date.UTC(+p.year,+p.month-1,+p.day-1)).toISOString().slice(0,10);' +
+    'function et(d,t){var r=document.querySelector(\'tr[data-giorno="\'+d+\'"]\');if(!r)return;r.classList.add("oggi");var s=document.createElement("span");s.className="oggi-et";s.setAttribute("data-nosnippet","");s.textContent=t;r.cells[0].appendChild(s)}' +
+    'if(p.hour+":"+p.minute<"' + c + '"){et(ieri,"Stanotte, di solito fino alle ' + ct + '");et(oggi,"Oggi dalle ' + ct + '")}else et(oggi,"Oggi")}catch(e){}})();</script>';
+}
 
 function pagina({ percorso, titolo, descrizione, briciole, corpo, jsonld, D }) {
   const url = URL_APP + percorso;
@@ -159,6 +180,7 @@ function pagina({ percorso, titolo, descrizione, briciole, corpo, jsonld, D }) {
 <link rel="canonical" href="${esc(url)}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#123A5E">
+<script>try{if(localStorage.getItem("ftm-testo")==="grande")document.documentElement.setAttribute("data-testo","grande")}catch(e){}</script>
 <link rel="icon" href="${BASE}icons/icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="${BASE}icons/apple-touch-icon.png">
 <link rel="preload" href="${BASE}fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -183,7 +205,7 @@ ${corpo}
 <footer class="piede"><div class="wrap">
 <p><b>Servizio informativo non ufficiale.</b> Fanno fede i turni pubblicati dall'<a href="${esc(D.META[D.anni[D.anni.length - 1]].pagina)}" rel="noopener">Ordine dei Farmacisti della Provincia di Brindisi</a>. Indirizzi, telefoni e orari vengono dall'<a href="${esc(D.albo.fonte.url)}" rel="noopener">albo dell'Ordine</a>. Dati controllati ${esc(ilData(D.controllato))}.</p>
 <p>Prima di andare, soprattutto di notte, telefona alla farmacia.</p>
-<p><a href="${BASE}">Farmacia di turno adesso</a> · <a href="${BASE}turni/">Turni mese per mese</a> · <a href="${BASE}farmacie/">Le farmacie di Mesagne</a> · <a href="${BASE}numeri-utili/">Guardia medica e numeri utili</a> · <a href="${BASE}informazioni/">Chi siamo e da dove vengono i dati</a></p>
+<ul><li><a href="${BASE}">Farmacia di turno adesso</a></li><li><a href="${BASE}turni/">Turni mese per mese</a></li><li><a href="${BASE}farmacie/">Le farmacie di Mesagne</a></li><li><a href="${BASE}numeri-utili/">Guardia medica e numeri utili</a></li><li><a href="${BASE}informazioni/">Chi siamo e da dove vengono i dati</a></li></ul>
 <p>Realizzata da <a href="https://benz91x.github.io/">Alessandro Chiri</a>. Nessun account, nessun cookie, nessun tracciamento.</p>
 </div></footer>
 </body>
@@ -191,21 +213,28 @@ ${corpo}
 `;
 }
 
-/* evidenzia la riga di oggi nel calendario (solo per chi legge: il testo della pagina non cambia) */
-const SCRIPT_OGGI = '<script>(function(){try{var d=new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Rome",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());var r=document.querySelector(\'tr[data-giorno="\'+d+\'"]\');if(!r)return;r.classList.add("oggi");var s=document.createElement("span");s.className="oggi-et";s.setAttribute("data-nosnippet","");s.textContent="Oggi";r.cells[0].appendChild(s)}catch(e){}})();</script>';
+/* la riga di oggi nel calendario la segna uno script (solo per chi legge: il testo della pagina non cambia) */
 
 function nomeHtml(x, link) {
-  const n = esc(x.insegna) + (diverso(x) ? " <small>(" + esc(nomeCal(x)) + " nel calendario)</small>" : "");
-  return link ? '<a href="' + BASE + "farmacie/" + esc(x.id) + '/">' + n + "</a>" : n;
+  const n = link ? '<a href="' + BASE + "farmacie/" + esc(slug(x)) + '/">' + esc(x.insegna) + "</a>" : esc(x.insegna);
+  return n + (diverso(x) ? '<span class="cal">Nel calendario: ' + esc(nomeCal(x)) + "</span>" : "");
 }
-function rigaGiorno(D, d) {
+/* nelle frasi e negli elenchi il nome del calendario va tra parentesi, nella stessa riga */
+function nomeLista(x) {
+  return '<a href="' + BASE + "farmacie/" + esc(slug(x)) + '/">' + esc(x.insegna) + "</a>" + (diverso(x) ? " (" + esc(nomeCal(x)) + ")" : "");
+}
+function rigaGiorno(D, d, conAnno) {
   const x = D.FARM[D.TURNI[d]], f = festivo(D, d), festa = nomeFesta(D, d);
-  return '<tr data-giorno="' + d + '"' + (f ? ' class="fest"' : "") + '><td class="g">' + esc(maiusc(GIORNI[sett(d)])) + " " + (+d.slice(8)) +
+  const giorno = esc(maiusc(GIORNI[sett(d)])) + " " + (conAnno ? esc(dataLunga(d)) : (+d.slice(8)));
+  return '<tr data-giorno="' + d + '"' + (f ? ' class="fest"' : "") + '><td class="g">' + giorno +
     (festa ? '<span class="festa">' + esc(maiusc(festa)) + "</span>" : "") + "</td>" +
-    "<td>" + nomeHtml(x, true) + '<span class="ind">' + esc(maiusc(x.indirizzo)) + "</span></td>" +
-    '<td><a class="num" href="' + telHref(x.telefono) + '">' + esc(x.telefono) + "</a></td></tr>";
+    (x ? "<td>" + nomeHtml(x, true) + '<span class="ind">' + esc(maiusc(x.indirizzo)) + "</span></td>" +
+      '<td><a class="num" href="' + telHref(x.telefono) + '">' + esc(x.telefono) + "</a></td></tr>"
+      : '<td colspan="2">Dato non disponibile: guarda il calendario dell\'Ordine dei Farmacisti o il cartello fuori da una farmacia.</td></tr>');
 }
-const NOTA_TURNO = "Chiama sempre prima di andare: di notte il farmacista arriva dopo la telefonata. Dopo mezzanotte, fino alle 8:30, di solito è ancora di turno la farmacia del giorno prima.";
+/* le stesse cautele dell'app: di notte si telefona, e l'orario del cambio non è confermato */
+const NOTA_TURNO = "Chiama sempre prima di andare. Di notte la farmacia di turno può essere chiusa: il farmacista viene ad aprire dopo la tua telefonata, per legge entro mezz'ora. Se non risponde nessuno, chiama il numero scritto sul cartello fuori dalla farmacia: di notte può essere diverso. Dopo mezzanotte, fino alle 8:30, di solito è ancora di turno la farmacia del giorno prima.";
+const SERVIZIO_TURNO = "Nei giorni di turno la farmacia garantisce il servizio anche fuori dal normale orario: nella pausa di pranzo, la sera e la notte, a volte solo su chiamata.";
 function fonteAnno(D, a) {
   const m = D.META[a] || {};
   return "Fonte: calendari dei turni di Mesagne dell'Ordine dei Farmacisti della Provincia di Brindisi" +
@@ -218,35 +247,40 @@ function paginaMese(D, am, i) {
   const a = +am.slice(0, 4), n = giorniNelMese(a, +am.slice(5)), nm = nomeMese(am);
   const giorni = Array.from({ length: n }, (_, k) => am + "-" + pad(k + 1));
   const prima = D.mesi[i - 1], dopo = D.mesi[i + 1];
-  const feste = giorni.filter((d) => D.FESTIVI[d]);
+  const feste = giorni.filter((d) => D.FESTIVI[d] && D.TURNI[d]);
   const conta = {};
-  giorni.forEach((d) => { conta[D.TURNI[d]] = (conta[D.TURNI[d]] || 0) + 1; });
+  giorni.forEach((d) => { if (D.TURNI[d]) conta[D.TURNI[d]] = (conta[D.TURNI[d]] || 0) + 1; });
+  /* giorni del mese dopo già nel file dell'anno (es. il 1° gennaio) quando quel mese non ha ancora una pagina */
+  const mDopo = (am.slice(5) === "12" ? (a + 1) + "-01" : a + "-" + pad(+am.slice(5) + 1));
+  const extra = D.mesi.includes(mDopo) ? [] : Object.keys(D.TURNI).filter((d) => d.startsWith(mDopo + "-") && D.DI[d] === a).sort();
+  const agg = max([D.META[a]?.controllato, D.albo.fonte?.controllato]) || D.controllato;
   const corpo = `<h1>Farmacie di turno a Mesagne: ${esc(nm)}</h1>
-<p class="agg">Pagina aggiornata ${esc(ilData(D.META[a]?.controllato || D.controllato))} con il calendario dell'Ordine dei Farmacisti.</p>
+<p class="agg">Pagina aggiornata ${esc(ilData(agg))} con il calendario dell'Ordine dei Farmacisti.</p>
 <p class="lead">Il calendario dei turni delle farmacie di Mesagne per ${esc(nm)}, giorno per giorno, con l'indirizzo e il telefono della farmacia di turno.</p>
 <a class="btn" href="${BASE}">Chi è di turno adesso</a>
 <p class="avviso">${esc(NOTA_TURNO)}</p>
 <table class="turni">
-<caption>Turni di ${esc(nm)}. Le righe in grigio sono domeniche e festivi.</caption>
+<caption>Turni di ${esc(nm)}. Le righe con la barra grigia a sinistra sono domeniche e festivi.</caption>
 <thead><tr><th scope="col">Giorno</th><th scope="col">Farmacia di turno</th><th scope="col">Telefono</th></tr></thead>
 <tbody>
 ${giorni.map((d) => rigaGiorno(D, d)).join("\n")}
 </tbody>
 </table>
+${extra.length ? '<p>Nel calendario c\'è già anche ' + extra.map((d) => { const x = D.FARM[D.TURNI[d]]; return esc(conGiorno(d)) + (D.FESTIVI[d] ? " (" + esc(nomeFesta(D, d)) + ")" : "") + ": " + nomeLista(x) + ', tel. <a class="num" href="' + telHref(x.telefono) + '">' + esc(x.telefono) + "</a>"; }).join("; ") + ".</p>" : ""}
 <p class="fonte">${esc(fonteAnno(D, a))}</p>
-${feste.length ? "<h2>Festivi di " + esc(nm) + "</h2><ul class=\"punti\">" + feste.map((d) => "<li>" + esc(maiusc(conGiorno(d))) + (nomeFesta(D, d) !== "giorno festivo" ? " (" + esc(nomeFesta(D, d)) + ")" : "") + ": " + nomeHtml(D.FARM[D.TURNI[d]], true) + ', tel. <a class="num" href="' + telHref(D.FARM[D.TURNI[d]].telefono) + '">' + esc(D.FARM[D.TURNI[d]].telefono) + "</a></li>").join("") + "</ul>" : ""}
+${feste.length ? "<h2>Festivi di " + esc(nm) + "</h2><ul class=\"punti\">" + feste.map((d) => "<li>" + esc(maiusc(conGiorno(d))) + (nomeFesta(D, d) !== "giorno festivo" ? " (" + esc(nomeFesta(D, d)) + ")" : "") + ": " + nomeLista(D.FARM[D.TURNI[d]]) + ', tel. <a class="num" href="' + telHref(D.FARM[D.TURNI[d]].telefono) + '">' + esc(D.FARM[D.TURNI[d]].telefono) + "</a></li>").join("") + "</ul>" : ""}
 <h2>Quante volte è di turno ogni farmacia a ${esc(nm)}</h2>
-<ul class="punti">${ordinate(D).map((x) => "<li>" + nomeHtml(x, true) + ": " + (conta[x.id] || 0) + " " + ((conta[x.id] || 0) === 1 ? "giorno" : "giorni") + "</li>").join("")}</ul>
-<a class="btn sec" href="${BASE}?foglio=${am}" rel="nofollow">Stampa il foglio di ${esc(nm)} (A4)</a>
-<nav class="vai" aria-label="Altri mesi">${prima ? '<a href="' + BASE + "turni/" + slugMese(prima) + '/">‹ ' + esc(maiusc(nomeMese(prima))) + "</a>" : "<span></span>"}<a href="${BASE}turni/">Tutti i mesi</a>${dopo ? '<a href="' + BASE + "turni/" + slugMese(dopo) + '/">' + esc(maiusc(nomeMese(dopo))) + " ›</a>" : "<span></span>"}</nav>
-${SCRIPT_OGGI}`;
+<ul class="punti">${ordinate(D).map((x) => "<li>" + nomeLista(x) + ": " + (conta[x.id] || 0) + " " + ((conta[x.id] || 0) === 1 ? "giorno" : "giorni") + "</li>").join("")}</ul>
+${completo(D, am) ? '<a class="btn sec" href="' + BASE + "?foglio=" + am + '" rel="nofollow">Stampa il foglio di ' + esc(nm) + " (A4)</a>" : ""}
+<nav class="vai" aria-label="Altri mesi">${prima ? '<a href="' + BASE + "turni/" + slugMese(prima) + '/">‹ ' + esc(maiusc(nomeMese(prima))) + "</a>" : ""}<a href="${BASE}turni/">Tutti i mesi</a>${dopo ? '<a href="' + BASE + "turni/" + slugMese(dopo) + '/">' + esc(maiusc(nomeMese(dopo))) + " ›</a>" : ""}</nav>
+${scriptOggi(D)}`;
   return pagina({
     D, percorso: "turni/" + slugMese(am) + "/",
     titolo: "Farmacie di turno Mesagne " + nm + ": calendario dei turni",
-    descrizione: "Calendario delle farmacie di turno a Mesagne per " + nm + ": giorno per giorno la farmacia aperta di turno, con indirizzo e telefono." + (feste.length ? " Festivi compresi." : "") + " Dati dell'Ordine dei Farmacisti di Brindisi.",
+    descrizione: "Farmacie di turno a Mesagne a " + nm + ": giorno per giorno la farmacia aperta, con indirizzo e telefono. Dal calendario dell'Ordine dei Farmacisti di Brindisi.",
     briciole: [{ n: "Farmacia di turno Mesagne", p: "" }, { n: "Turni", p: "turni/" }, { n: maiusc(nm), p: "turni/" + slugMese(am) + "/" }],
     corpo,
-    jsonld: [{ "@context": "https://schema.org", "@type": "WebPage", name: "Farmacie di turno a Mesagne: " + nm, url: URL_APP + "turni/" + slugMese(am) + "/", inLanguage: "it-IT", dateModified: D.META[a]?.controllato || D.controllato, isPartOf: { "@id": URL_APP + "#app" }, about: { "@type": "City", name: "Mesagne" } }]
+    jsonld: [{ "@context": "https://schema.org", "@type": "WebPage", name: "Farmacie di turno a Mesagne: " + nm, url: URL_APP + "turni/" + slugMese(am) + "/", inLanguage: "it-IT", dateModified: agg, isPartOf: { "@id": URL_APP + "#app" }, about: { "@type": "City", name: "Mesagne" } }]
   });
 }
 
@@ -257,7 +291,7 @@ function paginaTurni(D) {
 <p class="lead">Il calendario completo delle farmacie di turno a Mesagne, mese per mese, e la farmacia di turno in ogni domenica e giorno di festa.</p>
 <a class="btn" href="${BASE}">Chi è di turno adesso</a>
 ${anni.map((a) => {
-  const feste = Object.keys(D.FESTIVI).filter((d) => d.startsWith(a + "-") && D.TURNI[d]).sort();
+  const feste = Object.keys(D.FESTIVI).filter((d) => (d.startsWith(a + "-") || D.DI[d] === a) && D.TURNI[d]).sort();
   return `<h2>Calendario ${a}</h2>
 <ul class="mesi">${D.mesi.filter((m) => m.startsWith(a + "-")).map((m) => '<li><a href="' + BASE + "turni/" + slugMese(m) + '/">' + esc(maiusc(MESI[+m.slice(5) - 1])) + "</a></li>").join("")}</ul>
 <h2>Feste del ${a}: chi è di turno</h2>
@@ -265,19 +299,19 @@ ${anni.map((a) => {
 <caption>Farmacie di turno nei giorni di festa del ${a} (le domeniche sono nei calendari dei mesi).</caption>
 <thead><tr><th scope="col">Giorno</th><th scope="col">Farmacia di turno</th><th scope="col">Telefono</th></tr></thead>
 <tbody>
-${feste.map((d) => { const x = D.FARM[D.TURNI[d]], festa = nomeFesta(D, d); return '<tr data-giorno="' + d + '" class="fest"><td class="g">' + esc(maiusc(GIORNI[sett(d)])) + " " + esc(dataLunga(d).replace(/ \d{4}$/, "")) + (festa ? '<span class="festa">' + esc(maiusc(festa)) + "</span>" : "") + "</td><td>" + nomeHtml(x, true) + '<span class="ind">' + esc(maiusc(x.indirizzo)) + '</span></td><td><a class="num" href="' + telHref(x.telefono) + '">' + esc(x.telefono) + "</a></td></tr>"; }).join("\n")}
+${feste.map((d) => rigaGiorno(D, d, true)).join("\n")}
 </tbody>
 </table>
 <p class="fonte">${esc(fonteAnno(D, a))}</p>`;
 }).join("\n")}
 <h2>Come funzionano i turni a Mesagne</h2>
 <ul class="punti">
-<li>A Mesagne ci sono ${Object.keys(D.FARM).length} farmacie. Ogni giorno una è di turno: resta aperta oltre il normale orario, anche nella pausa di pranzo, la sera e la notte.</li>
-<li>Per la legge regionale della Puglia (n. 5 del 2014) il servizio di notte va dalle 20 alle 8:30 del mattino dopo; d'estate, dal 21 giugno al 21 settembre, il pomeriggio va dalle 17 alle 20:30.</li>
+<li>A Mesagne ci sono ${Object.keys(D.FARM).length} farmacie e ogni giorno una è di turno. ${esc(SERVIZIO_TURNO)}</li>
+<li>Per la legge regionale della Puglia (n. 5 del 2014) il servizio di notte va dalle 20 alle 8:30 del mattino dopo; d'estate, dal 21 giugno al 21 settembre, il pomeriggio va dalle 17 alle 20:30. A Mesagne di solito il turno cambia alle 8:30, ma non è confermato.</li>
 <li>${esc(NOTA_TURNO)}</li>
 <li>La domenica e nei giorni di festa di regola è aperta solo la farmacia di turno.</li>
 </ul>
-${SCRIPT_OGGI}`;
+${scriptOggi(D)}`;
   return pagina({
     D, percorso: "turni/",
     titolo: "Turni farmacie Mesagne " + anni.join("-") + ": calendario mensile e festivi",
@@ -298,7 +332,7 @@ function orariHtml(x) {
 }
 
 function paginaFarmacia(D, x) {
-  const date = Object.keys(D.TURNI).filter((d) => D.TURNI[d] === x.id && D.mesi.includes(d.slice(0, 7))).sort();
+  const date = Object.keys(D.TURNI).filter((d) => D.TURNI[d] === x.id).sort();
   const perMese = {};
   date.forEach((d) => { (perMese[d.slice(0, 7)] = perMese[d.slice(0, 7)] || []).push(d); });
   const altre = ordinate(D).filter((y) => y.id !== x.id);
@@ -317,19 +351,19 @@ ${x.altriNomi ? "<h2>In altri elenchi</h2><p>" + esc(x.altriNomi.testo) + "</p>"
 ${orariHtml(x)}
 <p>Gli orari vengono dall'albo dell'Ordine dei Farmacisti e possono cambiare: chiama prima di andare.</p>
 <h2>Quando è di turno la ${esc(x.insegna)}</h2>
-<p>Nei giorni di turno la farmacia resta aperta anche nella pausa di pranzo, la sera e la notte. ${esc(NOTA_TURNO)}</p>
-${Object.keys(perMese).map((am) => "<h3 style=\"margin-top:18px\">" + esc(maiusc(nomeMese(am))) + "</h3><p>" + perMese[am].map((d) => esc(GIORNI[sett(d)] + " " + (+d.slice(8))) + (festivo(D, d) && D.FESTIVI[d] ? " (" + esc(nomeFesta(D, d)) + ")" : "")).join(", ") + '. <a href="' + BASE + "turni/" + slugMese(am) + '/">Calendario di ' + esc(nomeMese(am)) + "</a></p>").join("\n")}
+<p>${esc(SERVIZIO_TURNO)} ${esc(NOTA_TURNO)}</p>
+${Object.keys(perMese).map((am) => "<h3 style=\"margin-top:18px\">" + esc(maiusc(nomeMese(am))) + "</h3><p>" + perMese[am].map((d) => esc(GIORNI[sett(d)] + " " + (+d.slice(8))) + (festivo(D, d) && D.FESTIVI[d] ? " (" + esc(nomeFesta(D, d)) + ")" : "")).join(", ") + "." + (D.mesi.includes(am) ? ' <a href="' + BASE + "turni/" + slugMese(am) + '/">Calendario di ' + esc(nomeMese(am)) + "</a>" : "") + "</p>").join("\n")}
 <p class="fonte">${esc(D.anni.map((a) => fonteAnno(D, a)).join(" "))}</p>
 <h2>Le altre farmacie di Mesagne</h2>
-<ul class="punti">${altre.map((y) => "<li>" + nomeHtml(y, true) + ", " + esc(y.indirizzoBreve || y.indirizzo) + "</li>").join("")}</ul>`;
+<ul class="punti">${altre.map((y) => "<li>" + nomeLista(y) + ", " + esc(y.indirizzoBreve || y.indirizzo) + "</li>").join("")}</ul>`;
   return pagina({
-    D, percorso: "farmacie/" + x.id + "/",
+    D, percorso: "farmacie/" + slug(x) + "/",
     titolo: x.insegna + " Mesagne: indirizzo, telefono, orari e turni",
     descrizione: x.insegna + " a Mesagne, " + maiusc(x.indirizzo) + ": telefono " + x.telefono + ", orari e tutti i giorni in cui è di turno, anche di notte e nei festivi.",
-    briciole: [{ n: "Farmacia di turno Mesagne", p: "" }, { n: "Farmacie", p: "farmacie/" }, { n: x.insegna, p: "farmacie/" + x.id + "/" }],
+    briciole: [{ n: "Farmacia di turno Mesagne", p: "" }, { n: "Farmacie", p: "farmacie/" }, { n: x.insegna, p: "farmacie/" + slug(x) + "/" }],
     corpo,
     jsonld: [{
-      "@context": "https://schema.org", "@type": "WebPage", name: x.insegna + " a Mesagne", url: URL_APP + "farmacie/" + x.id + "/", inLanguage: "it-IT", dateModified: D.controllato, isPartOf: { "@id": URL_APP + "#app" },
+      "@context": "https://schema.org", "@type": "WebPage", name: x.insegna + " a Mesagne", url: URL_APP + "farmacie/" + slug(x) + "/", inLanguage: "it-IT", dateModified: D.controllato, isPartOf: { "@id": URL_APP + "#app" },
       mainEntity: { "@type": "Pharmacy", name: x.insegna, telephone: telIntl(x.telefono), address: { "@type": "PostalAddress", streetAddress: maiusc(x.indirizzo), addressLocality: "Mesagne", postalCode: cap(x), addressRegion: "BR", addressCountry: "IT" } }
     }]
   });
@@ -339,12 +373,12 @@ function paginaFarmacie(D) {
   const l = ordinate(D);
   const corpo = `<h1>Farmacie a Mesagne</h1>
 <p class="agg">Pagina aggiornata ${esc(ilData(D.albo.fonte.controllato || D.controllato))} con l'albo dell'Ordine dei Farmacisti.</p>
-<p class="lead">Le ${l.length} farmacie di Mesagne con indirizzo, telefono e orari. Per sapere quale è aperta adesso, anche di notte e nei festivi, apri l'app.</p>
+<p class="lead">Le ${l.length} farmacie di Mesagne con indirizzo, telefono e orari. Per sapere quale è di turno adesso, anche di notte e nei festivi, apri l'app.</p>
 <a class="btn" href="${BASE}">Quale farmacia è di turno adesso</a>
-${l.map((x) => `<article class="scheda"><h2><a href="${BASE}farmacie/${esc(x.id)}/">${esc(x.insegna)}</a></h2>
+${l.map((x) => `<article class="scheda"><h2><a href="${BASE}farmacie/${esc(slug(x))}/">${esc(x.insegna)}</a></h2>
 <p>${esc(maiusc(x.indirizzo))}${diverso(x) ? ". Nel calendario dei turni si chiama <b>" + esc(nomeCal(x)) + "</b>" : ""}</p>
 <p>Telefono: <a class="num" href="${telHref(x.telefono)}">${esc(x.telefono)}</a></p>
-<p><a href="${BASE}farmacie/${esc(x.id)}/">Orari e giorni di turno della ${esc(x.insegna)}</a></p></article>`).join("\n")}
+<p><a href="${BASE}farmacie/${esc(slug(x))}/">Orari e giorni di turno della ${esc(x.insegna)}</a></p></article>`).join("\n")}
 <p class="fonte">Fonte: ${esc(D.albo.fonte.nome)}, controllato ${esc(ilData(D.albo.fonte.controllato))}.</p>
 <h2>Domande frequenti</h2>
 <h3 style="margin-top:16px">Quante farmacie ci sono a Mesagne?</h3>
@@ -352,14 +386,14 @@ ${l.map((x) => `<article class="scheda"><h2><a href="${BASE}farmacie/${esc(x.id)
 <h3 style="margin-top:16px">Come so quale farmacia è di turno?</h3>
 <p>Apri <a href="${BASE}">Farmacia di turno Mesagne</a>: mostra la farmacia di turno adesso, domani e nel prossimo festivo. C'è anche il <a href="${BASE}turni/">calendario dei turni mese per mese</a>, che si può stampare.</p>
 <h3 style="margin-top:16px">Di notte la farmacia di turno è aperta?</h3>
-<p>${esc(NOTA_TURNO)}</p>`;
+<p>${esc(SERVIZIO_TURNO)} ${esc(NOTA_TURNO)}</p>`;
   return pagina({
     D, percorso: "farmacie/",
     titolo: "Farmacie a Mesagne: elenco, indirizzi, telefoni e orari",
     descrizione: "Le " + l.length + " farmacie di Mesagne (BR): " + l.map((x) => x.nomeBreve).join(", ") + ". Indirizzo, telefono, orari e giorni di turno di ognuna.",
     briciole: [{ n: "Farmacia di turno Mesagne", p: "" }, { n: "Farmacie", p: "farmacie/" }],
     corpo,
-    jsonld: [{ "@context": "https://schema.org", "@type": "ItemList", name: "Farmacie a Mesagne", numberOfItems: l.length, itemListElement: l.map((x, i) => ({ "@type": "ListItem", position: i + 1, url: URL_APP + "farmacie/" + x.id + "/", name: x.insegna })) }]
+    jsonld: [{ "@context": "https://schema.org", "@type": "ItemList", name: "Farmacie a Mesagne", numberOfItems: l.length, itemListElement: l.map((x, i) => ({ "@type": "ListItem", position: i + 1, url: URL_APP + "farmacie/" + slug(x) + "/", name: x.insegna })) }]
   });
 }
 
@@ -462,7 +496,7 @@ function paginaInformazioni(D) {
 function bloccoElenco(D) {
   return ordinate(D).map((x) => '<article class="scheda"><h3>' + esc(x.insegna) + "</h3>" +
     '<p class="riga">' + esc(maiusc(x.indirizzo)) + '</p><p class="riga">Telefono <a class="num" href="' + telHref(x.telefono) + '">' + esc(x.telefono) + "</a></p>" +
-    '<p class="riga"><a href="farmacie/' + esc(x.id) + '/">Orari e giorni di turno</a></p></article>').join("");
+    '<p class="riga"><a href="farmacie/' + esc(slug(x)) + '/">Orari e giorni di turno</a></p></article>').join("");
 }
 function bloccoMesi(D) {
   return D.mesi.map((m) => '<li><a href="turni/' + slugMese(m) + '/">' + esc(maiusc(nomeMese(m))) + "</a></li>").join("");
@@ -474,19 +508,20 @@ function sostituisci(html, nome, dentro) {
 }
 
 /* ======== tutto insieme ======== */
-export function generaPagine({ controlla = false } = {}) {
+export function generaPagine({ controlla = false, forza = false } = {}) {
   const D = caricaDati();
   const file = {};
   file["turni/index.html"] = paginaTurni(D);
   D.mesi.forEach((m, i) => { file["turni/" + slugMese(m) + "/index.html"] = paginaMese(D, m, i); });
   file["farmacie/index.html"] = paginaFarmacie(D);
-  for (const x of Object.values(D.FARM)) file["farmacie/" + x.id + "/index.html"] = paginaFarmacia(D, x);
+  for (const x of Object.values(D.FARM)) file["farmacie/" + slug(x) + "/index.html"] = paginaFarmacia(D, x);
   file["numeri-utili/index.html"] = paginaNumeri(D);
   file["informazioni/index.html"] = paginaInformazioni(D);
 
-  const voci = [["", D.controllato], ["turni/", D.controllato], ["farmacie/", D.albo.fonte.controllato || D.controllato], ["numeri-utili/", D.NUMERI.aggiornato || D.controllato], ["informazioni/", D.controllato]]
-    .concat(D.mesi.map((m) => ["turni/" + slugMese(m) + "/", D.META[m.slice(0, 4)]?.controllato || D.controllato]))
-    .concat(ordinate(D).map((x) => ["farmacie/" + x.id + "/", D.controllato]));
+  const lm = (...d) => max([...d, DATA_MODELLO]);
+  const voci = [["", lm(D.controllato)], ["turni/", lm(D.controllato)], ["farmacie/", lm(D.albo.fonte.controllato || D.controllato)], ["numeri-utili/", lm(D.NUMERI.aggiornato || D.controllato)], ["informazioni/", lm(D.controllato)]]
+    .concat(D.mesi.map((m) => ["turni/" + slugMese(m) + "/", lm(D.META[m.slice(0, 4)]?.controllato, D.albo.fonte?.controllato)]))
+    .concat(ordinate(D).map((x) => ["farmacie/" + slug(x) + "/", lm(D.controllato)]));
   file["sitemap.xml"] = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     voci.map(([p, d]) => "  <url>\n    <loc>" + URL_APP + p + "</loc>\n    <lastmod>" + d + "</lastmod>\n  </url>\n").join("") + "</urlset>\n";
 
@@ -504,6 +539,7 @@ export function generaPagine({ controlla = false } = {}) {
   }
   const diverse = Object.keys(file).filter((f) => !existsSync(join(APP, f)) || readFileSync(join(APP, f), "utf8") !== file[f]);
   if (controlla) return { diverse, vecchie };
+  if (vecchie.length > 2 && !forza) throw new Error("Dovrei togliere " + vecchie.length + " pagine (" + vecchie.join(", ") + "): mi fermo. Se è giusto, lancia pagine.mjs --forza.");
   for (const f of diverse) { mkdirSync(dirname(join(APP, f)), { recursive: true }); writeFileSync(join(APP, f), file[f]); }
   for (const v of vecchie) rmSync(join(APP, v), { recursive: true, force: true });
   return { diverse, vecchie, pagine: Object.keys(file).length };
@@ -511,7 +547,7 @@ export function generaPagine({ controlla = false } = {}) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const controlla = process.argv.includes("--controlla");
-  const r = generaPagine({ controlla });
+  const r = generaPagine({ controlla, forza: process.argv.includes("--forza") });
   if (controlla) {
     if (r.diverse.length || r.vecchie.length) { console.error("Pagine da aggiornare: " + [...r.diverse, ...r.vecchie].join(", ") + "\nLancia: node farmacia-di-turno-mesagne/strumenti/pagine.mjs"); process.exit(1); }
     console.log("Pagine aggiornate.");

@@ -110,6 +110,12 @@ Le viste con parametri dell'app (`?foglio=`, `?cartello=`, `?da=`, `?servizi=1`,
 `noindex`: nei risultati deve comparire solo la pagina principale. Il file `a8b2e4….txt` è la chiave
 di IndexNow (avvisa Bing quando le pagine cambiano): non cancellarlo.
 
+Se l'Action «Pagine Farmacia di turno Mesagne» diventa rossa, non pubblica niente e il sito resta
+com'era: apri l'esecuzione e leggi il messaggio. Di solito nei turni c'è il nome (`id`) di una farmacia
+che non è in `farmacie.json`, oppure dovrebbe togliere molte pagine insieme: correggi il file `.json`
+e l'Action riparte da sola. La Farmacia Materdomini ha la pagina `farmacie/materdomini/` (campo
+`slug` in `farmacie.json`), anche se nei turni si chiama `rutigliano`.
+
 Nelle pagine ci sono solo date precise («domenica 11 ottobre»), mai «oggi»: così un risultato di
 Google vecchio di qualche giorno resta giusto. Nell'app, i riquadri che cambiano ogni giorno hanno
 `data-nosnippet`, perché Google non li copi nella descrizione del risultato.
@@ -242,7 +248,7 @@ e togli «intestazioni e piè di pagina».
 
 ## Dopo una modifica a `index.html`
 
-Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011c";` (per esempio con la data
+Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011d";` (per esempio con la data
 di oggi): così i telefoni scaricano la versione nuova. Per i file `.json` non serve.
 
 ## Limiti da conoscere

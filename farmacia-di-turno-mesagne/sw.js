@@ -2,7 +2,7 @@
    Cambia CACHE a ogni pubblicazione di index.html: così i telefoni scaricano davvero la versione nuova.
    I file dei turni (turni-AAAA.json) si scaricano sempre dalla rete quando c'è: non serve cambiare CACHE. */
 var PREFISSO = "farmacia-di-turno-mesagne-";
-var CACHE = PREFISSO + "20261011c";
+var CACHE = PREFISSO + "20261011d";
 var PAGINA = "./";
 var FILE = ["./calendari.json", "./farmacie.json", "./numeri.json", "./abbonamenti.json", "./manifest.webmanifest",
             "./fonts/atkinson-hyperlegible-next-latin.woff2",
@@ -71,6 +71,18 @@ self.addEventListener("fetch", function (e) {
 
   /* la pagina dell'app (con qualsiasi ?parametro): è l'unica pagina salvata per l'uso offline */
   if (e.request.mode === "navigate") {
+    /* le pagine per i motori di ricerca (turni/, farmacie/…): rete, poi la copia di quando le hai aperte,
+       poi l'app (che funziona anche senza internet) invece della pagina di errore del browser */
+    if (/^(turni|farmacie|numeri-utili|informazioni)\//.test(nome)) {
+      var html = function (r) { return (r.headers.get("content-type") || "").indexOf("text/html") === 0; };
+      e.respondWith(retePoiCopia(e.request, url.origin + url.pathname, html).then(function (r) {
+        if (r && r.type !== "error" && r.ok) return r;
+        /* pagina mai aperta e niente rete: si torna all'app (che è salvata e mostra il turno) */
+        var app = self.registration.scope;
+        return new Response('<!doctype html><html lang="it"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0;url=' + app + '"><title>Farmacia di turno Mesagne</title><body style="font:21px/1.5 system-ui,sans-serif;padding:16px"><p>Senza internet questa pagina non è disponibile.</p><p><a href="' + app + '">Vedi la farmacia di turno adesso</a></p></body></html>', { headers: { "content-type": "text/html; charset=utf-8" } });
+      }));
+      return;
+    }
     if (nome !== "" && nome !== "index.html") return;
     e.respondWith(retePoiCopia(e.request, PAGINA, function (r) { return (r.headers.get("content-type") || "").indexOf("text/html") === 0; }));
     return;

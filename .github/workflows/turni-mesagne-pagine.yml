@@ -1,6 +1,7 @@
 # Farmacia di turno Mesagne: pagine per i motori di ricerca.
-# Quando cambiano i dati (turni, farmacie) rifà le pagine statiche dei mesi e delle farmacie,
-# la sitemap e l'elenco statico in index.html, e le pubblica. Non serve fare niente a mano.
+# Quando cambiano i dati (turni, farmacie, numeri utili) rifà le pagine statiche dei mesi e delle farmacie,
+# la sitemap e l'elenco statico in index.html, e le pubblica. Poi avvisa Bing con IndexNow.
+# Non serve fare niente a mano. Se il generatore trova un problema nei dati, si ferma e non pubblica.
 name: Pagine Farmacia di turno Mesagne
 
 on:
@@ -23,39 +24,49 @@ concurrency:
 jobs:
   pagine:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
+      # sempre l'ultimo main, non il commit che ha avviato il job: nel frattempo può essere arrivato altro
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Rifai le pagine
-        run: node farmacia-di-turno-mesagne/strumenti/pagine.mjs
-
-      - name: Pubblica se qualcosa è cambiato
+      - name: Rifai e pubblica le pagine
+        id: pubblica
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if git diff --quiet -- farmacia-di-turno-mesagne && [ -z "$(git ls-files --others --exclude-standard farmacia-di-turno-mesagne)" ]; then
-            echo "Le pagine erano già aggiornate." | tee -a "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A farmacia-di-turno-mesagne
-          git commit -m "Farmacia di turno Mesagne: pagine aggiornate con i dati nuovi"
-          git push origin HEAD:main
-          echo "Pagine aggiornate e pubblicate." | tee -a "$GITHUB_STEP_SUMMARY"
-          # chi pubblica con il token delle Actions non sempre fa ripartire GitHub Pages: lo chiediamo esplicitamente
-          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" >/dev/null 2>&1 || echo "Pubblicazione: partirà con il prossimo aggiornamento del sito." | tee -a "$GITHUB_STEP_SUMMARY"
+          for tentativo in 1 2 3; do
+            node farmacia-di-turno-mesagne/strumenti/pagine.mjs
+            if git diff --quiet -- farmacia-di-turno-mesagne && [ -z "$(git ls-files --others --exclude-standard farmacia-di-turno-mesagne)" ]; then
+              echo "Le pagine erano già aggiornate." | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            git add -A farmacia-di-turno-mesagne
+            git commit -q -m "Farmacia di turno Mesagne: pagine aggiornate con i dati nuovi"
+            if git push origin HEAD:main; then
+              echo "cambiate=true" >> "$GITHUB_OUTPUT"
+              echo "Pagine aggiornate e pubblicate." | tee -a "$GITHUB_STEP_SUMMARY"
+              # chi pubblica con il token delle Actions non sempre fa ripartire GitHub Pages: lo chiediamo esplicitamente
+              gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" >/dev/null 2>&1 || true
+              exit 0
+            fi
+            echo "main è cambiato mentre lavoravo: riparto dall'ultima versione (tentativo $tentativo)."
+            git fetch -q origin main
+            git reset -q --hard origin/main
+          done
+          echo "Non sono riuscito a pubblicare le pagine dopo 3 tentativi." | tee -a "$GITHUB_STEP_SUMMARY"
+          exit 1
 
       - name: Avvisa Bing e gli altri motori (IndexNow)
-        if: success()
+        if: steps.pubblica.outputs.cambiate == 'true'
         run: |
-          # solo se il passo prima ha pubblicato qualcosa (l'ultimo commit è quello delle pagine)
-          git log -1 --format=%s | grep -q "pagine aggiornate" || exit 0
           chiave=$(ls farmacia-di-turno-mesagne | grep -E '^[0-9a-f]{32}\.txt$' | head -1 | sed 's/\.txt$//')
           [ -n "$chiave" ] || exit 0
           sleep 120   # il tempo perché GitHub Pages pubblichi le pagine nuove

@@ -11,7 +11,7 @@
     "controllato": "2026-10-10",
     "nota": "Ottobre, novembre e dicembre 2026: nessuna farmacia di Mesagne in ferie."
   },
-  "nota": "Indirizzi, telefoni e orari sono copiati dall'albo dell'Ordine. In 'testoAlbo' c'è il testo dell'albo (trattini e spazi normalizzati), per il controllo. 'calendario' sono i nomi usati nel PDF dei turni. 'invernoDal' è la data di inizio dell'orario invernale quando l'albo la scrive. 'altriNomi' dice come la farmacia compare in fonti più vecchie (la fonte è in numeri.json, fonti): serve a chi la cerca con il nome vecchio.",
+  "nota": "Indirizzi, telefoni e orari sono copiati dall'albo dell'Ordine. In 'testoAlbo' c'è il testo dell'albo (trattini e spazi normalizzati), per il controllo. 'calendario' sono i nomi usati nel PDF dei turni. 'invernoDal' è la data di inizio dell'orario invernale quando l'albo la scrive. 'slug' è il nome della pagina della farmacia (farmacie/<slug>/) quando l'id dei turni è diverso dall'insegna. 'altriNomi' dice come la farmacia compare in fonti più vecchie (la fonte è in numeri.json, fonti): serve a chi la cerca con il nome vecchio.",
   "farmacie": [
     {
       "id": "alioth",
@@ -119,6 +119,7 @@
     },
     {
       "id": "rutigliano",
+      "slug": "materdomini",
       "calendario": [
         "RUTIGLIANO",
         "MATERDOMINI"
