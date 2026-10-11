@@ -1,0 +1,4 @@
+{
+  "nota": "Anni per cui esiste il file turni-AAAA.json. Lo aggiorna da solo «node strumenti/turni.mjs aggiorna»; se aggiungi un file a mano, aggiungi qui l'anno.",
+  "anni": [2026]
+}

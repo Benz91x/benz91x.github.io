@@ -1,0 +1,42 @@
+{
+  "aggiornato": "2026-10-10",
+  "nota": "Farmacie con il pacchetto e spazi in fondo al foglio stampato. Le date 'fino' sono comprese. Il turno resta uguale per tutte: questo file cambia solo il foglio stampato, il cartello per la vetrina e la scheda servizi nell'elenco.",
+  "serviziPossibili": "cup, vaccini, pressione, glicemia, ecg, holter, domicilio, tamponi (solo queste parole: niente prezzi, sconti o frasi pubblicitarie)",
+  "farmacie": {
+    "esempio": {
+      "dimostrazione": true,
+      "insegna": "Farmacia Esempio",
+      "indirizzo": "via dell'Esempio 1",
+      "telefono": "0831 000000",
+      "logo": "loghi/esempio.svg",
+      "fino": "2099-12-31",
+      "servizi": [
+        "cup",
+        "pressione",
+        "domicilio"
+      ]
+    }
+  },
+  "spazi": [],
+  "spaziEsempio": [
+    {
+      "nome": "Sanitaria Esempio",
+      "categoria": "sanitaria",
+      "indirizzo": "via dell'Esempio 2",
+      "telefono": "0831 000001"
+    },
+    {
+      "nome": "Ottica Esempio",
+      "categoria": "ottico",
+      "indirizzo": "via dell'Esempio 3",
+      "telefono": "0831 000002"
+    },
+    {
+      "nome": "Patronato Esempio",
+      "categoria": "patronato",
+      "indirizzo": "via dell'Esempio 4",
+      "telefono": "0831 000003"
+    }
+  ],
+  "notaSpazi": "Ogni spazio: nome, categoria (sanitaria, ottico, audioprotesista, caf, patronato), indirizzo, telefono, fino (AAAA-MM-GG). Al massimo 3 spazi attivi. 'spaziEsempio' si vede solo con ?esempio=1, con la scritta ESEMPIO."
+}
