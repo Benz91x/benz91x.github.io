@@ -1,0 +1,65 @@
+# Farmacia di turno Mesagne: pagine per i motori di ricerca.
+# Quando cambiano i dati (turni, farmacie) rifà le pagine statiche dei mesi e delle farmacie,
+# la sitemap e l'elenco statico in index.html, e le pubblica. Non serve fare niente a mano.
+name: Pagine Farmacia di turno Mesagne
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "farmacia-di-turno-mesagne/*.json"
+      - "farmacia-di-turno-mesagne/index.html"
+      - "farmacia-di-turno-mesagne/strumenti/pagine.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: turni-mesagne-pagine
+  cancel-in-progress: false
+
+jobs:
+  pagine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Rifai le pagine
+        run: node farmacia-di-turno-mesagne/strumenti/pagine.mjs
+
+      - name: Pubblica se qualcosa è cambiato
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- farmacia-di-turno-mesagne && [ -z "$(git ls-files --others --exclude-standard farmacia-di-turno-mesagne)" ]; then
+            echo "Le pagine erano già aggiornate." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A farmacia-di-turno-mesagne
+          git commit -m "Farmacia di turno Mesagne: pagine aggiornate con i dati nuovi"
+          git push origin HEAD:main
+          echo "Pagine aggiornate e pubblicate." | tee -a "$GITHUB_STEP_SUMMARY"
+          # chi pubblica con il token delle Actions non sempre fa ripartire GitHub Pages: lo chiediamo esplicitamente
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" >/dev/null 2>&1 || echo "Pubblicazione: partirà con il prossimo aggiornamento del sito." | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Avvisa Bing e gli altri motori (IndexNow)
+        if: success()
+        run: |
+          # solo se il passo prima ha pubblicato qualcosa (l'ultimo commit è quello delle pagine)
+          git log -1 --format=%s | grep -q "pagine aggiornate" || exit 0
+          chiave=$(ls farmacia-di-turno-mesagne | grep -E '^[0-9a-f]{32}\.txt$' | head -1 | sed 's/\.txt$//')
+          [ -n "$chiave" ] || exit 0
+          sleep 120   # il tempo perché GitHub Pages pubblichi le pagine nuove
+          grep -o '<loc>[^<]*</loc>' farmacia-di-turno-mesagne/sitemap.xml | sed -E 's#</?loc>##g' | jq -R . | jq -s . > urls.json
+          jq -n --arg k "$chiave" --slurpfile u urls.json '{host:"benz91x.github.io",key:$k,keyLocation:("https://benz91x.github.io/farmacia-di-turno-mesagne/"+$k+".txt"),urlList:$u[0]}' > indexnow.json
+          codice=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H 'Content-Type: application/json; charset=utf-8' --data @indexnow.json https://api.indexnow.org/indexnow || true)
+          echo "IndexNow: risposta $codice (200 o 202 = ricevuto)." | tee -a "$GITHUB_STEP_SUMMARY"

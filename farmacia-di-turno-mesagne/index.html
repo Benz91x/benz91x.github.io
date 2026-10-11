@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Farmacia di turno a Mesagne: quale farmacia è aperta adesso</title>
-<script>try{if(localStorage.getItem("ftm-testo")==="grande")document.documentElement.setAttribute("data-testo","grande")}catch(e){}</script>
+<title>Farmacia di turno Mesagne: aperta adesso, stanotte e festivi</title>
+<script>try{if(localStorage.getItem("ftm-testo")==="grande")document.documentElement.setAttribute("data-testo","grande")}catch(e){}
+/* finché i turni non arrivano si mostra solo il riquadro del turno: così la pagina non «salta» sotto il dito */
+document.documentElement.classList.add("carica");setTimeout(function(){document.documentElement.classList.remove("carica")},2500);</script>
 <link rel="preload" href="fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Atkinson Hyperlegible Next (SIL Open Font License), ospitato con l'app */
@@ -113,6 +115,10 @@ main{padding-block:18px 8px}
 .scheda .nome2{font-size:1.5rem;font-size:min(1.5rem,11.5cqi);font-weight:800;line-height:1.15;margin-top:4px}
 .giorno-t{font-weight:700;margin-top:8px;font-size:1.1rem}
 .riga{margin-top:6px}
+.carica #main > :not(#quando):not(#adesso), .carica .piede{display:none}
+.quando{min-height:1.5em}
+.mesi{display:grid;grid-template-columns:repeat(auto-fill,minmax(6.5rem,1fr));gap:10px;margin-bottom:12px}
+.mesi a{display:flex;align-items:center;justify-content:center;min-height:56px;padding:6px 10px;border:2px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink);font-weight:700;text-decoration:none;text-align:center}
 .vuoto{background:var(--surface-2);border:2px dashed var(--line-2);border-radius:var(--r-md);padding:14px;color:var(--ink)}
 
 /* emergenza */
@@ -259,7 +265,7 @@ main{padding-block:18px 8px}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
-<meta name="description" content="Quale farmacia è di turno adesso a Mesagne, domani e la prossima domenica, con telefono e indirizzo. Numeri utili: guardia medica, CUP, pronto soccorso. Foglio del mese da stampare.">
+<meta name="description" content="Farmacie di turno a Mesagne: quale farmacia è aperta adesso, stanotte, domani e nei festivi, con telefono, indirizzo e mappa. Calendario dei turni mese per mese, le 8 farmacie e i numeri utili. Gratis.">
 <link rel="canonical" href="https://benz91x.github.io/farmacia-di-turno-mesagne/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -274,8 +280,8 @@ main{padding-block:18px 8px}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Farmacia di turno Mesagne">
-<meta property="og:title" content="Farmacia di turno a Mesagne">
-<meta property="og:description" content="Quale farmacia è di turno adesso a Mesagne, con telefono e indirizzo. Gratis, senza registrazione.">
+<meta property="og:title" content="Farmacia di turno Mesagne: aperta adesso, stanotte e festivi">
+<meta property="og:description" content="Quale farmacia è di turno adesso a Mesagne, con telefono e indirizzo. Calendario dei turni mese per mese. Gratis, senza registrazione.">
 <meta property="og:url" content="https://benz91x.github.io/farmacia-di-turno-mesagne/">
 <meta property="og:image" content="https://benz91x.github.io/farmacia-di-turno-mesagne/icons/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -311,9 +317,9 @@ main{padding-block:18px 8px}
 <div class="prova" id="prova" hidden><div class="wrap" id="provaT"></div></div>
 
 <main class="wrap" id="main">
-  <p class="quando" id="quando"></p>
+  <p class="quando" id="quando" data-nosnippet></p>
   <div class="tocca" id="tocca" hidden><button type="button" class="btn" id="toccaBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>Tocca qui per ascoltare il turno</button></div>
-  <div id="adesso"><p class="vuoto">Sto caricando i turni…</p></div>
+  <div id="adesso" data-nosnippet><p class="vuoto">Sto caricando i turni…</p><noscript><p class="vuoto">Per vedere il turno di adesso serve JavaScript. Puoi guardare il <a href="turni/">calendario dei turni mese per mese</a>.</p></noscript></div>
   <div class="coppia" id="ascoltaBox" hidden>
     <button type="button" class="btn sec" id="ascolta" aria-pressed="false" aria-describedby="ascoltaStato"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>Ascolta</button>
     <p class="msg" id="ascoltaStato" role="status" aria-live="polite" hidden></p>
@@ -323,12 +329,12 @@ main{padding-block:18px 8px}
 
   <section class="sez" aria-labelledby="domaniT">
     <h2 id="domaniT">Domani</h2>
-    <div id="domani"></div>
+    <div id="domani" data-nosnippet></div>
   </section>
 
   <section class="sez" aria-labelledby="festT">
     <h2 id="festT">Prossima domenica o festivo</h2>
-    <div id="festivo"></div>
+    <div id="festivo" data-nosnippet></div>
   </section>
 
   <section class="sez" id="medico" aria-labelledby="medicoT" tabindex="-1">
@@ -338,19 +344,25 @@ main{padding-block:18px 8px}
 
   <section class="sez" aria-labelledby="setteT">
     <h2 id="setteT">I prossimi 7 giorni</h2>
-    <div class="scheda"><ol class="sette" id="sette"></ol></div>
+    <div class="scheda" data-nosnippet><ol class="sette" id="sette"></ol></div>
   </section>
 
   <section class="sez" id="farmacie" aria-labelledby="farmT">
     <h2 id="farmT">Le 8 farmacie di Mesagne</h2>
     <p class="lead" id="farmLead"></p>
-    <div id="elenco"></div>
+    <div id="elenco"><!--PAGINE-ELENCO--><article class="scheda"><h3>Farmacia Alioth</h3><p class="riga">Via Brindisi 106, angolo vicolo San Lorenzo 4/6</p><p class="riga">Telefono <a class="num" href="tel:+390831771118">0831 771118</a></p><p class="riga"><a href="farmacie/alioth/">Orari e giorni di turno</a></p></article><article class="scheda"><h3>Farmacia Antonucci</h3><p class="riga">Piazza Vittorio Emanuele 69</p><p class="riga">Telefono <a class="num" href="tel:+390831771137">0831 771137</a></p><p class="riga"><a href="farmacie/antonucci/">Orari e giorni di turno</a></p></article><article class="scheda"><h3>Farmacia Cavaliere</h3><p class="riga">Piazza Garibaldi 16</p><p class="riga">Telefono <a class="num" href="tel:+390831771127">0831 771127</a></p><p class="riga"><a href="farmacie/cavaliere/">Orari e giorni di turno</a></p></article><article class="scheda"><h3>Farmacia Materdomini</h3><p class="riga">Viale Indipendenza 154</p><p class="riga">Telefono <a class="num" href="tel:+390831776342">0831 776342</a></p><p class="riga"><a href="farmacie/rutigliano/">Orari e giorni di turno</a></p></article><article class="scheda"><h3>Farmacia Nocera</h3><p class="riga">Via Basilicata 20/22/24</p><p class="riga">Telefono <a class="num" href="tel:+390831737021">0831 737021</a></p><p class="riga"><a href="farmacie/nocera/">Orari e giorni di turno</a></p></article><article class="scheda"><h3>Farmacia Ricupero</h3><p class="riga">Via G. Marconi 75</p><p class="riga">Telefono <a class="num" href="tel:+390831734724">0831 734724</a></p><p class="riga"><a href="farmacie/ricupero/">Orari e giorni di turno</a></p></article><article class="scheda"><h3>Farmacia Sant'Andrea</h3><p class="riga">Via Mannarino 13</p><p class="riga">Telefono <a class="num" href="tel:+390831773032">0831 773032</a></p><p class="riga"><a href="farmacie/santandrea/">Orari e giorni di turno</a></p></article><article class="scheda"><h3>Farmacia Spalletta</h3><p class="riga">Via Udine 2 e via Tenente R. Antonucci 134</p><p class="riga">Telefono <a class="num" href="tel:+390831368631">0831 368631</a></p><p class="riga"><a href="farmacie/spalletta/">Orari e giorni di turno</a></p></article><!--/PAGINE-ELENCO--></div>
   </section>
 
   <section class="sez" id="stampa" aria-labelledby="stampaT">
     <h2 id="stampaT">Foglio del mese da stampare</h2>
     <p class="lead">Un foglio A4 a caratteri grandi con la farmacia di turno di ogni giorno e i numeri utili. Si può attaccare al frigorifero. Si legge bene anche stampato in bianco e nero.</p>
     <div class="coppia" id="stampaBtn"></div>
+  </section>
+  <section class="sez" id="calendario" aria-labelledby="calT">
+    <h2 id="calT">Calendario dei turni mese per mese</h2>
+    <p class="lead">Tutti i giorni del mese con la farmacia di turno, l'indirizzo e il telefono. Ci sono anche i turni di Natale, Capodanno, Pasqua e degli altri giorni di festa.</p>
+    <ul class="mesi"><!--PAGINE-MESI--><li><a href="turni/gennaio-2026/">Gennaio 2026</a></li><li><a href="turni/febbraio-2026/">Febbraio 2026</a></li><li><a href="turni/marzo-2026/">Marzo 2026</a></li><li><a href="turni/aprile-2026/">Aprile 2026</a></li><li><a href="turni/maggio-2026/">Maggio 2026</a></li><li><a href="turni/giugno-2026/">Giugno 2026</a></li><li><a href="turni/luglio-2026/">Luglio 2026</a></li><li><a href="turni/agosto-2026/">Agosto 2026</a></li><li><a href="turni/settembre-2026/">Settembre 2026</a></li><li><a href="turni/ottobre-2026/">Ottobre 2026</a></li><li><a href="turni/novembre-2026/">Novembre 2026</a></li><li><a href="turni/dicembre-2026/">Dicembre 2026</a></li><!--/PAGINE-MESI--></ul>
+    <p class="riga"><a href="turni/">Turni dei giorni di festa</a> · <a href="farmacie/">Schede delle farmacie di Mesagne</a></p>
   </section>
 
   <section class="sez" id="casa" aria-labelledby="casaT">
@@ -396,6 +408,7 @@ main{padding-block:18px 8px}
     <ul id="fonti"></ul>
     <p>Nessun account, nessun cookie, nessun tracciamento. Le tue scelte (testo grande, lettura a voce, foglio della famiglia) restano solo su questo telefono.</p>
     <p>Per le farmacie e per le famiglie: <a href="?servizi=1">servizi a pagamento</a>.</p>
+    <p>Da consultare anche senza app: <a href="turni/">i turni delle farmacie mese per mese</a> e <a href="farmacie/">le farmacie di Mesagne</a>.</p>
     <p>Hai trovato un errore? <a id="segnala" href="#">Scrivi ad Alessandro</a>. Realizzata da <a href="https://benz91x.github.io/">Alessandro Chiri</a>. Dello stesso autore: <a href="https://benz91x.github.io/scadenze-mesagne/">Scadenze Mesagne</a> e <a href="https://benz91x.github.io/differenziata-mesagne/">Differenziata Mesagne</a>.</p>
   </div>
 </footer>
@@ -707,6 +720,7 @@ main{padding-block:18px 8px}
         '<p class="riga">' + esc(maiusc(x.indirizzo)) + '</p>' +
         '<p class="prossimo">' + (p ? (p === "oggi" ? "È di turno oggi." : "Prossimo turno: " + esc(p) + ".") : "Prossimo turno: non ancora nel calendario.") + '</p>' +
         '<div class="azioni">' + bottoneChiama(x) + bottoneMappa(x.mappa, x.insegna) + '</div>' +
+        '<p class="riga"><a href="farmacie/' + esc(x.id) + '/">Tutti i giorni di turno della ' + esc(x.insegna) + '</a></p>' +
         '<div class="orari">' + (inverno ? inv + est : est + inv) +
           (o.chiusura ? '<p>' + esc(o.chiusura) + ' ' + esc(o.ferie || "") + '</p>' : '') +
           (!o.inverno && !o.estate ? '<p>Orari non indicati nell\'albo.</p>' : '') +
@@ -1205,6 +1219,7 @@ main{padding-block:18px 8px}
     })); });
   }
 
+  function pronto(){ document.documentElement.classList.remove("carica"); }
   function avvia(){
     if (SIM_SBAGLIATA) { $("prova").hidden = false; $("provaT").textContent = "Data o ora di prova non valida (scrivi ?data=AAAA-MM-GG&ora=HH:MM): mostro il momento vero."; }
     if (SIM) { $("prova").hidden = false; $("provaT").textContent = "Prova con data simulata: " + inParole(SIM.data, true) + ", ore " + Math.floor(SIM.min / 60) + ":" + pad(SIM.min % 60) + ". Per tornare a oggi togli ?data= dall'indirizzo."; }
@@ -1227,6 +1242,7 @@ main{padding-block:18px 8px}
       if (Q.get("servizi") === "1" || /^#codice=/.test(location.hash)) document.body.classList.add("vista-servizi");
       try { disegnaTutto(); }
       catch (err) { if (window.console) console.error(err); $("adesso").innerHTML = '<p class="vuoto">C\'è un errore nei dati dei turni. Guarda il cartello fuori da una farmacia o il <a href="' + PAGINA_ORDINE + '">sito dell\'Ordine dei Farmacisti</a>.</p>'; return; }
+      pronto();
       leggiHash();
       if (Q.get("leggi") === "1") { scrivi("ftm-leggi", 1); statoLeggi(); }
       if (leggi("ftm-leggi", null) && TESTO_VOCE.length && "speechSynthesis" in window && !document.body.classList.contains("vista-servizi")) {
@@ -1236,6 +1252,7 @@ main{padding-block:18px 8px}
     }, function(){
       $("adesso").innerHTML = '<p class="vuoto"><b>Non riesco a caricare i turni.</b> Controlla la connessione e riprova. Il cartello dei turni è esposto fuori da ogni farmacia.</p><div class="azioni"><button type="button" class="btn" onclick="location.reload()">Riprova</button></div>';
       $("medicoBox").innerHTML = '<p class="vuoto">Per un\'emergenza chiama il 112 o il 118.</p>';
+      pronto();
     });
   }
   avvia();
