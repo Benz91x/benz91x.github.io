@@ -50,7 +50,8 @@ Non serve il Mac: si fa tutto dal sito di GitHub, anche dal telefono.
    che ogni giorno dell'elenco sia scritto così anche nel PDF. Se c'è la voce «GIORNI NON
    RICONOSCIUTI», leggi tu quei giorni sul PDF (vedi «Correzioni a mano» qui sotto).
 5. **Festivi.** Se la segnalazione dice che è cambiato anche il PDF dei festivi (è un'immagine),
-   aprilo e confronta ogni domenica e festivo dei prossimi mesi con il foglio del mese dell'app
+   aprilo con un programma che mostra le annotazioni (alcuni nomi sono scritti come annotazioni:
+   l'anteprima del Mac e Chrome le mostrano) e confronta ogni domenica e festivo dei prossimi mesi con il foglio del mese dell'app
    (`?foglio=AAAA-MM`). Se tutto torna, nella pull request apri `turni-2026.json`, cerca
    `"festivi": {` dentro `"fonte"` e scrivi il nome nuovo del file (per esempio
    `mesagne_turni_festivi_2026_agg_01112026.pdf`) e la data in `"aggiornato"`.
@@ -93,8 +94,9 @@ In `numeri.json`:
 - **116117.** Quando il nuovo numero della guardia medica sarà attivo anche per Brindisi,
   cambia `"usa116117": false` in `"usa116117": true`. L'app mostrerà il 116117 al posto del
   numero di Mesagne, anche sul foglio stampato.
-- **Orari della guardia medica.** Quando li conosci, scrivili in `"orari"` al posto di `null`,
-  tra virgolette, come si parla: `"Dalle 20 alle 8 di tutte le notti; ..."`.
+- **Orari della guardia medica.** Ora vengono da un articolo che cita l'ASL e sono segnati «da
+  confermare» (`"orariDaConfermare": true`). Quando li confermi, correggi `"orari"` se serve e metti
+  `"orariDaConfermare": false`.
 - Ogni numero ha `"controllato"`: aggiornalo quando ricontrolli.
 
 **Orario del cambio del turno.** In `turni-2026.json`, parte `"orario"`: per legge regionale
@@ -194,7 +196,7 @@ e togli «intestazioni e piè di pagina».
 
 ## Dopo una modifica a `index.html`
 
-Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261010a";` (per esempio con la data
+Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011a";` (per esempio con la data
 di oggi): così i telefoni scaricano la versione nuova. Per i file `.json` non serve.
 
 ## Limiti da conoscere

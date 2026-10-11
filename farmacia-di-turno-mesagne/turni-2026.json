@@ -27,8 +27,12 @@
    "13:00",
    "16:30"
   ],
+  "pausaPranzoEstate": [
+   "13:00",
+   "17:00"
+  ],
   "fonte": "Legge regionale della Puglia 18 febbraio 2014, n. 5, articoli 2, 3, 4 e 6",
-  "nota": "Per legge il servizio notturno va dalle 20 alle 8:30 (d'estate il pomeriggio va dalle 17 alle 20:30). Non è confermato che nel calendario di Mesagne il turno di un giorno copra la notte che segue: finché 'confermato' è false, tra mezzanotte e il 'cambio' l'app mostra sia la farmacia di ieri sia quella di oggi."
+  "nota": "Per legge il servizio notturno va dalle 20 alle 8:30 (d'estate, dal 21 giugno al 21 settembre, il pomeriggio va dalle 17 alle 20:30 e la pausa finisce alle 17). Non è confermato che nel calendario di Mesagne il turno di un giorno copra la notte che segue: finché 'confermato' è false, tra mezzanotte e il 'cambio' l'app mostra sia la farmacia di ieri sia quella di oggi."
  },
  "festivi": {
   "2026-01-01": "Capodanno",

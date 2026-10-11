@@ -11,7 +11,7 @@
     "controllato": "2026-10-10",
     "nota": "Ottobre, novembre e dicembre 2026: nessuna farmacia di Mesagne in ferie."
   },
-  "nota": "Indirizzi, telefoni e orari sono copiati dall'albo dell'Ordine. In 'testoAlbo' c'è il testo originale, per il controllo. 'calendario' sono i nomi usati nel PDF dei turni.",
+  "nota": "Indirizzi, telefoni e orari sono copiati dall'albo dell'Ordine. In 'testoAlbo' c'è il testo dell'albo (trattini e spazi normalizzati), per il controllo. 'calendario' sono i nomi usati nel PDF dei turni. 'invernoDal' è la data di inizio dell'orario invernale quando l'albo la scrive.",
   "farmacie": [
     {
       "id": "alioth",
@@ -32,7 +32,8 @@
         "inverno": "Dal lunedì al sabato: dalle 8 alle 13 e dalle 16 alle 20.",
         "invernoDaVerificare": true,
         "chiusura": "Nessuna chiusura settimanale.",
-        "ferie": "Non chiude per ferie."
+        "ferie": "Non chiude per ferie.",
+        "invernoNota": "Nell'albo: dal 27/10/2025 al 28/03/2026."
       },
       "testoAlbo": "Orario estivo: Lun-Sab: 8:00-13:00 / 16:00-20:30 · Orario invernale: Dal 27/10/2025 al 28/03/2026 Lun-Sab: 8:00-13:00 / 16:00-20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
       "dubbi": [
@@ -152,13 +153,14 @@
       "telefono": "0831 737021",
       "orari": {
         "estate": "Dal lunedì al sabato: dalle 8 alle 20:30, senza pausa.",
-        "inverno": "Dal lunedì al sabato: dalle 8 alle 20, senza pausa. Nei giorni festivi di turno: dalle 8 alle 13 e dalle 16 alle 20.",
+        "inverno": "Dal 25 ottobre 2026: dal lunedì al sabato dalle 8 alle 20, senza pausa. Nei giorni festivi di turno: dalle 8 alle 13 e dalle 16 alle 20.",
         "chiusura": "Nessuna chiusura settimanale.",
-        "ferie": "Non chiude per ferie."
+        "ferie": "Non chiude per ferie.",
+        "invernoDal": "2026-10-25"
       },
       "testoAlbo": "Orario estivo: Lun-Sab: 8:00-20:30 · Orario invernale: Dal 25/10/2026 al 27/03/2026: Lun-Sab: 8:00-20:00-I giorni festivi di turno 8:00-13:00 /16:00-20:00 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
       "dubbi": [
-        "Nell'albo l'orario invernale vale «dal 25/10/2026 al 27/03/2026»: la seconda data ha l'anno sbagliato (probabilmente 2027)."
+        "Nell'albo l'orario invernale vale «dal 25/10/2026 al 27/03/2026»: la data di inizio è plausibile, quella di fine ha l'anno sbagliato (probabilmente 2027). Fino al 24 ottobre vale l'orario estivo."
       ]
     },
     {
@@ -207,7 +209,8 @@
       },
       "testoAlbo": "Orario estivo: Lun-Sab: 7:30 – 13:30 / 15:30 – 21:15 · Orario invernale: Fino al 31/12/2025: Lun.-Ven. 7:30-13:30/15:00-21:00; Sab. 8:00-13:00/16:00-20:30 · Chiusura settimanale: Non effettua chiusura settimanale · Chiusure per ferie: Non chiude per ferie",
       "dubbi": [
-        "Nell'albo l'orario invernale vale «fino al 31/12/2025»: è scaduto."
+        "Nell'albo l'orario invernale vale «fino al 31/12/2025»: è scaduto.",
+        "La Carta dei Servizi ASL 2024 (pag. 228) non ha Spalletta: al suo posto c'è «Farmacup Mesagne - Savino dr.ssa Gabriella, via R. Antonucci 46, 0831 738155», probabilmente la stessa farmacia prima del cambio (le altre 7 voci corrispondono alle altre 7 farmacie dell'albo). Usato l'albo, più recente: da confermare con una telefonata."
       ]
     }
   ]

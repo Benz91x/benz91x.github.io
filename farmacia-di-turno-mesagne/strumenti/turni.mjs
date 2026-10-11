@@ -288,7 +288,7 @@ function cmdScarica() {
   const notturni = voci.filter((v) => /notturni/i.test(v.nome));
   if (!notturni.length) throw new Error("Nella pagina dei turni non trovo il PDF dei notturni di Mesagne: controlla a mano " + PAGINA_TURNI);
   for (const v of notturni) {
-    const pdf = join(cartella, v.nome);
+    const pdf = join(cartella, basename(v.nome)); /* solo il nome del file: niente percorsi presi dal sito */
     writeFileSync(pdf, scarica(v.url, jar));
     const r = aggiornaDa(pdf, v.nome);
     out.push("## " + v.nome, "", "```", r.testo, "```", "");
@@ -308,7 +308,7 @@ function cmdScarica() {
 /* i PDF di Mesagne nella pagina dei turni: nome del file e link (con il token del momento) */
 function elencoPdf(html) {
   const out = [];
-  const re = /href="(\/farmacie\/turni-delle-farmacie\.html\?file=(\d+-mesagne-[^&"]+)&(?:amp;)?token=[0-9a-f]+)"[^>]*>\s*(mesagne_[^<\s]+\.pdf)\s*</gi;
+  const re = /href="(\/farmacie\/turni-delle-farmacie\.html\?file=(\d+-mesagne-[^&"]+)&(?:amp;)?token=[0-9a-f]+)"[^>]*>\s*(mesagne_[\w.-]+\.pdf)\s*</gi;
   for (const m of html.matchAll(re)) if (!out.some((x) => x.nome === m[3])) out.push({ url: SITO + m[1].replace(/&amp;/g, "&"), id: m[2], nome: m[3] });
   return out;
 }
@@ -385,7 +385,7 @@ function cmdControlla() {
     /* scarico e leggo il nuovo PDF dei notturni, per mostrare le differenze */
     for (const v of nuovi.filter((x) => /notturni/i.test(x.nome))) {
       const annoPdf = +(/_(\d{4})(?:_agg|\.pdf)/.exec(v.nome) || [, anno])[1];
-      const pdf = join(cartella, v.nome);
+      const pdf = join(cartella, basename(v.nome)); /* solo il nome del file: niente percorsi presi dal sito */
       writeFileSync(pdf, scarica(v.url, jar));
       try {
         const letti = leggiTesto(pdfInTesto(pdf));

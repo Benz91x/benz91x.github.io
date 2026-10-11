@@ -216,19 +216,19 @@ main{padding-block:18px 8px}
 .f-esempio{position:absolute;inset:0;z-index:-1;display:flex;align-items:center;justify-content:center;pointer-events:none}
 .foglio .f-esempio span{font-size:90pt;font-weight:800;color:#DCDCDC;transform:rotate(-30deg)}
 /* cartello per la vetrina */
-.cartello h1{font-size:30pt;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
-.c-oggi{margin-top:6mm;border:1.5mm solid #000;border-radius:4mm;padding:5mm 6mm}
+.cartello h1{font-size:26pt;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
+.c-oggi{margin-top:4mm;border:1.5mm solid #000;border-radius:4mm;padding:3.5mm 6mm}
 .c-oggi .q{font-size:20pt;font-weight:800}
-.c-oggi .n{font-size:46pt;font-weight:800;line-height:1.05;margin-top:2mm}
-.c-oggi .i{font-size:22pt;margin-top:2mm}
-.c-oggi .t{font-size:28pt;font-weight:800;margin-top:1mm}
-.c-oggi .p{font-size:16pt;font-weight:800;margin-top:3mm}
-.cartello h2{font-size:20pt;font-weight:800;margin-top:6mm}
-.cartello .tab{font-size:20pt}
-.cartello .tab td{padding:1.2mm 2mm;line-height:1.2}
+.c-oggi .n{font-size:42pt;font-weight:800;line-height:1.05;margin-top:2mm}
+.c-oggi .i{font-size:20pt;margin-top:1mm}
+.c-oggi .t{font-size:26pt;font-weight:800;margin-top:1mm}
+.c-oggi .p{font-size:15pt;font-weight:800;margin-top:2mm}
+.cartello h2{font-size:19pt;font-weight:800;margin-top:4mm}
+.cartello .tab{font-size:18pt}
+.cartello .tab td{padding:.8mm 2mm;line-height:1.15}
 .cartello .tab td.n{padding-right:4mm;white-space:normal}
 .cartello .tab .ind2{display:block;font-size:.75em;font-weight:400}
-.c-di{margin-top:4mm;display:flex;align-items:center;gap:4mm;font-size:16pt;font-weight:800}
+.c-di{margin-top:3mm;display:flex;align-items:center;gap:4mm;font-size:16pt;font-weight:800}
 .c-di img{height:16mm;width:auto;max-width:50mm;object-fit:contain}
 
 @media (max-width:360px){
@@ -477,14 +477,15 @@ main{padding-block:18px 8px}
   /* ?data=AAAA-MM-GG (e ?ora=HH:MM, oppure ?data=AAAA-MM-GGTHH:MM) simula un altro momento per le prove.
      I codici a pagamento e le scadenze degli abbonamenti usano sempre la data vera. */
   var Q = new URLSearchParams(location.search);
+  var SIM_SBAGLIATA = false;
   var SIM = (function(){
-    var m = /^(\d{4}-\d{2}-\d{2})(?:[T ](\d{1,2}):(\d{2}))?$/.exec(Q.get("data") || "");
-    if (!m || isNaN(dUTC(m[1])) || iso(dUTC(m[1])) !== m[1]) return null;
-    var o = /^(\d{1,2}):(\d{2})$/.exec(Q.get("ora") || "");
+    if (Q.get("data") === null && Q.get("ora") === null) return null;
+    var ORA = "([01]?\\d|2[0-3]):([0-5]\\d)";
+    var m = new RegExp("^(\\d{4}-\\d{2}-\\d{2})(?:[T ]" + ORA + ")?$").exec(Q.get("data") || "");
+    var o = new RegExp("^" + ORA + "$").exec(Q.get("ora") || "");
+    if (!m || iso(dUTC(m[1])) !== m[1] || (Q.get("ora") !== null && !o)) { SIM_SBAGLIATA = true; return null; }
     var h = m[2] != null ? [m[2], m[3]] : o ? [o[1], o[2]] : null;
-    var t = h ? (+h[0]) * 60 + (+h[1]) : romaVera().min;
-    if (t < 0 || t >= 1440) t = 720;
-    return { data: m[1], min: t, conOra: !!h };
+    return { data: m[1], min: h ? (+h[0]) * 60 + (+h[1]) : romaVera().min, conOra: !!h };
   })();
   function adesso(){ return SIM ? { data: SIM.data, min: SIM.min } : romaVera(); }
   var ADESSO = adesso();
@@ -492,9 +493,12 @@ main{padding-block:18px 8px}
 
   /* ======== dati ======== */
   var FARM = {}, ELENCO = [], ALBO = {}, TURNI = {}, FONTE_DI = {}, FESTIVI = {}, META = {}, NUMERI = null, ABB = { farmacie: {}, spazi: [] };
-  var ORARIO = { cambio: "08:30", confermato: false, inizioNotte: "20:00", inizioNotteEstate: "20:30", estate: ["06-21", "09-21"], pausaPranzo: ["13:00", "16:30"] };
+  var ORARIO = { cambio: "08:30", confermato: false, inizioNotte: "20:00", inizioNotteEstate: "20:30", estate: ["06-21", "09-21"], pausaPranzo: ["13:00", "16:30"], pausaPranzoEstate: ["13:00", "17:00"] };
 
-  function f(id){ return FARM[id] || null; }
+  function f(id){ return Object.prototype.hasOwnProperty.call(FARM, id) ? FARM[id] : null; }
+  function ammesso(o, k){ return typeof k === "string" && Object.prototype.hasOwnProperty.call(o, k); }
+  function lista(v){ return Array.isArray(v) ? v : []; }
+  function linkSicuro(u){ return /^https:\/\//i.test(u || "") ? u : ""; }
   function turnoDel(s){ return Object.prototype.hasOwnProperty.call(TURNI, s) ? TURNI[s] : undefined; }
   function festivo(s){ return sett(s) === 0 || !!FESTIVI[s]; }
   function nomeFesta(s){ var n = FESTIVI[s]; return n && n !== "Giorno festivo" ? n : ""; }
@@ -513,12 +517,15 @@ main{padding-block:18px 8px}
   function mappaHref(q){ return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q); }
 
   /* che momento è: di giorno, la sera, o dopo mezzanotte (prima del cambio del turno) */
-  function inizioNotte(s){ var md = s.slice(5); return minuti(md >= ORARIO.estate[0] && md <= ORARIO.estate[1] ? ORARIO.inizioNotteEstate : ORARIO.inizioNotte); }
+  /* d'estate (dal 21 giugno al 21 settembre, legge regionale 5/2014 art. 2) il pomeriggio va dalle 17 alle 20:30 */
+  function estate(s){ var md = s.slice(5); return md >= ORARIO.estate[0] && md <= ORARIO.estate[1]; }
+  function inizioNotte(s){ return minuti(estate(s) ? ORARIO.inizioNotteEstate : ORARIO.inizioNotte); }
+  function pausa(s){ return (estate(s) && ORARIO.pausaPranzoEstate) || ORARIO.pausaPranzo; }
   function stato(n){
     var c = minuti(ORARIO.cambio);
     if (n.min < c) return { fase: "dopo", turno: piu(n.data, -1), poi: n.data, presto: n.min < 360 };
     if (n.min >= inizioNotte(n.data)) return { fase: "sera", turno: n.data };
-    var p = ORARIO.pausaPranzo, inPausa = !festivo(n.data) && n.min >= minuti(p[0]) && n.min < minuti(p[1]);
+    var p = pausa(n.data), inPausa = n.min >= minuti(p[0]) && n.min < minuti(p[1]);
     return { fase: "giorno", turno: n.data, pausa: inPausa };
   }
   function chiave(n){ var s = stato(n); return n.data + "|" + s.fase + "|" + (s.pausa ? 1 : 0) + (s.presto ? 1 : 0); }
@@ -542,9 +549,12 @@ main{padding-block:18px 8px}
   function mancaTurno(s){
     if (MANCA_DETTO) return '<p class="vuoto">Il turno di ' + esc(inParole(s)) + ' non è ancora disponibile.</p>';
     MANCA_DETTO = true;
+    var anno = s.slice(0, 4);
+    if (ERRORI[anno]) return '<div class="vuoto"><p><b>Non riesco a scaricare i turni.</b> Controlla la connessione a internet e riprova.</p><p class="riga">Il cartello con i turni è appeso fuori da ogni farmacia.</p><div class="azioni"><button type="button" class="btn" onclick="location.reload()">Riprova</button></div></div>';
     var perche = FONTE_DI[s] ? "nel calendario ufficiale questo giorno non si legge con sicurezza."
-      : "l'Ordine dei Farmacisti non ha ancora pubblicato i turni del " + s.slice(0, 4) + ".";
-    return '<div class="vuoto"><p><b>Il turno di ' + esc(inParole(s)) + ' non è ancora disponibile:</b> ' + perche + '</p>' +
+      : anno < OGGI_VERO.slice(0, 4) ? "il calendario del " + anno + " non è in questa app."
+      : "l'Ordine dei Farmacisti non ha ancora pubblicato i turni del " + anno + ".";
+    return '<div class="vuoto"><p><b>Il turno di ' + esc(inParole(s)) + ' non è ' + (anno < OGGI_VERO.slice(0, 4) ? '' : 'ancora ') + 'disponibile:</b> ' + perche + '</p>' +
       '<p class="riga">Il cartello con i turni è appeso fuori da ogni farmacia. Si può anche telefonare a una farmacia e chiedere.</p>' +
       '<div class="azioni"><a class="btn sec" href="#farmacie">Telefoni delle farmacie</a><a class="btn sec" href="#medico">Serve un medico?</a></div></div>';
   }
@@ -560,8 +570,11 @@ main{padding-block:18px 8px}
       '<div class="azioni">' + bottoneChiama(x, null, o.poi) + (o.poi ? '' : bottoneMappa(x.mappa, x.nomeBreve)) + '</div>' +
       (o.extra || '') + (o.poi ? '' : fonteTurni(o.s)) + '</section>';
   }
-  function avvisoNotte(){
-    return '<p>Di notte la farmacia può essere chiusa: il farmacista viene ad aprire dopo la tua telefonata. Il numero da chiamare è scritto anche sul cartello fuori dalla farmacia.</p>';
+  /* legge regionale 5/2014: a Mesagne di notte il servizio è «a chiamata» (art. 6), il farmacista arriva entro 30 minuti (art. 10) */
+  function avvisoNotte(altra){
+    return '<p>Di notte la farmacia può essere chiusa: il farmacista viene ad aprire dopo la tua telefonata, per legge entro mezz\'ora.</p>' +
+      (altra ? '<p><b>Se non risponde nessuno, chiama la farmacia ' + esc(altra.nomeBreve) + '</b>, qui sotto, oppure il numero scritto sul cartello fuori dalla farmacia.</p>'
+             : '<p>Se non risponde nessuno, chiama il numero scritto sul cartello fuori dalla farmacia: di notte può essere diverso.</p>');
   }
   function telVoce(x){ return "Il telefono è: " + cifre(x.telefono) + ". Ripeto: " + cifre(x.telefono) + "."; }
   function nottePerWa(d){ return "Notte tra " + GIORNI[sett(d)] + " " + (+d.slice(8)) + (d.slice(5, 7) === piu(d, 1).slice(5, 7) ? "" : " " + MESI[+d.slice(5, 7) - 1]) + " e " + inParole(piu(d, 1)); }
@@ -580,30 +593,31 @@ main{padding-block:18px 8px}
       var gIeri = GIORNI[sett(s.turno)], gOggi = GIORNI[sett(s.poi)];
       if (x && y && x.id === y.id) {
         h += riquadro({ id: "tA", tag: "Di turno adesso", frase: "Stanotte e per tutta la giornata di oggi è di turno la farmacia", s: s.poi, x: x,
-          extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte() + '</div>' });
+          extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte(null) + '</div>' });
         voce.push("Stanotte e per tutta la giornata di oggi è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
         wa.push(nottePerWa(s.turno) + " e giornata di " + inParole(s.poi) + ": a Mesagne è di turno " + perWa(x));
       } else {
         if (x) {
           var frase = s.presto ? "Questa notte, da " + gIeri + " sera a " + gOggi + " mattina, è di turno la farmacia" : "Fino alle " + cambio + " di stamattina è di turno la farmacia";
-          var piuSotto = y ? '<p><b>Se non risponde, chiama la farmacia ' + esc(y.nomeBreve) + '</b>, qui sotto: il turno di notte di solito finisce alle ' + cambio + ' del mattino.</p>' : '';
           h += riquadro({ id: "tA", tag: "Di turno adesso", frase: frase, s: s.turno, x: x,
-            extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte() + piuSotto + '</div>' });
+            extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte(ORARIO.confermato ? null : y) + (y ? '<p>Il turno di notte ' + (ORARIO.confermato ? '' : 'di solito ') + 'finisce alle ' + cambio + ' del mattino.</p>' : '') + '</div>' });
           voce.push((s.presto ? "Questa notte" : "Fino alle " + cambio + " di stamattina") + " è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
           wa.push(nottePerWa(s.turno) + ": a Mesagne è di turno " + perWa(x));
         } else h += mancaTurno(s.turno);
         if (y) {
           h += riquadro({ id: "tB", poi: true, tag: "Dalle " + cambio + " di stamattina", frase: "Da " + gOggi + " mattina alle " + cambio + " è di turno la farmacia", s: s.poi, x: y });
-          voce.push((x ? "Se non risponde, chiama la farmacia " : "Da stamattina alle " + cambio + " è di turno la farmacia ") + nomeConTitolare(y) + ", in " + y.indirizzoBreve + ".", telVoce(y));
+          voce.push((x && !ORARIO.confermato ? "Se non risponde, chiama la farmacia " : "Da stamattina alle " + cambio + " è di turno la farmacia ") + nomeConTitolare(y) + ", in " + y.indirizzoBreve + ".", telVoce(y));
           wa.push("Da " + gOggi + " mattina alle " + cambio + ": " + perWa(y));
         } else h += mancaTurno(s.poi);
       }
     } else if (x) {
       var sera = s.fase === "sera", fest = festivo(n.data);
       var frase2 = sera ? "Stanotte, da " + GIORNI[sett(n.data)] + " sera a " + GIORNI[sett(piu(n.data, 1))] + " mattina, è di turno la farmacia" : "Oggi è di turno la farmacia";
-      var nota = sera ? avvisoNotte()
+      var pp = pausa(n.data);
+      var nota = sera ? avvisoNotte(null)
+        : s.pausa ? '<p>Nella pausa di pranzo, fino alle ' + oraTesto(minuti(pp[1])) + ', anche la farmacia di turno può essere chiusa: telefona prima.</p>'
         : fest ? '<p>Oggi è festa: di regola è aperta solo la farmacia di turno.</p>'
-        : !s.pausa ? '<p>Di giorno, negli orari normali, sono aperte anche le altre farmacie: gli orari sono nell\'elenco più sotto.</p>' : '';
+        : '<p>Di giorno, negli orari normali, di solito sono aperte anche le altre farmacie: gli orari sono nell\'elenco più sotto.</p>';
       h += riquadro({ id: "tA", tag: "Di turno adesso", frase: frase2, s: s.turno, x: x, extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + nota + '</div>' });
       voce.push((sera ? "Stanotte" : "Oggi, " + inParole(n.data) + ",") + " è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
       wa.push(sera ? nottePerWa(n.data) + ": a Mesagne è di turno " + perWa(x) : "Oggi, " + inParole(n.data) + ", a Mesagne è di turno " + perWa(x));
@@ -651,6 +665,9 @@ main{padding-block:18px 8px}
     $("sette").innerHTML = h;
   }
 
+  /* ora legale: dall'ultima domenica di marzo all'ultima domenica di ottobre */
+  function ultimaDomenica(anno, mese){ var d = anno + "-" + mese + "-31"; while (sett(d) !== 0) d = piu(d, -1); return d; }
+  function oraLegale(s){ var a = s.slice(0, 4); return s >= ultimaDomenica(a, "03") && s < ultimaDomenica(a, "10"); }
   function prossimoTurno(id){
     var d = ADESSO.data;
     for (var i = 0; i < 120; i++, d = piu(d, 1)) {
@@ -661,22 +678,23 @@ main{padding-block:18px 8px}
   }
   function serviziDi(id){
     var a = abbonamento(id);
-    if (!a || !a.servizi || !a.servizi.length) return "";
-    var v = a.servizi.filter(function(k){ return SERVIZI[k]; }).map(function(k){ return SERVIZI[k]; });
+    if (!a) return "";
+    var v = lista(a.servizi).filter(function(k){ return ammesso(SERVIZI, k); }).map(function(k){ return SERVIZI[k]; });
     return v.length ? '<div class="servizi"><b>Servizi indicati dalla farmacia:</b> ' + esc(v.join(" · ")) + '.</div>' : "";
   }
   function disegnaElenco(){
     var src = ALBO || {};
     $("farmT").textContent = "Le " + ELENCO.length + " farmacie di Mesagne";
     $("farmLead").innerHTML = "Indirizzi, telefoni e orari dall'albo dell'Ordine dei Farmacisti, controllato il " + esc(dataLunga(src.controllato || "2026-10-10")) + ". Gli orari possono cambiare: chiama prima di andare.";
-    var mese = +ADESSO.data.slice(5, 7), inverno = mese >= 10 || mese <= 3;
+    var invernoOra = !oraLegale(ADESSO.data);
     var lista = ELENCO.slice().sort(function(a, b){ return a.nomeBreve.localeCompare(b.nomeBreve, "it"); });
     $("elenco").innerHTML = lista.map(function(x){
       var p = prossimoTurno(x.id), o = x.orari || {};
+      var inverno = o.invernoDal && ADESSO.data.slice(5) >= "09" ? ADESSO.data >= o.invernoDal : invernoOra;
       var cal = nomeDiversoNelCalendario(x) ? '<p class="riga">Nel calendario dei turni si chiama <b>' + esc(maiusc(x.calendario[0].toLowerCase())) + '</b>.</p>' : '';
       var inv = o.inverno ? '<p><b>Orario d\'inverno.</b> ' + esc(o.inverno) + (o.invernoDaVerificare ? ' <b>Orario non confermato: chiama prima di andare.</b>' : '') + '</p>' : '';
       var est = o.estate ? '<p><b>Orario d\'estate.</b> ' + esc(o.estate) + '</p>' : '';
-      return '<article class="scheda" aria-labelledby="f-' + x.id + '"><h3 id="f-' + x.id + '">' + esc(x.insegna) + '</h3>' +
+      return '<article class="scheda" aria-labelledby="f-' + esc(x.id) + '"><h3 id="f-' + esc(x.id) + '">' + esc(x.insegna) + '</h3>' +
         (x.titolare ? '<p class="riga">Titolare: ' + esc(perEsteso(x.titolare)) + '</p>' : '') + cal +
         serviziDi(x.id) +
         '<p class="riga">' + esc(maiusc(x.indirizzo)) + '</p>' +
@@ -692,22 +710,23 @@ main{padding-block:18px 8px}
   function fonteNum(x){
     if (!x || !NUMERI) return "";
     var s = NUMERI.fonti[x.fonte] || {};
-    return '<p class="fonte">Fonte: ' + (s.url ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.nome) + NUOVA + '</a>' : esc(s.nome || "")) + '. Controllato il ' + esc(dataLunga(x.controllato)) + '.</p>';
+    return '<p class="fonte">Fonte: ' + (linkSicuro(s.url) ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.nome) + NUOVA + '</a>' : esc(s.nome || "")) + '. Controllato il ' + esc(dataLunga(x.controllato)) + '.</p>';
   }
   function bottoneNumero(n, testo){ return '<a class="btn" href="' + telHref(n) + '">' + ICO.tel + '<span>' + esc(testo) + '<small class="num">' + esc(n) + '</small></span></a>'; }
   function disegnaMedico(){
     if (!NUMERI) { $("medicoBox").innerHTML = '<p class="vuoto">Non riesco a caricare i numeri utili. Per un\'emergenza chiama il 112 o il 118.</p>'; return; }
     var N = NUMERI, h = "";
     h += '<div class="emergenza"><h3>Emergenza</h3><p class="non">Questa app non è un servizio di emergenza.</p><p>Se una persona sta male in modo grave, chiama subito:</p><div class="azioni">' +
-      N.emergenza.numeri.map(function(e){ return '<a class="btn emerg" href="tel:' + e.numero + '">' + ICO.tel + '<span>Chiama il ' + e.numero + '<small>' + esc(e.nome) + '</small></span></a>'; }).join("") +
+      lista(N.emergenza && N.emergenza.numeri).map(function(e){ return '<a class="btn emerg" href="' + esc(telHref(e.numero)) + '">' + ICO.tel + '<span>Chiama il ' + esc(e.numero) + '<small>' + esc(e.nome) + '</small></span></a>'; }).join("") +
       '</div></div>';
 
     var g = N.guardiaMedica, gm = g.usa116117 ? g.nuovo : g.mesagne;
     h += '<div class="scheda" style="margin-top:16px"><h3>' + esc(gm.nome) + '</h3>' +
-      '<p class="riga">Quando il medico di famiglia non c\'è: di notte, nei fine settimana e nei giorni festivi.</p>' +
+      '<p class="riga">' + esc(gm.quando || "Quando il medico di famiglia non c'è: di notte, il sabato e i giorni prima delle feste, la domenica e i festivi.") + '</p>' +
       (g.usa116117 ? '<p class="riga">' + esc(gm.descrizione) + '</p>'
-        : '<p class="riga">' + esc(maiusc(gm.indirizzo)) + '</p><p class="riga">' + (gm.orari ? esc(gm.orari) : 'Gli orari esatti non sono pubblicati: chiama prima di andare.') + '</p>') +
-      '<div class="azioni">' + bottoneNumero(gm.telefono, "Chiama la guardia medica") + (g.usa116117 ? '' : bottoneMappa(gm.mappa, "guardia medica")) + '</div>' + fonteNum(gm) + '</div>';
+        : '<p class="riga">' + esc(maiusc(gm.indirizzo)) + '</p><p class="riga">' + (gm.orari ? esc(gm.orari) + (gm.orariDaConfermare ? ' <b>Orari da confermare: chiama prima di andare.</b>' : '') : 'Gli orari esatti non sono pubblicati: chiama prima di andare.') + '</p>') +
+      '<div class="azioni">' + bottoneNumero(gm.telefono, "Chiama la guardia medica") + (g.usa116117 ? '' : bottoneMappa(gm.mappa, "guardia medica")) + '</div>' + fonteNum(gm) +
+      (gm.orariFonte && gm.orari ? fonteNum({ fonte: gm.orariFonte, controllato: gm.controllato }).replace('Fonte: ', 'Fonte degli orari: ') : '') + '</div>';
 
     var ps = N.prontoSoccorso;
     h += '<div class="scheda"><h3>' + esc(ps.nome) + '</h3><p class="riga">' + esc(ps.nota) + '</p><p class="riga">' + esc(ps.dove) + '.</p>' +
@@ -742,23 +761,24 @@ main{padding-block:18px 8px}
       '<li>Turni: <a href="' + PAGINA_ORDINE + '" target="_blank" rel="noopener">calendario dell\'Ordine dei Farmacisti della Provincia di Brindisi' + NUOVA + '</a>' + (t.aggiornato ? ' (aggiornato il ' + dataLunga(t.aggiornato) + ')' : '') + '.</li>',
       '<li>Farmacie: <a href="https://www.ordinefarmacistibrindisi.it/farmacie/elenco-delle-farmacie.html" target="_blank" rel="noopener">albo delle farmacie dell\'Ordine' + NUOVA + '</a>.</li>'
     ];
-    if (NUMERI) li.push('<li>Numeri della salute: <a href="' + esc(NUMERI.fonti.asl.url) + '" target="_blank" rel="noopener">' + esc(NUMERI.fonti.asl.nome) + NUOVA + '</a>.</li>',
-      '<li>Orari dei turni: <a href="' + esc(NUMERI.fonti.legge.url) + '" target="_blank" rel="noopener">' + esc(NUMERI.fonti.legge.nome) + NUOVA + '</a>.</li>');
+    var fl = function(etichetta, s){ return s && linkSicuro(s.url) ? '<li>' + etichetta + ': <a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.nome) + NUOVA + '</a>.</li>' : ''; };
+    if (NUMERI && NUMERI.fonti) li.push(fl("Numeri della salute", NUMERI.fonti.asl), fl("Orari della guardia medica", NUMERI.fonti.bt), fl("Orari dei turni", NUMERI.fonti.legge));
     $("fonti").innerHTML = li.join("");
     $("segnala").href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Farmacia di turno Mesagne: errore") + "&body=" + encodeURIComponent("Ciao, ho trovato un errore:\n\n");
   }
 
   /* ======== parte a pagamento ======== */
   function abbonamento(id){
-    var a = ABB.farmacie && ABB.farmacie[id];
+    var a = ABB.farmacie && ammesso(ABB.farmacie, id) ? ABB.farmacie[id] : null;
+    if (!a || typeof a !== "object") return null;
     if (!a) return null;
     if (a.dimostrazione) return a;
     if (!/^\d{4}-\d{2}-\d{2}$/.test(a.fino || "") || a.fino < OGGI_VERO) return null;
     return a;
   }
   function spaziAttivi(){
-    if (Q.get("esempio") === "1") return (ABB.spaziEsempio || []).slice(0, 3).map(function(s){ s.esempio = true; return s; });
-    return (ABB.spazi || []).filter(function(s){ return CATEGORIE[s.categoria] && /^\d{4}-\d{2}-\d{2}$/.test(s.fino || "") && s.fino >= OGGI_VERO; }).slice(0, 3);
+    if (Q.get("esempio") === "1") return lista(ABB.spaziEsempio).filter(function(s){ return s && ammesso(CATEGORIE, s.categoria); }).slice(0, 3).map(function(s){ s.esempio = true; return s; });
+    return lista(ABB.spazi).filter(function(s){ return s && ammesso(CATEGORIE, s.categoria) && /^\d{4}-\d{2}-\d{2}$/.test(s.fino || "") && s.fino >= OGGI_VERO; }).slice(0, 3);
   }
   function richiesta(cosa){
     var url = cosa === "famiglia" ? CONFIG.pagaFamiglia : CONFIG.pagaFarmacia;
@@ -798,7 +818,12 @@ main{padding-block:18px 8px}
       return "ok";
     });
   }
-  function datiFamiglia(){ return leggi("ftm-famiglia", { chi: "", persone: [{ nome: "", tel: "" }, { nome: "", tel: "" }, { nome: "", tel: "" }], medico: { nome: "", tel: "" } }); }
+  function datiFamiglia(){
+    var d = leggi("ftm-famiglia", null); if (!d || typeof d !== "object") d = {};
+    var s = function(v){ return v == null ? "" : String(v).slice(0, 40); };
+    return { chi: s(d.chi), persone: [0, 1, 2].map(function(i){ var p = (Array.isArray(d.persone) && d.persone[i]) || {}; return { nome: s(p.nome), tel: s(p.tel) }; }),
+      medico: { nome: s((d.medico || {}).nome), tel: s((d.medico || {}).tel) } };
+  }
 
   function disegnaFamiglia(focusId){
     var h = '<div class="scheda"><h3>Foglio personale per la famiglia</h3>';
@@ -879,26 +904,47 @@ main{padding-block:18px 8px}
   }
 
   /* ======== disegno di tutto, con il focus che resta dov'era ======== */
-  function disegnaTutto(){
-    var a = document.activeElement, idA = a && a.id, href = a && a.getAttribute && a.getAttribute("href"), testo = a && a.textContent;
-    var dentro = a && a.closest && a.closest("main");
+  var ZONE = ["adesso", "ascoltaBox", "domani", "festivo", "medicoBox", "sette", "elenco", "stampaBtn", "famiglia", "perFarmacie"];
+  function disegnaTutto(conServizi){
+    var a = document.activeElement, zona = null, pos = -1, href = a && a.getAttribute && a.getAttribute("href"), testo = a && a.textContent, idA = a && a.id;
+    for (var z = 0; a && a.closest && z < ZONE.length; z++) if (a.closest("#" + ZONE[z])) { zona = ZONE[z]; break; }
+    if (zona) pos = [].indexOf.call($(zona).querySelectorAll("a, button, input"), a);
     MANCA_DETTO = false;
-    disegnaAdesso(); disegnaDomani(); disegnaMedico(); disegnaSette(); disegnaElenco(); disegnaStampa(); disegnaFamiglia(); disegnaPerFarmacie(); disegnaFonti();
-    if (dentro && !document.contains(a)) {
-      var nuovo = (idA && $(idA)) || [].slice.call(document.querySelectorAll("main a, main button")).filter(function(x){ return x.getAttribute("href") === href && x.textContent === testo; })[0];
+    /* prima il turno; un errore in un riquadro secondario non deve mai cancellarlo */
+    var pezzi = [disegnaAdesso, disegnaDomani, disegnaMedico, disegnaSette, disegnaElenco, disegnaStampa, disegnaFonti];
+    if (conServizi !== false) pezzi.push(disegnaFamiglia, disegnaPerFarmacie);
+    pezzi.forEach(function(fn, i){ try { fn(); } catch (e) { if (i === 0) throw e; if (window.console) console.error(e); } });
+    if (zona && !document.contains(a)) {
+      var cand = [].slice.call($(zona).querySelectorAll("a, button, input"));
+      var nuovo = (idA && $(idA)) || cand.filter(function(x){ return x.getAttribute("href") === href && x.textContent === testo; })[0] || cand[Math.min(pos, cand.length - 1)];
       if (nuovo) nuovo.focus({ preventScroll: true });
+      else { var t = $(zona).closest("section"); t = t && t.querySelector("h2"); if (t) { t.setAttribute("tabindex", "-1"); t.focus({ preventScroll: true }); } }
     }
   }
   var CHIAVE_ORA = "";
   function aggiornaOra(){
+    if (!CHIAVE_ORA) return;                         /* i dati non sono ancora arrivati (o il caricamento è fallito) */
     var n = adesso();
     if (!SIM) $("quando").textContent = maiusc(inParole(n.data)) + ", ore " + Math.floor(n.min / 60) + ":" + pad(n.min % 60);
     var k = chiave(n);
+    if (Object.keys(ERRORI).length) { ricaricaDati(n.data); return; }
     if (k === CHIAVE_ORA) return;
     var giornoNuovo = n.data !== ADESSO.data;
     ADESSO = n; CHIAVE_ORA = k; OGGI_VERO = romaVera().data;
-    if (giornoNuovo) caricaTurniPer(n.data).then(function(){ caricaCodice().then(disegnaTutto); });
-    else disegnaTutto();
+    if (giornoNuovo) ricaricaDati(n.data);
+    else disegnaTutto(false);
+  }
+  /* al cambio di giorno (o dopo un errore di rete) si rileggono i turni: se non arrivano, restano quelli di prima */
+  var RICARICA = false;
+  function ricaricaDati(s){
+    if (RICARICA) return; RICARICA = true;
+    var prima = [TURNI, FONTE_DI, FESTIVI, META, ORARI, CARICATI, DISPONIBILI, ERRORI];
+    TURNI = {}; FONTE_DI = {}; FESTIVI = {}; META = {}; ORARI = {}; CARICATI = {}; DISPONIBILI = null; ERRORI = {};
+    caricaTurniPer(s).then(function(){
+      if (Object.keys(ERRORI).length && Object.keys(prima[0]).length) { TURNI = prima[0]; FONTE_DI = prima[1]; FESTIVI = prima[2]; META = prima[3]; ORARI = prima[4]; CARICATI = prima[5]; DISPONIBILI = prima[6]; }
+      scegliOrario(ADESSO.data);
+      return caricaCodice();
+    }).then(function(){ RICARICA = false; CHIAVE_ORA = chiave(ADESSO); disegnaTutto(true); }, function(){ RICARICA = false; });
   }
 
   /* ======== stampa: foglio del mese, cartello, pannello della farmacia ======== */
@@ -1019,6 +1065,7 @@ main{padding-block:18px 8px}
       '<div class="c-di">' + (da.logo ? '<img src="' + esc(da.logo) + '" alt="">' : '') + '<span>' + esc(da.insegna) + '</span></div>' +
       piedeFoglio(oggi.slice(0, 7)) + '</article></div></div></div>';
     mostraStampa(h, "Cartello");
+    [].forEach.call($("foglio").querySelectorAll("img"), function(i){ i.addEventListener("error", function(){ i.remove(); }); });
   }
   function vistaPannello(){
     var da = datiDa();
@@ -1027,7 +1074,7 @@ main{padding-block:18px 8px}
     if (!da.attivo) {
       h += '<h1 style="font-size:1.5rem">Materiali per la farmacia</h1><p class="vuoto" style="margin-top:12px">Per questa farmacia il pacchetto non è attivo. <a href="./?servizi=1">Scopri il pacchetto per le farmacie</a>.</p>';
     } else {
-      var servizi = (da.servizi || []).filter(function(k){ return SERVIZI[k]; }).map(function(k){ return SERVIZI[k]; });
+      var servizi = lista(da.servizi).filter(function(k){ return ammesso(SERVIZI, k); }).map(function(k){ return SERVIZI[k]; });
       h += '<h1 style="font-size:1.5rem">Materiali per la ' + esc(da.insegna) + '</h1>' + (da.demo ? '<p class="vuoto" style="margin-top:12px">Questa è una dimostrazione: i fogli escono con la scritta ESEMPIO.</p>' : '') +
         '<div class="coppia">' + [m0, m1].map(function(m){ return '<a class="btn" href="?foglio=' + m + '&amp;da=' + esc(da.id) + '">' + ICO.stampa + 'Foglio di ' + esc(MESI[+m.slice(5) - 1]) + '</a>'; }).join("") +
         '<a class="btn" href="?cartello=1&amp;da=' + esc(da.id) + '">' + ICO.stampa + 'Cartello per la vetrina</a></div>' +
@@ -1108,8 +1155,9 @@ main{padding-block:18px 8px}
     history.replaceState(null, "", location.pathname + "?servizi=1");
     var c; try { c = decodeURIComponent(m[1]); } catch(e) { c = ""; }
     attivaCodice(c).then(function(r){
-      disegnaFamiglia(r === "ok" ? "famChi" : "codIn");
-      var box = $(r === "ok" ? "famMsg" : "codMsg");
+      disegnaFamiglia(r === "ok" || FAM ? "famChi" : "codIn");
+      var box = $(r === "ok" || FAM ? "famMsg" : "codMsg");
+      if (r !== "ok" && FAM && box) { box.className = "msg ko"; box.textContent = (r === "scaduto" ? "Questo collegamento è scaduto" : "Questo collegamento non è valido") + ": resta attivo il codice di " + FAM.n + "."; window.scrollTo(0, 0); return; }
       if (box) { box.className = r === "ok" ? "msg" : "msg ko"; box.textContent = r === "ok" ? "Codice attivato. Ora scrivi i nomi e i numeri." : r === "scaduto" ? "Questo codice è scaduto." : "Il collegamento di attivazione non è valido o è incompleto."; }
       window.scrollTo(0, 0);
     });
@@ -1118,16 +1166,23 @@ main{padding-block:18px 8px}
 
   /* ======== caricamento ======== */
   function prendi(url){ return fetch(url, { cache: "no-cache" }).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }); }
-  var CARICATI = {}, DISPONIBILI = null;
+  var CARICATI = {}, DISPONIBILI = null, ERRORI = {}, ORARI = {};
+  var ORARIO_BASE = ORARIO;
+  /* l'orario del turno è quello del file dell'anno del giorno mostrato (o dell'anno più vicino) */
+  function scegliOrario(s){
+    var anni = Object.keys(ORARI).sort(), a = s.slice(0, 4);
+    var scelto = ORARI[a] || ORARI[anni.filter(function(x){ return x < a; }).pop()] || ORARI[anni[0]];
+    ORARIO = Object.assign({}, ORARIO_BASE, scelto || {});
+  }
   function caricaTurniPer(s){
     var anni = {}; [-1, 0, 62].forEach(function(n){ anni[piu(s, n).slice(0, 4)] = 1; });
     if (s.slice(5, 7) === "01") anni[String(+s.slice(0, 4) - 1)] = 1;
     var m = Q.get("foglio"); if (m && /^\d{4}-\d{2}$/.test(m)) anni[m.slice(0, 4)] = 1;
     /* calendari.json dice quali anni esistono: così non si chiedono file che non ci sono */
-    var elenco = DISPONIBILI ? Promise.resolve(DISPONIBILI) : prendi("calendari.json").then(function(c){ DISPONIBILI = (c.anni || []).map(String); return DISPONIBILI; }, function(){ return [String(new Date().getFullYear())]; });
+    var elenco = DISPONIBILI ? Promise.resolve(DISPONIBILI) : prendi("calendari.json").then(function(c){ DISPONIBILI = lista(c.anni).map(String); return DISPONIBILI; }, function(){ return Object.keys(anni); });
     return elenco.then(function(disp){ return Promise.all(Object.keys(anni).filter(function(a){ return !CARICATI[a] && disp.indexOf(a) >= 0; }).map(function(a){
       return prendi("turni-" + a + ".json").then(function(t){
-        CARICATI[a] = 1;
+        CARICATI[a] = 1; delete ERRORI[a];
         Object.keys(t.turni || {}).forEach(function(d){
           /* un giorno presente in due file (es. il 1° gennaio): vale il file del suo anno */
           if (FONTE_DI[d] && d.slice(0, 4) !== String(t.anno)) return;
@@ -1137,12 +1192,13 @@ main{padding-block:18px 8px}
         Object.assign(FESTIVI, t.festivi || {});
         var n = t.fonte && t.fonte.notturni || {};
         META[String(t.anno)] = { aggiornato: n.aggiornato, file: n.file, controllato: t.controllato };
-        if (t.orario && (String(t.anno) === s.slice(0, 4) || !ORARIO.fonte)) ORARIO = Object.assign({}, ORARIO, t.orario);
-      }, function(){ /* il calendario di quell'anno non c'è ancora: l'app lo dice nel riquadro */ });
+        if (t.orario) ORARI[String(t.anno)] = t.orario;
+      }, function(){ ERRORI[a] = true; /* l'app lo dice nel riquadro e riprova */ });
     })); });
   }
 
   function avvia(){
+    if (SIM_SBAGLIATA) { $("prova").hidden = false; $("provaT").textContent = "Data o ora di prova non valida (scrivi ?data=AAAA-MM-GG&ora=HH:MM): mostro il momento vero."; }
     if (SIM) { $("prova").hidden = false; $("provaT").textContent = "Prova con data simulata: " + inParole(SIM.data, true) + ", ore " + Math.floor(SIM.min / 60) + ":" + pad(SIM.min % 60) + ". Per tornare a oggi togli ?data= dall'indirizzo."; }
     Promise.all([
       prendi("farmacie.json"),
@@ -1153,7 +1209,9 @@ main{padding-block:18px 8px}
     ]).then(function(r){
       ELENCO = r[0].farmacie || []; ALBO = r[0].fonte || {};
       ELENCO.forEach(function(x){ FARM[x.id] = x; });
-      NUMERI = r[1]; ABB = r[2] || ABB;
+      NUMERI = r[1]; ABB = r[2] && typeof r[2] === "object" ? r[2] : ABB;
+      if (!ABB.farmacie || typeof ABB.farmacie !== "object") ABB.farmacie = {};
+      scegliOrario(ADESSO.data);
       CHIAVE_ORA = chiave(ADESSO);
       if (Q.get("foglio") !== null) { vistaFoglio(); return; }
       if (Q.get("cartello") !== null) { vistaCartello(); return; }

@@ -28,6 +28,14 @@ fonte; quello che non si può verificare non è mostrato oppure è segnato «da 
   l'immagine del PDF ufficiale: 93 righe uguali su 93.
 - PDF dei festivi: 64 domeniche e festivi del 2026 (più il 1/1/2027) confrontati con i notturni:
   **64 uguali su 64**. La domenica e nei festivi la farmacia di turno è la stessa nei due calendari.
+- **Secondo controllo indipendente** (stesso giorno, senza usare lo strumento dell'app): PDF
+  riscaricati (identici byte per byte), lettore scritto da capo, 366 giorni confrontati: 363 uguali
+  e 3 sono le correzioni a mano, confermate sulle immagini (anche decodificando i caratteri del PDF).
+  Ottobre-dicembre e 1/1/2027 ricontrollati a occhio sulle immagini: uguali. Festivi: 64 su 64.
+- Nel PDF dei festivi 5 nomi (12/7, 16/7, 19/7, 9/8, 4/10) sono **annotazioni aggiunte il
+  17/06/2026**: un programma che nasconde le annotazioni mostra quelle celle vuote.
+- Il 4 ottobre è segnato «San Francesco» perché dal 2026 è festa nazionale (legge 151/2025); il
+  PDF non lo segna perché nel 2026 è domenica.
 - I giorni di prova indicati da Alessandro corrispondono tutti: 10/10 Sant'Andrea, 11/10 Ricupero,
   12/10 Antonucci, 13/10 Nocera, 14/10 Spalletta, 15/10 Sant'Andrea, 16/10 Rutigliano,
   17/10 Alioth, 18/10 Cavaliere, 25/12 Spalletta, 1/1/2027 Rutigliano.
@@ -158,9 +166,9 @@ Giorni: 93 · con PDF festivi: 17 · con farmaciediturno.org: 15 · differenze: 
 | CAVALIERE | Farmacia Cavaliere (S.a.s. della dott.ssa Francesca Cutrì), piazza Garibaldi 16 | 0831 771127 | La Carta dei Servizi ASL 2024 indica come titolare la dr.ssa Carla Rizzo: usato l'albo, più recente. |
 | RICUPERO | Farmacia Ricupero (dr. Ricupero S.a.s.), via G. Marconi 75 | 0831 734724 | Albo e ASL: 75. Elenco vaccinazioni 2025-26 dell'Ordine e farmaciediturno.org: 73. Usato 75. |
 | RUTIGLIANO | Farmacia Materdomini (dr. Giuseppe Rutigliano), viale Indipendenza 154 | 0831 776342 | Nessuna. Nel calendario si chiama RUTIGLIANO: l'app scrive «Materdomini (dr. Giuseppe Rutigliano)». |
-| NOCERA | Farmacia Nocera (S.a.s.), via Basilicata 20/22/24 | 0831 737021 | ASL e vaccinazioni: «20/22»; farmaciediturno.org: «22». Usato l'albo. Nell'albo l'orario invernale è «dal 25/10/2026 al 27/03/2026» (anno sbagliato nella seconda data). |
+| NOCERA | Farmacia Nocera (S.a.s.), via Basilicata 20/22/24 | 0831 737021 | ASL e vaccinazioni: «20/22»; farmaciediturno.org: «22». Usato l'albo. Nell'albo l'orario invernale vale «dal 25/10/2026 al 27/03/2026»: l'inizio è plausibile, la fine ha l'anno sbagliato. L'app scrive «Dal 25 ottobre 2026» e fino ad allora mostra prima l'orario estivo. |
 | SANT'ANDREA | Farmacia Sant'Andrea (S.r.l.), via Mannarino 13 | 0831 773032 | La Carta dei Servizi ASL 2024 indica il dr. Livino Ramundo. Il nome nel calendario è uguale all'insegna, quindi l'app non mostra il titolare tra parentesi. |
-| SPALLETTA | Farmacia Spalletta (S.n.c.), via Udine 2 e via Tenente R. Antonucci 134 | 0831 368631 | Orario invernale nell'albo «fino al 31/12/2025»: scaduto, segnato «da verificare». |
+| SPALLETTA | Farmacia Spalletta (S.n.c.), via Udine 2 e via Tenente R. Antonucci 134 | 0831 368631 | Orario invernale nell'albo «fino al 31/12/2025»: scaduto, segnato «da verificare». La Carta dei Servizi ASL 2024 (pag. 228) non ha Spalletta: al suo posto c'è «Savino dr.ssa Gabriella, via R. Antonucci 46, 0831 738155», probabilmente la stessa farmacia prima del cambio. Usato l'albo, più recente. |
 
 Nessuna farmacia di Mesagne ha chiusura settimanale né ferie secondo l'albo; nessuna è in ferie
 tra ottobre e dicembre 2026 secondo la pagina delle ferie.
@@ -170,13 +178,18 @@ tra ottobre e dicembre 2026 secondo la pagina delle ferie.
 | Numero | Dato | Fonte | Stato |
 |---|---|---|---|
 | Emergenza | 112 e 118 | numeri nazionali | mostrati in cima a «Serve un medico?» |
-| Guardia medica di Mesagne | via Panareo 10, 0831 739312 | Carta dei Servizi ASL 2024 | mostrato; orari non pubblicati («da verificare») |
+| Guardia medica di Mesagne | via Panareo 10, 0831 739312 | Carta dei Servizi ASL 2024 | mostrato |
+| Orari della guardia medica | notti 20-8 (di persona fino alle 22:30); sabato e prefestivi 10-13 e 15:30-20; domenica e festivi 8-13 e 15:30-20 | ASL Brindisi (PugliaSalute), riportati da Brindisi Time il 14/7/2024 | mostrati con «Orari da confermare» |
 | 116117 | numero europeo per cure non urgenti | Regione Puglia, agosto 2026 | non mostrato finché non è attivo per Brindisi (`usa116117` in `numeri.json`) |
 | Pronto soccorso | ospedale Perrino, Brindisi, 0831 537510 | Carta dei Servizi ASL 2024 | mostrato, da confermare con una telefonata |
-| CUP | 800 888 388 da fisso, 080 9181603 da cellulare, lun-ven 8-19 | Carta dei Servizi ASL 2024 | mostrato |
+| CUP | 800 888 388 da fisso, 080 9181603 da cellulare, lun-ven 8-19 | Carta dei Servizi ASL 2024 | mostrato; la Carta in alcune schede indica una pausa tra le 14 e le 15: l'app scrive «di solito» |
 | Sportello CUP Mesagne | via Panareo 12, lun-ven 7:30-12:30 e 15-17:30 | Carta dei Servizi ASL 2024 | mostrato |
 | Centro prelievi Mesagne | 0831 739403, prelievi lun-ven 7:30-9:45 | Carta dei Servizi ASL 2024 | mostrato |
 | Punto di primo intervento Mesagne | via Panareo 8 (tramite 118) | Carta dei Servizi ASL 2024 | **non mostrato**: non sappiamo se è ancora attivo |
+
+Esiste una Carta dei Servizi ASL Brindisi più recente, prodotta il 19/05/2025, ma il 10/10/2026 il
+sito della Regione non rispondeva: i numeri sono confrontati con l'edizione 2024 e vanno
+ricontrollati sulla nuova appena si riesce a scaricarla.
 
 ## Cose ancora incerte
 
@@ -184,11 +197,17 @@ tra ottobre e dicembre 2026 secondo la pagina delle ferie.
    alle 8:30; farmaciediturno.org mostra il turno «dalle 8 fino a domani». Non è confermato
    dall'Ordine per Mesagne: tra mezzanotte e le 8:30 l'app mostra entrambe le farmacie.
 2. **Notte «a chiamata».** Per la legge regionale, nei comuni sotto i 40.000 abitanti il servizio
-   notturno è «a chiamata». Da confermare quale numero rispondere di notte (il fisso della
-   farmacia o quello scritto sul cartello).
-3. Orari della guardia medica e data di partenza del 116117 a Brindisi.
+   notturno è «a chiamata» (art. 6) e il farmacista arriva entro 30 minuti (art. 10). Anche nella
+   pausa di pranzo, nei comuni da 25.000 a 40.000 abitanti, il turno è «a battenti chiusi o a
+   chiamata» (art. 3). Da confermare quale numero risponde di notte (il fisso della farmacia o
+   quello scritto sul cartello): l'app dice di provare il cartello se il fisso non risponde.
+3. Orari della guardia medica (presi da un articolo che cita l'ASL) e data di partenza del 116117
+   a Brindisi (la Regione parla di sperimentazione «in autunno», con la centrale all'ASL di Lecce).
 4. Numero del pronto soccorso del Perrino (dalla Carta dei Servizi del 2024).
 5. Civici di Antonucci (69 o 68) e Ricupero (75 o 73).
-6. Orari invernali di Alioth, Nocera e Spalletta (date sbagliate o scadute nell'albo).
+6. Orari invernali di Alioth e Spalletta (date scadute nell'albo) e data di fine di quello di
+   Nocera (anno sbagliato). Spalletta: confermare che è la farmacia che nella Carta ASL 2024 era
+   «Savino, via R. Antonucci 46, 0831 738155». Per le farmacie senza date nell'albo, l'app ordina gli
+   orari con l'ora legale (cambio a fine marzo e a fine ottobre), come le date scritte nell'albo.
 7. Riuso dei dati dell'Ordine in un servizio con parti a pagamento: da chiedere all'Ordine
    (info@ordinefarmacistibrindisi.it) prima di vendere i servizi a pagamento.
