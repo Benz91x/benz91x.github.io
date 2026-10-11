@@ -324,7 +324,6 @@ main{padding-block:18px 8px}
   <div class="coppia" id="ascoltaBox" hidden>
     <button type="button" class="btn sec" id="ascolta" aria-pressed="false" aria-describedby="ascoltaStato"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>Ascolta</button>
     <p class="msg" id="ascoltaStato" role="status" aria-live="polite" hidden></p>
-    <a class="btn sec" id="whatsapp" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5 5.3 15A8 8 0 1 1 9 18.7Z"/></svg>Manda su WhatsApp</a>
   </div>
   <a class="btn sec link-medico" href="#medico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Serve un medico? Numeri utili</a>
 
@@ -598,15 +597,13 @@ main{padding-block:18px 8px}
              : '<p>Se non risponde nessuno, chiama il numero scritto sul cartello fuori dalla farmacia: di notte può essere diverso.</p>');
   }
   function telVoce(x){ return "Il telefono è: " + cifre(x.telefono) + ". Ripeto: " + cifre(x.telefono) + "."; }
-  function nottePerWa(d){ return "Notte tra " + GIORNI[sett(d)] + " " + (+d.slice(8)) + (d.slice(5, 7) === piu(d, 1).slice(5, 7) ? "" : " " + MESI[+d.slice(5, 7) - 1]) + " e " + inParole(piu(d, 1)); }
-  function perWa(x){ return "la farmacia " + nomeConTitolare(x) + ", " + x.indirizzoBreve + ", telefono " + x.telefono + "."; }
 
-  var TESTO_VOCE = [], TESTO_WA = "";
+  var TESTO_VOCE = [];
   function disegnaAdesso(){
     var n = ADESSO, s = stato(n), h = "";
     $("quando").textContent = maiusc(inParole(n.data)) + ", ore " + Math.floor(n.min / 60) + ":" + pad(n.min % 60);
     var x = f(turnoDel(s.turno));
-    var voce = [], wa = [];
+    var voce = [];
     var cambio = oraTesto(minuti(ORARIO.cambio));
 
     if (s.fase === "dopo") {
@@ -616,19 +613,16 @@ main{padding-block:18px 8px}
         h += riquadro({ id: "tA", tag: "Di turno adesso", frase: "Stanotte e per tutta la giornata di oggi è di turno la farmacia", s: s.poi, x: x,
           extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte(null) + '</div>' });
         voce.push("Stanotte e per tutta la giornata di oggi è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
-        wa.push(nottePerWa(s.turno) + " e giornata di " + inParole(s.poi) + ": a Mesagne è di turno " + perWa(x));
       } else {
         if (x) {
           var frase = s.presto ? "Questa notte, da " + gIeri + " sera a " + gOggi + " mattina, è di turno la farmacia" : "Fino alle " + cambio + " di stamattina è di turno la farmacia";
           h += riquadro({ id: "tA", tag: "Di turno adesso", frase: frase, s: s.turno, x: x,
             extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + avvisoNotte(ORARIO.confermato ? null : y) + (y ? '<p>Il turno di notte ' + (ORARIO.confermato ? '' : 'di solito ') + 'finisce alle ' + cambio + ' del mattino.</p>' : '') + '</div>' });
           voce.push((s.presto ? "Questa notte" : "Fino alle " + cambio + " di stamattina") + " è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
-          wa.push(nottePerWa(s.turno) + ": a Mesagne è di turno " + perWa(x));
         } else h += mancaTurno(s.turno);
         if (y) {
           h += riquadro({ id: "tB", poi: true, tag: "Dalle " + cambio + " di stamattina", frase: "Da " + gOggi + " mattina alle " + cambio + " è di turno la farmacia", s: s.poi, x: y });
           voce.push((x && !ORARIO.confermato ? "Se non risponde, chiama la farmacia " : "Da stamattina alle " + cambio + " è di turno la farmacia ") + nomeConTitolare(y) + ", in " + y.indirizzoBreve + ".", telVoce(y));
-          wa.push("Da " + gOggi + " mattina alle " + cambio + ": " + perWa(y));
         } else h += mancaTurno(s.poi);
       }
     } else if (x) {
@@ -641,17 +635,12 @@ main{padding-block:18px 8px}
         : '<p>Di giorno, negli orari normali, di solito sono aperte anche le altre farmacie: gli orari sono nell\'elenco più sotto.</p>';
       h += riquadro({ id: "tA", tag: "Di turno adesso", frase: frase2, s: s.turno, x: x, extra: '<div class="avviso"><b>Chiama prima di andare.</b>' + nota + '</div>' });
       voce.push((sera ? "Stanotte" : "Oggi, " + inParole(n.data) + ",") + " è di turno la farmacia " + nomeConTitolare(x) + ", in " + x.indirizzoBreve + ".", telVoce(x));
-      wa.push(sera ? nottePerWa(n.data) + ": a Mesagne è di turno " + perWa(x) : "Oggi, " + inParole(n.data) + ", a Mesagne è di turno " + perWa(x));
     } else {
       h += mancaTurno(s.turno);
     }
     $("adesso").innerHTML = h;
     TESTO_VOCE = voce.length ? voce.concat(["Chiama prima di andare."]).map(parlato) : [];
-    TESTO_WA = wa.length ? wa.join(" ").replace(/\bdr\.ssa\s*/gi, "dottoressa ").replace(/\bdr\.\s*/gi, "dottor ") + " Chiama prima di andare. Fonte: calendario dell'Ordine dei Farmacisti. Tutti i turni: " + URL_APP : "";
-    $("ascoltaBox").hidden = !TESTO_VOCE.length && !TESTO_WA;
-    $("ascolta").hidden = !TESTO_VOCE.length || !("speechSynthesis" in window);
-    $("whatsapp").hidden = !TESTO_WA;
-    $("whatsapp").href = "https://wa.me/?text=" + encodeURIComponent(TESTO_WA);
+    $("ascoltaBox").hidden = !TESTO_VOCE.length || !("speechSynthesis" in window);
   }
 
   function schedaGiorno(s){
