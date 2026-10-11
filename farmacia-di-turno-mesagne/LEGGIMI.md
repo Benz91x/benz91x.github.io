@@ -144,23 +144,31 @@ I codici sono firmati con una chiave privata che resta solo sul tuo Mac; l'app c
 pubblica e controlla la firma. Un codice inventato non funziona. Le chiavi sono diverse da quelle
 di Scadenze Mesagne.
 
-**Una volta sola**, prima di vendere il primo codice. Serve Node: scaricalo da
+**Le chiavi ci sono già** (create l'11 ottobre 2026): la chiave pubblica è dentro `index.html`,
+la chiave privata è il file `chiave-privata.jwk` che ti ho mandato. **Fanne una copia di
+sicurezza** (per esempio su una chiavetta): se la perdi non puoi più creare codici, e chi la
+ottiene può crearne quanti vuole. Non metterla mai nel repository e non mandarla a nessuno.
+
+**Una volta sola**, prima di creare il primo codice. Serve Node: scaricalo da
 https://nodejs.org (versione LTS, il file per macOS) e installalo come un normale programma.
 Poi apri il **Terminale** e copia questi comandi (la prima volta il Mac può chiederti di
-installare gli «strumenti per sviluppatori»: accetta):
+installare gli «strumenti per sviluppatori»: accetta). Il secondo blocco sposta la chiave
+privata dalla cartella Download al suo posto:
 
 ```sh
 cd ~/Documents
 git clone https://github.com/Benz91x/benz91x.github.io.git
-cd benz91x.github.io
-node farmacia-di-turno-mesagne/strumenti/licenze.mjs chiavi
-git add farmacia-di-turno-mesagne/index.html
-git commit -m "Farmacia di turno: chiave dei codici per la famiglia"
-git push
 ```
 
-La chiave privata finisce in `~/.farmacia-di-turno-mesagne/chiave-privata.jwk`. **Fanne una
-copia di sicurezza** (per esempio su una chiavetta): se la perdi non puoi più creare codici.
+```sh
+mkdir -p ~/.farmacia-di-turno-mesagne
+mv ~/Downloads/chiave-privata.jwk ~/.farmacia-di-turno-mesagne/
+chmod 600 ~/.farmacia-di-turno-mesagne/chiave-privata.jwk
+```
+
+Se un giorno devi rifare le chiavi da capo (i codici già venduti smettono di funzionare):
+`node farmacia-di-turno-mesagne/strumenti/licenze.mjs chiavi --forza`, poi `git add`,
+`git commit` e `git push` di `farmacia-di-turno-mesagne/index.html`.
 
 **Per ogni cliente:**
 
@@ -196,7 +204,7 @@ e togli «intestazioni e piè di pagina».
 
 ## Dopo una modifica a `index.html`
 
-Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011a";` (per esempio con la data
+Cambia in `sw.js` la riga `var CACHE = PREFISSO + "20261011b";` (per esempio con la data
 di oggi): così i telefoni scaricano la versione nuova. Per i file `.json` non serve.
 
 ## Limiti da conoscere

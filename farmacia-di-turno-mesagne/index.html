@@ -175,6 +175,7 @@ main{padding-block:18px 8px}
 .foglio *{color:#000}
 .f-testa{display:flex;justify-content:space-between;align-items:baseline;gap:6mm;border-bottom:.9mm solid #000;padding-bottom:1.5mm}
 .f-testa h1{font-size:19pt;line-height:1.1;font-weight:800}
+.croce{display:inline-block;width:.95em;height:.95em;vertical-align:-.12em;margin-right:.3em;print-color-adjust:exact;-webkit-print-color-adjust:exact}
 .f-testa .mese{font-size:24pt;font-weight:800;text-transform:capitalize;white-space:nowrap;line-height:1.1}
 .f-fam{border:.8mm solid #000;border-radius:2.5mm;padding:1.4mm 3.5mm;margin-bottom:1.8mm}
 .f-fam .chi{font-size:18pt;font-weight:800;line-height:1.15}
@@ -187,6 +188,7 @@ main{padding-block:18px 8px}
 .tab td:first-child,.tab td.n{white-space:nowrap;width:1%}
 .tab td.n{padding-right:7mm}
 .tab td.tel{white-space:nowrap}
+.f-stretto .tab td{padding-block:.1mm}
 .tab .n{font-weight:800}
 .tab .ti{font-size:.85em;font-weight:700;white-space:nowrap}
 .tab tr.fest td{background:#E2E2E2;border-top:.45mm solid #000;border-bottom:.45mm solid #000}
@@ -232,7 +234,7 @@ main{padding-block:18px 8px}
 .c-di img{height:16mm;width:auto;max-width:50mm;object-fit:contain}
 
 @media (max-width:360px){
-  .logo{display:none}
+  .logo{width:34px;height:34px}
   .t1{font-size:min(1.1rem,6.6vw)}
   .sz{min-width:72px}
   .wrap{padding-inline:12px}
@@ -301,7 +303,7 @@ main{padding-block:18px 8px}
 <div id="app">
 <header class="top">
   <div class="wrap top-in">
-    <svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect x="2" y="2" width="44" height="44" rx="12" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M30.5 9.5a9 9 0 1 0 8 13 7.2 7.2 0 1 1-8-13Z" fill="#FFD166"/><path d="M9 39V25l9-6 9 6v14" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/><path d="M15 39v-8h6v8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg>
+    <svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect x="1" y="1" width="46" height="46" rx="11" fill="#fff"/><path d="M19 8h10v10h10v10H29v10H19V28H9V18h10z" fill="#1F9D55"/><path d="M39.6 4.6a5.2 5.2 0 1 0 4.4 7.6 4.2 4.2 0 1 1-4.4-7.6Z" fill="#123A5E"/></svg>
     <h1 class="titolo"><span class="t1">Farmacia di turno</span> <span class="t2">Mesagne</span></h1>
     <button type="button" class="sz" id="testoBtn" aria-pressed="false"><b aria-hidden="true">A+</b><span>Testo</span> <span>grande</span></button>
   </div>
@@ -418,7 +420,7 @@ main{padding-block:18px 8px}
     pagaFarmacia: "",
     email: "alexch@hotmail.it",
     /* Chiave pubblica dei codici del foglio per la famiglia: la scrive strumenti/licenze.mjs */
-    chiave: /*CHIAVE*/{}/*FINE-CHIAVE*/
+    chiave: /*CHIAVE*/{"kty":"EC","crv":"P-256","x":"sCs86ZdWLrENkxVtLi7RHEU8BbF3LUX6eH4_GXr2vIc","y":"BRjdOcAdH2eFO8W5ICfZ_z7SHXWFNmgqzuRn1woYJ7s"}/*FINE-CHIAVE*/
   };
   var URL_APP = "https://benz91x.github.io/farmacia-di-turno-mesagne/";
   var PAGINA_ORDINE = "https://www.ordinefarmacistibrindisi.it/farmacie/turni-delle-farmacie.html?page=2";
@@ -435,6 +437,7 @@ main{padding-block:18px 8px}
   var CATEGORIE = { sanitaria: "Sanitaria", ottico: "Ottico", audioprotesista: "Audioprotesista", caf: "CAF", patronato: "Patronato" };
   var QR = '<svg viewBox="-4 -4 41 41" shape-rendering="crispEdges" role="img" aria-label="Codice QR per aprire l\'app"><rect x="-4" y="-4" width="41" height="41" fill="#fff"/><path fill="#000" d="M0 0h7v1h-7zM8 0h1v1h-1zM10 0h3v1h-3zM16 0h1v1h-1zM18 0h3v1h-3zM22 0h3v1h-3zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM11 1h2v1h-2zM14 1h1v1h-1zM17 1h1v1h-1zM22 1h3v1h-3zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM13 2h4v1h-4zM19 2h2v1h-2zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h3v1h-3zM15 3h1v1h-1zM18 3h1v1h-1zM22 3h3v1h-3zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM10 4h1v1h-1zM12 4h2v1h-2zM16 4h2v1h-2zM20 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM11 5h1v1h-1zM13 5h5v1h-5zM19 5h2v1h-2zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM8 7h2v1h-2zM12 7h1v1h-1zM15 7h3v1h-3zM19 7h1v1h-1zM22 7h3v1h-3zM0 8h1v1h-1zM2 8h2v1h-2zM5 8h3v1h-3zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h2v1h-2zM17 8h1v1h-1zM20 8h2v1h-2zM23 8h2v1h-2zM26 8h1v1h-1zM29 8h1v1h-1zM31 8h2v1h-2zM0 9h1v1h-1zM2 9h2v1h-2zM5 9h1v1h-1zM7 9h1v1h-1zM9 9h1v1h-1zM12 9h2v1h-2zM16 9h9v1h-9zM26 9h2v1h-2zM29 9h2v1h-2zM32 9h1v1h-1zM0 10h1v1h-1zM4 10h1v1h-1zM6 10h3v1h-3zM10 10h1v1h-1zM13 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h2v1h-2zM25 10h5v1h-5zM31 10h2v1h-2zM2 11h2v1h-2zM5 11h1v1h-1zM7 11h1v1h-1zM9 11h3v1h-3zM16 11h2v1h-2zM19 11h1v1h-1zM23 11h1v1h-1zM25 11h1v1h-1zM27 11h1v1h-1zM29 11h1v1h-1zM2 12h2v1h-2zM5 12h2v1h-2zM14 12h3v1h-3zM19 12h1v1h-1zM22 12h4v1h-4zM28 12h2v1h-2zM32 12h1v1h-1zM3 13h3v1h-3zM8 13h1v1h-1zM11 13h2v1h-2zM14 13h1v1h-1zM19 13h4v1h-4zM25 13h1v1h-1zM27 13h1v1h-1zM29 13h1v1h-1zM31 13h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM6 14h1v1h-1zM11 14h1v1h-1zM13 14h2v1h-2zM17 14h4v1h-4zM22 14h1v1h-1zM24 14h1v1h-1zM26 14h4v1h-4zM2 15h2v1h-2zM5 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM12 15h1v1h-1zM15 15h1v1h-1zM18 15h1v1h-1zM20 15h2v1h-2zM23 15h1v1h-1zM25 15h2v1h-2zM28 15h1v1h-1zM30 15h1v1h-1zM1 16h1v1h-1zM4 16h3v1h-3zM9 16h2v1h-2zM12 16h1v1h-1zM14 16h1v1h-1zM18 16h1v1h-1zM20 16h2v1h-2zM24 16h3v1h-3zM28 16h3v1h-3zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM9 17h3v1h-3zM13 17h1v1h-1zM15 17h1v1h-1zM20 17h1v1h-1zM22 17h5v1h-5zM28 17h2v1h-2zM31 17h2v1h-2zM5 18h2v1h-2zM9 18h2v1h-2zM13 18h1v1h-1zM15 18h1v1h-1zM18 18h1v1h-1zM24 18h2v1h-2zM27 18h2v1h-2zM30 18h2v1h-2zM3 19h1v1h-1zM5 19h1v1h-1zM10 19h1v1h-1zM15 19h4v1h-4zM22 19h1v1h-1zM24 19h3v1h-3zM28 19h1v1h-1zM31 19h1v1h-1zM2 20h1v1h-1zM4 20h1v1h-1zM6 20h2v1h-2zM9 20h1v1h-1zM12 20h3v1h-3zM16 20h1v1h-1zM19 20h1v1h-1zM21 20h1v1h-1zM23 20h1v1h-1zM29 20h3v1h-3zM0 21h3v1h-3zM11 21h2v1h-2zM15 21h3v1h-3zM19 21h2v1h-2zM23 21h1v1h-1zM25 21h3v1h-3zM29 21h1v1h-1zM32 21h1v1h-1zM5 22h5v1h-5zM13 22h1v1h-1zM15 22h1v1h-1zM17 22h1v1h-1zM20 22h4v1h-4zM26 22h2v1h-2zM31 22h2v1h-2zM1 23h1v1h-1zM4 23h2v1h-2zM12 23h2v1h-2zM15 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM22 23h5v1h-5zM29 23h1v1h-1zM31 23h1v1h-1zM0 24h1v1h-1zM5 24h3v1h-3zM10 24h1v1h-1zM17 24h1v1h-1zM19 24h2v1h-2zM22 24h7v1h-7zM31 24h1v1h-1zM8 25h3v1h-3zM14 25h3v1h-3zM19 25h1v1h-1zM23 25h2v1h-2zM28 25h2v1h-2zM0 26h7v1h-7zM8 26h3v1h-3zM12 26h2v1h-2zM17 26h4v1h-4zM22 26h3v1h-3zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h2v1h-2zM11 27h4v1h-4zM16 27h3v1h-3zM21 27h4v1h-4zM28 27h4v1h-4zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM12 28h17v1h-17zM30 28h1v1h-1zM32 28h1v1h-1zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM8 29h1v1h-1zM10 29h3v1h-3zM16 29h2v1h-2zM20 29h1v1h-1zM22 29h2v1h-2zM27 29h1v1h-1zM29 29h1v1h-1zM32 29h1v1h-1zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM8 30h10v1h-10zM20 30h1v1h-1zM22 30h3v1h-3zM26 30h2v1h-2zM30 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM10 31h5v1h-5zM17 31h3v1h-3zM22 31h3v1h-3zM26 31h3v1h-3zM32 31h1v1h-1zM0 32h7v1h-7zM8 32h4v1h-4zM13 32h2v1h-2zM16 32h2v1h-2zM19 32h1v1h-1zM21 32h1v1h-1zM23 32h1v1h-1zM25 32h2v1h-2zM28 32h1v1h-1zM30 32h1v1h-1z"/></svg>';
 
+  var CROCE = '<svg class="croce" viewBox="0 0 48 48" aria-hidden="true"><path d="M17 5h14v12h12v14H31v12H17V31H5V17h12z" fill="#1F9D55" stroke="#000" stroke-width="2.5"/></svg>';
   var ICO = {
     tel: '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.5 4-2 1.3a11 11 0 0 0 6.5 6.5l1.3-2 4 1.5v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg>',
     mappa: '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>',
@@ -460,6 +463,10 @@ main{padding-block:18px 8px}
   var MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
   function inParole(s, conAnno){ var p = s.split("-"); return GIORNI[sett(s)] + " " + (+p[2]) + " " + MESI[+p[1] - 1] + (conAnno || p[0] !== ADESSO.data.slice(0, 4) ? " " + p[0] : ""); }
   function dataLunga(s){ var p = s.split("-"); return (+p[2]) + " " + MESI[+p[1] - 1] + " " + p[0]; }
+  /* «l'8 ottobre», «l'11 ottobre», «all'11 ottobre»: con 8 e 11 l'articolo si elide */
+  function elide(s){ var g = +s.split("-")[2]; return g === 8 || g === 11; }
+  function ilData(s){ return (elide(s) ? "l'" : "il ") + dataLunga(s); }
+  function alData(s){ return (elide(s) ? "all'" : "al ") + dataLunga(s); }
   function maiusc(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
   function oraTesto(m){ var h = Math.floor(m / 60), mm = m % 60; return h + (mm ? ":" + pad(mm) : ""); }
 
@@ -685,7 +692,7 @@ main{padding-block:18px 8px}
   function disegnaElenco(){
     var src = ALBO || {};
     $("farmT").textContent = "Le " + ELENCO.length + " farmacie di Mesagne";
-    $("farmLead").innerHTML = "Indirizzi, telefoni e orari dall'albo dell'Ordine dei Farmacisti, controllato il " + esc(dataLunga(src.controllato || "2026-10-10")) + ". Gli orari possono cambiare: chiama prima di andare.";
+    $("farmLead").innerHTML = "Indirizzi, telefoni e orari dall'albo dell'Ordine dei Farmacisti, controllato " + esc(ilData(src.controllato || "2026-10-10")) + ". Gli orari possono cambiare: chiama prima di andare.";
     var invernoOra = !oraLegale(ADESSO.data);
     var lista = ELENCO.slice().sort(function(a, b){ return a.nomeBreve.localeCompare(b.nomeBreve, "it"); });
     $("elenco").innerHTML = lista.map(function(x){
@@ -710,7 +717,7 @@ main{padding-block:18px 8px}
   function fonteNum(x){
     if (!x || !NUMERI) return "";
     var s = NUMERI.fonti[x.fonte] || {};
-    return '<p class="fonte">Fonte: ' + (linkSicuro(s.url) ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.nome) + NUOVA + '</a>' : esc(s.nome || "")) + '. Controllato il ' + esc(dataLunga(x.controllato)) + '.</p>';
+    return '<p class="fonte">Fonte: ' + (linkSicuro(s.url) ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.nome) + NUOVA + '</a>' : esc(s.nome || "")) + '. Controllato ' + esc(ilData(x.controllato)) + '.</p>';
   }
   function bottoneNumero(n, testo){ return '<a class="btn" href="' + telHref(n) + '">' + ICO.tel + '<span>' + esc(testo) + '<small class="num">' + esc(n) + '</small></span></a>'; }
   function disegnaMedico(){
@@ -758,7 +765,7 @@ main{padding-block:18px 8px}
   function disegnaFonti(){
     var t = annoNelCalendario(ADESSO.data) || META[ADESSO.data.slice(0, 4)] || {};
     var li = [
-      '<li>Turni: <a href="' + PAGINA_ORDINE + '" target="_blank" rel="noopener">calendario dell\'Ordine dei Farmacisti della Provincia di Brindisi' + NUOVA + '</a>' + (t.aggiornato ? ' (aggiornato il ' + dataLunga(t.aggiornato) + ')' : '') + '.</li>',
+      '<li>Turni: <a href="' + PAGINA_ORDINE + '" target="_blank" rel="noopener">calendario dell\'Ordine dei Farmacisti della Provincia di Brindisi' + NUOVA + '</a>' + (t.aggiornato ? ' (aggiornato ' + ilData(t.aggiornato) + ')' : '') + '.</li>',
       '<li>Farmacie: <a href="https://www.ordinefarmacistibrindisi.it/farmacie/elenco-delle-farmacie.html" target="_blank" rel="noopener">albo delle farmacie dell\'Ordine' + NUOVA + '</a>.</li>'
     ];
     var fl = function(etichetta, s){ return s && linkSicuro(s.url) ? '<li>' + etichetta + ': <a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.nome) + NUOVA + '</a>.</li>' : ''; };
@@ -831,13 +838,13 @@ main{padding-block:18px 8px}
       h += '<p class="riga">Per chi segue un genitore anziano: in cima al foglio del mese compaiono, in grande, il nome del genitore e i numeri da chiamare (figli, vicini, medico di famiglia).</p>' +
         '<ul class="punti"><li>I dati restano solo su questo telefono: non li vede nessuno.</li><li>Ogni mese stampi il foglio aggiornato.</li></ul>' +
         '<p class="prezzo">' + esc(CONFIG.prezzi.famigliaAnno) + ' all\'anno</p>' +
-        (FAM_SCADUTO ? '<p class="msg ko">Il tuo codice è scaduto il ' + esc(dataLunga(FAM_SCADUTO)) + '.</p>' : '') +
+        (FAM_SCADUTO ? '<p class="msg ko">Il tuo codice è scaduto ' + esc(ilData(FAM_SCADUTO)) + '.</p>' : '') +
         '<div class="azioni"><a class="btn" href="' + esc(richiesta("famiglia")) + '"' + (CONFIG.pagaFamiglia ? ' target="_blank" rel="noopener"' : '') + '>Richiedi il foglio per la famiglia</a></div>' +
         '<form id="codForm" class="gruppo" novalidate><label class="campo"><span>Hai già un codice? Incollalo qui</span><input id="codIn" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text"></label>' +
         '<div class="azioni"><button type="submit" class="btn sec">Attiva il codice</button></div><p class="msg" id="codMsg" role="status" aria-live="polite"></p></form>';
     } else {
       var d = datiFamiglia();
-      h += '<p class="riga"><b>Attivo per ' + esc(FAM.n) + '</b> fino al ' + esc(dataLunga(FAM.x)) + '.</p>' +
+      h += '<p class="riga"><b>Attivo per ' + esc(FAM.n) + '</b> fino ' + esc(alData(FAM.x)) + '.</p>' +
         '<form id="famForm" novalidate>' +
         '<label class="campo"><span>Nome del genitore (es. Maria)</span><input id="famChi" maxlength="24" value="' + esc(d.chi) + '" autocomplete="off"></label>' +
         '<fieldset class="gruppo"><legend>Chi chiamare (fino a 3 persone)</legend>' +
@@ -970,7 +977,7 @@ main{padding-block:18px 8px}
   function piedeFoglio(mese){
     var m = annoNelCalendario(mese + "-01") || META[mese.slice(0, 4)] || {};
     return '<div class="f-basso">' + numeriFoglio() + '<div class="f-qr">' + QR + '<span>Turni sempre aggiornati: inquadra il codice</span></div></div>' +
-      '<p class="f-fonte">Fonte: calendario dell\'Ordine dei Farmacisti della Provincia di Brindisi' + (m.aggiornato ? ' aggiornato il ' + dataLunga(m.aggiornato) : '') + ', controllato il ' + (m.controllato ? dataLunga(m.controllato) : '—') + '. ' +
+      '<p class="f-fonte">Fonte: calendario dell\'Ordine dei Farmacisti della Provincia di Brindisi' + (m.aggiornato ? ' aggiornato ' + ilData(m.aggiornato) : '') + ', controllato ' + (m.controllato ? ilData(m.controllato) : 'il —') + '. ' +
       'Servizio informativo non ufficiale: fanno fede i turni pubblicati dall\'Ordine. App: benz91x.github.io/farmacia-di-turno-mesagne</p>';
   }
   function famigliaFoglio(){
@@ -1015,7 +1022,7 @@ main{padding-block:18px 8px}
     var h = barra(avviso + 'Foglio di ' + esc(nomeMese) + ' pronto. Nella finestra di stampa scegli il formato A4, orientamento verticale, e togli «intestazioni e piè di pagina».');
     h += '<div class="anteprima"><div class="wrap"><div class="scala" id="scala"><article class="foglio' + (fam ? ' con-fam' : '') + '" id="foglio" aria-label="Foglio di ' + esc(nomeMese) + '">' +
       (esempio ? '<div class="f-esempio" aria-hidden="true"><span>ESEMPIO</span></div>' : '') + fam +
-      '<div class="f-testa"><h1>Farmacie di turno a Mesagne</h1><p class="mese">' + esc(nomeMese) + '</p></div>' +
+      '<div class="f-testa"><h1>' + CROCE + 'Farmacie di turno a Mesagne</h1><p class="mese">' + esc(nomeMese) + '</p></div>' +
       '<div id="fTab">' + tabella(righeMese(mese, false), false) + '</div>' + notaFoglio() +
       (da && da.attivo ? '<div class="f-da">' + (da.logo ? '<img src="' + esc(da.logo) + '" alt="">' : '') + '<div>Distribuito da <b>' + esc(da.insegna) + '</b>, ' + esc(da.indirizzo) + ', tel. ' + esc(da.telefono) + '</div></div>' : '') +
       piedeFoglio(mese) +
@@ -1034,15 +1041,16 @@ main{padding-block:18px 8px}
     var s = $("scala"), tr = s ? s.style.transform : ""; if (s) s.style.transform = "none";
     var lim = fo.getBoundingClientRect().right - parseFloat(getComputedStyle(fo).paddingRight) + 1;
     function sta(){ var t = fo.querySelector(".tab"); return fo.scrollHeight <= fo.clientHeight + 1 && t.getBoundingClientRect().right <= lim; }
-    /* prima la tabella grande con i testi in fondo grandi; poi i testi in fondo un po' più compatti; mai sotto 14 punti */
-    var prove = [[16, ""], [15.5, ""], [15, ""], [16, "c"], [15.5, "c"], [15, "c"], [14.5, "c"], [14, "c"]], p, ok = false;
+    /* prima la tabella grande con i testi in fondo grandi; poi i testi in fondo un po' più compatti; poi le righe più strette; mai sotto 14 punti */
+    var prove = [[16, ""], [15.5, ""], [15, ""], [16, "c"], [15.5, "c"], [15, "c"], [14.5, "c"], [14, "c"], [15, "s"], [14.5, "s"], [14, "s"]], p, ok = false;
     for (var i = 0; i < prove.length; i++) {
       p = prove[i];
-      fo.classList.toggle("f-compatto", p[1] === "c");
+      fo.classList.toggle("f-compatto", p[1] !== "");
+      fo.classList.toggle("f-stretto", p[1] === "s");
       fo.querySelector(".tab").style.fontSize = p[0] + "pt";
       if ((ok = sta())) break;
     }
-    fo.setAttribute("data-impaginazione", p[0] + " punti" + (p[1] ? ", fondo compatto" : "") + (ok ? "" : ", NON CI STA"));
+    fo.setAttribute("data-impaginazione", p[0] + " punti" + (p[1] ? ", fondo compatto" : "") + (p[1] === "s" ? ", righe strette" : "") + (ok ? "" : ", NON CI STA"));
     var av = $("avvisoStampa");
     if (av) { av.hidden = ok; av.textContent = ok ? "" : "Attenzione: così il foglio non sta in una pagina. Accorcia i nomi o i numeri della famiglia."; }
     if (s) s.style.transform = tr;
@@ -1058,7 +1066,7 @@ main{padding-block:18px 8px}
     if (!da || !da.attivo) { mostraStampa(h.replace('<button type="button" class="btn" id="stampaOra">' + ICO.stampa + 'Stampa</button>', '') + '<div class="wrap" style="padding:20px 16px"><p class="vuoto">Pacchetto non attivo per questa farmacia. <a href="./?servizi=1">Scopri il pacchetto per le farmacie</a>.</p></div>', "Cartello"); return; }
     h += '<div class="anteprima"><div class="wrap"><div class="scala" id="scala"><article class="foglio cartello" id="foglio" aria-label="Cartello per la vetrina">' +
       (da.demo ? '<div class="f-esempio" aria-hidden="true"><span>ESEMPIO</span></div>' : '') +
-      '<h1>Farmacia di turno a Mesagne</h1>' +
+      '<h1>' + CROCE + 'Farmacia di turno a Mesagne</h1>' +
       (x ? '<div class="c-oggi"><p class="q">Oggi e stanotte · ' + esc(inParole(oggi)) + '</p><p class="n">' + esc(nomeFoglio(x)) + '</p><p class="i">' + esc(maiusc(x.indirizzo)) + '</p><p class="t">Tel. ' + esc(x.telefono) + '</p><p class="p">Chiama prima di andare. Di notte il farmacista arriva dopo la telefonata.</p></div>'
          : '<div class="c-oggi"><p class="q">' + esc(maiusc(inParole(oggi))) + '</p><p class="i">Turno non disponibile: consulta il calendario dell\'Ordine dei Farmacisti.</p></div>') +
       '<h2>Nei prossimi giorni</h2>' + '<table class="tab"><tbody>' + righe.join("") + '</tbody></table>' +
