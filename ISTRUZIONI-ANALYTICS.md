@@ -29,6 +29,7 @@ conforme GDPR senza banner). Traccia già questi eventi:
 | `tempo-15s/30s/1min/3min` | quanto tempo restano a leggere |
 | `download-cv` | chi scarica il CV in PDF |
 | `click-email` / `click-linkedin` / `click-github` | quali contatti usano |
+| `click-app-sanvito` / `click-app-mesagne` / `click-app-farmacia` | chi apre le app per i cittadini dalla pagina |
 | `click-articolo` / `click-libro` | chi apre l'articolo su MDPI o il libro su Amazon |
 | `click-stampa` | chi apre l'articolo di Qui Mesagne su Differenziata Mesagne |
 | `click-stampa-brindisireport` | chi apre l'articolo di BrindisiReport su Differenziata San Vito dei Normanni |

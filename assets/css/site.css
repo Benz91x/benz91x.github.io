@@ -943,6 +943,7 @@ p, dd, li { text-wrap: pretty; }
 }
 .app--sanvito { --app-c: #132b4f; --app-glow: #4b8fe8; }
 .app--mesagne { --app-c: #14523f; --app-glow: #3fb488; }
+.app--farmacia { --app-c: #123a5e; --app-glow: #2fa35a; }   /* blu dell'intestazione, luce verde come la croce del logo */
 
 /* scena: il colore dell'app, con una luce che sale da sotto il telefono */
 .app__stage {
@@ -1026,6 +1027,34 @@ p, dd, li { text-wrap: pretty; }
 }
 .app__press { color: var(--link); }
 .app__press:hover { text-decoration: underline; text-underline-offset: 0.18em; }
+
+/* terza app a tutta larghezza (non ha un articolo accanto): sul telefono è
+   come le altre; da 834 px le funzioni passano in una seconda colonna, da
+   1180 px la scena con il telefono va a sinistra, con un telefono più grande
+   che la riempie. L'ordine di lettura resta quello delle altre schede:
+   nome, descrizione, funzioni, dettagli, link */
+.app--wide { grid-column: 1 / -1; }
+@media (min-width: 834px) {
+  .app--wide .app__body {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 1rem + 2.5vw, 3.5rem);
+    grid-template-areas: "head feats" "lede feats" "specs feats" "links feats";
+    grid-template-rows: auto auto auto 1fr;
+  }
+  .app--wide .app__head { grid-area: head; }
+  .app--wide .app__lede { grid-area: lede; }
+  .app--wide .app__feats { grid-area: feats; align-self: start; }
+  .app--wide .app__specs { grid-area: specs; margin-top: 1.5rem; }
+  .app--wide .app__specs dt { flex: none; }
+  .app--wide .app__links { grid-area: links; align-self: end; }
+  .app--wide .app__feats { margin-top: clamp(1.5rem, 1.25rem + 1vw, 2rem); }
+}
+@media (min-width: 1180px) {
+  .app--wide { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); padding: 0; }
+  .app--wide .app__stage { margin: 0; padding-inline: 1.5rem; }
+  .app--wide .phone { width: min(82%, 18.75rem); }
+  .app--wide .app__body { padding: var(--pad); }
+  .app--wide .app__head, .app--wide .app__feats { margin-top: 0; }
+}
 
 /* rassegna stampa: una scheda per articolo, sotto l'app di cui parla e nel
    suo colore (blu San Vito, verde Mesagne); la testata su una targa bianca,
@@ -1311,6 +1340,7 @@ p, dd, li { text-wrap: pretty; }
   .app__stage { display: none !important; }
   .apps { display: block; }
   .app, .press, .craft { break-inside: avoid; margin-bottom: 1rem; }
+  .app--wide, .app--wide .app__body { display: block; }
   .press__source { background: none !important; color: #000 !important; padding-bottom: 0; }
   .press__kicker, .press__desc { color: #555 !important; }
   .press__mark { display: none; }
