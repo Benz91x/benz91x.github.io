@@ -1,2 +1,6 @@
 # chiavi private dei codici di Scadenze Mesagne: non vanno mai nel repository
 *.jwk
+
+# cartelle di lavoro della taste-skill (controlli, cronologia dei deal, screenshot): non si pubblicano
+.taste-skill/
+shots/
